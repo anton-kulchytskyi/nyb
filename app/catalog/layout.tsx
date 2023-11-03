@@ -1,9 +1,8 @@
-import Header from '@/components/Header/page'
-import './globals.css'
 import type { Metadata } from 'next'
 import { Bai_Jamjuree, Roboto } from 'next/font/google'
-import beautifulEs from 'next/font/local'
+// import beautifulEs from 'next/font/local'
 import Footer from '@/components/Footer/page'
+import Navbar from '@/components/Navbar/page'
 
 const roboto = Roboto({
   weight: ['400', '500'],
@@ -17,17 +16,17 @@ const baiJamjuree = Bai_Jamjuree({
   subsets: ['latin']
 })
 
-const bEs = beautifulEs({
-  src: '../public/font/Beautiful_ES.ttf',
-  variable: '--font-bEs',
-})
+// const bEs = beautifulEs({
+//   src: '../public/font/Beautiful_ES.ttf',
+//   variable: '--font-bEs',
+// })
 
 export const metadata: Metadata = {
-  title: 'Norse Yacht Co',
+  title: 'Catalog | Norse Yacht Co',
   description: 'First try',
 }
 
-export default function RootLayout({
+export default function CatalogLayout({
   children,
 }: {
   children: React.ReactNode
@@ -39,7 +38,7 @@ export default function RootLayout({
         <link rel="icon" type="image/x-icon" href="/favicon.ico" sizes="any" />
       </head>
       <body className={roboto.className}>
-        <Header />
+        <Navbar />
         {children}
         <Footer />
       </body>

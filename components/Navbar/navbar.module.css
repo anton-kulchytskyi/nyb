@@ -1,0 +1,17 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 2.375rem;
+  padding: 2rem 4rem;
+  width: 100%;
+}
+
+.link {
+  text-decoration: none;
+  color: #081433;
+  font-size: 1.125rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 150%;
+}

@@ -5,7 +5,7 @@ import styles from './page.module.css'
 export default function Home() {
   return (
     <main className={styles.main}>
-      <Image alt="header_img" src={headerImg} fill={true} />
+      {/* <Image alt="header_img" src={headerImg} fill={true} /> */}
       {/* <div className={styles.description}>
         <p>
           Get started by editing&nbsp;
@@ -30,7 +30,7 @@ export default function Home() {
         </div>
       </div> */}
 
-      <div className={styles.center}>
+      {/* <div className={styles.center}>
         <Image
           className={styles.logo}
           src="/Logo.svg"
@@ -39,7 +39,7 @@ export default function Home() {
           height={37}
           priority
         />
-      </div>
+      </div> */}
 
       {/* <div className={styles.grid}>
         <a
