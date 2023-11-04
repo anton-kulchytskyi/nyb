@@ -1,20 +1,18 @@
+import Link from 'next/link';
 import styles from './button.module.css'
-import { Roboto } from 'next/font/google'
-const roboto = Roboto({ weight: '500', subsets: ['latin'] })
 
 type Props = {
   text: string;
-  onClick: () => void;
+  linkTo: string;
 }
 
-function Button({ text, onClick }: Props) {
+function Button({ text, linkTo }: Props) {
   return (
     <button
       type="button"
-      className={`${styles.button} ${roboto.className}`}
-      onClick={onClick}
+      className={`${styles.button} ${styles.header}`}
     >
-      {text}
+      <Link href={linkTo} className={styles.link}>{text}</Link>
     </button>
   )
 }

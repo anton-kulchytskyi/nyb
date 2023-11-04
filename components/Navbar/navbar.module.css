@@ -1,5 +1,6 @@
 .navbar {
   display: flex;
+  /* font-family: var(--font-roboto); */
   justify-content: space-between;
   align-items: center;
   height: 2.375rem;
@@ -8,6 +9,7 @@
 }
 
 .link {
+  font-family: var(--font-roboto);
   text-decoration: none;
   color: #081433;
   font-size: 1.125rem;
