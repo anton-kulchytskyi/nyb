@@ -8,7 +8,7 @@ export const roboto = Roboto({
 })
 
 export const baiJamjuree = Bai_Jamjuree({
-  weight: ['400', '700'],
+  weight: ['400', '500', '600', '700'],
   variable: '--font-baiJamjuree',
   subsets: ['latin']
 })

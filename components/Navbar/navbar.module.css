@@ -1,11 +1,13 @@
 .navbar {
   display: flex;
+  position: relative;
   /* font-family: var(--font-roboto); */
   justify-content: space-between;
   align-items: center;
-  height: 2.375rem;
+  /* height: 2.375rem; */
   padding: 2rem 4rem;
   width: 100%;
+  z-index: 2;
 }
 
 .link {
@@ -16,4 +18,5 @@
   font-style: normal;
   font-weight: 500;
   line-height: 150%;
+  /* cursor: pointer; */
 }

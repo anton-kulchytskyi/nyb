@@ -1,0 +1,90 @@
+.card {
+  /* position: relative; */
+  /* display: block; */
+  width: 32%;
+  /* height: 35rem; */
+}
+
+.image_container {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 25rem;
+}
+
+
+
+.image {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.card_title {
+  color: #081433;
+  /* text-align: center; */
+  font-family: var(--font-baiJamjuree);
+  font-size: 2.25rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 150%; /* 3.375rem */
+}
+
+.card_price {
+  color: #E7801A;
+/* text-align: center; */
+/* Price */
+font-family: var(--font-roboto);
+font-size: 2rem;
+font-style: normal;
+font-weight: 500;
+line-height: 150%; /* 3rem */
+}
+
+.card_desc {
+  color: #7C8185;
+/* text-align: center; */
+/* Description */
+font-family: var(--font-roboto);
+font-size: 1.5rem;
+font-style: normal;
+font-weight: 400;
+line-height: 150%; /* 2.25rem */
+}
+
+@media (min-width: 1221px) and (max-width: 1576px) {
+  .image_container {
+    height: 22.25rem;
+  }
+
+  .card_title {
+    font-size: 2rem;
+  }
+  
+  .card_price {
+  font-size: 1.75rem;
+  }
+  
+  .card_desc {
+  font-size: 1.25rem;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1220px) {
+  .image_container {
+    height: 16.75rem;
+  }
+
+  .card_title {
+    font-size: 1.5rem;
+  }
+  
+  .card_price {
+  font-size: 1rem;
+  }
+  
+  .card_desc {
+  font-size: 0.75rem;
+  }
+}
+
