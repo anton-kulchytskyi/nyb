@@ -6,11 +6,11 @@ import FYCard from '../FYCard/page'
 
 const imgs = [img_1, img_2, img_3]
 
-const FeauteredYachts = () => {
+const FeaturedYachts = () => {
   return (
     <section className={styles.feature_section}>
-      <h4 className={styles.title}>Feautered</h4>
-      <div className={styles.cards_container}>
+      <h4 className={styles.title}>Featured</h4>
+      <div className={`common-container ${styles.cards_container}`}>
         {imgs.map((img, i) => (
           <FYCard
           key={i}
@@ -22,4 +22,4 @@ const FeauteredYachts = () => {
   )
 }
 
-export default FeauteredYachts
+export default FeaturedYachts

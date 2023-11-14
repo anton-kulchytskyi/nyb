@@ -1,0 +1,8 @@
+.header {
+    color: var(--blue)
+}
+
+.catalogContainer {
+    display: flex;
+    justify-content: space-between;
+}

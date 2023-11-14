@@ -32,5 +32,4 @@
 .cards_container {
   display: flex;
   justify-content: space-between;
-  padding: 0 4rem;
 }

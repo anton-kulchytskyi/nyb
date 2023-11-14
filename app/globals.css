@@ -1,3 +1,9 @@
+/*global variables*/
+:root{
+  --blue: #1e90ff;
+  --white: #ffffff;
+}
+
 * {
   box-sizing: border-box;
   padding: 0;
@@ -8,4 +14,16 @@ html,
 body {
   max-width: 100vw;
   overflow-x: hidden;
+}
+
+.common-container {
+  padding-left: 64px;
+  padding-right: 64px;
+}
+
+@media (max-width: 1199px) {
+  .common-container {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
 }

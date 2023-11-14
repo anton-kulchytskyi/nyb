@@ -1,4 +1,4 @@
-import FeauteredYachts from '@/components/FeauteredYachts/page'
+import FeaturedYachts from '@/components/FeauteredYachts/page'
 import styles from './page.module.css'
 import Header from '@/components/Header/page'
 
@@ -7,7 +7,7 @@ export default function Home() {
     <>
       <Header/>
       <main className={styles.main}>
-        <FeauteredYachts />
+        <FeaturedYachts />
       </main>
     </>
   )
