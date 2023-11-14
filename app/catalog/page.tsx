@@ -4,7 +4,7 @@ import getAllVessels from '../../utils/api/getAllVessels';
 
 export default async function Catalog() {
   const vessels = await getAllVessels();
-
+  console.log(vessels)
   return (
   <>
     <h1>Catalogue</h1>
