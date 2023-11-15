@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import Link from "next/link";
 
-import { getData } from '../../utils/api/getAllVessels';
+import { getAllVessels } from '../../utils/api/getAllVessels';
 
 
 export const metadata: Metadata = {
@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 }
 
 export default async function Catalog() {
-  const vessels = await getData();
+  const vessels = await getAllVessels();
 
   return (
   <>

@@ -1,0 +1,25 @@
+@import '../../app/styles/var.scss';
+
+.copyright {
+  display: flex;
+  align-items: center;
+  color: $copyright-color;
+}
+
+// .hidden {
+//   display: block;
+
+//   &__small {
+//     display: none;
+//   }
+// }
+
+// @media (max-width: 768px) {
+//   .hidden {
+//     display: none;
+  
+//     &__small {
+//       display: block;
+//     }
+//   }
+// }

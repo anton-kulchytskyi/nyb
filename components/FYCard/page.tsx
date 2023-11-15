@@ -5,10 +5,14 @@ import Button from '../Button/page';
 import { useState } from 'react';
 
 type Props = {
+  vesselMake: string;
+  vesselPrice: number;
+  vesselLocationCountry: string;
+  vesselYear: number;
   photo: StaticImageData;
 }
 
-const FYCard = ({photo} : Props) => {
+const FYCard = ({vesselMake, vesselPrice, vesselLocationCountry, vesselYear, photo} : Props) => {
   const [isHovering, setIsHovering] = useState(true);
 
   const handleMouseOver = () => {
@@ -29,9 +33,9 @@ const FYCard = ({photo} : Props) => {
         <Image alt="feature_img" src={photo} fill={true} className={styles.image} />
         <Button text="See Detail" linkTo="/catalog" primary absolute hover={isHovering}/>
       </div>
-      <h5 className={styles.card_title}>Jeanneau 53</h5>
-      <p className={styles.card_price}>$ 850,000</p>
-      <p className={styles.card_desc}>Crotia | 2012</p>
+      <h5 className={styles.card_title}>{vesselMake}</h5>
+      <p className={styles.card_price}>{`$ ${vesselPrice}`}</p>
+      <p className={styles.card_desc}>{`${vesselLocationCountry} | ${vesselYear}`}</p>
     </div>
   )
 }
