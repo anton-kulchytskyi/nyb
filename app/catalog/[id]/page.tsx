@@ -12,7 +12,7 @@ type Props = {
 }
 
 
-export async function genrateMetadata({params: {id}}: Props): Promise<Metadata> {
+export async function generateMetadata({params: {id}}: Props): Promise<Metadata> {
   return {
     // title: `Yacht ${id} | Norse Yacht Co`,
     title: id,
