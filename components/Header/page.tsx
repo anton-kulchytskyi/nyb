@@ -1,10 +1,8 @@
 import Image from 'next/image'
 import headerImg from '../../public/header_img.png'
-
-import styles from './header.module.css'
-
 import Navbar from '../Navbar/page'
 import Button from '../Button/page'
+import styles from './header.module.css'
 
 const Header = () => {
   return (

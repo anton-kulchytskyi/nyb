@@ -9,12 +9,12 @@ const Navbar = () => {
       <Link href="/" className={styles.link}>How it works?</Link>
       <Link href="/">
         <Image
-            src="/Logo.svg"
-            alt="Logo"
-            width={180}
-            height={37}
-            priority
-          />
+          src="/Logo.svg"
+          alt="Logo"
+          width={180}
+          height={37}
+          priority
+        />
       </Link>
       <Link href="/" className={styles.link}>Change Preferences</Link>
       <Link href="/" className={styles.link}>Reviews</Link>
