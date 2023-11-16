@@ -1,4 +1,4 @@
-import styles from './feauteredYachts.module.css'
+import styles from './feauteredYachts.module.scss'
 import img_1 from '../../public/fyc_1.jpeg'
 import img_2 from '../../public/fyc_2.jpeg'
 import img_3 from '../../public/fyc_3.jpeg'

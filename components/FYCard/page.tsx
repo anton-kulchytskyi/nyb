@@ -1,6 +1,6 @@
 'use client'
 import Image, { StaticImageData } from 'next/image'
-import styles from './fycard.module.css'
+import styles from './fycard.module.scss'
 import Button from '../Button/page';
 import { useState } from 'react';
 

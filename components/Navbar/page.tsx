@@ -1,6 +1,6 @@
 import Link from "next/link"
 import Image from 'next/image'
-import styles from './navbar.module.css'
+import styles from './navbar.module.scss'
 import headerImg from '../../public/header_img.png'
 
 const Navbar = () => {
