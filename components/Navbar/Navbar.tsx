@@ -3,7 +3,7 @@ import Link from "next/link"
 import Image from 'next/image'
 import styles from './navbar.module.scss'
 import LogoImg from '@/public/icons/logo.svg'
-import LogoImgSmall from '@/public/icons/logo_small_screen.svg'
+import LogoImgSmall from '@/public/icons/Logo_small_screen.svg'
 import BurgerMenu from '@/public/icons/burger__menu.svg'
 
 import useWindowDimensions from '@/hooks/useWindowDimensions';
