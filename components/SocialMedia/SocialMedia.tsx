@@ -3,9 +3,9 @@ import Image from 'next/image';
 
 import styles from './socialmedia.module.scss';
 
-import InstaIcon from '../../public/insta.svg';
-import TelegramIcon from '../../public/telegram.svg';
-import YoutubeIcon from '../../public/youtube.svg';
+import InstaIcon from '@/public/icons/insta.svg';
+import TelegramIcon from '@/public/icons/telegram.svg';
+import YoutubeIcon from '@/public/icons/youtube.svg';
 
 const SocialMedia = () => {
   return (

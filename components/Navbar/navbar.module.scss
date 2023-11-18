@@ -1,0 +1,48 @@
+@import '@/styles/var.scss';
+@import '@/styles/mixins.scss';
+
+.navbar {
+  display: flex;
+  position: relative;
+  /* font-family: var(--font-roboto); */
+  justify-content: space-between;
+  align-items: center;
+  /* height: 2.375rem; */
+  padding: 2rem 4rem;
+  width: 100%;
+  z-index: 2;
+
+  &__side {
+    width: 40%;
+    display: flex;
+
+    &:last-child {
+      justify-content: flex-end;
+    }
+  }
+
+  @include onDesktop {
+    padding: 1rem 1.25rem;
+  }
+}
+
+.link {
+  text-decoration: none;
+  color: $black;
+  font-size: 1.125rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 150%;
+
+  &:not(:last-child) {
+    margin-right: 2.5rem;
+  }
+}
+
+.logo img {
+  @include onSmall {
+    display: block;
+    width: 80%;
+    margin: 0 auto;
+  }
+}

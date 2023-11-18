@@ -1,4 +1,5 @@
 import { DefaultError } from "../errors/defaultError";
+import { Vessel } from '@/interfaces/vessel.interface';
 
 const BASE_URL = 'https://nyb-project-production.up.railway.app/vessels';
 
@@ -18,5 +19,5 @@ export const getVesselById = async (id: string) => await getData(id);
 export const getFeauteredYacht = async () => {
   const yachts = await getData();
 
-  return yachts.filter((yacht: any) => yacht.featuredVessel)
+  return yachts.filter((yacht: Vessel) => yacht.featuredVessel)
 };

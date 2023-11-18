@@ -1,0 +1,55 @@
+@import '../../styles/mixins.scss';
+@import '../../styles/var.scss';
+
+.feature_section {
+  margin: 6.25rem 0;
+
+  @include onDesktop {
+    margin: 4rem 0;
+  }
+
+  @include onTablet {
+    margin: 2.5rem 0;
+  }
+}
+
+.title {
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+
+  & h4 {
+    margin-right: 0.8rem;
+  }
+
+  & h5 {
+    transform: translate(-50%, 70%);
+
+    @include onTablet {
+      transform: translate(0, 0);
+    }
+  }
+}
+
+.cards_container {
+  display: flex;
+  justify-content: space-between;
+  padding: 3rem 4rem;
+  flex-wrap: wrap;
+
+  @include onTablet {
+    padding: 2rem 1.25rem;
+  }
+}
+
+.seeall {
+  color: $orange-secondary-100;
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 4rem;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  text-decoration-line: underline;
+}
