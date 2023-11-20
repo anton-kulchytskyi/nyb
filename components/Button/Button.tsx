@@ -1,9 +1,8 @@
 import Link from 'next/link';
 import styles from './button.module.scss'
-<<<<<<< HEAD:components/Button/page.tsx
-=======
+
 import { ButtonInterface } from '@/interfaces/button.interface';
->>>>>>> develop:components/Button/Button.tsx
+
 // import { forwardRef } from 'react';
 
 // type Props = {

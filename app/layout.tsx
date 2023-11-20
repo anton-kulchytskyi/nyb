@@ -1,8 +1,5 @@
-<<<<<<< HEAD
-import './globals.scss';
-=======
 import '../styles/globals.scss';
->>>>>>> develop
+
 import type { Metadata } from 'next';
 
 import Navbar from '@/components/Navbar/Navbar';
