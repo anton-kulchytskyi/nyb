@@ -1,17 +1,21 @@
 import Link from 'next/link';
 import styles from './button.module.scss'
+<<<<<<< HEAD:components/Button/page.tsx
+=======
+import { ButtonInterface } from '@/interfaces/button.interface';
+>>>>>>> develop:components/Button/Button.tsx
 // import { forwardRef } from 'react';
 
-type Props = {
-  text: string;
-  linkTo: string;
-  primary?: boolean;
-  secondary?: boolean;
-  absolute?: boolean;
-  hover?: boolean;
-}
+// type Props = {
+//   text: string;
+//   linkTo: string;
+//   primary?: boolean;
+//   secondary?: boolean;
+//   absolute?: boolean;
+//   hover?: boolean;
+// }
 
-function Button({ text, linkTo, primary, secondary, absolute, hover }: Props) {
+function Button({ text, linkTo, primary, secondary, center, header, hover }: ButtonInterface) {
   // console.log(hover)
   
   return (
@@ -22,7 +26,8 @@ function Button({ text, linkTo, primary, secondary, absolute, hover }: Props) {
          ${styles.button}
          ${primary && styles.primary}
          ${secondary && styles.secondary}
-         ${absolute && styles.absolute}
+         ${center && styles.center}
+         ${header && styles.header}
          ${hover && styles.hover}
        `}
       >{text}</span>

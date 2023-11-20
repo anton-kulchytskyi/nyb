@@ -1,7 +1,11 @@
+<<<<<<< HEAD
 import './globals.scss';
+=======
+import '../styles/globals.scss';
+>>>>>>> develop
 import type { Metadata } from 'next';
 
-import Navbar from '@/components/Navbar/page';
+import Navbar from '@/components/Navbar/Navbar';
 import Footer from '@/components/Footer/Footer';
 
 import { roboto, baiJamjuree, beautifulEs } from '../utils/fonts/fonts';

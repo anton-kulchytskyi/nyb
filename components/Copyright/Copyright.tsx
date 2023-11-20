@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import styles from './copyright.module.scss'
-import CopyrightIcon from '../../public/copy.svg';
+import CopyrightIcon from '@/public/icons/copyright.svg';
 
 const Copyright = () => {
   return (
