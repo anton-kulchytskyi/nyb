@@ -1,4 +1,6 @@
 import styles from './feauteredYachts.module.scss';
+import typo from '@/styles/typography.module.scss'
+
 import FYCard from '../FYCard/FYCard';
 import { Vessel } from '@/interfaces/vessel.interface';
 
@@ -16,13 +18,13 @@ const FeauteredYachts = async () => {
 
   const visibleYachts = yachts.slice(0, 3);
 
-  // console.log(visibleYachts);
+  // console.log(yachts);
   
   return (
     <section className={styles.feature_section}>
       <div className={styles.title}>
-        <h4>Feautered</h4>
-        <h5>yachts</h5>
+        <h4 className={typo.typo_h4}>Feautered</h4>
+        <h5 className={typo.typo_h5}>yachts</h5>
       </div>
       <span className={styles.seeall}>See All</span>
       <div className={styles.cards_container}>
