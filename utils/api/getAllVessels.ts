@@ -1,13 +1,23 @@
+import { Vessel } from '@/interfaces/vessel.interface';
+import { DefaultError } from "../errors/defaultError";
+
 const BASE_URL = 'https://nyb-project-production.up.railway.app/vessels';
 
-export async function getData() {
-  const response = await fetch(BASE_URL);
+async function getData(url: string = ''): Promise<Vessel[]> {
+  const response = await fetch(`${BASE_URL}${url}`);
+
+  if (!response.ok) {
+    // console.log(response.text())
+    throw new DefaultError;
+  }
 
   return response.json();
 }
 
-export async function getOneVes(id: string) {
-  const response = await fetch(BASE_URL + id);
+export const getAllVessels = async () => await getData();
+export const getVesselById = async (id: string) => await getData(id);
+export const getFeauteredYacht = async () => {
+  const yachts = await getData();
 
-  return response.json();
-}
+  return yachts.filter((yacht: Vessel) => yacht.featuredVessel)
+};
