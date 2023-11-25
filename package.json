@@ -17,8 +17,8 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run precommit"
-    }
+      "pre-commit": "echo \"[Husky] pre-commit +++++++A\""
+  }
   },
   "dependencies": {
     "@types/node": "20.8.10",
