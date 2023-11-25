@@ -6,6 +6,7 @@ import { getVesselById } from '@/utils/api/getAllVessels';
 type Props = {
   params: {
     id: string;
+    
     // vesselMake: string;
     // vesselDescription: string;
     // vesselPrice: number;
