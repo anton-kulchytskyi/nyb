@@ -1,24 +1,24 @@
 import Image from 'next/image';
 import headerImg from '@/public/header_img.png';
 
-import styles from './header.module.scss';
 import typo from '@/styles/typography.module.scss'
 
 import Button from '../Button/Button';
+import styles from './header.module.scss';
 
 const Header = () => {
   return (
     <header className={styles.header}>
       <div className={styles.header__container}>
-      <Image
-            alt='header_img'
-            src={headerImg}
-            fill={true}
-            // style={{
-            //   objectFit: 'cover',
-            // }}
-            className={styles.image}
-          />
+        <Image
+          alt='header_img'
+          src={headerImg}
+          fill={true}
+          // style={{
+          //   objectFit: 'cover',
+          // }}
+          className={styles.image}
+        />
         <div className={styles.wrapper}>
           {/* <Image
             alt='header_img'

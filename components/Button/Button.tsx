@@ -1,6 +1,6 @@
 import Link from 'next/link';
-import styles from './button.module.scss'
 import { ButtonInterface } from '@/interfaces/button.interface';
+import styles from './button.module.scss'
 // import { forwardRef } from 'react';
 
 // type Props = {

@@ -1,6 +1,6 @@
 import Image from 'next/image'
-import styles from './copyright.module.scss'
 import CopyrightIcon from '@/public/icons/copyright.svg';
+import styles from './copyright.module.scss'
 
 const Copyright = () => {
   return (
@@ -10,7 +10,7 @@ const Copyright = () => {
         alt="Copyright"
         priority
       />
-        Name Всі права захищені.
+      Name Всі права захищені.
     </span>
   )
 }
