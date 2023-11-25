@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import Link from "next/link";
 
-import { getAllVessels } from '../../utils/api/getAllVessels';
+import { getAllVessels } from '@/utils/api/getAllVessels';
 
 
 export const metadata: Metadata = {
