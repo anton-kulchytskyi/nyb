@@ -1,12 +1,12 @@
 'use client';
 import Link from "next/link"
 import Image from 'next/image'
-import styles from './navbar.module.scss'
 import LogoImg from '@/public/icons/logo.svg'
 import LogoImgSmall from '@/public/icons/Logo_small_screen.svg'
 import BurgerMenu from '@/public/icons/burger__menu.svg'
 
 import useWindowDimensions from '@/hooks/useWindowDimensions';
+import styles from './navbar.module.scss'
 
 const Navbar = () => {
   const { width } = useWindowDimensions();
@@ -23,8 +23,8 @@ const Navbar = () => {
             />
           ) : (
             <>
-            <Link href="/catalog" className={styles.link}>Yachts</Link>
-            <Link href="/" className={styles.link}>How it works?</Link>
+              <Link href="/catalog" className={styles.link}>Yachts</Link>
+              <Link href="/" className={styles.link}>How it works?</Link>
             </>
           )}
         </div>
@@ -38,14 +38,14 @@ const Navbar = () => {
               alt="Logo"
               priority
             />
-            ) : (
+          ) : (
             <Image
               src={LogoImg}
               alt="Logo"
               // className={styles.logo}
               priority
             />
-            )}
+          )}
         </Link>
         <div className={styles.navbar__side}>
           {!tabletScreen && <Link href="/" className={styles.link}>Change Units</Link>}

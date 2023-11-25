@@ -2,9 +2,9 @@ import Image from 'next/image';
 import headerImg from '@/public/header_img.png';
 
 import typo from '@/styles/typography.module.scss'
+
 import Button from '../Button/Button';
 import styles from './header.module.scss';
-
 
 const Header = () => {
   return (
