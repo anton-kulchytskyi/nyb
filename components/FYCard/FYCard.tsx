@@ -1,11 +1,11 @@
 'use client';
 import Image, { StaticImageData } from 'next/image';
-import styles from './fycard.module.scss';
-import typo from '@/styles/typography.module.scss'
-import Button from '../Button/Button';
 import { useState } from 'react';
-
+import typo from '@/styles/typography.module.scss'
 import { Vessel } from '@/interfaces/vessel.interface';
+import Button from '../Button/Button';
+
+import styles from './fycard.module.scss';
 
 // import '../../styles/var.scss';
 

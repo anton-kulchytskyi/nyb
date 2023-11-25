@@ -1,11 +1,9 @@
-import styles from './feauteredYachts.module.scss';
 import typo from '@/styles/typography.module.scss'
 
-import FYCard from '../FYCard/FYCard';
 import { Vessel } from '@/interfaces/vessel.interface';
+import { getFeauteredYacht } from '@/utils/api/getAllVessels';
 import FYCard from '../FYCard/FYCard';
 
-import { getFeauteredYacht } from '@/utils/api/getAllVessels';
 
 import img_1 from '../../public/fyc_1.jpeg'
 import img_2 from '../../public/fyc_2.jpeg'
