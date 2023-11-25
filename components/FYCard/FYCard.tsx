@@ -1,10 +1,13 @@
 'use client';
 import Image, { StaticImageData } from 'next/image';
 import styles from './fycard.module.scss';
+import typo from '@/styles/typography.module.scss'
 import Button from '../Button/Button';
 import { useState } from 'react';
 
 import { Vessel } from '@/interfaces/vessel.interface';
+
+// import '../../styles/var.scss';
 
 interface Props {
   yacht: Vessel;
@@ -41,10 +44,12 @@ const FYCard = ({ yacht, photo }: Props) => {
           hover={isHovering}
         />
       </div>
-      <p className={styles.card_title}>{vesselMake}</p>
-      <p className={styles.card_price}>{`$ ${vesselPrice}`}</p>
+      <p className={typo.typo_name_yacht}>{vesselMake}</p>
+      <p className={typo.typo_price}>{`$ ${vesselPrice}`}</p>
       <p
-        className={styles.card_desc}
+        className={`${typo.typo_description} ${typo.typo_description_gray}`}
+        // style={{color: '#525659'}}
+        // style={{ color:` ${$gray-100}` }}
       >{`${vesselLocationCountry} | ${vesselYear}`}</p>
     </div>
   );

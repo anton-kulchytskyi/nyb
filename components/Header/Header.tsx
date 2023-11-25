@@ -3,6 +3,7 @@ import headerImg from '@/public/header_img.png';
 
 import Button from '../Button/Button';
 import styles from './header.module.scss';
+import typo from '@/styles/typography.module.scss'
 
 
 const Header = () => {
@@ -25,8 +26,8 @@ const Header = () => {
             fill={true}
             className={styles.image}
           /> */}
-          <h2>Good quality</h2>
-          <h1 className={styles.title}>Easy to buy!</h1>
+          <h2 className={typo.typo_h2}>Good quality</h2>
+          <h1 className={`${typo.typo_h1} ${styles.title}`}>Easy to buy!</h1>
           <Button text='Follow your dream' linkTo='/catalog' primary header />
         </div>
       </div>

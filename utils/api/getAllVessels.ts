@@ -1,5 +1,5 @@
+import { DefaultError } from '@/utils/errors/defaultError';
 import { Vessel } from '@/interfaces/vessel.interface';
-import { DefaultError } from "../errors/defaultError";
 
 const BASE_URL = 'https://nyb-project-production.up.railway.app/vessels';
 
@@ -7,7 +7,6 @@ async function getData(url: string = ''): Promise<Vessel[]> {
   const response = await fetch(`${BASE_URL}${url}`);
 
   if (!response.ok) {
-    // console.log(response.text())
     throw new DefaultError;
   }
 
