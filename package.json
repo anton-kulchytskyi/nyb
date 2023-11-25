@@ -8,7 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "lint:fix": "npx eslint --ext .tsx,.ts --fix",
-    "precommit": "lint-staged"
+    "precommit": "npm run lint"
   },
   "lint-staged": {
     "*.{tsx,js,html}": [
@@ -17,7 +17,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "echo \"[Husky] pre-commit +++++++A\""
+      "pre-commit": "npm run precommit"
   }
   },
   "dependencies": {
