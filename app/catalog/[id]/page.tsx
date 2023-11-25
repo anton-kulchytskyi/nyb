@@ -1,7 +1,7 @@
 import { Metadata } from "next"
 
 // import { getOneVes } from '../../../utils/api/getAllVessels';
-import { getVesselById } from '../../../utils/api/getAllVessels';
+import { getVesselById } from '@/utils/api/getAllVessels';
 
 type Props = {
   params: {
