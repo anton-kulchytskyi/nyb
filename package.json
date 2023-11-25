@@ -11,7 +11,7 @@
     "precommit": "lint-staged"
   },
   "lint-staged": {
-    "*.js": "eslint"
+    "*.ts, *.js, *.tsx, *.html, *.scss": "eslint"
   },
   "husky": {
     "hooks": {
