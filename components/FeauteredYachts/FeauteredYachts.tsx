@@ -1,14 +1,11 @@
-import styles from './feauteredYachts.module.scss';
 import typo from '@/styles/typography.module.scss'
-
-import FYCard from '../FYCard/FYCard';
 import { Vessel } from '@/interfaces/vessel.interface';
-
-import { getFeauteredYacht } from '../../utils/api/getAllVessels';
-
+import { getFeauteredYacht } from '@/utils/api/getAllVessels';
+import FYCard from '../FYCard/FYCard';
 import img_1 from '../../public/fyc_1.jpeg'
 import img_2 from '../../public/fyc_2.jpeg'
 import img_3 from '../../public/fyc_3.jpeg'
+import styles from './feauteredYachts.module.scss';
 
 const imgs = [img_1, img_2, img_3]
 

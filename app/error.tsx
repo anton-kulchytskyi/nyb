@@ -7,6 +7,7 @@ type Props = {
 }
 
 const error = ({ error }: Props) => {
+  // eslint-disable-next-line no-console
   console.log(error.name);
   return (
     <>

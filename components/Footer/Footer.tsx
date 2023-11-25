@@ -1,11 +1,11 @@
 'use client';
 import Link from 'next/link'
-import styles from './footer.module.scss'
 import Image from 'next/image'
 import FooterLogo from '@/public/icons/logo_footer.svg';
+import useWindowDimensions from '@/hooks/useWindowDimensions';
 import Copyright from '../Copyright/Copyright';
 import SocialMedia from '../SocialMedia/SocialMedia';
-import useWindowDimensions from '@/hooks/useWindowDimensions';
+import styles from './footer.module.scss'
 
 const Footer = () => {
   const { width } = useWindowDimensions();
