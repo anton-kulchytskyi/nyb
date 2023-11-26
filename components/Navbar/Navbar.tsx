@@ -42,7 +42,6 @@ const Navbar = () => {
             <Image
               src={LogoImg}
               alt="Logo"
-              // className={styles.logo}
               priority
             />
           )}

@@ -7,8 +7,6 @@ import Button from '../Button/Button';
 
 import styles from './fycard.module.scss';
 
-// import '../../styles/var.scss';
-
 interface Props {
   yacht: Vessel;
   photo: StaticImageData;
@@ -48,8 +46,6 @@ const FYCard = ({ yacht, photo }: Props) => {
       <p className={typo.typo_price}>{`$ ${vesselPrice}`}</p>
       <p
         className={`${typo.typo_description} ${typo.typo_description_gray}`}
-        // style={{color: '#525659'}}
-        // style={{ color:` ${$gray-100}` }}
       >{`${vesselLocationCountry} | ${vesselYear}`}</p>
     </div>
   );
