@@ -12,12 +12,16 @@ import styles from './fycard.module.scss';
 interface Props {
   yacht: Vessel;
   photo: StaticImageData;
+  linkTo: string;
 }
 
-const FYCard = ({ yacht, photo }: Props) => {
+const FYCard = ({ yacht, photo, linkTo }: Props) => {
   const [isHovering, setIsHovering] = useState(true);
   const {
-    vesselMake, vesselPrice, vesselLocationCountry, vesselYear,
+    vesselMake,
+    vesselPrice,
+    vesselLocationCountry,
+    vesselYear,
   } = yacht;
 
   const handleMouseOver = () => {
@@ -38,7 +42,7 @@ const FYCard = ({ yacht, photo }: Props) => {
         <Image alt="feature_img" src={photo} fill={true} className={styles.image} />
         <Button
           text='See Detail'
-          linkTo='/catalog'
+          linkTo={linkTo}
           primary
           center
           hover={isHovering}

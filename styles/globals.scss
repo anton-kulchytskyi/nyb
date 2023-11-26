@@ -1,4 +1,5 @@
 @import './var.scss';
+@import './mixins.scss';
 
 * {
   box-sizing: border-box;
@@ -18,14 +19,13 @@ body {
   line-height: 1.5;
 }
 
-.common-container {
-  padding-left: 64px;
-  padding-right: 64px;
-}
+.cards_container {
+  display: flex;
+  justify-content: space-between;
+  padding: 3rem 4rem;
+  flex-wrap: wrap;
 
-@media (max-width: 1199px) {
-  .common-container {
-    padding-left: 20px;
-    padding-right: 20px;
+  @include onTablet {
+    padding: 2rem 1.25rem;
   }
 }

@@ -16,7 +16,10 @@ function Button({ text, linkTo, primary, secondary, center, header, hover }: But
   // console.log(hover)
   
   return (
-    <Link href={linkTo} className={styles.link}>
+    <Link href={{
+      pathname: linkTo,
+      query: { name: 'test' },
+    }} className={styles.link}>
       <span
         // type="button"
         className={`

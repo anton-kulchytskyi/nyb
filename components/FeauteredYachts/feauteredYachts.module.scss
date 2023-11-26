@@ -31,17 +31,6 @@
   }
 }
 
-.cards_container {
-  display: flex;
-  justify-content: space-between;
-  padding: 3rem 4rem;
-  flex-wrap: wrap;
-
-  @include onTablet {
-    padding: 2rem 1.25rem;
-  }
-}
-
 .seeall {
   color: $orange-secondary-100;
   display: flex;

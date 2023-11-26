@@ -14,7 +14,15 @@ async function getData(url: string = ''): Promise<Vessel[]> {
 }
 
 export const getAllVessels = async () => await getData();
-export const getVesselById = async (id: string) => await getData(id);
+export const getVesselById = async (id: string): Promise<Vessel> => {
+  const response = await fetch(`${BASE_URL}${id}`);
+
+  if (!response.ok) {
+    throw new DefaultError;
+  }
+
+  return response.json();
+};
 export const getFeauteredYacht = async () => {
   const yachts = await getData();
 

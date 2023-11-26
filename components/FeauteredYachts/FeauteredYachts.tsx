@@ -24,9 +24,9 @@ const FeauteredYachts = async () => {
         <h5 className={typo.typo_h5}>yachts</h5>
       </div>
       <span className={styles.seeall}>See All</span>
-      <div className={styles.cards_container}>
+      <div className="cards_container">
         {visibleYachts.map((yacht: Vessel, i: number) =>(
-          <FYCard key={yacht.id} yacht={yacht} photo={imgs[i]}/>
+          <FYCard key={yacht.id} yacht={yacht} photo={imgs[i]} linkTo='/catalog'/>
         ))}
       </div>
     </section>
