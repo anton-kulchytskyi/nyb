@@ -18,13 +18,12 @@ export default function RootLayout({
   return (
     <html
       lang='en'
-      className={`${baiJamjuree.variable} ${beautifulEs.variable} ${roboto.variable}`}
+      className={`${baiJamjuree.variable} ${beautifulEs.variable} ${roboto.variable} page`}
     >
       <head>
         <link rel='icon' type='image/x-icon' href='/favicon.ico' sizes='any' />
       </head>
-      <body>
-        {/* <Header /> */}
+      <body className='page__body'>
         <Navbar />
         {children}
         <Footer />
