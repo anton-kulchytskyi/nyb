@@ -1,26 +1,35 @@
 'use client';
-import Link from "next/link"
-import Image from 'next/image'
-import LogoImg from '@/public/icons/logo.svg'
-import LogoImgSmall from '@/public/icons/Logo_small_screen.svg'
-import BurgerMenu from '@/public/icons/burger__menu.svg'
+import Link from 'next/link';
+import Image from 'next/image';
+
+import LogoImg from '@/public/icons/logo.svg';
+// import BurgerMenu from '@/public/icons/burger__menu.svg';
 
 import useWindowDimensions from '@/hooks/useWindowDimensions';
-import styles from './navbar.module.scss'
+
+import MenuIcon from '../MenuIcon/MenuIcon';
+
+// import MenuMobileModal from '../MenuMobileModal/MenuMobileModal';
+
+import styles from './navbar.module.scss';
+
 
 const Navbar = () => {
   const { width } = useWindowDimensions();
-  const logoSize = width as number <= 1200 && width as number > 360;
   const tabletScreen = width as number <= 768;
+
   return (
     <>
       <nav className={styles.navbar}>
         <div className={styles.navbar__side}>
           {tabletScreen ? (
-            <Image
-              src={BurgerMenu}
-              alt="Burger Menu"
-            />
+            <MenuIcon />
+            // <Link href="/menu">
+            //   <Image
+            //     src={BurgerMenu}
+            //     alt="Burger Menu"
+            //   />
+            // </Link>
           ) : (
             <>
               <Link href="/catalog" className={styles.link}>Yachts</Link>
@@ -28,23 +37,17 @@ const Navbar = () => {
             </>
           )}
         </div>
+        {/* {showMobileMenu && <MenuMobileModal />} */}
         <Link 
           href="/"
           className={styles.logo}
         >
-          {logoSize ? (
-            <Image
-              src={LogoImgSmall}
-              alt="Logo"
-              priority
-            />
-          ) : (
-            <Image
-              src={LogoImg}
-              alt="Logo"
-              priority
-            />
-          )}
+          <Image
+            src={LogoImg}
+            className={styles.logo__image}
+            alt="Logo"
+            priority
+          />
         </Link>
         <div className={styles.navbar__side}>
           {!tabletScreen && <Link href="/" className={styles.link}>Change Units</Link>}

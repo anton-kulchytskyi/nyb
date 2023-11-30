@@ -11,7 +11,7 @@
   z-index: 2;
 
   &__side {
-    width: 40%;
+    width: 35%;
     display: flex;
 
     &:last-child {
@@ -37,10 +37,26 @@
   }
 }
 
-.logo img {
+.logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &__image {
+  @include onDesktop {
+    width: 170px;
+  }
+
   @include onSmall {
-    display: block;
-    width: 80%;
-    margin: 0 auto;
+    width: 120px;
+  }
   }
 }
+
+// .logo img {
+//   @include onSmall {
+//     display: block;
+//     width: 80%;
+//     margin: 0 auto;
+//   }
+// }

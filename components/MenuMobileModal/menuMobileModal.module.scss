@@ -1,0 +1,33 @@
+@import '../../styles/var.scss';
+
+.modal {
+  height: 100vh;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  // transform: translateY(-100%);
+  // animation: 3s ease-in sun-rise;
+  // transition: opacity 0.3 easy;
+
+  &__link {
+    text-decoration: none;
+    color: $black;
+    font-family: var(--font-baiJamjuree);
+    font-size: 1.5rem;
+    margin-bottom: 2.5rem;
+    font-style: normal;
+    font-weight: 500;
+  }
+}
+
+// @keyframes sun-rise {
+//   from {
+//     /* pushes the sun down past the viewport */
+//     transform: translateY(-100%);
+//   }
+//   to {
+//     /* returns the sun to its default position */
+//     transform: translateY(0);
+//   }
+// }
