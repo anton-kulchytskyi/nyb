@@ -1,39 +1,42 @@
-import { Metadata } from "next";
-import { getAllVessels } from '@/utils/api/getAllVessels';
-import {Vessel} from "@/interfaces/vessel.interface";
-import typo from "@/styles/typography.module.scss";
-import FYCard from "@/components/FYCard/FYCard";
-import img_1 from '../../public/fyc_1.jpeg';
-import img_2 from '../../public/fyc_2.jpeg';
-import img_3 from '../../public/fyc_3.jpeg';
-const imgs = [img_1, img_2, img_3];
-import styles from './page.module.scss';
-export const metadata: Metadata = {
-  title: 'Catalog | Norse Yacht Co',
-}
+'use client'
 
-export default async function Catalog() {
-  const vessels = await getAllVessels();
+import {useEffect, useState} from "react";
+import Link from "next/link";
+import { useSearchParams, usePathname, useRouter } from 'next/navigation';
+import { getVesselBySearch} from '@/utils/api/getAllVessels';
+import typo from "@/styles/typography.module.scss";
+import CatalogYacht from "@/components/CatalogYacht/catalogYacht";
+import {Vessel} from "@/interfaces/vessel.interface";
+import styles from './page.module.scss';
+// export const metadata: Metadata = {
+//   title: 'Catalog | Norse Yacht Co',
+// }
+
+export default function Catalog( ) {
+  const pathname = usePathname();
+  const { replace } = useRouter();
+  const searchPar = useSearchParams();
+  const params = new URLSearchParams(searchPar);
+  const [yachts, setYachts] = useState<Vessel[]>()
+  let x = params.toString();
+  // console.log(x)
+
+  if (!x) {
+    x = 'page=0&size=6';
+    replace(`${pathname}?${x.toString()}`);
+  }
+
+  useEffect(() => {
+    getVesselBySearch(x).then((result) => {
+      return setYachts(result);
+    });
+  }, [x]);
 
   return (
     <section>
       <h4 className={`cards_container ${styles.catalog_container} ${typo.typo_h4}`}>Catalogue</h4>
-      <div className="cards_container">
-        {vessels.map((yacht: Vessel, i: number) => (
-          <FYCard 
-            key={yacht.id} 
-            yacht={yacht} 
-            photo={imgs[i]} 
-            linkTo={`/catalog/${yacht.id}`}/>
-          // <Link
-          //     href={`/catalog/${yacht.id}`}
-          //     as="/catalog/106"
-          //     key={yacht.id}>
-          //   <div>{yacht.id}</div>
-          // </Link>
-        ))}
-
-      </div>
+      <CatalogYacht par={yachts}></CatalogYacht>
+      <Link href='/catalog?page=1&size=6'>Next</Link>
     </section>
   )
 }
