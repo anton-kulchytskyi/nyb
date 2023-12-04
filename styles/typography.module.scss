@@ -47,6 +47,10 @@
   font-size: 6rem;
   font-weight: 600;
 
+  &__gray {
+    color: $gray-primary;
+  }
+
   @include onDesktop {
     font-size: 4rem;
   }
@@ -66,6 +70,10 @@
   font-size: 2.5rem;
   font-weight: 600;
   text-transform: capitalize;
+
+  &__white {
+    color: $white;
+  }
 
   @include onTablet {
     font-size: 2rem;
@@ -89,7 +97,7 @@
   color: $orange-secondary-100;
   font-family: var(--font-bEs);
   font-size: 17.125rem;
-  font-weight: 600;
+  font-weight: 400;
   line-height: 100%;
 
   @include onDesktop {
@@ -107,22 +115,10 @@
 
 .typo_uitxt_secondary {
   color: $orange-secondary-100;
-  font-family: var(--font-bEs);
-  font-size: 17.125rem;
+  font-family: var(--font-baiJamjuree);
+  font-size: 3rem;
   font-weight: 600;
-  line-height: 100%;
-
-  @include onDesktop {
-    font-size: 12.5rem;
-  }
-
-  @include onTablet {
-    font-size: 8rem;
-  }
-
-  @include onSmall {
-    font-size: 5.5rem;
-  }
+  line-height: 150%;
 }
 
 .typo_product_card_name {
@@ -150,6 +146,10 @@
 .typo_description {
   font-size: 1.5rem;
   font-weight: 400;
+
+  &_white {
+    color: $white;
+  }
 
   &_gray {
     color: $gray-100;

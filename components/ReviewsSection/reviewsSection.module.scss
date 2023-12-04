@@ -1,0 +1,12 @@
+.review_section {
+  padding: 0 4rem 10rem;
+}
+
+.cards_container {
+  display: flex;
+  gap: 1.5rem;
+
+  & img {
+    margin-right: 0.5rem;
+  }
+}

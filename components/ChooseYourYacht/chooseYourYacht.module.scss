@@ -1,0 +1,22 @@
+@import '../../styles/var.scss';
+@import '../../styles/mixins.scss';
+
+.choose_section {
+  position: relative;
+  overflow: hidden;
+  background-color: $gray-primary;
+  padding: 5rem 4rem;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  gap: 4.5rem;
+}
+
+.logo {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.img {
+  object-fit: cover;
+}

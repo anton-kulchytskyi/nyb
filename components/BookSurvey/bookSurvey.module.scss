@@ -1,0 +1,13 @@
+.book_section {
+  position: relative;
+  overflow: hidden;
+  padding: 5rem 4rem;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 4.5rem;
+}
+
+.img {
+  object-fit: cover;
+}

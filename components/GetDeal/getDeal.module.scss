@@ -1,0 +1,16 @@
+@import '../../styles/var.scss';
+
+.getdeal_section {
+  position: relative;
+  overflow: hidden;
+  background-color: $gray-primary;
+  padding: 5rem 4rem;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  gap: 4.5rem;
+}
+
+.img {
+  object-fit: cover;
+}

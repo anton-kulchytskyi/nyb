@@ -1,0 +1,16 @@
+@import '../../styles/var.scss';
+
+.contact_section {
+  padding: 6.25rem 4rem;
+}
+
+.container {
+  background-color: $gray-primary;
+  display: flex;
+}
+
+.contact__form {
+  width: 50%;
+  text-align: center;
+  padding-top: 3.5rem;
+}

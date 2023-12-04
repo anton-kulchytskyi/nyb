@@ -1,0 +1,33 @@
+.container {
+  position: absolute;
+  top: 9rem;
+  left: 4rem;
+
+  display: flex;
+
+  &__title {
+    width: 50%;
+  }
+
+  &__title_2 {
+    transform: translateY(-28%);
+  }
+
+  &__reverse {
+    flex-direction: row-reverse;
+  }
+
+  &__left {
+    left: 26rem;
+  }
+
+  &__width {
+    width: 74rem;
+  }
+}
+
+.desc {
+  &__width {
+    width: 33.5rem;
+  }
+}

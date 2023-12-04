@@ -1,5 +1,5 @@
 export interface Vessel {
-  id: number;
+  // id: number;
   featuredVessel: boolean;
   vesselMake: string;
   vesselModel: string;
@@ -18,4 +18,5 @@ export interface Vessel {
   vesselDescription: string;
   createdAt: string;
   imageKey: string;
+  vessel_id: number;
 }
