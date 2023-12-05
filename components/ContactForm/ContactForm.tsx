@@ -6,7 +6,7 @@ import styles from './contactForm.module.scss';
 
 const ContactForm = () => {
   return (
-    <section className={styles.contact_section}>
+    <section id="contact-form" className={styles.contact_section}>
       <div className={styles.container}>
         <Image
           src={ContactFormImg}

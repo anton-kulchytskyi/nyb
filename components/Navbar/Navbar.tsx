@@ -48,8 +48,8 @@ const Navbar = () => {
         </Link>
         <div className={styles.navbar__side}>
           {!tabletScreen && <Link href="/" className={styles.link}>Change Units</Link>}
-          {!tabletScreen && <Link href="/" className={styles.link}>Reviews</Link>}
-          <Link href="/" className={styles.link}>Contact</Link>
+          {!tabletScreen && <Link href="#reviews" className={styles.link}>Reviews</Link>}
+          <Link href="#contact-form" className={styles.link}>Contact</Link>
         </div>
       </nav>
     </>

@@ -15,7 +15,7 @@ const usersAvatar = [user_1, user_2, user_3, user_4];
 
 const ReviewsSection = () => {
   return (
-    <section className={styles.review_section}>
+    <section id="reviews" className={styles.review_section}>
       <h3 className={`${typo.typo_h3} ${typo.typo_h3__gray}`}>Reviews</h3>
       <div className={styles.cards_container}>
 

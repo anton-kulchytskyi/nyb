@@ -1,4 +1,5 @@
 'use client';
+import Link from 'next/link';
 import Image, { StaticImageData } from 'next/image';
 import { useState } from 'react';
 import typo from '@/styles/typography.module.scss'
@@ -28,20 +29,27 @@ const FYCard = ({ yacht, photo }: Props) => {
 
   return (
     <div className={styles.card}>
-      <div
-        className={styles.image_container}
-        onMouseOver={handleMouseOver}
-        onMouseOut={handleMouseOut}
-      >
-        <Image alt="feature_img" src={photo} fill={true} className={styles.image} />
-        <Button
-          text='See Detail'
-          linkTo='/catalog'
-          primary
-          center
-          hover={isHovering}
-        />
-      </div>
+      <Link href="/catalog">
+        <div
+          className={styles.image_container}
+          onMouseOver={handleMouseOver}
+          onMouseOut={handleMouseOut}
+        >
+          <Image
+            alt="feature_img"
+            src={photo}
+            fill={true}
+            className={styles.image}
+          />
+          <Button
+            text='See Detail'
+            linkTo='/catalog'
+            primary
+            center
+            hover={isHovering}
+          />
+        </div>
+      </Link>
       <p className={typo.typo_name_yacht}>{vesselMake}</p>
       <p className={typo.typo_price}>{`$ ${vesselPrice}`}</p>
       <p
