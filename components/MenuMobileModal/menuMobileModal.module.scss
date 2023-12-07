@@ -1,14 +1,17 @@
 @import '../../styles/var.scss';
 
 .modal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 20vh;
   height: 100vh;
+  width: 100vw;
   background-color: #fff;
   display: flex;
   flex-direction: column;
   align-items: center;
-  // transform: translateY(-100%);
-  // animation: 3s ease-in sun-rise;
-  // transition: opacity 0.3 easy;
+  z-index: 2;
 
   &__link {
     text-decoration: none;
@@ -20,14 +23,3 @@
     font-weight: 500;
   }
 }
-
-// @keyframes sun-rise {
-//   from {
-//     /* pushes the sun down past the viewport */
-//     transform: translateY(-100%);
-//   }
-//   to {
-//     /* returns the sun to its default position */
-//     transform: translateY(0);
-//   }
-// }

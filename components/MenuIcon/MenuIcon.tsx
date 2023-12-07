@@ -1,34 +1,35 @@
-'use client';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useState } from 'react';
 
 import BurgerMenu from '@/public/icons/burger__menu.svg';
 import Close from '@/public/icons/close.svg';
 
-const MenuIcon = () => {
-  const [isClose, setIsClose] = useState(false);
+type Props = {
+  isClose: boolean;
+  closeHandler: () => void;
+}
 
+const MenuIcon = ({ isClose, closeHandler }: Props) => {
   return (
-    <span
-      onClick={() => setIsClose(!isClose)}
-    >
+    <span>
       {isClose ? (
-        <Link href="/">
+        <Link
+          href="/"
+          onClick={closeHandler}
+        >
           <Image
-            // src={BurgerMenu}
-            // alt="Burger Menu"
             src={Close}
             alt="Close"
           />
         </Link>
       ) : (
-        <Link href="/menu">
+        <Link
+          href="/"
+          onClick={closeHandler}
+        >
           <Image
             src={BurgerMenu}
             alt="Burger Menu"
-            // src={Close}
-            // alt="Close"
           />
         </Link>
       )}

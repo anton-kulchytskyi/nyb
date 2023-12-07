@@ -1,62 +1,74 @@
 'use client';
 import Link from 'next/link';
 import Image from 'next/image';
+import { useState } from 'react';
+
+import { navbarLinksArray } from '@/utils/links/navbarLinksArray';
 
 import LogoImg from '@/public/icons/logo.svg';
-// import BurgerMenu from '@/public/icons/burger__menu.svg';
 
 import useWindowDimensions from '@/hooks/useWindowDimensions';
 
 import MenuIcon from '../MenuIcon/MenuIcon';
-
-// import MenuMobileModal from '../MenuMobileModal/MenuMobileModal';
+import MenuMobileModal from '../MenuMobileModal/MenuMobileModal';
 
 import styles from './navbar.module.scss';
 
+const leftLinks = navbarLinksArray.slice(0, 2);
+const rightLinks = navbarLinksArray.slice(2);
 
 const Navbar = () => {
+  const [isClose, setIsClose] = useState(false);
   const { width } = useWindowDimensions();
-  const tabletScreen = width as number <= 768;
+  const tabletScreen = (width as number) <= 768;
+
+  const closeHandler = () => {
+    setIsClose(!isClose);
+  };
 
   return (
     <>
+      <MenuMobileModal isClose={isClose} closeHandler={closeHandler} />
       <nav className={styles.navbar}>
         <div className={styles.navbar__side}>
           {tabletScreen ? (
-            <MenuIcon />
-            // <Link href="/menu">
-            //   <Image
-            //     src={BurgerMenu}
-            //     alt="Burger Menu"
-            //   />
-            // </Link>
+            <MenuIcon isClose={isClose} closeHandler={closeHandler} />
           ) : (
             <>
-              <Link href="/catalog" className={styles.link}>Yachts</Link>
-              <Link href="/" className={styles.link}>How it works?</Link>
+              {leftLinks.map((link) => (
+                <Link key={link.title} href={link.path} className={styles.link}>
+                  {link.title}
+                </Link>
+              ))}
             </>
           )}
         </div>
-        {/* {showMobileMenu && <MenuMobileModal />} */}
-        <Link 
-          href="/"
-          className={styles.logo}
-        >
+        <Link href='/' className={styles.logo}>
           <Image
             src={LogoImg}
             className={styles.logo__image}
-            alt="Logo"
+            alt='Logo'
             priority
           />
         </Link>
         <div className={styles.navbar__side}>
-          {!tabletScreen && <Link href="/" className={styles.link}>Change Units</Link>}
-          {!tabletScreen && <Link href="/" className={styles.link}>Reviews</Link>}
-          <Link href="/" className={styles.link}>Contact</Link>
+          {!tabletScreen ? (
+            <>
+              {rightLinks.map((link) => (
+                <Link key={link.title} href={link.path} className={styles.link}>
+                  {link.title}
+                </Link>
+              ))}
+            </>
+          ) : (
+            <Link href='#contact' className={styles.link}>
+              Contact
+            </Link>
+          )}
         </div>
       </nav>
     </>
-  )
-}
+  );
+};
 
-export default Navbar
+export default Navbar;

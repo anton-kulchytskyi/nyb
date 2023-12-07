@@ -13,6 +13,9 @@
   color: $black;
   line-height: 1.5;
 
+  scroll-behavior: smooth;
+  overflow: hidden;
+
   &__body {
     max-width: 120rem;
     margin: 0 auto;

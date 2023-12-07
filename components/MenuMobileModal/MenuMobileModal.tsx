@@ -1,17 +1,38 @@
+import { motion } from 'framer-motion';
 import Link from 'next/link';
-import styles from './menuMobileModal.module.scss'
 
+import { navbarLinksArray } from '@/utils/links/navbarLinksArray';
+import styles from './menuMobileModal.module.scss';
 
-const MenuMobileModal = () => {
+const variants = {
+  open: { opacity: 1, x: 0 },
+  closed: { opacity: 0, x: '-100%' },
+};
+
+type Props = {
+  isClose: boolean;
+  closeHandler: () => void;
+};
+
+const MenuMobileModal = ({ isClose, closeHandler }: Props) => {
   return (
-    <div className={styles.modal}>
-      <Link href="/catalog" className={styles.modal__link}>Yachts</Link>
-      <Link href="/" className={styles.modal__link}>How it works?</Link>
-      <Link href="/" className={styles.modal__link}>Change Units</Link>
-      <Link href="/" className={styles.modal__link}>Reviews</Link>
-      <Link href="/" className={styles.modal__link}>Contact</Link>
-    </div>
-  )
-}
+    <motion.div
+      className={styles.modal}
+      animate={isClose ? 'open' : 'closed'}
+      variants={variants}
+    >
+      {navbarLinksArray.map((link) => (
+        <Link
+          key={link.title}
+          href={link.path}
+          onClick={closeHandler}
+          className={styles.modal__link}
+        >
+          {link.title}
+        </Link>
+      ))}
+    </motion.div>
+  );
+};
 
-export default MenuMobileModal
+export default MenuMobileModal;
