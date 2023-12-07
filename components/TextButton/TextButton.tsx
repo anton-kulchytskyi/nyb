@@ -1,15 +1,12 @@
 import Link from 'next/link';
 import { ButtonInterface } from '@/interfaces/button.interface';
-import styles from './button.module.scss';
+import styles from './textButton.module.scss';
 
-function Button({
+function TextButton({
   text,
   linkTo,
   primary,
-  secondary,
-  header,
-  center,
-  hover
+  secondary
 } : ButtonInterface) {  
   return (
     <Link
@@ -18,13 +15,10 @@ function Button({
       ${styles.button}
       ${primary ? styles.primary : ''}
       ${secondary ? styles.secondary : ''}
-      ${header ? styles.header : ''}
-      ${center ? styles.center : ''}
-      ${hover ? styles.hover : ''}
     `}>
       {text}
     </Link>
   )
 }
 
-export default Button
+export default TextButton;
