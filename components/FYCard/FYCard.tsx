@@ -15,7 +15,7 @@ interface Props {
 const FYCard = ({ yacht, photo }: Props) => {
   const [isHovering, setIsHovering] = useState(true);
   const {
-    vesselMake, vesselPrice, vesselLocationCountry, vesselYear,
+    vessel_make, vessel_price, vessel_country, vessel_town, vessel_year,
   } = yacht;
 
   const handleMouseOver = () => {
@@ -42,11 +42,11 @@ const FYCard = ({ yacht, photo }: Props) => {
           hover={isHovering}
         />
       </div>
-      <p className={typo.typo_name_yacht}>{vesselMake}</p>
-      <p className={typo.typo_price}>{`$ ${vesselPrice}`}</p>
+      <p className={typo.typo_name_yacht}>{vessel_make}</p>
+      <p className={typo.typo_price}>{`$ ${vessel_price}`}</p>
       <p
         className={`${typo.typo_description} ${typo.typo_description_gray}`}
-      >{`${vesselLocationCountry} | ${vesselYear}`}</p>
+      >{`${vessel_country} | ${vessel_town} | ${vessel_year}`}</p>
     </div>
   );
 };
