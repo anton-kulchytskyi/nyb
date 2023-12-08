@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import Link from 'next/link';
 
 import { navbarLinksArray } from '@/utils/links/navbarLinksArray';
+
 import styles from './menuMobileModal.module.scss';
 
 const variants = {

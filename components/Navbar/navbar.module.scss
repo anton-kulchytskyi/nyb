@@ -2,17 +2,18 @@
 @import '@/styles/mixins.scss';
 
 .navbar {
-  display: flex;
   position: relative;
-  justify-content: space-between;
-  align-items: center;
-  padding: 2rem 4rem;
-  width: 100%;
   z-index: 2;
 
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 2rem 4rem;
+
   &__side {
-    width: 35%;
     display: flex;
+    width: 35%;
 
     &:last-child {
       justify-content: flex-end;
@@ -25,12 +26,12 @@
 }
 
 .link {
-  text-decoration: none;
   color: $black;
+
   font-size: 1.125rem;
-  font-style: normal;
   font-weight: 500;
-  line-height: 150%;
+  
+  text-decoration: none;
 
   &:not(:last-child) {
     margin-right: 2.5rem;
@@ -52,11 +53,3 @@
   }
   }
 }
-
-// .logo img {
-//   @include onSmall {
-//     display: block;
-//     width: 80%;
-//     margin: 0 auto;
-//   }
-// }

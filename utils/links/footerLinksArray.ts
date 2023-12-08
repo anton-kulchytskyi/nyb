@@ -9,7 +9,7 @@ export const footerLinksArray = [
   },
   {
     title: 'Reviews',
-    path: '/'
+    path: '#reviews'
   },
   {
     title: 'Terms of use',

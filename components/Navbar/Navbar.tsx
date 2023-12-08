@@ -3,11 +3,11 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useState } from 'react';
 
-import { navbarLinksArray } from '@/utils/links/navbarLinksArray';
-
 import LogoImg from '@/public/icons/logo.svg';
 
 import useWindowDimensions from '@/hooks/useWindowDimensions';
+
+import { navbarLinksArray } from '@/utils/links/navbarLinksArray';
 
 import MenuIcon from '../MenuIcon/MenuIcon';
 import MenuMobileModal from '../MenuMobileModal/MenuMobileModal';

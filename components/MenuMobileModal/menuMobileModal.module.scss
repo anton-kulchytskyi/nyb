@@ -4,22 +4,26 @@
   position: absolute;
   top: 0;
   left: 0;
-  padding: 20vh;
-  height: 100vh;
-  width: 100vw;
-  background-color: #fff;
+  z-index: 2;
+
   display: flex;
   flex-direction: column;
   align-items: center;
-  z-index: 2;
+  padding-top: 15vh;
+  height: 100vh;
+  width: 100vw;
+
+  background-color: #fff;
 
   &__link {
-    text-decoration: none;
+    margin-bottom: 2.5rem;
+
     color: $black;
+
     font-family: var(--font-baiJamjuree);
     font-size: 1.5rem;
-    margin-bottom: 2.5rem;
-    font-style: normal;
     font-weight: 500;
+
+    text-decoration: none;
   }
 }

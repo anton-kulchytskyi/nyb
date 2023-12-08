@@ -10,8 +10,8 @@ import Copyright from '../Copyright/Copyright';
 import SocialMedia from '../SocialMedia/SocialMedia';
 import styles from './footer.module.scss'
 
-const leftLinks = footerLinksArray.slice(0, 4);
-const rightLinks = footerLinksArray.slice(4);
+const leftLinks = footerLinksArray.slice(0, 3);
+const rightLinks = footerLinksArray.slice(3);
 
 const Footer = () => {
   const { width } = useWindowDimensions();

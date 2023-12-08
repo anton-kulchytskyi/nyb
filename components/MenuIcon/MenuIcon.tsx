@@ -11,29 +11,22 @@ type Props = {
 
 const MenuIcon = ({ isClose, closeHandler }: Props) => {
   return (
-    <span>
+    <Link
+      href='/'
+      onClick={closeHandler}
+    >
       {isClose ? (
-        <Link
-          href="/"
-          onClick={closeHandler}
-        >
-          <Image
-            src={Close}
-            alt="Close"
-          />
-        </Link>
+        <Image
+          src={Close}
+          alt="Close"
+        />
       ) : (
-        <Link
-          href="/"
-          onClick={closeHandler}
-        >
-          <Image
-            src={BurgerMenu}
-            alt="Burger Menu"
-          />
-        </Link>
+        <Image
+          src={BurgerMenu}
+          alt="Burger Menu"
+        />
       )}
-    </span>
+    </Link>
   )
 }
 
