@@ -7,13 +7,20 @@
 }
 
 .page {
+  color: $black;
+
   font-family: var(--font-roboto);
   font-size: 1rem;
   font-style: normal;
-  color: $black;
   line-height: 1.5;
 
+  scroll-behavior: smooth;
+
   &__body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 100vh;
     max-width: 120rem;
     margin: 0 auto;
   }
