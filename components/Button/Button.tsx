@@ -10,18 +10,22 @@ function Button({
   header,
   center,
   hover
-} : ButtonInterface) {  
+} : ButtonInterface) {
+
+  const buttonStyle = [
+    styles.button,
+    primary ? styles.primary : '',
+    secondary ? styles.secondary : '',
+    header ? styles.header : '',
+    center ? styles.center : '',
+    hover ? styles.hover : ''
+  ].join(' ');
+
   return (
     <Link
       href={linkTo}
-      className={`
-      ${styles.button}
-      ${primary ? styles.primary : ''}
-      ${secondary ? styles.secondary : ''}
-      ${header ? styles.header : ''}
-      ${center ? styles.center : ''}
-      ${hover ? styles.hover : ''}
-    `}>
+      className={buttonStyle}
+    >
       {text}
     </Link>
   )

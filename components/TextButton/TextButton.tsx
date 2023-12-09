@@ -7,15 +7,18 @@ function TextButton({
   linkTo,
   primary,
   secondary
-} : ButtonInterface) {  
+} : ButtonInterface) {
+
+  const textButtonStyle = [
+    styles.button,
+    primary ? styles.primary : '',
+    secondary ? styles.secondary : ''
+  ].join(' ');
+
   return (
     <Link
       href={linkTo}
-      className={`
-      ${styles.button}
-      ${primary ? styles.primary : ''}
-      ${secondary ? styles.secondary : ''}
-    `}>
+      className={textButtonStyle}>
       {text}
     </Link>
   )
