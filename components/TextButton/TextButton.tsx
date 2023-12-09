@@ -6,14 +6,9 @@ function TextButton({
   text,
   linkTo,
   primary,
-  secondary
 } : ButtonInterface) {
 
-  const textButtonStyle = [
-    styles.button,
-    primary ? styles.primary : '',
-    secondary ? styles.secondary : ''
-  ].join(' ');
+  const textButtonStyle = primary ? styles.primary : styles.secondary;
 
   return (
     <Link

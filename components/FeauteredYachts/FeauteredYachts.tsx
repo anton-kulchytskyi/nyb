@@ -27,7 +27,7 @@ const FeauteredYachts = async () => {
       </span>
       <div className={styles.cards_container}>
         {visibleYachts.map((yacht: Vessel, i: number) =>(
-          <FYCard key={yacht.id} yacht={yacht} photo={imgs[i]}/>
+          <FYCard key={yacht.vessel_id} yacht={yacht} photo={imgs[i]}/>
         ))}
       </div>
     </section>

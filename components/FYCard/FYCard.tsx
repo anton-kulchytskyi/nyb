@@ -15,7 +15,12 @@ interface Props {
 const FYCard = ({ yacht, photo }: Props) => {
   const [isHovering, setIsHovering] = useState(true);
   const {
-    vesselMake, vesselPrice, vesselLocationCountry, vesselYear,
+    vessel_make,
+    vessel_model,
+    vessel_price,
+    vessel_country,
+    vessel_town,
+    vessel_year,
   } = yacht;
 
   const handleMouseOver = () => {
@@ -34,19 +39,19 @@ const FYCard = ({ yacht, photo }: Props) => {
         onMouseOut={handleMouseOut}
       >
         <Image alt="feature_img" src={photo} fill={true} className={styles.image} />
-        <Button
-          text='See Detail'
-          linkTo='/catalog'
-          primary
-          center
-          hover={isHovering}
-        />
+        <span className={`${styles.center} ${isHovering ? styles.is_hover : ''}`}>
+          <Button
+            text='See Detail'
+            linkTo='/catalog'
+            primary
+          />
+        </span>
       </div>
-      <p className={typo.typo_name_yacht}>{vesselMake}</p>
-      <p className={typo.typo_price}>{`$ ${vesselPrice}`}</p>
+      <p className={typo.typo_name_yacht}>{`${vessel_make} ${vessel_model}`}</p>
+      <p className={typo.typo_price}>{`$ ${vessel_price}`}</p>
       <p
         className={`${typo.typo_description} ${typo.typo_description_gray}`}
-      >{`${vesselLocationCountry} | ${vesselYear}`}</p>
+      >{`${vessel_country} | ${vessel_town} | ${vessel_year}`}</p>
     </div>
   );
 };

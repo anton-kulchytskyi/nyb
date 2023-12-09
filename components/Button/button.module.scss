@@ -39,26 +39,3 @@
     border: 1px solid $orange-secondary-100;
   }
 }
-
-.center {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.header {
-  transform: translate(0, -200%);
-
-  @include onLarge {
-    transform: translate(0, -100%);
-  }
-
-  @include onTablet {
-    transform: translate(0, -30%);
-  }
-}
-
-.hover {
-  display: none;
-}

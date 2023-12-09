@@ -5,21 +5,10 @@ import styles from './button.module.scss';
 function Button({
   text,
   linkTo,
-  primary,
-  secondary,
-  header,
-  center,
-  hover
+  primary
 } : ButtonInterface) {
 
-  const buttonStyle = [
-    styles.button,
-    primary ? styles.primary : '',
-    secondary ? styles.secondary : '',
-    header ? styles.header : '',
-    center ? styles.center : '',
-    hover ? styles.hover : ''
-  ].join(' ');
+  const buttonStyle = `${styles.button} ${primary ? styles.primary : styles.secondary}`;
 
   return (
     <Link
