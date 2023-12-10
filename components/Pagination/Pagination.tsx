@@ -1,12 +1,12 @@
+import Link from "next/link";
 import styles from './pagination.module.scss'
 
 type Props = {
   items: number;
   pageSize: number;
   currentPage: number;
-  onPageChange: (page: number) => void;
 }
-const Pagination = ({items, pageSize, currentPage, onPageChange}: Props) => {
+const Pagination = ({ items, pageSize, currentPage }: Props) => {
   const pagesCount = Math.ceil(items / pageSize);
 
   if (pagesCount === 1) return null;
@@ -17,13 +17,21 @@ const Pagination = ({items, pageSize, currentPage, onPageChange}: Props) => {
     <>
       <ul className={styles.pagination}>
         {pages.map((page) => {
+          // if (page > 10) {
+          //   return
+          // }
+          // if(page === 11) {
+          //   return <li key={page}>...</li>
+          // }
+
           return <li
             key={page}
             className={
               page === currentPage ? styles.pageItemActive : styles.pageItem
             }
+            
           >
-            <button onClick={() => onPageChange(page)}>{page}</button>
+            <Link href={`?page=${page}&size=${pageSize}`}>{page}</Link>
           </li>
         })}
       </ul>

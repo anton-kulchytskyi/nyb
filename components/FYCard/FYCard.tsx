@@ -4,10 +4,7 @@ import { useState } from 'react';
 import typo from '@/styles/typography.module.scss'
 import { Vessel } from '@/interfaces/vessel.interface';
 import Button from '../Button/Button';
-
 import styles from './fycard.module.scss';
-
-// import '../../styles/var.scss';
 
 interface Props {
   yacht: Vessel;
@@ -18,10 +15,11 @@ interface Props {
 const FYCard = ({ yacht, photo, linkTo }: Props) => {
   const [isHovering, setIsHovering] = useState(true);
   const {
-    vesselMake,
-    vesselPrice,
-    vesselLocationCountry,
-    vesselYear,
+    vessel_make,
+    vessel_price,
+    vessel_country,
+    vessel_year,
+    vessel_id
   } = yacht;
 
   const handleMouseOver = () => {
@@ -48,13 +46,13 @@ const FYCard = ({ yacht, photo, linkTo }: Props) => {
           hover={isHovering}
         />
       </div>
-      <p className={typo.typo_name_yacht}>{vesselMake}</p>
-      <p className={typo.typo_price}>{`$ ${vesselPrice}`}</p>
+      <p className={typo.typo_name_yacht}>{vessel_make} -- {vessel_id}</p>
+      <p className={typo.typo_price}>{`$ ${vessel_price}`}</p>
       <p
         className={`${typo.typo_description} ${typo.typo_description_gray}`}
         // style={{color: '#525659'}}
         // style={{ color:` ${$gray-100}` }}
-      >{`${vesselLocationCountry} | ${vesselYear}`}</p>
+      >{`${vessel_country} | ${vessel_year}`}</p>
     </div>
   );
 };
