@@ -26,6 +26,17 @@
   object-fit: cover;
 }
 
+.center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.is_hover {
+  display: none;
+}
+
 @media (min-width: 1221px) and (max-width: 1576px) {
   .image_container {
     height: 22.25rem;

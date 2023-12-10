@@ -18,5 +18,5 @@ export const getVesselById = async (id: string) => await getData(id);
 export const getFeauteredYacht = async () => {
   const yachts = await getData();
 
-  return yachts.filter((yacht: Vessel) => yacht.featuredVessel)
+  return yachts.filter((yacht: Vessel) => yacht.featured)
 };

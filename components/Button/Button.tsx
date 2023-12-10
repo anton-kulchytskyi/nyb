@@ -2,20 +2,20 @@ import Link from 'next/link';
 import { ButtonInterface } from '@/interfaces/button.interface';
 import styles from './button.module.scss';
 
-function Button({ text, linkTo, primary, secondary, center, header, hover }: ButtonInterface) {
-  
+function Button({
+  text,
+  linkTo,
+  primary
+} : ButtonInterface) {
+
+  const buttonStyle = `${styles.button} ${primary ? styles.primary : styles.secondary}`;
+
   return (
-    <Link href={linkTo} className={styles.link}>
-      <span
-        className={`
-         ${styles.button}
-         ${primary && styles.primary}
-         ${secondary && styles.secondary}
-         ${center && styles.center}
-         ${header && styles.header}
-         ${hover && styles.hover}
-       `}
-      >{text}</span>
+    <Link
+      href={linkTo}
+      className={buttonStyle}
+    >
+      {text}
     </Link>
   )
 }

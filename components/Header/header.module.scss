@@ -32,3 +32,15 @@
     transform: translate(0, -40%);
   }
 }
+
+.button {
+  transform: translate(0, -200%);
+
+  @include onLarge {
+    transform: translate(0, -100%);
+  }
+
+  @include onTablet {
+    transform: translate(0, -30%);
+  }
+}

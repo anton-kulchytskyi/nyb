@@ -5,6 +5,7 @@ import FYCard from '../FYCard/FYCard';
 import img_1 from '../../public/fyc_1.jpeg';
 import img_2 from '../../public/fyc_2.jpeg';
 import img_3 from '../../public/fyc_3.jpeg';
+import TextButton from '../TextButton/TextButton';
 import styles from './feauteredYachts.module.scss';
 
 const imgs = [img_1, img_2, img_3]
@@ -21,10 +22,12 @@ const FeauteredYachts = async () => {
         <h4 className={typo.typo_h4}>Feautered</h4>
         <h5 className={typo.typo_h5}>yachts</h5>
       </div>
-      <span className={styles.seeall}>See All</span>
+      <span className={styles.seeall}>
+        <TextButton text="See All" linkTo='/catalog' primary />
+      </span>
       <div className={styles.cards_container}>
         {visibleYachts.map((yacht: Vessel, i: number) =>(
-          <FYCard key={yacht.id} yacht={yacht} photo={imgs[i]}/>
+          <FYCard key={yacht.vessel_id} yacht={yacht} photo={imgs[i]}/>
         ))}
       </div>
     </section>

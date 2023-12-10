@@ -1,70 +1,41 @@
 @import '../../styles/mixins.scss';
+@import '../../styles/var.scss';
 
 .button {
-  display: flex;
-  width: 14.375rem;
-  height: 3.0625rem;
-  justify-content: center;
-  align-items: center;
+  padding: 0.75rem 2.5rem;
   border-radius: 3.5rem;
-  border: none;
-  color: #fff;
+  color: $white;
   font-size: 1.125rem;
   line-height: normal;
-}
-
-.primary {
-  background: #4D6575;
-  border: 1px solid #4D6575;
-}
-
-.primary:hover {
-  background: #E7801A;
-  border: 1px solid #E7801A;
-}
-
-.primary:active {
-  background: #C36101;
-  border: 1px solid #C36101;
-}
-
-.secondary {
-  background: #E7801A;
-  border: 1px solid #E7801A;
-}
-
-.secondary:hover {
-  background: #C36101;
-}
-
-.secondary:active {
-  background: transparent;
-  border: 1px solid #E7801A;
-}
-
-.center {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.header {
-  transform: translate(0, -200%);
-
-  @include onLarge {
-    transform: translate(0, -100%);
-  }
-
-  @include onTablet {
-    transform: translate(0, -30%);
-  }
-}
-
-.link {
   text-decoration: none;
 }
 
-.hover {
-  display: none;
+.primary {
+  background: $gray-primary;
+  border: 1px solid $gray-primary;
+
+  &:hover {
+    background: $orange-secondary-100;
+    border: 1px solid $orange-secondary-100;
+  }
+
+  &:active {
+    background: $orange-secondary-110;
+    border: 1px solid $orange-secondary-110;
+  }
+}
+
+.secondary {
+  background: $orange-secondary-100;
+  border: 1px solid $orange-secondary-100;
+
+  &:hover {
+    background: $orange-secondary-110;
+    border: 1px solid $orange-secondary-110;
+  }
+
+  &:active {
+    background: transparent;
+    border: 1px solid $orange-secondary-100;
+  }
 }
