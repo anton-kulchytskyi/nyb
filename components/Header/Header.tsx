@@ -13,7 +13,8 @@ const Header = () => {
         <Image
           alt='header_img'
           src={headerImg}
-          fill={true}
+          fill
+          sizes="100vw"
           className={styles.image}
           priority
         />
