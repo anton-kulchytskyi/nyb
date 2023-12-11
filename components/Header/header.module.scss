@@ -6,10 +6,19 @@
   padding-bottom: 2rem;
 
   &__container {
-    height: 100vh;
+    position: relative;
+    height: calc(100vh + 2rem);;
     display: flex;
     flex-direction: column;
     justify-content: center;
+
+    @include onDesktop {
+      height: 43rem;
+    }
+
+    @include onTablet {
+      height: 32rem;
+    }
   }
 }
 
@@ -26,21 +35,17 @@
 }
 
 .title {
-  transform: translate(0, -50%);
-
-  @include onTablet {
-    transform: translate(0, -40%);
-  }
+  transform: translate(0, -40%);
 }
 
 .button {
-  transform: translate(0, -200%);
+  transform: translate(0, -300%);
 
   @include onDesktop {
-    transform: translate(0, -100%);
+    transform: translate(0, -50%);
   }
 
   @include onMobile {
-    transform: translate(0, -30%);
+    transform: translate(0, 0);
   }
 }

@@ -15,6 +15,7 @@ const Header = () => {
           src={headerImg}
           fill={true}
           className={styles.image}
+          priority
         />
         <div className={styles.wrapper}>
           <h2 className={typo.typo_h2}>Good quality</h2>

@@ -46,10 +46,12 @@
   &__image {
     @include onDesktop {
       width: 170px;
+      height: auto;
     }
 
     @include onSmall {
       width: 120px;
+      height: auto;
     }
   }
 }
