@@ -36,11 +36,11 @@
 .button {
   transform: translate(0, -200%);
 
-  @include onLarge {
+  @include onDesktop {
     transform: translate(0, -100%);
   }
 
-  @include onTablet {
+  @include onMobile {
     transform: translate(0, -30%);
   }
 }
