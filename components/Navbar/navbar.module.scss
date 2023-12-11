@@ -20,7 +20,7 @@
     }
   }
 
-  @include onDesktop {
+  @include onTablet {
     padding: 1rem 1.25rem;
   }
 }
@@ -44,12 +44,12 @@
   align-items: center;
 
   &__image {
-  @include onDesktop {
-    width: 170px;
-  }
+    @include onDesktop {
+      width: 170px;
+    }
 
-  @include onSmall {
-    width: 120px;
-  }
+    @include onSmall {
+      width: 120px;
+    }
   }
 }
