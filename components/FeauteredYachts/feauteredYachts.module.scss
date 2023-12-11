@@ -2,14 +2,18 @@
 @import '../../styles/var.scss';
 
 .feature_section {
-  margin: 6.25rem 0;
+  margin: 6.25rem 0 0;
 
   @include onDesktop {
-    margin: 4rem 0;
+    margin: 4rem 0 0;
   }
 
   @include onTablet {
-    margin: 2.5rem 0;
+    margin: 2.5rem 0 0;
+  }
+
+  @include onSmall {
+    margin: 2rem 0 0;
   }
 }
 
@@ -19,15 +23,27 @@
   align-items: baseline;
 
   & h4 {
-    margin-right: 0.8rem;
+    @include onTablet {
+      margin-right: 0.8rem;
+    }
   }
 
   & h5 {
-    transform: translate(-50%, 70%);
+    transform: translate(-40%, 90%);
 
     @include onTablet {
       transform: translate(0, 0);
     }
+  }
+}
+
+.seeall {
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 4rem;
+
+  @include onTablet {
+    margin-right: 1.25rem;
   }
 }
 
@@ -40,10 +56,8 @@
   @include onTablet {
     padding: 2rem 1.25rem;
   }
-}
 
-.seeall {
-  display: flex;
-  justify-content: flex-end;
-  margin-right: 4rem;
+  @include onTablet {
+    padding: 1.5rem 1.25rem;
+  }
 }
