@@ -20,8 +20,6 @@ const FeauteredYachts = async () => {
   yachts.sort(() => Math.random() - 0.5);
 
   const visibleYachts = yachts.slice(0, 3);
-  // eslint-disable-next-line
-  console.log(visibleYachts);
 
   return (
     <section className={styles.feature_section}>
