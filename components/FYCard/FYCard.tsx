@@ -63,7 +63,7 @@ const FYCard = ({ yacht, buttonsExample, photo }: Props) => {
         <span className={`${styles.center} ${isHovering ? styles.center__is_hover : ''}`}>
           <Button
             text='See Detail'
-            linkTo='/catalog'
+            linkTo={`/catalog/${vessel_id}`}
             primary
           />
         </span>

@@ -1,4 +1,3 @@
-// import dynamic from 'next/dynamic';
 import { Vessel } from '@/interfaces/vessel.interface';
 import { getFeauteredYacht } from '@/utils/api/getAllVessels';
 
@@ -12,8 +11,6 @@ import FYCard from '../FYCard/FYCard';
 import TextButton from '../TextButton/TextButton';
 
 import styles from './feauteredYachts.module.scss';
-
-// const FYCard = dynamic(() => import('../FYCard/FYCard'), { ssr: false });
 
 const imgs = [img_1, img_2, img_3];
 const buttonsExample = ['Top 3', 'Hot Price', 'Low Price'];
