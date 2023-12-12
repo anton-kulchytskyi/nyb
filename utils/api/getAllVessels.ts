@@ -10,7 +10,9 @@ async function getData(url: string = '') {
     throw new DefaultError;
   }
 
-  return response.json();
+  const data = await response.json();
+
+  return data;
 }
 
 export const getAllVessels = async () => await getData();
