@@ -13,15 +13,13 @@ import TextButton from '../TextButton/TextButton';
 import styles from './feauteredYachts.module.scss';
 
 const imgs = [img_1, img_2, img_3];
-// const buttonsExample = ['Top 3', 'Hot Price', 'Low Price'];
+const buttonsExample = ['Top 3', 'Hot Price', 'Low Price'];
 
 const FeauteredYachts = async () => {
   const yachts = await getFeauteredYacht();
   yachts.sort(() => Math.random() - 0.5);
 
   const visibleYachts = yachts.slice(0, 3);
-  //eslint-disable-next-line
-  console.log(visibleYachts)
 
   return (
     <section className={styles.feature_section}>
@@ -40,8 +38,8 @@ const FeauteredYachts = async () => {
         {visibleYachts.map((yacht: Vessel, i: number) =>(
           <FYCard
             key={yacht.vessel_id}
-            // yacht={yacht}
-            // buttonsExample={buttonsExample[i]}
+            yacht={yacht}
+            buttonsExample={buttonsExample[i]}
             photo={imgs[i]}
           />
         ))}
