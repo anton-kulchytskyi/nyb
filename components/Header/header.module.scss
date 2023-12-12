@@ -3,23 +3,21 @@
 .header {
   position: relative;
   margin-top: -8rem;
-  // padding-bottom: 8rem;
 
   &__container {
     position: relative;
-    // height: calc(100vh + 8rem);
-    height: 100vh;
+    height: calc(100vh + 8rem);
     display: flex;
     flex-direction: column;
     justify-content: center;
 
-    // @include onDesktop {
-    //   height: 43rem;
-    // }
+    @include onDesktop {
+      height: 43rem;
+    }
 
-    // @include onTablet {
-    //   height: 32rem;
-    // }
+    @include onTablet {
+      height: 32rem;
+    }
   }
 }
 

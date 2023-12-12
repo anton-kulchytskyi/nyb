@@ -2,7 +2,6 @@
 import Image, { StaticImageData } from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
-// import Link from 'next/link';
 import typo from '@/styles/typography.module.scss'
 import { Vessel } from '@/interfaces/vessel.interface';
 import Button from '../Button/Button';
