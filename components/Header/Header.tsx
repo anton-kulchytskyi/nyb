@@ -13,8 +13,10 @@ const Header = () => {
         <Image
           alt='header_img'
           src={headerImg}
-          fill={true}
+          fill
+          sizes="100vw"
           className={styles.image}
+          priority
         />
         <div className={styles.wrapper}>
           <h2 className={typo.typo_h2}>Good quality</h2>
