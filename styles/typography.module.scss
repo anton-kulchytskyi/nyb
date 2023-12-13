@@ -142,7 +142,7 @@
   font-size: 2.25rem;
   font-weight: 500;
 
-  @include onTablet {
+  @include onMobile {
     font-size: 1.5rem;
   }
 }
@@ -168,8 +168,9 @@
   color:$orange-secondary-100;
   font-size: 2rem;
   font-weight: 500;
+  margin: 0.5rem 0;
 
-  @include onTablet {
+  @include onMobile {
     font-size: 1.25rem;
   }
 }
