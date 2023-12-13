@@ -21,9 +21,10 @@ body {
 
 .cards_container {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   padding: 3rem 4rem;
   flex-wrap: wrap;
+  gap: 2%;
 
   @include onTablet {
     padding: 2rem 1.25rem;

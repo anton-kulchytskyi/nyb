@@ -26,7 +26,7 @@ const FeauteredYachts = async () => {
       <span className={styles.seeall}>See All</span>
       <div className="cards_container">
         {visibleYachts.map((yacht: Vessel, i: number) =>(
-          <FYCard key={yacht.id} yacht={yacht} photo={imgs[i]} linkTo='/catalog'/>
+          <FYCard key={yacht.vessel_id} yacht={yacht} photo={imgs[i]} linkTo='/catalog'/>
         ))}
       </div>
     </section>

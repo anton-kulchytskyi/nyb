@@ -1,6 +1,7 @@
 import { Vessel } from "@/interfaces/vessel.interface";
 import FYCard from "@/components/FYCard/FYCard";
 
+// replace to origin path
 import img_1 from '../../public/fyc_1.jpeg';
 import img_2 from '../../public/fyc_2.jpeg';
 import img_3 from '../../public/fyc_3.jpeg';
@@ -25,12 +26,3 @@ const CatalogYacht = ({ yachts } : Props ) => {
 };
 
 export default CatalogYacht;
-
-// <>
-// <Pagination
-//   items={100}
-//   pageSize={10}
-//   currentPage={currentPage}
-//   onPageChange={onPageChange}
-// ></Pagination>
-// </>

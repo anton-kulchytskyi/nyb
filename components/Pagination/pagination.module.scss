@@ -1,13 +1,37 @@
-.pagination li {
-  padding: 5px;
-  display: inline-block;
-  margin: 5px;
+@import '@/styles/var.scss';
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  li{
+    padding: 5px;
+    display: inline-block;
+    font-family: var(--font-baiJamjuree);
+    font-weight: 600;
+    font-size: 1.5em;
+    color: #919191;
+      a {
+        text-decoration: none;
+        color: #919191;
+      }
+  }
+  .pageItemActive {
+    pointer-events: none;
+      a {
+        color: #000;
+      }
+  }
+
+  li:first-child {
+    margin-right: 5px;
+  }
+
+  li:last-child {
+    margin-left: 5px;
+  }
 }
 
-.pageItem {
-
-}
-
-.pageItemActive {
-  background-color: #29A44F;
+.disabled {
+  pointer-events: none;
+  opacity: 0.5;
 }
