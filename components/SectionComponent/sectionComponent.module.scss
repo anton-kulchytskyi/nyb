@@ -1,0 +1,46 @@
+@import '../../styles/var.scss';
+@import '../../styles/mixins.scss';
+
+.section {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+
+  &:nth-child(odd) {
+    flex-direction: row-reverse;
+    padding: 6.5rem 4rem;
+  }
+
+  &:nth-child(even) {
+    background-color: $gray-primary;
+    padding: 5rem 4rem;
+  }
+
+  &__image {
+    position: relative;
+    height: 40rem;
+    width: 68%;
+  }
+
+  &__text {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30%;
+
+    &_container {
+      width: 200%;
+    }
+  }
+}
+
+.image {
+  object-fit: cover;
+  object-position: center;
+}
+
+.logo {
+  display: flex;
+  justify-content: flex-end;
+}
+

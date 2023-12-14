@@ -4,7 +4,7 @@ import { Vessel } from '@/interfaces/vessel.interface';
 const BASE_URL = 'https://nyb-project-production.up.railway.app/vessels';
 
 async function getData(url: string = '') {
-  const response = await fetch(`${BASE_URL}${url}`);
+  const response = await fetch(`${BASE_URL}${url}`, { next: { revalidate: 3600 } });
 
   if (!response.ok) {
     throw new DefaultError;
