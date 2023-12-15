@@ -1,26 +1,25 @@
+import { Metadata } from "next";
 import Link from "next/link";
+import { getAllVessels } from '@/utils/api/getAllVessels';
+import {Any} from "@/interfaces/any.type";
 
-async function getData() {
-  const response = await fetch('https://nyb-project-production.up.railway.app/api/vessels')
-
-  return response.json();
+export const metadata: Metadata = {
+  title: 'Catalog | Norse Yacht Co',
 }
 
 export default async function Catalog() {
-  const vessels = await getData();
-
-  // console.log(vessels._embedded.vessels)
+  const vessels = await getAllVessels();
 
   return (
-  <>
-    <h1>Catalogue</h1>
-    <ul>
-      {vessels._embedded.vessels.map((ves: any) => (
-        <li key={ves.id}>
-          <Link href={`/catalog/${ves.id}`}>{ves.vesselMake}</Link>
-        </li>
-      ))}
-    </ul>
-  </>
+    <>
+      <h1>Catalogue</h1>
+      <ul>
+        {vessels.map((ves: Any ) => (
+          <li key={ves.id}>
+            <Link href={ `/catalog/${ves.id}`}>{ves.vesselMake}</Link>
+          </li>
+        ))}
+      </ul>
+    </>
   )
 }

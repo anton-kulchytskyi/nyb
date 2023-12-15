@@ -1,48 +1,33 @@
-import Header from '@/components/Header/page'
-import './globals.css'
-import type { Metadata } from 'next'
-import { Bai_Jamjuree, Roboto } from 'next/font/google'
-import beautifulEs from 'next/font/local'
-import Footer from '@/components/Footer/page'
+import '../styles/globals.scss';
+import type { Metadata } from 'next';
 
-const roboto = Roboto({
-  weight: ['400', '500'],
-  variable: '--font-roboto',
-  subsets: ['latin']
-})
+import Navbar from '@/components/Navbar/Navbar';
+import Footer from '@/components/Footer/Footer';
 
-const baiJamjuree = Bai_Jamjuree({
-  weight: ['400', '700'],
-  variable: '--font-baiJamjuree',
-  subsets: ['latin']
-})
-
-const bEs = beautifulEs({
-  src: '../public/font/Beautiful_ES.ttf',
-  variable: '--font-bEs',
-})
-
+import { roboto, baiJamjuree, beautifulEs } from '../utils/fonts/fonts';
 export const metadata: Metadata = {
   title: 'Norse Yacht Co',
   description: 'First try',
-}
+};
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
   return (
-    // <html lang="en" className={`${baiJamjuree.variable} ${bEs.variable} ${roboto.variable}`}>
-    <html lang="en">
+    <html
+      lang='en'
+      className={`${baiJamjuree.variable} ${beautifulEs.variable} ${roboto.variable} page`}
+    >
       <head>
-        <link rel="icon" type="image/x-icon" href="/favicon.ico" sizes="any" />
+        <link rel='icon' type='image/x-icon' href='/favicon.ico' sizes='any' />
       </head>
-      <body className={roboto.className}>
-        <Header />
+      <body className='page__body'>
+        <Navbar />
         {children}
         <Footer />
       </body>
     </html>
-  )
+  );
 }

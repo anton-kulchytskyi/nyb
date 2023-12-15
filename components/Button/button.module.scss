@@ -1,0 +1,41 @@
+@import '../../styles/mixins.scss';
+@import '../../styles/var.scss';
+
+.button {
+  padding: 0.5rem 2rem;
+  border-radius: 3.5rem;
+  color: $white;
+  font-size: 1.125rem;
+  line-height: normal;
+  text-decoration: none;
+}
+
+.primary {
+  background: $gray-primary;
+  border: 1px solid $gray-primary;
+
+  &:hover {
+    background: $orange-secondary-100;
+    border: 1px solid $orange-secondary-100;
+  }
+
+  &:active {
+    background: $orange-secondary-110;
+    border: 1px solid $orange-secondary-110;
+  }
+}
+
+.secondary {
+  background: $orange-secondary-100;
+  border: 1px solid $orange-secondary-100;
+
+  &:hover {
+    background: $orange-secondary-110;
+    border: 1px solid $orange-secondary-110;
+  }
+
+  &:active {
+    background: transparent;
+    border: 1px solid $orange-secondary-100;
+  }
+}
