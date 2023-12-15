@@ -6,6 +6,19 @@
   display: flex;
   justify-content: space-between;
 
+  &:nth-child(odd) &__text_container {
+    width: 150%;
+    transform: translate(-50%);
+    z-index: 1;
+  }
+
+  &:nth-child(odd) &__text > p,
+  &:nth-child(odd) &__text > a {
+    width: 120%;
+    transform: translate(-20%);
+    z-index: 1;
+  }
+
   &:nth-child(odd) {
     flex-direction: row-reverse;
     padding: 6.5rem 4rem;
@@ -28,11 +41,21 @@
     justify-content: space-between;
     width: 30%;
 
+    // & p, a {
+    //   transform: translate(-20%);
+    //   z-index: 1;
+    // }
+
     &_container {
       width: 200%;
     }
   }
 }
+
+// .section:nth-child(odd) .section__text_container {
+//   transform: translate(-50%);
+//   z-index: 1;
+// }
 
 .image {
   object-fit: cover;
