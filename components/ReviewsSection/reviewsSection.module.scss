@@ -1,0 +1,19 @@
+@import '../../styles/mixins.scss';
+
+.review_section {
+  padding: 0 4rem 8rem;
+
+  @include onTablet {
+    padding: 0 1.5rem 5.5rem;
+  }
+}
+
+.cards_container {
+  display: flex;
+  gap: 1.5rem;
+  overflow: hidden;
+
+  & img {
+    margin-right: 0.5rem;
+  }
+}
