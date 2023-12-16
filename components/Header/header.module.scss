@@ -3,13 +3,21 @@
 .header {
   position: relative;
   margin-top: -8rem;
-  padding-bottom: 2rem;
 
   &__container {
-    height: 100vh;
+    position: relative;
+    height: calc(100vh + 8rem);
     display: flex;
     flex-direction: column;
     justify-content: center;
+
+    @include onDesktop {
+      height: 43rem;
+    }
+
+    @include onTablet {
+      height: 32rem;
+    }
   }
 }
 
@@ -26,39 +34,17 @@
 }
 
 .title {
-  transform: translate(0, -50%);
-
-  @include onTablet {
-    transform: translate(0, -40%);
-  }
+  transform: translate(0, -40%);
 }
 
-// @media (min-width: 768px) and (max-width: 1220px) {
-//   .title {
-//     font-size: 6rem;
-//   }
+.button {
+  transform: translate(0, -300%);
 
-//   .title::after {
-//     font-size: 8rem;
-//   }
-// }
+  @include onDesktop {
+    transform: translate(0, -50%);
+  }
 
-// @media (min-width: 361px) and (max-width: 767px) {
-//   .title {
-//     font-size: 4rem;
-//   }
-
-//   .title::after {
-//     font-size: 6rem;
-//   }
-// }
-
-// @media (max-width: 360px) {
-//   .title {
-//     font-size: 2.5rem;
-//   }
-
-//   .title::after {
-//     font-size: 6rem;
-//   }
-// }
+  @include onMobile {
+    transform: translate(0, 0);
+  }
+}

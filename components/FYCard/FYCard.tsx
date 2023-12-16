@@ -1,25 +1,33 @@
 'use client';
 import Image, { StaticImageData } from 'next/image';
+import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import typo from '@/styles/typography.module.scss'
 import { Vessel } from '@/interfaces/vessel.interface';
 import Button from '../Button/Button';
+
 import styles from './fycard.module.scss';
 
 interface Props {
   yacht: Vessel;
+  buttonsExample?: string;
   photo: StaticImageData;
-  linkTo: string;
 }
 
-const FYCard = ({ yacht, photo, linkTo }: Props) => {
+const FYCard = ({ 
+  yacht,
+  buttonsExample,
+  photo }: Props) => {
+  const router = useRouter();
   const [isHovering, setIsHovering] = useState(true);
   const {
+    vessel_id,
     vessel_make,
+    vessel_model,
     vessel_price,
     vessel_country,
+    vessel_town,
     vessel_year,
-    vessel_id
   } = yacht;
 
   const handleMouseOver = () => {
@@ -30,29 +38,57 @@ const FYCard = ({ yacht, photo, linkTo }: Props) => {
     setIsHovering(true);
   };
 
+  const routeToVessel = () => {
+    router.push(`/catalog/${vessel_id}`);
+  };
+
+  let btnExample;
+  if(buttonsExample) {
+    btnExample = <Button
+      text={buttonsExample}
+      linkTo={`/catalog/${vessel_id}`}
+    />
+  }
+
   return (
     <div className={styles.card}>
       <div
         className={styles.image_container}
         onMouseOver={handleMouseOver}
         onMouseOut={handleMouseOut}
+        onClick={routeToVessel}
       >
-        <Image alt="feature_img" src={photo} fill={true} className={styles.image} />
-        <Button
-          text='See Detail'
-          linkTo={linkTo}
-          primary
-          center
-          hover={isHovering}
+        <Image
+          src={photo}
+          fill
+          sizes="100vw"
+          className={styles.image}
+          alt="feature_img"
         />
+        <span className={styles.top_right}>
+          {btnExample}
+        </span>
+        <span className={`${styles.center} ${isHovering ? styles.center__is_hover : ''}`}>
+          <Button
+            text='See Detail'
+            linkTo={`/catalog/${vessel_id}`}
+            primary
+          />
+        </span>
       </div>
-      <p className={typo.typo_name_yacht}>{vessel_make} -- {vessel_id}</p>
-      <p className={typo.typo_price}>{`$ ${vessel_price}`}</p>
-      <p
-        className={`${typo.typo_description} ${typo.typo_description_gray}`}
-        // style={{color: '#525659'}}
-        // style={{ color:` ${$gray-100}` }}
-      >{`${vessel_country} | ${vessel_year}`}</p>
+      <div className={styles.card__desc}>
+        <p className={typo.typo_name_yacht}>
+          {`${vessel_make} ${vessel_model}`}
+        </p>
+        <p className={typo.typo_price}>
+          {`$ ${vessel_price}`}
+        </p>
+        <p
+          className={`${typo.typo_description} ${typo.typo_description_gray}`}
+        >
+          {`${vessel_country} | ${vessel_town} | ${vessel_year}`}
+        </p>
+      </div>
     </div>
   );
 };

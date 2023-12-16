@@ -18,8 +18,7 @@ const CatalogYacht = ({ yachts } : Props ) => {
         <FYCard
           key={i}
           yacht={yacht}
-          photo={imgs[i]}
-          linkTo={`/catalog/${yacht.vessel_id}`}/>
+          photo={imgs[i]}/>
       ))}
     </div>
   )

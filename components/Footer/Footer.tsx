@@ -1,11 +1,17 @@
 'use client';
 import Link from 'next/link'
 import Image from 'next/image'
+
+import { footerLinksArray } from '@/utils/links/footerLinksArray';
+
 import FooterLogo from '@/public/icons/logo_footer.svg';
 import useWindowDimensions from '@/hooks/useWindowDimensions';
 import Copyright from '../Copyright/Copyright';
 import SocialMedia from '../SocialMedia/SocialMedia';
 import styles from './footer.module.scss'
+
+const leftLinks = footerLinksArray.slice(0, 3);
+const rightLinks = footerLinksArray.slice(3);
 
 const Footer = () => {
   const { width } = useWindowDimensions();
@@ -25,32 +31,22 @@ const Footer = () => {
       </div>
       <div className={styles.footer__links_container}>
         <div className={styles.footer__links}>
-          <Link
-            href="/catalog"
-            className={styles.link}
-          >Yachts</Link>
-          <Link
-            href="/"
-            className={styles.link}
-          >How it works?</Link>
-          <Link
-            href="/"
-            className={styles.link}
-          >Reviews</Link>
+          {leftLinks.map(link => (
+            <Link
+              key={link.title}
+              href={link.path}
+              className={styles.link}
+            >{link.title}</Link>
+          ))}
         </div>
         <div className={styles.footer__links}>
-          <Link
-            href="/"
-            className={styles.link}
-          >Terms of use</Link>
-          <Link
-            href="/"
-            className={styles.link}
-          >Cookies policy</Link>
-          <Link
-            href="/"
-            className={styles.link}
-          >Privacy policy</Link>
+          {rightLinks.map(link => (
+            <Link
+              key={link.title}
+              href={link.path}
+              className={styles.link}
+            >{link.title}</Link>
+          ))}
         </div>
       </div>
       <div className={`${styles.footer__side} ${styles.footer__social}`}>

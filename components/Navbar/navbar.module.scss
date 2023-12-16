@@ -2,47 +2,56 @@
 @import '@/styles/mixins.scss';
 
 .navbar {
-  display: flex;
   position: relative;
-  /* font-family: var(--font-roboto); */
-  justify-content: space-between;
-  align-items: center;
-  /* height: 2.375rem; */
-  padding: 2rem 4rem;
-  width: 100%;
   z-index: 2;
 
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 2rem 4rem;
+
   &__side {
-    width: 40%;
     display: flex;
+    width: 35%;
 
     &:last-child {
       justify-content: flex-end;
     }
   }
 
-  @include onDesktop {
+  @include onTablet {
     padding: 1rem 1.25rem;
   }
 }
 
 .link {
-  text-decoration: none;
   color: $black;
+
   font-size: 1.125rem;
-  font-style: normal;
   font-weight: 500;
-  line-height: 150%;
+  
+  text-decoration: none;
 
   &:not(:last-child) {
     margin-right: 2.5rem;
   }
 }
 
-.logo img {
-  @include onSmall {
-    display: block;
-    width: 80%;
-    margin: 0 auto;
+.logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &__image {
+    @include onDesktop {
+      width: 170px;
+      height: auto;
+    }
+
+    @include onSmall {
+      width: 120px;
+      height: auto;
+    }
   }
 }

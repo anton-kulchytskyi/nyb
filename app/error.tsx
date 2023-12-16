@@ -12,8 +12,6 @@ const error = ({ error }: Props) => {
   return (
     <>
       <h2>{error.message}</h2>
-      {/* <h2>{error.name}</h2>
-      <h2>{error.stack}</h2> */}
       <Link href='/'>Go home</Link>
     </>
   )
