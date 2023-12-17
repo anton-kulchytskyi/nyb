@@ -6,10 +6,6 @@
   margin-bottom: 2.5rem;
 
   @include onTablet {
-    width: 48.3%;
-  }
-
-  @include onMobile {
     width: 100%;
   }
 

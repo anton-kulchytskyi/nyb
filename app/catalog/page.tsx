@@ -29,7 +29,7 @@ const Catalog = async ({ searchParams }: {searchParams?: {page: string; size: st
 
   return (
     <section className={`${styles.catalog_container}`}>
-      <h4 className={`cards_container ${styles.catalog_title} ${typo.typo_h4}`}>Catalogue</h4>
+      <h4 className={`${styles.catalog_title} ${typo.typo_h4}`}>Catalogue</h4>
       {yachtsPage.length ?
         (<CatalogYacht yachts={yachtsPage}></CatalogYacht>)
         :(<h4 className={`${styles.no_yachts}`}>No Yachts</h4>)

@@ -11,7 +11,6 @@ const Pagination = ({ items, pageSize, currentPage }: Props) => {
   const pagesCount = Math.ceil(items / pageSize);
 
   if (pagesCount === 1) return null;
-  //check if pages are 2 or ...
 
   const pages = Array.from({ length: pagesCount }, (_, i) => i + 1);
   

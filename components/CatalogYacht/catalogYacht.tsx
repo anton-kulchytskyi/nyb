@@ -5,7 +5,10 @@ import FYCard from "@/components/FYCard/FYCard";
 import img_1 from '../../public/fyc_1.jpeg';
 import img_2 from '../../public/fyc_2.jpeg';
 import img_3 from '../../public/fyc_3.jpeg';
-const imgs = [img_1, img_2, img_3];
+import img_4 from '../../public/fyc_1.jpeg';
+import img_5 from '../../public/fyc_2.jpeg';
+import img_6 from '../../public/fyc_3.jpeg';
+const imgs = [img_1, img_2, img_3,img_4, img_5, img_6];
 
 type Props = {
   yachts: Vessel[];

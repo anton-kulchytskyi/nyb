@@ -2,7 +2,6 @@ import { DefaultError } from '@/utils/errors/defaultError';
 import { Vessel } from '@/interfaces/vessel.interface';
 
 const BASE_URL = 'https://nyb-project-production.up.railway.app/vessels';
-// const API_URL = 'https://nyb-project-production.up.railway.app/api/vessels';
 
 function getData(): Promise<Vessel[]>;
 function getData(url: string): Promise<Vessel>

@@ -1,8 +1,13 @@
+@import '../../styles/mixins.scss';
+
 .catalog_title {
     display: block;
-    padding-top: 0;
-    padding-bottom: 0;
+    padding: 0 4rem;
     margin-bottom: -15px;
+
+    @include onTablet {
+        padding: 1.5rem 1.25rem;
+    }
 }
 
 .no_yachts {
