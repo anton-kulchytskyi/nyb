@@ -27,7 +27,7 @@
     "computed-property-spacing": ["error", "never"],
     "@stylistic/indent": ["error", 2],
     "eol-last": ["error", "always"],
-    "object-curly-spacing":["error", "always"] 
+    "object-curly-spacing":["error", "always", { "objectsInObjects": false }]
   },
   "parser": "@typescript-eslint/parser",
   "plugins": [

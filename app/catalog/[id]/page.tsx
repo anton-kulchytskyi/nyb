@@ -7,13 +7,13 @@ type Props = {
   }
 }
 
-export async function generateMetadata({ params: { id } }: Props): Promise<Metadata> {
+export async function generateMetadata({ params: { id }}: Props): Promise<Metadata> {
   return {
     title: `Yacht ${id} | Norse Yacht Co`,
   };
 }
 
-export default async function Vessel({ params: { id } }: Props) {
+export default async function Vessel({ params: { id }}: Props) {
   const ves = await getVesselById(`/${id}`);
 
   return (
