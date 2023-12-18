@@ -6,11 +6,12 @@ import typo from '@/styles/typography.module.scss'
 import { Vessel } from '@/interfaces/vessel.interface';
 import Button from '../Button/Button';
 
+import BtnExp from '../BtnExp/BtnExp';
 import styles from './fycard.module.scss';
 
 interface Props {
   yacht: Vessel;
-  buttonsExample?: string;
+  buttonsExample: string;
   photo: StaticImageData;
 }
 
@@ -42,14 +43,6 @@ const FYCard = ({
     router.push(`/catalog/${vessel_id}`);
   };
 
-  let btnExample;
-  if(buttonsExample) {
-    btnExample = <Button
-      text={buttonsExample}
-      linkTo={`/catalog/${vessel_id}`}
-    />
-  }
-
   return (
     <div className={styles.card}>
       <div
@@ -66,7 +59,7 @@ const FYCard = ({
           alt="feature_img"
         />
         <span className={styles.top_right}>
-          {btnExample}
+          <BtnExp text={buttonsExample} linkTo={`/catalog/${vessel_id}`}></BtnExp>
         </span>
         <span className={`${styles.center} ${isHovering ? styles.center__is_hover : ''}`}>
           <Button
