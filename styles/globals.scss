@@ -1,4 +1,5 @@
 @import './var.scss';
+@import './mixins.scss';
 
 * {
   box-sizing: border-box;
@@ -24,5 +25,17 @@
     min-height: 100vh;
     max-width: 120rem;
     margin: 0 auto;
+  }
+}
+
+.cards_container {
+  display: flex;
+  justify-content: flex-start;
+  padding: 3rem 4rem;
+  flex-wrap: wrap;
+  gap: 2%;
+
+  @include onTablet {
+    padding: 2rem 1.25rem;
   }
 }
