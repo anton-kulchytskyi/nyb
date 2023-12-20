@@ -6,7 +6,7 @@ type Props = {
   textarea?: boolean;
 }
 
-const Input = ({title, inputType, textarea}: Props) => {
+const Input = ({ title, inputType, textarea }: Props) => {
   return (
     <div className={styles.form_group}>
       {textarea ? (
