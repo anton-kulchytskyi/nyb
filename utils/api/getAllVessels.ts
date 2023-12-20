@@ -8,7 +8,7 @@ function getData(url: string): Promise<Vessel>
 function getData(url: string): Promise<Vessel[]>
 function getData(url: string, params: string): Promise<Vessel[]>
 async function getData(url: string = '', search: string = ''): Promise<Vessel[] | Vessel> {
-  const response = await fetch(`${BASE_URL}${url}?${search}`);
+  const response = await fetch(`${BASE_URL}${url}?${search}`, { next: { revalidate: 3600 }});
 
   if (!response.ok) {
     throw new DefaultError;
