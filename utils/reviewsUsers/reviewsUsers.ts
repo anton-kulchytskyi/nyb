@@ -33,5 +33,5 @@ export const users: reviewUser[] = avatars.map((user, i) =>({
   ...user,
   userId: i + 1,
   date,
-  reviewText
+  reviewText: i % 2 ? reviewText : reviewText.split('.').slice(0, 2).join('.')
 }));
