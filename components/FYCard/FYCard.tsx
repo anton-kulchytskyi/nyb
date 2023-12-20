@@ -6,11 +6,12 @@ import typo from '@/styles/typography.module.scss'
 import { Vessel } from '@/interfaces/vessel.interface';
 import Button from '../Button/Button';
 
+import BtnExp from '../BtnExp/BtnExp';
 import styles from './fycard.module.scss';
 
 interface Props {
   yacht: Vessel;
-  buttonsExample: string;
+  buttonsExample?: string;
   photo: StaticImageData;
 }
 
@@ -58,10 +59,7 @@ const FYCard = ({
           alt="feature_img"
         />
         <span className={styles.top_right}>
-          <Button
-            text={buttonsExample}
-            linkTo={`/catalog/${vessel_id}`}
-          />
+          <BtnExp text={buttonsExample ? buttonsExample : ''} linkTo={`/catalog/${vessel_id}`}></BtnExp>
         </span>
         <span className={`${styles.center} ${isHovering ? styles.center__is_hover : ''}`}>
           <Button
