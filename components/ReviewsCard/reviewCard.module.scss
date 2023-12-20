@@ -1,0 +1,45 @@
+@import '../../styles/var.scss';
+
+.container {
+  border: 2px solid $gray-primary;
+  border-radius: 0.4rem;
+  padding: 1.5rem;
+
+  width: 25%;
+  min-width: 20rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  &__text {
+    margin-bottom: 4rem;
+
+    &_review {
+      margin: 1rem 0 1.5rem;
+    }
+
+    &_quotes {
+      display: flex;
+      justify-content: flex-end;
+    }
+  }
+
+  &__avatar {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    &_name {
+      font-family: var(--font-baiJamjuree);
+      font-size: 1.25rem;
+      font-weight: 500;
+      line-height: 150%;
+    }
+
+    &_date {
+      color: #565360;
+      font-family: var(--font-baiJamjuree);
+      font-size: 0.75rem;
+    }
+  }
+}
