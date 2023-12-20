@@ -9,7 +9,7 @@
   }
 
   @include onTablet {
-    padding: 2.5rem 4rem;
+    padding: 2.5rem 1.25rem;
   }
 
   @include onSmall {
@@ -29,6 +29,10 @@
       height: 40rem;
       width: 50%;
 
+      @include onDesktop {
+        height: 32rem;
+      }
+
       @include onTablet {
         height: 21rem;
         width: 100%;
@@ -38,12 +42,9 @@
     &__form {
       display: flex;
       flex-direction: column;
-      padding: 3.5rem 9.5rem;
+      align-items: center;
+      padding: 3.5rem 4.5rem;
       width: 50%;
-
-      @include onDesktop {
-        padding: 3.5rem 4.5rem;
-      }
 
       @include onTablet {
         padding: 3.5rem 5.5rem;
