@@ -51,6 +51,10 @@
     color: $gray-primary;
   }
 
+  &_white {
+    color: $white;
+  }
+
   @include onDesktop {
     font-size: 4rem;
   }
@@ -151,7 +155,11 @@
     color: $black;
   }
 
-  @mixin onMobile {
+  &_white {
+    color: $white;
+  }
+
+  @include onTablet {
     font-size: 1rem;
   }
 }

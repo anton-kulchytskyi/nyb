@@ -1,0 +1,43 @@
+@import '../../styles/mixins.scss';
+
+.text_container {
+  position: relative;
+  width: 30%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  @include onDesktop {
+    width: 55%;
+  }
+
+  & > p {
+    padding-top: 15rem;
+
+    @include onDesktop {
+      padding-top: 8rem;
+    }
+
+    @include onTablet {
+      max-width: 30rem;
+      margin: 0 auto;
+      padding-top: 5rem;
+      z-index: 1;
+    }
+
+    @include onSmall {
+      padding-top: 3rem;
+    }
+  }
+
+  @include onTablet {
+    width: 100%;
+    text-align: center;
+  } 
+}
+
+.logo {
+  display: flex;
+  justify-content: flex-end;
+}

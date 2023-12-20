@@ -2,68 +2,29 @@
 @import '../../styles/mixins.scss';
 
 .section {
-  position: relative;
   display: flex;
   justify-content: space-between;
+  padding: 5rem 4rem;
 
-  &:nth-child(odd) &__text_container {
-    width: 150%;
-    transform: translate(-50%);
-    z-index: 1;
-  }
-
-  &:nth-child(odd) &__text > p,
-  &:nth-child(odd) &__text > a {
-    width: 120%;
-    transform: translate(-20%);
-    z-index: 1;
-  }
+  background-color: $gray-primary;
+  overflow-x: hidden;
 
   &:nth-child(odd) {
+    background-color: transparent;
     flex-direction: row-reverse;
-    padding: 6.5rem 4rem;
-  }
 
-  &:nth-child(even) {
-    background-color: $gray-primary;
-    padding: 5rem 4rem;
-  }
-
-  &__image {
-    position: relative;
-    height: 40rem;
-    width: 68%;
-  }
-
-  &__text {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    width: 30%;
-
-    // & p, a {
-    //   transform: translate(-20%);
-    //   z-index: 1;
-    // }
-
-    &_container {
-      width: 200%;
+    @include onTablet {
+      flex-direction: column;
     }
   }
-}
 
-// .section:nth-child(odd) .section__text_container {
-//   transform: translate(-50%);
-//   z-index: 1;
-// }
+  @include onDesktop {
+    padding: 2.5rem 4rem;
+  }
 
-.image {
-  object-fit: cover;
-  object-position: center;
-}
-
-.logo {
-  display: flex;
-  justify-content: flex-end;
+  @include onTablet {
+    flex-direction: column;
+    padding: 2rem 1.25rem;
+  }
 }
 
