@@ -8,7 +8,11 @@ import img_3 from '../../public/fyc_3.jpeg';
 import img_4 from '../../public/fyc_1.jpeg';
 import img_5 from '../../public/fyc_2.jpeg';
 import img_6 from '../../public/fyc_3.jpeg';
-const imgs = [img_1, img_2, img_3,img_4, img_5, img_6];
+import img_7 from '../../public/fyc_2.jpeg';
+import img_8 from '../../public/fyc_3.jpeg';
+import img_9 from '../../public/fyc_1.jpeg';
+import styles from './catalogYacht.module.scss';
+const imgs = [img_1, img_2, img_3,img_4, img_5, img_6, img_7, img_8, img_9];
 
 type Props = {
   yachts: Vessel[];
@@ -16,7 +20,7 @@ type Props = {
 const CatalogYacht = ({ yachts } : Props ) => {
 
   return (
-    <div className="cards_container">
+    <div className={`cards_container ${styles.cards_wrapper}`}>
       {yachts && yachts.map((yacht: Vessel, i: number) => (
         <FYCard
           key={i}
