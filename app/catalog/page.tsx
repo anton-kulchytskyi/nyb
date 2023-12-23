@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   title: 'Catalog | Norse Yacht Co',
 };
 
-const CardNumber = 6;
+const CardNumber = 9;
 
 const Catalog = async ({ searchParams }: {searchParams?: {page: string; size: string}} ) => {
   const allYachts = await getAllVessels();
