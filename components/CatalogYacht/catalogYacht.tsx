@@ -25,7 +25,8 @@ const CatalogYacht = ({ yachts } : Props ) => {
         <FYCard
           key={i}
           yacht={yacht}
-          photo={imgs[i]}/>
+          photo={imgs[i]}
+          inCatalog={true}/>
       ))}
     </div>
   )
