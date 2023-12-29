@@ -14,6 +14,7 @@ const ContactSection = () => {
         <div className={styles.section_container__img}>
           <Image
             src={ContactSectionImg}
+            className={styles.image}
             fill
             sizes='100vw'
             alt='Contact Form Image'
