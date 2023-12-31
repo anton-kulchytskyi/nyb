@@ -24,28 +24,35 @@ const SectionComponentText = ({
   desc,
   logoTxt,
   logoSubTxt,
-  order
+  order,
 }: Props) => {
   const { width } = useWindowDimensions();
   const desktopScreen = (width as number) > 1199;
-  const color = order ? '#E7801A' : '#31455B';
+  // const color = order ? '#E7801A' : '#31455B';
 
   return (
     <div className={styles.text_container}>
       <TitlePlace title={title} subtitle={subtitle} order={order} />
-      <p className={`${typo.typo_description} ${order ? '' : typo.typo_description_white}`}>{desc}</p>
-      <TextButton text='Read more' linkTo='/catalog' primary={true} />
+      <p
+        className={`${typo.typo_description} ${
+          order ? '' : typo.typo_description_white
+        }`}
+      >
+        {desc}
+      </p>
+      <TextButton text="Read more" linkTo="/catalog" primary={true} />
       <span className={styles.logo}>
         {desktopScreen ? (
           <ComponentLogo
             number={logoTxt}
             text={logoSubTxt}
-            color={color}
-          />)
-          : null}
+            order={order}
+            // color={color}
+          />
+        ) : null}
       </span>
     </div>
-  )
-}
+  );
+};
 
 export default SectionComponentText;

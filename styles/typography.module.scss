@@ -119,6 +119,10 @@
   font-size: 3rem;
   font-weight: 600;
   line-height: 150%;
+
+  &_gray {
+    color: $gray-primary;
+  }
 }
 
 .typo_product_card_name {
@@ -165,7 +169,7 @@
 }
 
 .typo_price {
-  color:$orange-secondary-100;
+  color: $orange-secondary-100;
   font-size: 2rem;
   font-weight: 500;
   margin: 0.5rem 0;
