@@ -47,6 +47,14 @@
   font-size: 6rem;
   font-weight: 600;
 
+  &_gray {
+    color: $gray-primary;
+  }
+
+  &_white {
+    color: $white;
+  }
+
   @include onDesktop {
     font-size: 4rem;
   }
@@ -111,21 +119,13 @@
 
 .typo_uitxt_secondary {
   color: $orange-secondary-100;
-  font-family: var(--font-bEs);
-  font-size: 17.125rem;
+  font-family: var(--font-baiJamjuree);
+  font-size: 3rem;
   font-weight: 600;
-  line-height: 100%;
+  line-height: 150%;
 
-  @include onDesktop {
-    font-size: 12.5rem;
-  }
-
-  @include onTablet {
-    font-size: 8rem;
-  }
-
-  @include onMobile {
-    font-size: 5.5rem;
+  &_gray {
+    color: $gray-primary;
   }
 }
 
@@ -163,13 +163,17 @@
     color: $black;
   }
 
-  @mixin onMobile {
+  &_white {
+    color: $white;
+  }
+
+  @include onTablet {
     font-size: 1rem;
   }
 }
 
 .typo_price {
-  color:$orange-secondary-100;
+  color: $orange-secondary-100;
   font-size: 2rem;
   font-weight: 500;
   margin: 0.5rem 0;
