@@ -67,10 +67,6 @@
   font-weight: 600;
   text-transform: capitalize;
 
-  &__white {
-    color: $white;
-  }
-
   @include onTablet {
     font-size: 2rem;
   }
