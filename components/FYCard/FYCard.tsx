@@ -13,12 +13,14 @@ interface Props {
   yacht: Vessel;
   buttonsExample?: string;
   photo: StaticImageData;
+  inCatalog?: boolean;
 }
 
 const FYCard = ({ 
   yacht,
   buttonsExample,
-  photo }: Props) => {
+  photo,
+  inCatalog }: Props) => {
   const router = useRouter();
   const [isHovering, setIsHovering] = useState(true);
   const {
@@ -46,7 +48,7 @@ const FYCard = ({
   return (
     <div className={styles.card}>
       <div
-        className={styles.image_container}
+        className={`${styles.image_container} ${inCatalog ? styles.image_catalog_container : ''}`}
         onMouseOver={handleMouseOver}
         onMouseOut={handleMouseOut}
         onClick={routeToVessel}
