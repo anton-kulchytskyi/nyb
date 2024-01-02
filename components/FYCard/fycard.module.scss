@@ -2,7 +2,7 @@
 @import '../../styles/var.scss';
 
 .card {
-  width: 32%;
+  width: 32.1%;
   margin-bottom: 2.5rem;
 
   @include onTablet {
@@ -33,6 +33,22 @@
 
   @include onMobile {
     height: 21rem;
+  }
+
+  @include onSmall {
+    height: 13.5rem;
+  }
+}
+
+.image_container.image_catalog_container {
+  height: 25rem;
+
+  @include onDesktop {
+    height: 16.5rem;
+  }
+
+  @include onMobile {
+    height: 10.5rem;
   }
 
   @include onSmall {

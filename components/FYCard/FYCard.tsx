@@ -6,18 +6,21 @@ import typo from '@/styles/typography.module.scss'
 import { Vessel } from '@/interfaces/vessel.interface';
 import Button from '../Button/Button';
 
+import BtnExp from '../BtnExp/BtnExp';
 import styles from './fycard.module.scss';
 
 interface Props {
   yacht: Vessel;
-  buttonsExample: string;
+  buttonsExample?: string;
   photo: StaticImageData;
+  inCatalog?: boolean;
 }
 
 const FYCard = ({ 
   yacht,
   buttonsExample,
-  photo }: Props) => {
+  photo,
+  inCatalog }: Props) => {
   const router = useRouter();
   const [isHovering, setIsHovering] = useState(true);
   const {
@@ -45,7 +48,7 @@ const FYCard = ({
   return (
     <div className={styles.card}>
       <div
-        className={styles.image_container}
+        className={`${styles.image_container} ${inCatalog ? styles.image_catalog_container : ''}`}
         onMouseOver={handleMouseOver}
         onMouseOut={handleMouseOut}
         onClick={routeToVessel}
@@ -58,10 +61,7 @@ const FYCard = ({
           alt="feature_img"
         />
         <span className={styles.top_right}>
-          <Button
-            text={buttonsExample}
-            linkTo={`/catalog/${vessel_id}`}
-          />
+          <BtnExp text={buttonsExample ? buttonsExample : ''} linkTo={`/catalog/${vessel_id}`}></BtnExp>
         </span>
         <span className={`${styles.center} ${isHovering ? styles.center__is_hover : ''}`}>
           <Button
