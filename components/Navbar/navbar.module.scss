@@ -13,7 +13,7 @@
 
   &__side {
     display: flex;
-    width: 35%;
+    // width: 35%;
 
     &:last-child {
       justify-content: flex-end;
@@ -30,7 +30,7 @@
 
   font-size: 1.125rem;
   font-weight: 500;
-  
+
   text-decoration: none;
 
   &:not(:last-child) {
@@ -39,6 +39,11 @@
 }
 
 .logo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
   display: flex;
   justify-content: center;
   align-items: center;

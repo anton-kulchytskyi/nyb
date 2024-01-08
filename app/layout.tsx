@@ -7,7 +7,7 @@ import Footer from '@/components/Footer/Footer';
 import { roboto, baiJamjuree, beautifulEs } from '../utils/fonts/fonts';
 export const metadata: Metadata = {
   title: 'Norse Yacht Co',
-  description: 'First try',
+  description: 'Business Consulting and Services',
 };
 
 export default function RootLayout({
@@ -17,13 +17,18 @@ export default function RootLayout({
 }) {
   return (
     <html
-      lang='en'
+      lang="en"
       className={`${baiJamjuree.variable} ${beautifulEs.variable} ${roboto.variable} page`}
     >
       <head>
-        <link rel='icon' type='image/x-icon' href='/favicon.ico' sizes='any' />
+        <link
+          rel="icon"
+          type="image/x-icon"
+          href="/favicon.ico"
+          sizes="any"
+        />
       </head>
-      <body className='page__body'>
+      <body className="page__body">
         <Navbar />
         {children}
         <Footer />

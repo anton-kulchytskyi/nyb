@@ -1,22 +1,22 @@
 export const navbarLinksArray = [
   {
     title: 'Yachts',
-    path: '/catalog'
+    path: '/catalog',
   },
   {
     title: 'How is Works?',
-    path: '/'
+    path: '/',
   },
   {
-    title: 'Change Units',
-    path: '/'
+    title: 'Split currency',
+    path: '/',
   },
   {
     title: 'Reviews',
-    path: '#reviews'
+    path: '#reviews',
   },
   {
-    title: 'Contact',
-    path: '#contact'
+    title: 'Contacts',
+    path: '#contact',
   },
 ];
