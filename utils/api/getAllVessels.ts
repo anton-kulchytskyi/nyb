@@ -17,8 +17,8 @@ async function getData(url: string = '', search: string = ''): Promise<Vessel[] 
   return response.json();
 }
 
-export const getAllVessels = async (): Promise<Vessel[]> => await getData();
-export const getVesselById = async (id: string): Promise<Vessel> => await getData(id);
+export const getAllVessels = async (): Promise<Vessel[]> => await getData(); //  Promise<Vessel[]>
+export const getVesselById = async (id: string): Promise<Vessel> => await getData(id); // Promise<Vessel>
 export const getFeauteredYacht = async (): Promise<Vessel[]> => {
   const yachts = await getData();
 

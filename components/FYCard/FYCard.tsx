@@ -71,7 +71,7 @@ const FYCard = ({
           />
         </span>
       </div>
-      <div className={styles.card__desc}>
+      <div className={`${inCatalog ? styles.card__desc_catalog :  styles.card__desc}`}>
         <p className={typo.typo_name_yacht}>
           {`${vessel_make} ${vessel_model}`}
         </p>
@@ -81,7 +81,7 @@ const FYCard = ({
         <p
           className={`${typo.typo_description} ${typo.typo_description_gray}`}
         >
-          {`${vessel_country} | ${vessel_town} | ${vessel_year}`}
+          {`${vessel_country}, ${vessel_town} | ${vessel_year}`}
         </p>
       </div>
     </div>
