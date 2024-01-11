@@ -4,7 +4,7 @@ export const navbarLinksArray = [
     path: '/catalog',
   },
   {
-    title: 'How is Works?',
+    title: 'How it Works?',
     path: '/',
   },
   {
@@ -13,10 +13,12 @@ export const navbarLinksArray = [
   },
   {
     title: 'Reviews',
-    path: '#reviews',
+    // path: '#reviews',
+    path: '/',
   },
   {
     title: 'Contacts',
-    path: '#contact',
+    // path: '#contact',
+    path: '/',
   },
 ];

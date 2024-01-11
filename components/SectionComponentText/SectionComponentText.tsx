@@ -28,11 +28,14 @@ const SectionComponentText = ({
 }: Props) => {
   const { width } = useWindowDimensions();
   const desktopScreen = (width as number) > 1199;
-  // const color = order ? '#E7801A' : '#31455B';
 
   return (
     <div className={styles.text_container}>
-      <TitlePlace title={title} subtitle={subtitle} order={order} />
+      <TitlePlace
+        title={title}
+        subtitle={subtitle}
+        order={order}
+      />
       <p
         className={`${typo.typo_description} ${
           order ? '' : typo.typo_description_white
@@ -40,7 +43,11 @@ const SectionComponentText = ({
       >
         {desc}
       </p>
-      <TextButton text="Read more" linkTo="/catalog" primary={true} />
+      <TextButton
+        text="Read more"
+        linkTo="/catalog"
+        primary={order}
+      />
       <span className={styles.logo}>
         {desktopScreen ? (
           <ComponentLogo
