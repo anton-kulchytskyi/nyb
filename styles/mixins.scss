@@ -21,3 +21,9 @@
     @content;
   }
 }
+
+@mixin onLarge {
+  @media (max-width: 1921.98px) {
+    @content;
+  }
+}

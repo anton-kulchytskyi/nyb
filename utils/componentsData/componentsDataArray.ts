@@ -27,20 +27,4 @@ export const componentsDataArray = [
     logoTxt: '200+',
     logoSubTxt: 'happy customers',
   },
-  // {
-  //   title: 'Get a deal &',
-  //   subtitle: 'join',
-  //   desc: 'Get the deal of a lifetime and start your yacht adventure right now. Indulge in unmatched comfort and luxury by choosing your perfect yacht from our selection.',
-  //   img: get_deal,
-  //   logoTxt: '200+',
-  //   logoSubTxt: 'happy customers',
-  // },
-  // {
-  //   title: 'survey',
-  //   subtitle: 'Book',
-  //   desc: 'Share your thoughts on our services by participating in our Book survey. Your feedback is invaluable in helping us enhance your yachting experience',
-  //   img: book,
-  //   logoTxt: '24/7',
-  //   logoSubTxt: 'support',
-  // },
 ];
