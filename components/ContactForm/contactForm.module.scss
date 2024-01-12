@@ -1,7 +1,28 @@
+@import '../../styles/mixins.scss';
+
 .form {
   display: flex;
   flex-direction: column;
   width: 100%;
-  max-width: 36rem;
-}
+  padding: 0 10rem;
 
+  @include onLarge {
+    padding: 0 4.5rem;
+  }
+
+  @include onDesktop {
+    padding: 0 2rem;
+  }
+
+  @include onTablet {
+    padding: 0 8rem;
+  }
+
+  @include onMobile {
+    padding: 0 2rem;
+  }
+
+  @include onSmall {
+    padding: 0 1.25rem;
+  }
+}

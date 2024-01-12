@@ -3,7 +3,7 @@ import React, { FormEvent } from 'react';
 
 import Button from '../Button/Button';
 import Input from '../Input/Input';
-import styles from './contactForm.module.scss'
+import styles from './contactForm.module.scss';
 
 const ContactForm = () => {
   // const [email, setEmail] = useState('');
@@ -12,13 +12,26 @@ const ContactForm = () => {
 
   const submitHandler = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-  }
+  };
 
   return (
-    <form onSubmit={submitHandler} className={styles.form}>
-      <Input title='email' inputType='email' />
-      <Input title='name' inputType='text' />
-      <Input title='message' inputType='' textarea />
+    <form
+      onSubmit={submitHandler}
+      className={styles.form}
+    >
+      <Input
+        title="email"
+        inputType="email"
+      />
+      <Input
+        title="name"
+        inputType="text"
+      />
+      <Input
+        title="message"
+        inputType=""
+        textarea
+      />
       {/* <label htmlFor="email">Email</label>
       <input
         id="email"
@@ -46,10 +59,13 @@ const ContactForm = () => {
 
       {/* <button type="submit">Send message</button> */}
       <span>
-        <Button text='Send message' linkTo='/' />
+        <Button
+          text="Send message"
+          linkTo="/"
+        />
       </span>
     </form>
-  )
-}
+  );
+};
 
 export default ContactForm;

@@ -1,5 +1,5 @@
 import Header from '@/components/Header/Header';
-import FeauteredYachts from '@/components/FeauteredYachts/FeauteredYachts';
+import FeaturedYachts from '@/components/FeaturedYachts/FeaturedYachts';
 import AllSectionComponents from '@/components/SectionComponent/SectionComponent';
 import ContactSection from '@/components/ContactSection/ContactSection';
 import ReviewsSection from '@/components/ReviewsSection/ReviewsSection';
@@ -11,7 +11,7 @@ export default function Home() {
     <>
       <Header />
       <main className={styles.main}>
-        <FeauteredYachts />
+        <FeaturedYachts />
         <AllSectionComponents />
         <ContactSection />
         <ReviewsSection />

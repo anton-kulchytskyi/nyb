@@ -4,15 +4,21 @@ type Props = {
   title: string;
   inputType?: string;
   textarea?: boolean;
-}
+};
 
 const Input = ({ title, inputType, textarea }: Props) => {
+  const textareaPlaceholder =
+    "Hello,\nI'd like to learn more about your services.";
+
+  const labelText = textarea ? '' : `Your ${title}`;
+
   return (
     <div className={styles.form_group}>
       {textarea ? (
         <textarea
           id={title}
-          className={styles.input}
+          className={`${styles.input} ${styles.input__textarea}`}
+          placeholder={textareaPlaceholder}
         />
       ) : (
         <input
@@ -22,9 +28,14 @@ const Input = ({ title, inputType, textarea }: Props) => {
           required
         />
       )}
-      <label className={styles.label} htmlFor={title}>{`Your ${title}`}</label>
+      <label
+        className={styles.label}
+        htmlFor={title}
+      >
+        {labelText}
+      </label>
     </div>
-  )
-}
+  );
+};
 
 export default Input;

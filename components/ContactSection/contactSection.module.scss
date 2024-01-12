@@ -19,6 +19,7 @@
   &_container {
     background-color: $gray-primary;
     display: flex;
+
     @include onTablet {
       flex-direction: column;
     }
@@ -27,10 +28,6 @@
       position: relative;
       height: 40rem;
       width: 50%;
-
-      @include onDesktop {
-        height: 32rem;
-      }
 
       @include onTablet {
         height: 21rem;
@@ -41,21 +38,38 @@
     &__form {
       display: flex;
       flex-direction: column;
-      align-items: center;
-      padding: 3.5rem 4.5rem;
+      padding: 3.5rem 0;
       width: 50%;
 
+      @include onDesktop {
+        padding: 1.75rem 0;
+      }
+
       @include onTablet {
-        padding: 3.5rem 5.5rem;
         width: 100%;
       }
 
-      @include onMobile {
-        padding: 1.75rem 2rem;
-      }
+      & h4 {
+        padding: 0 10rem;
+        margin-bottom: 2rem;
 
-      @include onSmall {
-        padding: 2.5rem 1.25rem;
+        @include onLarge {
+          padding: 0 4.5rem;
+        }
+
+        @include onDesktop {
+          padding: 0 2rem;
+        }
+
+        @include onTablet {
+          text-align: center;
+          font-size: 2.5rem;
+          padding: 0 2rem;
+        }
+
+        @include onSmall {
+          font-size: 2rem;
+        }
       }
     }
   }
