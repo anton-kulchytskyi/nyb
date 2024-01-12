@@ -10,7 +10,7 @@ import img_3 from '../../public/fyc_3.jpeg';
 import FYCard from '../FYCard/FYCard';
 import TextButton from '../TextButton/TextButton';
 
-import styles from './FeaturedYachts.module.scss';
+import styles from './featuredYachts.module.scss';
 
 const imgs = [img_1, img_2, img_3];
 const buttonsExample = ['Top 3', 'Hot Price', 'Low Price'];
