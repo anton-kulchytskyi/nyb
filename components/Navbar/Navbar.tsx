@@ -65,7 +65,7 @@ const Navbar = () => {
           <SmallScreenLinks
             isClose={isClose}
             closeHandler={closeHandler}
-            // contactsModalHandler={contactsModalHandler}
+            contactsModalHandler={contactsModalHandler}
           />
         )}
         {desktopScreen && (

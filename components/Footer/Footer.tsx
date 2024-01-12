@@ -1,6 +1,6 @@
 'use client';
-import Link from 'next/link'
-import Image from 'next/image'
+import Link from 'next/link';
+import Image from 'next/image';
 
 import { footerLinksArray } from '@/utils/links/footerLinksArray';
 
@@ -8,14 +8,15 @@ import FooterLogo from '@/public/icons/logo_footer.svg';
 import useWindowDimensions from '@/hooks/useWindowDimensions';
 import Copyright from '../Copyright/Copyright';
 import SocialMedia from '../SocialMedia/SocialMedia';
-import styles from './footer.module.scss'
+import styles from './footer.module.scss';
 
 const leftLinks = footerLinksArray.slice(0, 3);
 const rightLinks = footerLinksArray.slice(3);
 
 const Footer = () => {
   const { width } = useWindowDimensions();
-  const smallScreen = width as number <= 786;
+  const smallScreen = (width as number) <= 786;
+  const color = '#E7801A';
   return (
     <footer className={styles.footer}>
       <div className={`${styles.footer__logo} ${styles.footer__side}`}>
@@ -31,30 +32,34 @@ const Footer = () => {
       </div>
       <div className={styles.footer__links_container}>
         <div className={styles.footer__links}>
-          {leftLinks.map(link => (
+          {leftLinks.map((link) => (
             <Link
               key={link.title}
               href={link.path}
               className={styles.link}
-            >{link.title}</Link>
+            >
+              {link.title}
+            </Link>
           ))}
         </div>
         <div className={styles.footer__links}>
-          {rightLinks.map(link => (
+          {rightLinks.map((link) => (
             <Link
               key={link.title}
               href={link.path}
               className={styles.link}
-            >{link.title}</Link>
+            >
+              {link.title}
+            </Link>
           ))}
         </div>
       </div>
       <div className={`${styles.footer__side} ${styles.footer__social}`}>
-        <SocialMedia />
+        <SocialMedia color={color} />
         {smallScreen && <Copyright />}
       </div>
     </footer>
-  )
-}
+  );
+};
 
-export default Footer
+export default Footer;

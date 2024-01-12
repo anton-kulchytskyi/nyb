@@ -1,5 +1,5 @@
 import typo from '@/styles/typography.module.scss';
-import LogoSvg from '../LogoSvg/LogoSvg';
+import LogoSvg from '../SvgIconsComponents/LogoSvg';
 
 import styles from './componentLogo.module.scss';
 
@@ -7,7 +7,6 @@ type Props = {
   number: string;
   text: string;
   order: boolean;
-  // color: string;
 };
 
 const ComponentLogo = ({ number, text, order }: Props) => {

@@ -1,9 +1,6 @@
 // 'use client';
 import Link from 'next/link';
-// import { useRouter } from 'next/navigation';
 import { usePathname } from 'next/navigation';
-// import { useSearchParams } from 'next/navigation';
-// import { headers } from 'next/headers';
 
 import { navbarLinksArray } from '@/utils/links/navbarLinksArray';
 
@@ -13,25 +10,11 @@ const leftLinks = navbarLinksArray.slice(0, 2);
 import styles from './navbar.module.scss';
 
 type Props = {
-  // isClose: boolean;
   contactsModalHandler: () => void;
 };
 
 const LargeScreenLinks = ({ contactsModalHandler }: Props) => {
-  // const link1 = 'Reviews';
-  // const link2 = 'Contacts';
-  // const hashUrl = (link1 || link2) ? '/'
-  // const router = useRouter();
-  // const headersList = headers();
-  // const referer = headersList.get('referer');
-
   const pathname = usePathname();
-  // const searchParams = useSearchParams();
-
-  // eslint-disable-next-line
-  // console.log(referer);
-  // eslint-disable-next-line
-  // console.log(searchParams);
 
   return (
     <>

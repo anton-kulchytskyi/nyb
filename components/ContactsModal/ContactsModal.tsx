@@ -5,10 +5,7 @@ import { usePathname } from 'next/navigation';
 import Close from '@/public/icons/close.svg';
 import Copy from '@/public/icons/copy.svg';
 
-import Insta_gray from '@/public/icons/insta_gray.svg';
-import Telegram_gray from '@/public/icons/teleram_gray.svg';
-import Whatsapp_gray from '@/public/icons/whatsapp_gray.svg';
-
+import SocialMediaIcons from '@/components/SocialMediaIcons/SocialMediaIcons';
 import typo from '@/styles/typography.module.scss';
 import styles from './contactsModal.module.scss';
 
@@ -24,8 +21,8 @@ const ContactsModal = ({
   const pathname = usePathname();
   const tel1 = '+380632345521';
   const tel2 = '+380677129333';
+  const color = '#4D6575';
 
-  // const icons = [Insta_gray, Telegram_gray, Whatsapp_gray];
   return (
     <div
       className={`${styles.modal} ${isContactsModalOpen ? styles.open : ''}`}
@@ -58,33 +55,7 @@ const ContactsModal = ({
             />
           </div>
           <div className={styles.social}>
-            <Link
-              href="#"
-              className={styles.icon}
-            >
-              <Image
-                src={Insta_gray}
-                alt="Insta_logo"
-              />
-            </Link>
-            <Link
-              href="#"
-              className={styles.icon}
-            >
-              <Image
-                src={Telegram_gray}
-                alt="Telegram_gray"
-              />
-            </Link>
-            <Link
-              href="#"
-              className={styles.icon}
-            >
-              <Image
-                src={Whatsapp_gray}
-                alt="Whatsapp_gray"
-              />
-            </Link>
+            <SocialMediaIcons color={color} />
           </div>
         </div>
       </div>
