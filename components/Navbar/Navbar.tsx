@@ -8,12 +8,14 @@ import LogoImg from '@/public/icons/logo.svg';
 import useWindowDimensions from '@/hooks/useWindowDimensions';
 import MenuMobileModal from '../MenuMobileModal/MenuMobileModal';
 
+import ContactsModal from '../ContactsModal/ContactsModal';
 import LargeScreenLinks from './LargeScreenLinks';
 import SmallScreenLinks from './SmallScreenLinks';
 
 import styles from './navbar.module.scss';
 
 const Navbar = () => {
+  const [isContactsModalOpen, setIsContactsModalOpen] = useState(false);
   const [isClose, setIsClose] = useState(false);
   const [tabletScreen, setTabletScreen] = useState(false);
   const [desktopScreen, setDesktopScreen] = useState(false);
@@ -25,6 +27,10 @@ const Navbar = () => {
     setDesktopScreen(!screen);
   }, [width]);
 
+  const contactsModalHandler = () => {
+    setIsContactsModalOpen(!isContactsModalOpen);
+  };
+
   const closeHandler = () => {
     setIsClose(!isClose);
   };
@@ -35,6 +41,12 @@ const Navbar = () => {
         <MenuMobileModal
           isClose={isClose}
           closeHandler={closeHandler}
+        />
+      )}
+      {isContactsModalOpen && (
+        <ContactsModal
+          isContactsModalOpen={isContactsModalOpen}
+          contactsModalHandler={contactsModalHandler}
         />
       )}
       <nav className={styles.navbar}>
@@ -53,9 +65,12 @@ const Navbar = () => {
           <SmallScreenLinks
             isClose={isClose}
             closeHandler={closeHandler}
+            // contactsModalHandler={contactsModalHandler}
           />
         )}
-        {desktopScreen && <LargeScreenLinks />}
+        {desktopScreen && (
+          <LargeScreenLinks contactsModalHandler={contactsModalHandler} />
+        )}
       </nav>
     </>
   );

@@ -11,14 +11,12 @@ export const navbarLinksArray = [
     title: 'Split currency',
     path: '/',
   },
-  {
-    title: 'Reviews',
-    // path: '#reviews',
-    path: '/',
-  },
+  // {
+  //   title: 'Reviews',
+  //   path: '#reviews',
+  // },
   {
     title: 'Contacts',
-    // path: '#contact',
     path: '/',
   },
 ];

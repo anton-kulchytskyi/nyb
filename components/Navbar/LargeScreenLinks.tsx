@@ -1,18 +1,23 @@
 // 'use client';
 import Link from 'next/link';
 // import { useRouter } from 'next/navigation';
-// import { usePathname } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 // import { useSearchParams } from 'next/navigation';
 // import { headers } from 'next/headers';
 
 import { navbarLinksArray } from '@/utils/links/navbarLinksArray';
 
 const leftLinks = navbarLinksArray.slice(0, 2);
-const rightLinks = navbarLinksArray.slice(2);
+// const rightLinks = navbarLinksArray.slice(2);
 
 import styles from './navbar.module.scss';
 
-const LargeScreenLinks = () => {
+type Props = {
+  // isClose: boolean;
+  contactsModalHandler: () => void;
+};
+
+const LargeScreenLinks = ({ contactsModalHandler }: Props) => {
   // const link1 = 'Reviews';
   // const link2 = 'Contacts';
   // const hashUrl = (link1 || link2) ? '/'
@@ -20,7 +25,7 @@ const LargeScreenLinks = () => {
   // const headersList = headers();
   // const referer = headersList.get('referer');
 
-  // const pathname = usePathname();
+  const pathname = usePathname();
   // const searchParams = useSearchParams();
 
   // eslint-disable-next-line
@@ -42,7 +47,23 @@ const LargeScreenLinks = () => {
         ))}
       </div>
       <div className={styles.navbar__side}>
-        {rightLinks.map((link) => (
+        <Link
+          key="curr"
+          href="/"
+          className={styles.link}
+        >
+          Split currency
+        </Link>
+        <Link
+          key="Contacts"
+          href={pathname}
+          className={styles.link}
+          onClick={contactsModalHandler}
+        >
+          Contacts
+        </Link>
+
+        {/* {rightLinks.map((link) => (
           <Link
             key={link.title}
             href={link.path}
@@ -50,7 +71,7 @@ const LargeScreenLinks = () => {
           >
             {link.title}
           </Link>
-        ))}
+        ))} */}
       </div>
     </>
   );
