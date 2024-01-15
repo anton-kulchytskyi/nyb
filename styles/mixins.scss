@@ -23,7 +23,13 @@
 }
 
 @mixin onLarge {
-  @media (max-width: 1921.98px) {
+  @media (max-width: 1919.98px) {
+    @content;
+  }
+}
+
+@mixin onExtraLarge {
+  @media (min-width: 1920px) {
     @content;
   }
 }

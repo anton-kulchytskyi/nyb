@@ -1,10 +1,19 @@
 import '../styles/globals.scss';
 import type { Metadata } from 'next';
+import dynamic from 'next/dynamic';
 
-import Navbar from '@/components/Navbar/Navbar';
+const NoSSRNavBar = dynamic(() => import('@/components/Navbar/Navbar'), {
+  ssr: false,
+  // loading: () => <NavBarSkeleton />,
+});
+
+import { CurrencyProvider } from '@/context/CurrencyContext';
+
+// import Navbar from '@/components/Navbar/Navbar';
 import Footer from '@/components/Footer/Footer';
 
-import { roboto, baiJamjuree, beautifulEs } from '../utils/fonts/fonts';
+import { roboto, baiJamjuree, beautifulEs } from '@/utils/fonts/fonts';
+// import NavBarSkeleton from '@/components/Skeletons/NavBarSkeleton/NavBarSkeleton';
 export const metadata: Metadata = {
   title: 'Norse Yacht Co',
   description: 'Business Consulting and Services',
@@ -29,9 +38,12 @@ export default function RootLayout({
         />
       </head>
       <body className="page__body">
-        <Navbar />
-        {children}
-        <Footer />
+        <CurrencyProvider>
+          <NoSSRNavBar />
+          {/* <Navbar /> */}
+          {children}
+          <Footer />
+        </CurrencyProvider>
       </body>
     </html>
   );

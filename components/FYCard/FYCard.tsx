@@ -2,6 +2,10 @@
 import Image, { StaticImageData } from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
+
+import { useCurrency } from '@/context/CurrencyContext';
+import { currencyArray } from '@/utils/currency/currencyArray';
+
 import typo from '@/styles/typography.module.scss';
 import { Vessel } from '@/interfaces/vessel.interface';
 import Button from '../Button/Button';
@@ -18,16 +22,24 @@ interface Props {
 
 const FYCard = ({ yacht, buttonsExample, photo, inCatalog }: Props) => {
   const router = useRouter();
+  const { selectedCurrency } = useCurrency();
   const [isHovering, setIsHovering] = useState(true);
   const {
     vessel_id,
     vessel_make,
     vessel_model,
-    vessel_price,
     vessel_country,
     vessel_town,
     vessel_year,
   } = yacht;
+
+  const key = `vessel_price_${selectedCurrency}`;
+
+  const currPrice = yacht[key];
+
+  const currCurrency = currencyArray.find(
+    (obj) => obj.currencyName === selectedCurrency
+  )?.symbol;
 
   const handleMouseOver = () => {
     setIsHovering(false);
@@ -86,7 +98,7 @@ const FYCard = ({ yacht, buttonsExample, photo, inCatalog }: Props) => {
         <p className={typo.typo_name_yacht}>
           {`${vessel_make} ${vessel_model}`}
         </p>
-        <p className={typo.typo_price}>{`$ ${vessel_price}`}</p>
+        <p className={typo.typo_price}>{`${currCurrency} ${currPrice}`}</p>
         <p className={`${typo.typo_description} ${typo.typo_description_gray}`}>
           {`${vessel_country}, ${vessel_town} | ${vessel_year}`}
         </p>

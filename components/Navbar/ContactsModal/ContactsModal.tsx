@@ -7,7 +7,7 @@ import Copy from '@/public/icons/copy.svg';
 
 import SocialMediaIcons from '@/components/SocialMediaIcons/SocialMediaIcons';
 import typo from '@/styles/typography.module.scss';
-import styles from './contactsModal.module.scss';
+import styles from '@/components/Navbar/ContactsModal/contactsModal.module.scss';
 
 type Props = {
   isContactsModalOpen: boolean;
