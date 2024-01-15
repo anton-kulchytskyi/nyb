@@ -1,4 +1,8 @@
-export interface Vessel {
+type VesselKeys = {
+  [key: string]: number | string | boolean;
+};
+
+export interface Vessel extends VesselKeys {
   vessel_id: number;
   featured: boolean;
   vessel_make: string;

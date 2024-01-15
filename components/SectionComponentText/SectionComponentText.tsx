@@ -3,9 +3,9 @@
 import useWindowDimensions from '@/hooks/useWindowDimensions';
 import typo from '@/styles/typography.module.scss';
 
-import TitlePlace from '../TitlePlace/TitlePlace';
-import TextButton from '../TextButton/TextButton';
-import ComponentLogo from '../ComponentLogo/ComponentLogo';
+import TitlePlace from '@/components/TitlePlace/TitlePlace';
+import TextButton from '@/components/TextButton/TextButton';
+import ComponentLogo from '@/components/ComponentLogo/ComponentLogo';
 
 import styles from './sectionComponentText.module.scss';
 
@@ -36,25 +36,30 @@ const SectionComponentText = ({
         subtitle={subtitle}
         order={order}
       />
-      <p
-        className={`${typo.typo_description} ${
-          order ? '' : typo.typo_description_white
+      <div
+        className={`${styles.text_container_desc} ${
+          order ? styles.text_container_desc__even : ''
         }`}
       >
-        {desc}
-      </p>
-      <TextButton
-        text="Read more"
-        linkTo="/catalog"
-        primary={order}
-      />
+        <p
+          className={`${typo.typo_description} ${
+            order ? '' : typo.typo_description_white
+          }`}
+        >
+          {desc}
+        </p>
+        <TextButton
+          text="Read more"
+          linkTo="/catalog"
+          primary={order}
+        />
+      </div>
       <span className={styles.logo}>
         {desktopScreen ? (
           <ComponentLogo
             number={logoTxt}
             text={logoSubTxt}
             order={order}
-            // color={color}
           />
         ) : null}
       </span>

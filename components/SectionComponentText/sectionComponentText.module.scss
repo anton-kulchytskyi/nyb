@@ -12,7 +12,7 @@
     width: 55%;
   }
 
-  & > p {
+  &_desc {
     padding-top: 15rem;
 
     @include onDesktop {
@@ -28,6 +28,21 @@
 
     @include onSmall {
       padding-top: 3rem;
+    }
+
+    & > p {
+      padding-bottom: 0.5rem;
+    }
+
+    &__even {
+      width: 125%;
+      transform: translate(-25%);
+      z-index: 2;
+
+      @include onDesktop {
+        width: 100%;
+        transform: translate(0);
+      }
     }
   }
 

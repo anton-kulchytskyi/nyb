@@ -12,11 +12,7 @@ export const navbarLinksArray = [
     path: '/',
   },
   // {
-  //   title: 'Reviews',
-  //   path: '#reviews',
+  //   title: 'Contacts',
+  //   path: '/',
   // },
-  {
-    title: 'Contacts',
-    path: '/',
-  },
 ];

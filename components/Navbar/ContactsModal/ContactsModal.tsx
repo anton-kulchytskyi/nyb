@@ -7,7 +7,7 @@ import Copy from '@/public/icons/copy.svg';
 
 import SocialMediaIcons from '@/components/SocialMediaIcons/SocialMediaIcons';
 import typo from '@/styles/typography.module.scss';
-import styles from './contactsModal.module.scss';
+import styles from '@/components/Navbar/ContactsModal/contactsModal.module.scss';
 
 type Props = {
   isContactsModalOpen: boolean;
@@ -22,6 +22,21 @@ const ContactsModal = ({
   const tel1 = '+380632345521';
   const tel2 = '+380677129333';
   const color = '#4D6575';
+
+  const copyText = (text: string) => {
+    navigator.clipboard.writeText(text).then(
+      () => {
+        alert(`${text} is copied to clipboard`);
+      },
+      () => {
+        try {
+          window.prompt('Please copy this text', text);
+        } catch (error) {
+          alert("Your browser doesn't support this function");
+        }
+      }
+    );
+  };
 
   return (
     <div
@@ -42,17 +57,21 @@ const ContactsModal = ({
           <h4 className={typo.typo_h4}>Contacts</h4>
           <div className={styles.phone}>
             <a href={`tel:${tel1}`}>{tel1}</a>
-            <Image
-              src={Copy}
-              alt="Copy"
-            />
+            <button onClick={() => copyText(tel1)}>
+              <Image
+                src={Copy}
+                alt="Copy"
+              />
+            </button>
           </div>
           <div className={styles.phone}>
             <a href={`tel:${tel2}`}>{tel2}</a>
-            <Image
-              src={Copy}
-              alt="Copy"
-            />
+            <button onClick={() => copyText(tel2)}>
+              <Image
+                src={Copy}
+                alt="Copy"
+              />
+            </button>
           </div>
           <div className={styles.social}>
             <SocialMediaIcons color={color} />
