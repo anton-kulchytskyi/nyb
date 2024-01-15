@@ -29,6 +29,7 @@ const CurrencyModal = ({
   return (
     <div
       className={`${styles.modal} ${isCurrencyModalOpen ? styles.open : ''}`}
+      onClick={currencyModalHandler}
     >
       <div className={styles.modal__content}>
         {currencyArray.map((curr) => (

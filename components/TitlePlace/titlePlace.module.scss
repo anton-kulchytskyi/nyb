@@ -10,7 +10,7 @@
   }
 
   &__odd {
-    transform: translate(-50%);
+    transform: translate(-45%);
 
     @include onDesktop {
       transform: translate(-10%);
