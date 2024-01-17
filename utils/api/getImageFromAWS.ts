@@ -9,13 +9,13 @@ export async function fetchImgUrl(keyFromAws: string): Promise<string> {
   try {
     // Configure AWS SDK with the credentials and region
     AWS.config.update({
-      // accessKeyId: 'AKIAUXLH7DAVIEHB5FF2',
-      // secretAccessKey: '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',
-      // region: 'eu-north-1',
+      accessKeyId: 'AKIAUXLH7DAVIEHB5FF2',
+      secretAccessKey: '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',
+      region: 'eu-north-1',
 
-      accessKeyId: process.env.NEXT_PUBLIC_AWS_ACCESS_KEY_ID,
-      secretAccessKey: process.env.NEXT_PUBLIC_AWS_SECRET_ACCESS_KEY,
-      region: process.env.NEXT_PUBLIC_AWS_REGION,
+      // accessKeyId: process.env.NEXT_PUBLIC_AWS_ACCESS_KEY_ID,
+      // secretAccessKey: process.env.NEXT_PUBLIC_AWS_SECRET_ACCESS_KEY,
+      // region: process.env.NEXT_PUBLIC_AWS_REGION,
 
       // accessKeyId: process.env.NEXT_PUBLIC_ACCESS_KEY_ID,
       // secretAccessKey: process.env.NEXT_PUBLIC_SECRET_ACCESS_KEY,
