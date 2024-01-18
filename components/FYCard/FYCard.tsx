@@ -103,6 +103,9 @@ const FYCard = ({ yacht, buttonsExample, inCatalog }: Props) => {
     router.push(`/catalog/${vessel_id}`);
   };
 
+  // eslint-disable-next-line
+  console.log(imageUrl);
+
   return (
     <div
       className={styles.card}
