@@ -1,0 +1,56 @@
+/* Add these styles to your existing styles file or create a new one */
+
+.loadingSkeleton {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 25rem; /* Adjust height based on your design */
+  background-color: #f0f0f0; /* Light gray background color */
+  border-radius: 8px; /* Rounded corners */
+  overflow: hidden;
+
+  /* Shimmer animation for a loading effect */
+  @keyframes shimmer {
+    0% {
+      background-position: -200% 0;
+    }
+    100% {
+      background-position: 200% 0;
+    }
+  }
+
+  /* Create a gradient for shimmer effect */
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+
+  /* Add some margin and padding for spacing */
+  margin-bottom: 1rem;
+  padding: 1rem;
+
+  /* Placeholder styles for loading content */
+  .loading_text {
+    width: 70%;
+    height: 1.5rem;
+    background-color: #e0e0e0; /* Lighter gray background color */
+    margin-bottom: 0.5rem;
+    border-radius: 4px;
+  }
+
+  .loading_image {
+    width: 100%;
+    height: 15rem; /* Adjust height based on your design */
+    background-color: #e0e0e0; /* Lighter gray background color */
+    margin-bottom: 0.5rem;
+    border-radius: 4px;
+  }
+
+  .loading_button {
+    width: 50%;
+    height: 2rem;
+    background-color: #e0e0e0; /* Lighter gray background color */
+    border-radius: 4px;
+  }
+}

@@ -16,6 +16,7 @@ import { Vessel } from '@/interfaces/vessel.interface';
 import Button from '../Button/Button';
 
 import BtnExp from '../BtnExp/BtnExp';
+import CardSkeleton from '../CardSkeleton/CardSkeleton';
 import styles from './fycard.module.scss';
 
 interface Props {
@@ -26,6 +27,7 @@ interface Props {
 }
 
 const FYCard = ({ yacht, buttonsExample, inCatalog }: Props) => {
+  const [isLoading, setIsLoading] = useState(true);
   const router = useRouter();
   const { selectedCurrency } = useCurrency();
   const [isHovering, setIsHovering] = useState(true);
@@ -52,6 +54,9 @@ const FYCard = ({ yacht, buttonsExample, inCatalog }: Props) => {
     async function loadImgFromAws() {
       const currImg = await fetchImgUrl(vessel_image_key);
       setImageUrl(currImg);
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 3000); // Simulating a 2-second delay
     }
     loadImgFromAws();
   }, [vessel_image_key]);
@@ -113,49 +118,57 @@ const FYCard = ({ yacht, buttonsExample, inCatalog }: Props) => {
       onMouseOut={handleMouseOut}
       onClick={routeToVessel}
     >
-      <div
-        className={`${styles.image_container} ${
-          inCatalog ? styles.image_catalog_container : ''
-        }`}
-      >
-        <Image
-          src={imageUrl}
-          fill
-          sizes="100vw"
-          className={styles.image}
-          alt="feature_img"
-        />
-        <span className={styles.top_right}>
-          <BtnExp
-            text={buttonsExample ? buttonsExample : ''}
-            linkTo={`/catalog/${vessel_id}`}
-          ></BtnExp>
-        </span>
-        <span
-          className={`${styles.center} ${
-            isHovering ? styles.center__is_hover : ''
-          }`}
-        >
-          <Button
-            text="See Detail"
-            linkTo={`/catalog/${vessel_id}`}
-            primary
-          />
-        </span>
-      </div>
-      <div
-        className={`${
-          inCatalog ? styles.card__desc_catalog : styles.card__desc
-        }`}
-      >
-        <p className={typo.typo_name_yacht}>
-          {`${vessel_make} ${vessel_model}`}
-        </p>
-        <p className={typo.typo_price}>{`${currCurrency} ${currPrice}`}</p>
-        <p className={`${typo.typo_description} ${typo.typo_description_gray}`}>
-          {`${vessel_country}, ${vessel_town} | ${vessel_year}`}
-        </p>
-      </div>
+      {isLoading ? (
+        <CardSkeleton />
+      ) : (
+        <>
+          <div
+            className={`${styles.image_container} ${
+              inCatalog ? styles.image_catalog_container : ''
+            }`}
+          >
+            <Image
+              src={imageUrl}
+              fill
+              sizes="100vw"
+              className={styles.image}
+              alt="feature_img"
+            />
+            <span className={styles.top_right}>
+              <BtnExp
+                text={buttonsExample ? buttonsExample : ''}
+                linkTo={`/catalog/${vessel_id}`}
+              ></BtnExp>
+            </span>
+            <span
+              className={`${styles.center} ${
+                isHovering ? styles.center__is_hover : ''
+              }`}
+            >
+              <Button
+                text="See Detail"
+                linkTo={`/catalog/${vessel_id}`}
+                primary
+              />
+            </span>
+          </div>
+          <div
+            className={`${
+              inCatalog ? styles.card__desc_catalog : styles.card__desc
+            }`}
+          >
+            <p className={typo.typo_name_yacht}>
+              {`${vessel_make} ${vessel_model}`}
+            </p>
+            <p className={typo.typo_price}>{`${currCurrency} ${currPrice}`}</p>
+            <p
+              className={`${typo.typo_description} ${typo.typo_description_gray}`}
+            >
+              {`${vessel_country}, ${vessel_town} | ${vessel_year}`}
+            </p>
+          </div>
+        </>
+      )}
     </div>
   );
 };
