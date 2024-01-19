@@ -4,6 +4,16 @@ import AWS from 'aws-sdk';
 import { PromiseResult } from 'aws-sdk/lib/request';
 // import { StaticImport } from 'next/dist/shared/lib/get-img-props';
 
+// eslint-disable-next-line
+console.error('accessKeyId:', process.env.NEXT_PUBLIC_AWS_ACCESS_KEY_ID);
+// eslint-disable-next-line
+console.error(
+  'secretAccessKey:',
+  process.env.NEXT_PUBLIC_AWS_SECRET_ACCESS_KEY
+);
+// eslint-disable-next-line
+console.error('region:', process.env.NEXT_PUBLIC_AWS_REGION);
+
 export async function fetchImgUrl(keyFromAws: string): Promise<string> {
   let currImageUrl;
   try {
@@ -13,9 +23,9 @@ export async function fetchImgUrl(keyFromAws: string): Promise<string> {
       // secretAccessKey: 'N7ARg0AZ02niNCLZznIUA3VUs0fC2we761Mz4Cwn',
       // region: 'eu-north-1',
 
-      accessKeyId: process.env.NEXT_PUBLIC_AWS_ACCESS_KEY_ID,
-      secretAccessKey: process.env.NEXT_PUBLIC_AWS_SECRET_ACCESS_KEY,
-      region: process.env.NEXT_PUBLIC_AWS_REGION,
+      accessKeyId: process.env.NEXT_PUBLIC_AWS_ACCESS_KEY_ID as string,
+      secretAccessKey: process.env.NEXT_PUBLIC_AWS_SECRET_ACCESS_KEY as string,
+      region: process.env.NEXT_PUBLIC_AWS_REGION as string,
     });
 
     const s3 = new AWS.S3();
