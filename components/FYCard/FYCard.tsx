@@ -53,7 +53,7 @@ const FYCard = ({ yacht, buttonsExample, inCatalog }: Props) => {
       setImageUrl(currImg);
       setTimeout(() => {
         setIsLoading(false);
-      }, 3000); // Simulating a 2-second delay
+      }, 3000); // Simulating a 3-second delay
     }
     loadImgFromAws();
   }, [vessel_image_key]);
@@ -69,9 +69,6 @@ const FYCard = ({ yacht, buttonsExample, inCatalog }: Props) => {
   const routeToVessel = () => {
     router.push(`/catalog/${vessel_id}`);
   };
-
-  // eslint-disable-next-line
-  console.log(imageUrl);
 
   return (
     <div
