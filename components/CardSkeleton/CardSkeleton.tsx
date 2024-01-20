@@ -10,11 +10,12 @@ const CardSkeleton = () => {
       {/* Placeholder for loading text */}
       <div className={styles.loading_text}></div>
       <div className={styles.loading_text}></div>
+      <div className={styles.loading_text}></div>
 
       {/* Placeholder for loading image */}
 
       {/* Placeholder for loading button */}
-      <div className={styles.loading_button}></div>
+      {/* <div className={styles.loading_button}></div> */}
     </div>
   );
 };
