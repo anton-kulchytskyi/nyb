@@ -1,15 +1,12 @@
 'use client';
-import AWS from 'aws-sdk';
 import Image from 'next/image';
-// import Image, { StaticImageData } from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useState, useEffect } from 'react';
 
-import { PromiseResult } from 'aws-sdk/lib/request';
 import { useCurrency } from '@/context/CurrencyContext';
 import { currencyArray } from '@/utils/currency/currencyArray';
 
-// import { fetchImgUrl } from '@/utils/api/getImageFromAWS';
+import { fetchImgUrl } from '@/utils/api/getImageFromAWS';
 
 import typo from '@/styles/typography.module.scss';
 import { Vessel } from '@/interfaces/vessel.interface';
@@ -50,77 +47,15 @@ const FYCard = ({ yacht, buttonsExample, inCatalog }: Props) => {
     (obj) => obj.currencyName === selectedCurrency
   )?.symbol;
 
-  // useEffect(() => {
-  //   const fetchImage = async () => {
-  //     try {
-  //       const response = await fetch(
-  //         `/utils/api/getImage?key=${vessel_image_key}`
-  //       );
-  //       const { imageUrl } = await response.json();
-  //       setImageUrl(imageUrl);
-  //     } catch (error) {
-  //       // eslint-disable-next-line no-console
-  //       console.error('Error fetching image from API:', error);
-  //     }
-  //     setTimeout(() => {
-  //       setIsLoading(false);
-  //     }, 3000); // Simulating a 3-second delay
-  //   };
-
-  //   fetchImage();
-  // }, [vessel_image_key]);
-
-  // useEffect(() => {
-  //   async function loadImgFromAws() {
-  //     const currImg = await fetchImgUrl(vessel_image_key);
-  //     setImageUrl(currImg);
-  //     setTimeout(() => {
-  //       setIsLoading(false);
-  //     }, 3000); // Simulating a 2-second delay
-  //   }
-  //   loadImgFromAws();
-  // }, [vessel_image_key]);
-
   useEffect(() => {
-    async function fetchImgUrl() {
-      try {
-        // Configure AWS SDK with the credentials and region
-        AWS.config.update({
-          accessKeyId: process.env.NEXT_PUBLIC_AWS_ACCESS_KEY_ID as string,
-          secretAccessKey: process.env
-            .NEXT_PUBLIC_AWS_SECRET_ACCESS_KEY as string,
-          region: process.env.NEXT_PUBLIC_AWS_REGION as string,
-          // accessKeyId: 'AKIAUXLH7DAVIEHB5FF2',
-          // secretAccessKey: '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',
-          // region: 'eu-north-1',
-        });
-        const s3 = new AWS.S3();
-        const bucketName = 'nyb-basket';
-        // Fetch the image from Amazon S3 based on the imageUrl from the good prop
-        const s3Object: PromiseResult<AWS.S3.GetObjectOutput, AWS.AWSError> =
-          await s3
-            .getObject({ Bucket: bucketName, Key: vessel_image_key })
-            .promise();
-        let currImageUrl;
-        if (s3Object.Body) {
-          currImageUrl = URL.createObjectURL(
-            new Blob([s3Object.Body as BlobPart])
-          );
-        } else {
-          // Handle the case where s3Object.Body is undefined
-          // eslint-disable-next-line
-          console.error('S3 object body is undefined');
-        }
-        setImageUrl(currImageUrl as string);
-      } catch (error) {
-        // eslint-disable-next-line
-        console.error('Error:', error);
-      }
+    async function loadImgFromAws() {
+      const currImg = await fetchImgUrl(vessel_image_key);
+      setImageUrl(currImg);
       setTimeout(() => {
         setIsLoading(false);
       }, 3000); // Simulating a 2-second delay
     }
-    fetchImgUrl();
+    loadImgFromAws();
   }, [vessel_image_key]);
 
   const handleMouseOver = () => {
