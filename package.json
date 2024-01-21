@@ -16,7 +16,8 @@
     ]
   },
   "dependencies": {
-    "@aws-sdk/client-s3": "^3.490.0",
+    "@aws-sdk/client-s3": "^3.496.0",
+    "@aws-sdk/s3-request-presigner": "^3.496.0",
     "@aws-sdk/util-base64-node": "^3.209.0",
     "@aws-sdk/util-utf8-node": "^3.259.0",
     "@types/node": "20.8.10",
