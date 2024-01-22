@@ -14,19 +14,22 @@ const SocialMediaIcons = ({ color }: Props) => {
   return (
     <>
       <Link
-        href="#"
+        href="https://www.instagram.com/norseyachtcom/"
+        target="_blank"
         className={styles.icon}
       >
         <InstagramSvg color={color} />
       </Link>
       <Link
-        href="#"
+        href="https://t.me/norseyacht"
+        target="_blank"
         className={styles.icon}
       >
         <TelegramSvg color={color} />
       </Link>
       <Link
-        href="#"
+        href="https://chat.whatsapp.com/HEclUDIVs1h4Ht5hJzXu0Q"
+        target="_blank"
         className={styles.icon}
       >
         <WhatsAppSvg color={color} />

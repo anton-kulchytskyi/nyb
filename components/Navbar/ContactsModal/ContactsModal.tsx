@@ -19,8 +19,7 @@ const ContactsModal = ({
   contactsModalHandler,
 }: Props) => {
   const pathname = usePathname();
-  const tel1 = '+380632345521';
-  const tel2 = '+380677129333';
+  const tel1 = '+353874375161';
   const color = '#4D6575';
 
   const copyText = (text: string) => {
@@ -64,7 +63,7 @@ const ContactsModal = ({
               />
             </button>
           </div>
-          <div className={styles.phone}>
+          {/* <div className={styles.phone}>
             <a href={`tel:${tel2}`}>{tel2}</a>
             <button onClick={() => copyText(tel2)}>
               <Image
@@ -72,7 +71,7 @@ const ContactsModal = ({
                 alt="Copy"
               />
             </button>
-          </div>
+          </div> */}
           <div className={styles.social}>
             <SocialMediaIcons color={color} />
           </div>

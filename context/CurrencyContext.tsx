@@ -6,10 +6,10 @@ import React, {
   ReactNode,
   useEffect,
 } from 'react';
-// import useLocalStorage from '@/hooks/useLocalStorage';
 
 type CurrencyContextType = {
   selectedCurrency: string;
+  selectedCurrencySymbol: string;
   setCurrency: (currency: string) => void;
 };
 
@@ -19,6 +19,13 @@ const CurrencyContext = createContext<CurrencyContextType | undefined>(
 
 type CurrencyProviderProps = {
   children: ReactNode;
+};
+
+const currencySymbols: { [key: string]: string } = {
+  EUR: '€',
+  GBP: '£',
+  USD: '$',
+  NOK: 'NKr',
 };
 
 export const CurrencyProvider: React.FC<CurrencyProviderProps> = ({
@@ -33,25 +40,28 @@ export const CurrencyProvider: React.FC<CurrencyProviderProps> = ({
   const initialCurrency = storedCurrency ? storedCurrency : 'EUR';
   const [selectedCurrency, setSelectedCurrency] =
     useState<string>(initialCurrency);
+  const [selectedCurrencySymbol, setSelectedCurrencySymbol] =
+    useState<string>('€'); // Default symbol for EUR
 
   const setCurrency = (currency: string) => {
     setSelectedCurrency(currency);
+    setSelectedCurrencySymbol(currencySymbols[currency]);
   };
 
   useEffect(() => {
     const storedCurrency = localStorage.getItem(LOCAL_STORAGE_CURRENCY_KEY);
     if (storedCurrency) {
       setSelectedCurrency(storedCurrency);
+      setSelectedCurrencySymbol(currencySymbols[storedCurrency]);
     }
   }, []);
 
   useEffect(() => {
-    // setStoredCurrency(selectedCurrency);
     localStorage.setItem(LOCAL_STORAGE_CURRENCY_KEY, selectedCurrency);
   }, [selectedCurrency]);
 
   return (
-    <CurrencyContext.Provider value={{ selectedCurrency, setCurrency }}>
+    <CurrencyContext.Provider value={{ selectedCurrency, selectedCurrencySymbol, setCurrency }}>
       {children}
     </CurrencyContext.Provider>
   );

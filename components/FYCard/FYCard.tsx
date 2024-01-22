@@ -4,8 +4,6 @@ import { useRouter } from 'next/navigation';
 import { useState, useEffect } from 'react';
 
 import { useCurrency } from '@/context/CurrencyContext';
-import { currencyArray } from '@/utils/currency/currencyArray';
-
 import { fetchImgUrl } from '@/utils/api/getImageFromAWS';
 
 import typo from '@/styles/typography.module.scss';
@@ -25,7 +23,7 @@ interface Props {
 const FYCard = ({ yacht, buttonsExample, inCatalog }: Props) => {
   const [isLoading, setIsLoading] = useState(true);
   const router = useRouter();
-  const { selectedCurrency } = useCurrency();
+  const { selectedCurrency, selectedCurrencySymbol } = useCurrency();
   const [isHovering, setIsHovering] = useState(true);
   const [imageUrl, setImageUrl] = useState<string>('');
   const {
@@ -39,12 +37,7 @@ const FYCard = ({ yacht, buttonsExample, inCatalog }: Props) => {
   } = yacht;
 
   const key = `vessel_price_${selectedCurrency}`;
-
   const currPrice = yacht[key];
-
-  const currCurrency = currencyArray.find(
-    (obj) => obj.currencyName === selectedCurrency
-  )?.symbol;
 
   useEffect(() => {
     async function loadImgFromAws() {
@@ -118,7 +111,9 @@ const FYCard = ({ yacht, buttonsExample, inCatalog }: Props) => {
             <p className={typo.typo_name_yacht}>
               {`${vessel_make} ${vessel_model}`}
             </p>
-            <p className={typo.typo_price}>{`${currCurrency} ${currPrice}`}</p>
+            <p
+              className={typo.typo_price}
+            >{`${selectedCurrencySymbol} ${currPrice}`}</p>
             <p
               className={`${typo.typo_description} ${typo.typo_description_gray}`}
             >
