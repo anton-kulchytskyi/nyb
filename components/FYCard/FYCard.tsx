@@ -19,7 +19,6 @@ import styles from './fycard.module.scss';
 interface Props {
   yacht: Vessel;
   buttonsExample?: string;
-  // photo: StaticImageData;
   inCatalog?: boolean;
 }
 
@@ -50,7 +49,6 @@ const FYCard = ({ yacht, buttonsExample, inCatalog }: Props) => {
   useEffect(() => {
     async function loadImgFromAws() {
       const currImg = await fetchImgUrl(vessel_image_key);
-      // const currImg = `https://nyb-basket.s3.eu-north-1.amazonaws.com/${vessel_image_key}`;
       setImageUrl(currImg);
       setTimeout(() => {
         setIsLoading(false);
