@@ -12,8 +12,6 @@ type Props = {
 
 const MenuIcon = ({ isMobileMenuClose, mobileMenuHandler }: Props) => {
   const pathname = usePathname();
-  // eslint-disable-next-line
-  console.log(pathname);
   return (
     <Link
       href={pathname}

@@ -47,6 +47,11 @@
   line-height: 2.5;
 
   text-decoration: none;
+
+  &:hover {
+    color: $orange-secondary-100;
+    text-decoration: underline;
+  }
 }
 
 @include onTablet {

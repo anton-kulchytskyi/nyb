@@ -3,16 +3,11 @@ import { getFeaturedYacht } from '@/utils/api/getAllVessels';
 
 import typo from '@/styles/typography.module.scss';
 
-import img_1 from '../../public/fyc_1.jpeg';
-import img_2 from '../../public/fyc_2.jpeg';
-import img_3 from '../../public/fyc_3.jpeg';
-
 import FYCard from '../FYCard/FYCard';
 import TextButton from '../TextButton/TextButton';
 
 import styles from './featuredYachts.module.scss';
 
-const imgs = [img_1, img_2, img_3];
 const buttonsExample = ['Top 3', 'Hot Price', 'Low Price'];
 
 const FeaturedYachts = async () => {
@@ -40,7 +35,6 @@ const FeaturedYachts = async () => {
             key={yacht.vessel_id}
             yacht={yacht}
             buttonsExample={buttonsExample[i]}
-            photo={imgs[i]}
           />
         ))}
       </div>
