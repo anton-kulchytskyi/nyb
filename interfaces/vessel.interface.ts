@@ -6,8 +6,10 @@ export interface Vessel extends VesselKeys {
   vessel_id: number;
   featured: boolean;
   vessel_make: string;
-  vessel_model: string;
-  vessel_price: number;
+  vessel_price_EUR: string;
+  vessel_price_USD: string;
+  vessel_price_GBP: string;
+  vessel_price_NOK: string;
   vessel_year: number;
   vessel_country: string;
   vessel_town: string;
