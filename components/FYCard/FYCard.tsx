@@ -1,4 +1,5 @@
 'use client';
+import Link from 'next/link';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useState, useEffect } from 'react';
@@ -9,8 +10,6 @@ import { fetchImgUrl } from '@/utils/api/getImageFromAWS';
 import typo from '@/styles/typography.module.scss';
 import { Vessel } from '@/interfaces/vessel.interface';
 import Button from '../Button/Button';
-
-import BtnExp from '../BtnExp/BtnExp';
 import CardSkeleton from '../CardSkeleton/CardSkeleton';
 import styles from './fycard.module.scss';
 
@@ -24,7 +23,6 @@ const FYCard = ({ yacht, buttonsExample, inCatalog }: Props) => {
   const [isLoading, setIsLoading] = useState(true);
   const router = useRouter();
   const { selectedCurrency, selectedCurrencySymbol } = useCurrency();
-  const [isHovering, setIsHovering] = useState(true);
   const [imageUrl, setImageUrl] = useState<string>('');
   const {
     vessel_id,
@@ -42,7 +40,7 @@ const FYCard = ({ yacht, buttonsExample, inCatalog }: Props) => {
   useEffect(() => {
     async function loadImgFromAws() {
       const currImg = await fetchImgUrl(vessel_image_key);
-      setImageUrl(currImg);
+      setImageUrl(currImg || 'https://fakeimg.pl/600x400?text=Norse+Yacht+Co.');
       setTimeout(() => {
         setIsLoading(false);
       }, 3000); // Simulating a 3-second delay
@@ -50,25 +48,12 @@ const FYCard = ({ yacht, buttonsExample, inCatalog }: Props) => {
     loadImgFromAws();
   }, [vessel_image_key]);
 
-  const handleMouseOver = () => {
-    setIsHovering(false);
-  };
-
-  const handleMouseOut = () => {
-    setIsHovering(true);
-  };
-
   const routeToVessel = () => {
     router.push(`/catalog/${vessel_id}`);
   };
 
   return (
-    <div
-      className={styles.card}
-      onMouseOver={handleMouseOver}
-      onMouseOut={handleMouseOut}
-      onClick={routeToVessel}
-    >
+    <div className={styles.card}>
       {isLoading ? (
         <CardSkeleton />
       ) : (
@@ -77,6 +62,7 @@ const FYCard = ({ yacht, buttonsExample, inCatalog }: Props) => {
             className={`${styles.image_container} ${
               inCatalog ? styles.image_catalog_container : ''
             }`}
+            onClick={routeToVessel}
           >
             <Image
               src={imageUrl}
@@ -85,17 +71,10 @@ const FYCard = ({ yacht, buttonsExample, inCatalog }: Props) => {
               className={styles.image}
               alt="feature_img"
             />
-            <span className={styles.top_right}>
-              <BtnExp
-                text={buttonsExample ? buttonsExample : ''}
-                linkTo={`/catalog/${vessel_id}`}
-              ></BtnExp>
-            </span>
-            <span
-              className={`${styles.center} ${
-                isHovering ? styles.center__is_hover : ''
-              }`}
-            >
+            {buttonsExample && (
+              <span className={styles.top_right}>{buttonsExample}</span>
+            )}
+            <span className={styles.center}>
               <Button
                 text="See Detail"
                 linkTo={`/catalog/${vessel_id}`}
@@ -108,9 +87,10 @@ const FYCard = ({ yacht, buttonsExample, inCatalog }: Props) => {
               inCatalog ? styles.card__desc_catalog : styles.card__desc
             }`}
           >
-            <p className={typo.typo_name_yacht}>
-              {`${vessel_make} ${vessel_model}`}
-            </p>
+            <Link
+              className={typo.typo_name_yacht}
+              href={`/catalog/${vessel_id}`}
+            >{`${vessel_make} ${vessel_model}`}</Link>
             <p
               className={typo.typo_price}
             >{`${selectedCurrencySymbol} ${currPrice}`}</p>

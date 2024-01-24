@@ -1,6 +1,6 @@
-import Image from 'next/image'
+import Image from 'next/image';
 import CopyrightIcon from '@/public/icons/copyright.svg';
-import styles from './copyright.module.scss'
+import styles from './copyright.module.scss';
 
 const Copyright = () => {
   return (
@@ -9,10 +9,10 @@ const Copyright = () => {
         src={CopyrightIcon}
         alt="Copyright"
         priority
-      />
-      Name Всі права захищені.
+      />{' '}
+      Norse Yachts Co. All rights reserved.
     </span>
-  )
-}
+  );
+};
 
-export default Copyright
+export default Copyright;
