@@ -2,12 +2,13 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 
-import Close from '@/public/icons/close.svg';
-import Copy from '@/public/icons/copy.svg';
-
 import SocialMediaIcons from '@/components/SocialMediaIcons/SocialMediaIcons';
+
 import typo from '@/styles/typography.module.scss';
 import styles from '@/components/Navbar/ContactsModal/contactsModal.module.scss';
+
+import Copy from '@/public/icons/copy.svg';
+import Close from '@/public/icons/close.svg';
 
 type Props = {
   isContactsModalOpen: boolean;
@@ -63,15 +64,6 @@ const ContactsModal = ({
               />
             </button>
           </div>
-          {/* <div className={styles.phone}>
-            <a href={`tel:${tel2}`}>{tel2}</a>
-            <button onClick={() => copyText(tel2)}>
-              <Image
-                src={Copy}
-                alt="Copy"
-              />
-            </button>
-          </div> */}
           <div className={styles.social}>
             <SocialMediaIcons color={color} />
           </div>
