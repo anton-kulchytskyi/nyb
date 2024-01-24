@@ -8,7 +8,7 @@ import TextButton from '../TextButton/TextButton';
 
 import styles from './featuredYachts.module.scss';
 
-const buttonsExample = ['Top 3', 'Hot Price', 'Low Price'];
+const labelText = ['Top 3', 'Hot Price', 'Low Price'];
 
 const FeaturedYachts = async () => {
   const yachts = await getFeaturedYacht();
@@ -34,7 +34,7 @@ const FeaturedYachts = async () => {
           <FYCard
             key={yacht.vessel_id}
             yacht={yacht}
-            buttonsExample={buttonsExample[i]}
+            buttonsExample={labelText[i]}
           />
         ))}
       </div>
