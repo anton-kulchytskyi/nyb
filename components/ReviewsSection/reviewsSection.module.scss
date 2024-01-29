@@ -8,12 +8,37 @@
   }
 }
 
+.carousel_wrapper {
+  max-width: 100%;
+  overflow: hidden;
+}
+
 .cards_container {
+  width: 100%;
   display: flex;
   gap: 1.5rem;
-  overflow: hidden;
+  margin-bottom: 1.5rem;
 
   & img {
     margin-right: 0.5rem;
+  }
+}
+
+.arrows_container {
+  display: flex;
+  gap: 2rem;
+  justify-content: flex-end;
+
+  @include onDesktop {
+    justify-content: center;
+  }
+
+  &__arrow {
+    cursor: pointer;
+    // color: red;
+
+    // & path {
+    //   fill: red;
+    // }
   }
 }
