@@ -5,5 +5,6 @@ export interface reviewUser {
   userName: string;
   userAvatar: StaticImageData;
   date: string;
+  stars: number;
   reviewText: string;
 };

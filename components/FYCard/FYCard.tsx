@@ -43,7 +43,7 @@ const FYCard = ({ yacht, buttonsExample, inCatalog }: Props) => {
       setImageUrl(currImg || 'https://fakeimg.pl/600x400?text=Norse+Yacht+Co.');
       setTimeout(() => {
         setIsLoading(false);
-      }, 3000); // Simulating a 3-second delay
+      }, 1500); // Simulating a 1,5-second delay
     }
     loadImgFromAws();
   }, [vessel_image_key]);

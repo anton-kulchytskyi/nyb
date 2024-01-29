@@ -25,14 +25,13 @@ const avatars: Avatar[] = [
   },
 ];
 
-const date = new Date().toLocaleDateString('en-GB');
-
 const reviewText =
   'Buying a yacht through your service was the best decision in my life. Not only did you provide us with the best selection of yachts, but you also provided us with excellent service every step of the way. Our new yacht exceeded all our expectations and allowed us to discover the world of sea travel.';
 
 export const users: reviewUser[] = avatars.map((user, i) => ({
   ...user,
   userId: i + 1,
-  date,
+  date: new Date().toLocaleDateString('en-GB'),
+  stars: Math.round(Math.random() * 5),
   reviewText: i % 2 ? reviewText : reviewText.split('.').slice(0, 2).join('.'),
 }));
