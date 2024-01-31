@@ -42,3 +42,8 @@ next-env.d.ts
 
 .vercel
 .env*.local
+
+# amplify
+node_modules
+.amplify
+amplifyconfiguration*
