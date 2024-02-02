@@ -2,6 +2,7 @@ import { Dispatch, SetStateAction } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 
 import SocialMediaIcons from '@/components/SocialMediaIcons/SocialMediaIcons';
 import Button from '@/components/Button/Button';
@@ -19,7 +20,13 @@ const ContactFormModal = ({
   setIsContactFormModalOpen,
 }: Props) => {
   const pathname = usePathname();
+  const router = useRouter();
   const color = '#4D6575';
+
+  const returnToMain = () => {
+    router.push('/');
+    setIsContactFormModalOpen(!isContactFormModalOpen);
+  };
   return (
     <div
       className={`${styles.modal} ${isContactFormModalOpen ? styles.open : ''}`}
@@ -40,6 +47,7 @@ const ContactFormModal = ({
         <Button
           text="Return to the main page"
           linkTo="/"
+          click={returnToMain}
         />
         <div className={styles.social}>
           <SocialMediaIcons color={color} />

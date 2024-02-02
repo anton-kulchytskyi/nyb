@@ -13,21 +13,6 @@
   align-items: center;
   z-index: 3;
 
-  // &__wrapper {
-  //   position: absolute;
-  //   top: 5rem;
-  //   right: 4rem;
-
-  //   @include onExtraLarge {
-  //     right: calc((100vw - ((100vw - 1920px) / 2)) - 116rem);
-  //   }
-
-  //   @include onTablet {
-  //     top: 4rem;
-  //     right: 1rem;
-  //   }
-  // }
-
   &.open {
     display: flex;
   }
