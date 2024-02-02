@@ -34,7 +34,7 @@ const ContactForm = () => {
     } else if (inputs.name.length > 30) {
       data = 'The name must not be longer than 30 characters';
     }
-    data && setErrors((prev) => ({ ...prev, name: data }));
+    data.length && setErrors((prev) => ({ ...prev, name: data }));
   };
 
   const checkEmailInput = () => {
@@ -45,7 +45,7 @@ const ContactForm = () => {
       data = 'Enter a valid email';
     }
 
-    data && setErrors((prev) => ({ ...prev, userEmail: data }));
+    data.length && setErrors((prev) => ({ ...prev, userEmail: data }));
   };
 
   const checkMessageInput = () => {
@@ -55,7 +55,7 @@ const ContactForm = () => {
     } else if (inputs.message.length > 5000) {
       data = 'The message field should not be longer than 5000 characters';
     }
-    data && setErrors((prev) => ({ ...prev, message: data }));
+    data.length && setErrors((prev) => ({ ...prev, message: data }));
   };
 
   const validateForm = () => {
@@ -200,7 +200,6 @@ const ContactForm = () => {
         </div>
         <button
           type="submit"
-          // disabled={submitFormButtonControl()}
           className={styles.submit}
         >
           Send message
