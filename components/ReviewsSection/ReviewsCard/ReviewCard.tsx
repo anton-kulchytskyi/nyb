@@ -1,4 +1,3 @@
-'use client';
 import Image from 'next/image';
 
 import { reviewUser } from '@/interfaces/reviewsUsers.interface';
@@ -7,8 +6,6 @@ import StarImg from '@/public/icons/star.svg';
 import StarEmptyImg from '@/public/icons/star_empty.svg';
 import QuotesImg from '@/public/icons/quotes.svg';
 import styles from './reviewCard.module.scss';
-
-// const numbers = [1, 2, 3, 4, 5];
 
 type User = Omit<reviewUser, 'userId'>;
 
@@ -21,8 +18,7 @@ const ReviewCard = ({
 }: User) => {
   const numbers = Array.from({ length: stars }, (_, i) => i + 1);
   const numbers_empty = Array.from({ length: 5 - stars }, (_, i) => i + 1);
-  // eslint-disable-next-line
-  // console.log(numbers);
+
   return (
     <div className={styles.container}>
       <div className={styles.container__text}>
@@ -37,7 +33,7 @@ const ReviewCard = ({
           <Image
             key={number}
             src={StarEmptyImg}
-            alt="Star Empty Image"
+            alt="Star Image"
           />
         ))}
         <p className={styles.container__text_review}>{reviewText}</p>

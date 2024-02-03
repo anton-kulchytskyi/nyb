@@ -1,6 +1,8 @@
 'use client';
 import { useLayoutEffect, useRef, useState } from 'react';
 
+import dynamic from 'next/dynamic';
+
 import typo from '@/styles/typography.module.scss';
 
 import { reviewUser } from '@/interfaces/reviewsUsers.interface';
@@ -9,7 +11,12 @@ import { users } from '@/utils/reviewsUsers/reviewsUsers';
 import LeftArrow from '@/components/SvgIconsComponents/LeftArrowSvg';
 import RightArrow from '@/components/SvgIconsComponents/RightArrowSvg';
 
-import ReviewCard from '@/components/ReviewsSection/ReviewsCard/ReviewCard';
+const ReviewCardNoSSR = dynamic(
+  () => import('@/components/ReviewsSection/ReviewsCard/ReviewCard'),
+  { ssr: false }
+);
+
+// import ReviewCard from '@/components/ReviewsSection/ReviewsCard/ReviewCard';
 import styles from './reviewsSection.module.scss';
 
 const ReviewsSection = () => {
@@ -53,7 +60,7 @@ const ReviewsSection = () => {
           className={styles.cards_container}
         >
           {users.map((user: reviewUser) => (
-            <ReviewCard
+            <ReviewCardNoSSR
               key={user.userId}
               userName={user.userName}
               userAvatar={user.userAvatar}

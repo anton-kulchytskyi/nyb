@@ -1,3 +1,4 @@
+@import '../../styles/var.scss';
 @import '../../styles/mixins.scss';
 
 .form {
@@ -24,5 +25,106 @@
 
   @include onSmall {
     padding: 0 1.25rem;
+  }
+}
+
+// input styles
+
+.form_group {
+  position: relative;
+  margin-bottom: 2rem;
+}
+
+.input {
+  width: 100%;
+  font-size: 1rem;
+  line-height: 1.5rem;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  color: $white;
+  border: 1px solid $gray-20;
+  background-color: transparent;
+  outline: none;
+  transform: background-color 0.6s ease;
+
+  &__textarea {
+    height: 11rem;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    font-family: var(--font-roboto);
+  }
+
+  &:focus {
+    border: 1px solid $orange-secondary-100;
+
+    & + .label {
+      top: 0;
+      color: $white;
+      font-size: 0.75rem;
+    }
+  }
+
+  &__error {
+    border-color: $error-color;
+
+    & + .label {
+      top: 0;
+      color: $white;
+      font-size: 0.75rem;
+    }
+  }
+
+  &__success {
+    border-color: $success-color;
+
+    & + .label {
+      top: 0;
+      color: $white;
+      font-size: 0.75rem;
+    }
+  }
+}
+
+.label {
+  position: absolute;
+  top: 1.5rem;
+  left: 1rem;
+  transform: translateY(-50%);
+  pointer-events: none;
+  transition: 0.3s ease-out;
+  color: $gray-20;
+  background-color: $gray-primary;
+  padding: 0 0.25rem;
+}
+
+.error_message {
+  position: absolute;
+  left: 0;
+  bottom: -1rem;
+  font-size: 0.75rem;
+  line-height: 1.125;
+  color: $white;
+}
+
+.submit {
+  width: 230px;
+  height: 50px;
+  padding: 0.625rem 2.5rem;
+  border-radius: 3.5rem;
+  color: $white;
+  font-size: 1.125rem;
+  line-height: normal;
+  text-decoration: none;
+  background: $orange-secondary-100;
+  border: 1px solid $orange-secondary-100;
+
+  &:hover {
+    background: $orange-secondary-110;
+    border: 1px solid $orange-secondary-110;
+  }
+
+  &:active {
+    background: transparent;
+    border: 1px solid $orange-secondary-100;
   }
 }
