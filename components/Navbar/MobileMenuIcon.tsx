@@ -1,0 +1,36 @@
+import { Dispatch, SetStateAction } from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+
+import BurgerMenu from '@/public/icons/burger__menu.svg';
+import Close from '@/public/icons/close.svg';
+
+type Props = {
+  isMobileMenuClose: boolean;
+  setIsMobileMenuClose: Dispatch<SetStateAction<boolean>>;
+};
+
+const MobileMenuIcon = ({ isMobileMenuClose, setIsMobileMenuClose }: Props) => {
+  const pathname = usePathname();
+  return (
+    <Link
+      href={pathname}
+      onClick={() => setIsMobileMenuClose(!isMobileMenuClose)}
+    >
+      {isMobileMenuClose ? (
+        <Image
+          src={Close}
+          alt="Close"
+        />
+      ) : (
+        <Image
+          src={BurgerMenu}
+          alt="Burger Menu"
+        />
+      )}
+    </Link>
+  );
+};
+
+export default MobileMenuIcon;

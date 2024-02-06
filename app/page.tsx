@@ -1,21 +1,12 @@
-import Header from '@/components/Header/Header';
-import FeaturedYachts from '@/components/FeaturedYachts/FeaturedYachts';
-import AllSectionComponents from '@/components/SectionComponent/SectionComponent';
-import ContactSection from '@/components/ContactSection/ContactSection';
-import ReviewsSection from '@/components/ReviewsSection/ReviewsSection';
-
+import Hero from '@/components/Hero/Hero';
 import styles from './page.module.scss';
 
-export default function Home() {
+const HomePage = () => {
   return (
-    <>
-      <Header />
-      <main className={styles.main}>
-        <FeaturedYachts />
-        <AllSectionComponents />
-        <ContactSection />
-        <ReviewsSection />
-      </main>
-    </>
+    <main className={styles.main}>
+      <Hero />
+    </main>
   );
-}
+};
+
+export default HomePage;

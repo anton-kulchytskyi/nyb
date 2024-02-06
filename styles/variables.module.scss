@@ -1,0 +1,20 @@
+$gray-primary: #4d6575;
+$gray-20: #d9e2eb;
+$gray-80: #aaafb4;
+$gray-100: #525659;
+
+$black: #081433;
+$white: #fff;
+
+$error-color: #d41a11;
+$success-color: #29a44f;
+$copyright-color: #c6c7cc;
+
+$orange-secondary-100: #e7801a;
+$orange-secondary-110: #c36101;
+
+:export {
+  primary_color: $gray-primary;
+  secondary_color: $orange-secondary-100;
+  white_color: $white;
+}

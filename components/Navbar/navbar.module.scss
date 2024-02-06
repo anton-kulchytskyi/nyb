@@ -1,32 +1,9 @@
 @import '@/styles/var.scss';
-@import '@/styles/mixins.scss';
-
-.navbar {
-  // position: relative;
-  z-index: 2;
-
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  padding: 2rem 4rem;
-
-  &__side {
-    display: flex;
-    width: 35%;
-
-    &:last-child {
-      justify-content: flex-end;
-    }
-  }
-
-  @include onTablet {
-    padding: 1rem 1.25rem;
-  }
-}
+// @import '@/styles/mixins.scss';
 
 .link {
-  color: $black;
+  // color: $black;
+  color: red;
 
   font-size: 1.125rem;
   font-weight: 500;
@@ -43,20 +20,19 @@
   }
 }
 
-.logo {
+.large {
+  // color: green;
+  display: none;
+
+  @media (width >= 768px) {
+    display: flex;
+  }
+}
+.small {
+  // color: green;
   display: flex;
-  justify-content: center;
-  align-items: center;
 
-  &__image {
-    @include onDesktop {
-      width: 170px;
-      height: auto;
-    }
-
-    @include onSmall {
-      width: 120px;
-      height: auto;
-    }
+  @media (width >= 768px) {
+    display: none;
   }
 }

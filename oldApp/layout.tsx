@@ -1,21 +1,25 @@
 import '../styles/globals.scss';
 import type { Metadata } from 'next';
+import dynamic from 'next/dynamic';
 
-import Navbar from '@/components/Navbar/Navbar';
+const NoSSRNavBar = dynamic(() => import('@/components/Navbar/Navbar'), {
+  ssr: false,
+});
+
+import { CurrencyProvider } from '@/context/CurrencyContext';
 import Footer from '@/components/Footer/Footer';
 
 import { roboto, baiJamjuree, beautifulEs } from '@/utils/fonts/fonts';
-
 export const metadata: Metadata = {
   title: 'Norse Yacht Co | Selling yachts from Norway',
   description: 'Business Consulting and Services',
 };
 
-type Props = {
+export default function RootLayout({
+  children,
+}: {
   children: React.ReactNode;
-};
-
-const RootLayout = ({ children }: Props) => {
+}) {
   return (
     <html
       lang="en"
@@ -30,12 +34,12 @@ const RootLayout = ({ children }: Props) => {
         />
       </head>
       <body className="page__body">
-        <Navbar />
-        {children}
-        <Footer />
+        <CurrencyProvider>
+          <NoSSRNavBar />
+          {children}
+          <Footer />
+        </CurrencyProvider>
       </body>
     </html>
   );
-};
-
-export default RootLayout;
+}

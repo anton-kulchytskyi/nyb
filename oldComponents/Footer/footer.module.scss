@@ -1,9 +1,5 @@
-// @import '@/styles/var.scss';
-// @import '../../styles/mixins.scss';
-@import '@/styles/variables.module.scss';
-.link {
-  color: green;
-}
+@import '@/styles/var.scss';
+@import '../../styles/mixins.scss';
 
 .footer {
   display: flex;
@@ -44,7 +40,7 @@
 }
 
 .link {
-  // color: $white;
+  color: $white;
 
   font-size: 1.125rem;
   font-weight: 500;
@@ -53,38 +49,38 @@
   text-decoration: none;
 
   &:hover {
-    // color: $orange-secondary-100;
+    color: $orange-secondary-100;
     text-decoration: underline;
   }
 }
 
-// @include onTablet {
-.footer {
-  flex-direction: column;
-  align-items: center;
-  padding: 2.5rem 1.25rem;
-
-  &__side {
-    width: 100%;
-    align-items: center;
-  }
-
-  &__logo {
-    margin-bottom: 2.5rem;
-  }
-
-  &__links_container {
-    margin-bottom: 2.5rem;
-  }
-
-  &__social {
+@include onTablet {
+  .footer {
     flex-direction: column;
-    justify-content: center;
+    align-items: center;
+    padding: 2.5rem 1.25rem;
+
+    &__side {
+      width: 100%;
+      align-items: center;
+    }
+
+    &__logo {
+      margin-bottom: 2.5rem;
+    }
+
+    &__links_container {
+      margin-bottom: 2.5rem;
+    }
+
+    &__social {
+      flex-direction: column;
+      justify-content: center;
+    }
+  }
+
+  .logo__img {
+    width: 220px;
+    height: auto;
   }
 }
-
-.logo__img {
-  width: 220px;
-  height: auto;
-}
-// }
