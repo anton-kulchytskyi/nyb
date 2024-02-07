@@ -22,8 +22,8 @@ const CurrencyModal = ({
   };
 
   const wrapperFunction = (currency: string) => {
-    handleCurrencyChange(currency);
     currencyModalHandler();
+    handleCurrencyChange(currency);
   };
 
   return (

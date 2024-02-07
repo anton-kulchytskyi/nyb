@@ -22,6 +22,6 @@ export const currencyArray = [
   {
     flag: nok,
     currencyName: 'NOK',
-    symbol: 'NKr',
+    symbol: 'kr',
   },
 ];

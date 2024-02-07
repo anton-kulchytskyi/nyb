@@ -3,7 +3,7 @@
 
 .modal {
   display: none;
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
@@ -21,11 +21,13 @@
     gap: 0.5rem;
 
     position: absolute;
-    top: 5rem;
+    top: 4rem;
     right: 12rem;
     background-color: $white;
     padding: 1.5rem 1.25rem;
+    border: 1px solid $gray-20;
     border-radius: 1rem;
+    box-shadow: 10px 10px 5px 0px $gray-80;
 
     @include onExtraLarge {
       right: calc((100vw - ((100vw - 1920px) / 2)) - 108rem);

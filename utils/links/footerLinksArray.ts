@@ -1,26 +1,26 @@
 export const footerLinksArray = [
   {
     title: 'Yachts',
-    path: '/catalog'
+    path: '/catalog',
   },
   {
     title: 'How is Works?',
-    path: '/'
+    path: '/',
   },
   {
-    title: 'Reviews',
-    path: '#reviews'
+    title: 'Blog',
+    path: '/',
   },
   {
     title: 'Terms of use',
-    path: '/'
+    path: '/',
   },
   {
     title: 'Cookies policy',
-    path: '/'
+    path: '/',
   },
   {
     title: 'Privacy policy',
-    path: '/'
+    path: '/',
   },
 ];
