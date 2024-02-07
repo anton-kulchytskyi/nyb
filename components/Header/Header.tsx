@@ -19,11 +19,11 @@ const Header = () => {
           priority
         />
         <div className={styles.wrapper}>
-          <h2 className={typo.typo_h2}>Good quality</h2>
-          <h1 className={`${typo.typo_h1} ${styles.title}`}>Easy to buy!</h1>
+          <h2 className={typo.typo_h2}>Select Your Dream</h2>
+          <h1 className={`${typo.typo_h1} ${styles.title}`}>Yacht Now!</h1>
           <span className={styles.button}>
             <Button
-              text="Choose your yacht"
+              text="View Gallery"
               linkTo="/catalog"
               primary
             />

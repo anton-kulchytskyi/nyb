@@ -25,7 +25,7 @@ const currencySymbols: { [key: string]: string } = {
   EUR: '€',
   GBP: '£',
   USD: '$',
-  NOK: 'NKr',
+  NOK: 'kr',
 };
 
 export const CurrencyProvider: React.FC<CurrencyProviderProps> = ({
@@ -61,7 +61,9 @@ export const CurrencyProvider: React.FC<CurrencyProviderProps> = ({
   }, [selectedCurrency]);
 
   return (
-    <CurrencyContext.Provider value={{ selectedCurrency, selectedCurrencySymbol, setCurrency }}>
+    <CurrencyContext.Provider
+      value={{ selectedCurrency, selectedCurrencySymbol, setCurrency }}
+    >
       {children}
     </CurrencyContext.Provider>
   );
