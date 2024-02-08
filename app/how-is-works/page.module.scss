@@ -9,10 +9,24 @@
   margin-bottom: 30px;
 }
 
+.section {
+  margin-bottom: 30px;
+}
+
+.link {
+  color: $gray-primary;
+  text-decoration: none;
+  transition: 0.5s;
+
+  &:hover {
+    color: $orange-secondary-100;
+  }
+}
+
 .header {
   margin-bottom: 10px;
 }
 
-.section {
-  margin-bottom: 30px;
+.paragraph {
+  margin-bottom: 20px;
 }
