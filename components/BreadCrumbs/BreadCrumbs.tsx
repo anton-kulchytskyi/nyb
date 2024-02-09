@@ -15,7 +15,9 @@ const BreadCrumbs = () => {
     pathsWithoutDashes[0] !== '' &&
       <div className={styles.body}>
         <Link href="/">
-          <HomePageSvg />
+          <div className={styles.kek}>
+            <HomePageSvg />
+          </div>
         </Link>
         <RightArrowSvg color={false} />
         {pathsWithoutDashes.map((path, index) => {
