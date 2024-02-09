@@ -1,4 +1,3 @@
-import BreadCrumbs from '@/components/BreadCrumbs/BreadCrumbs';
 import styles from '../../styles/typography.module.scss';
 
 export default function HowIsWorks() {

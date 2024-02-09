@@ -10,17 +10,16 @@ import styles from './BreadCrumbs.module.scss';
 const BreadCrumbs = () => {
   const paths = usePathname();
   const pathsWithoutDashes = paths.split('/').slice(1).map(path => path.split('-').join(' '));
-  const notHomePage = paths === '/' ? false : true;
 
   return (
-    notHomePage &&
+    pathsWithoutDashes[0] !== '' &&
       <div className={styles.body}>
         <Link href="/">
           <HomePageSvg />
         </Link>
         <RightArrowSvg color={false} />
         {pathsWithoutDashes.map((path, index) => {
-          let link = `/${pathsWithoutDashes.map(p => p.split(' ').join('-')).slice(0, index + 1).join('/')}`
+          const link = `/${pathsWithoutDashes.map(p => p.split(' ').join('-')).slice(0, index + 1).join('/')}`
           return (
             <React.Fragment key={index}>
               <Link
