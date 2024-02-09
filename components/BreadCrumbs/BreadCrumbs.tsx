@@ -8,7 +8,7 @@ import styles from './BreadCrumbs.module.scss';
 
 const BreadCrumbs = () => {
   const pathname = usePathname();
-  const a = pathname.slice(1, pathname.length).split('-').join(" ");
+  const currentPage = pathname.slice(1, pathname.length).split('-').join(" ");
 
   return (
     <div className={styles.body}>
@@ -16,9 +16,7 @@ const BreadCrumbs = () => {
         <HomePageSvg />
       </Link>
       <RightArrowSvg color={false} />
-      {/* {a.map(b => ( */}
-        <p className={styles.item}>{a}</p>
-      {/* ))} */}
+      <p className={styles.item}>{currentPage}</p>
     </div>
   );
 };

@@ -1,6 +1,6 @@
-import styles from './not-found.module.scss';
 import fonts from '../styles/typography.module.scss';
 import Button from '@/components/Button/Button';
+import styles from './not-found.module.scss';
 
 export default function Custom404() {
   return (

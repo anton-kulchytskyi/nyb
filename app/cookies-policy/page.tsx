@@ -7,9 +7,9 @@ export default function CookiesPolicy() {
         <h1 className={styles.typo_h3_gray}>Cookies Policy of Norse Yacht Co.</h1>
         <h6 className={styles.typo_small_txt}>Last Updated: 25.01.2024</h6>
       </div>
-        <p className="info-page__section">
-          Welcome to Norse Yacht Co. This Cookies Policy explains how we use cookies and similar technologies on our website www.norseyacht.com. By using our website, you agree to the use of cookies and similar technologies as described in this policy.
-        </p>
+      <p className="info-page__section">
+        Welcome to Norse Yacht Co. This Cookies Policy explains how we use cookies and similar technologies on our website www.norseyacht.com. By using our website, you agree to the use of cookies and similar technologies as described in this policy.
+      </p>
       <section className="info-page__section">
         <h3 className="info-page__section__header">Cookies Policy</h3>
         <p className="info-page__section__text">
