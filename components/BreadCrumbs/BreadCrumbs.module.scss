@@ -23,3 +23,12 @@
     color: $orange-secondary-100;
   }
 }
+
+.disabled {
+  pointer-events: none;
+  opacity: 0.5;
+  text-decoration: none;
+  text-transform: capitalize;
+  color: $gray-80;
+  text-decoration: none;
+}

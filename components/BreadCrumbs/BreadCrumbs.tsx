@@ -23,7 +23,7 @@ const BreadCrumbs = () => {
           return (
             <React.Fragment key={index}>
               <Link
-                className={styles.item}
+                className={pathsWithoutDashes.length - 1 === index ? styles.disabled : styles.item}
                 href={link}
               >
                 {path}
