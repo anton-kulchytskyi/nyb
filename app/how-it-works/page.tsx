@@ -1,10 +1,8 @@
-import BreadCrumbs from '@/components/BreadCrumbs/BreadCrumbs';
 import styles from '../../styles/typography.module.scss';
 
 export default function HowIsWorks() {
   return (
     <>
-      <BreadCrumbs />
       <div className="info-page">
         <div className="info-page__top">
           <h1 className={styles.typo_h3_gray}>How does it work?</h1>
