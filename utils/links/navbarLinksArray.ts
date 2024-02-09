@@ -5,14 +5,6 @@ export const navbarLinksArray = [
   },
   {
     title: 'How it Works?',
-    path: '/',
+    path: '/how-it-works',
   },
-  {
-    title: 'Split currency',
-    path: '/',
-  },
-  // {
-  //   title: 'Contacts',
-  //   path: '/',
-  // },
 ];

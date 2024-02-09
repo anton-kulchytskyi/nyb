@@ -74,7 +74,7 @@ const Navbar = () => {
                 Yachts
               </Link>
               <Link
-                href="/"
+                href="/how-it-works"
                 className={styles.link}
               >
                 How it works?

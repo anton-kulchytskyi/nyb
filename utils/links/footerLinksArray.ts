@@ -4,8 +4,8 @@ export const footerLinksArray = [
     path: '/catalog',
   },
   {
-    title: 'How is Works?',
-    path: '/how-is-works',
+    title: 'How it Works?',
+    path: '/how-it-works',
   },
   {
     title: 'Blog',
