@@ -1,5 +1,6 @@
 'use client'
 
+import React from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation'
 import HomePageSvg from '../SvgIconsComponents/HomePageSvg';
@@ -7,17 +8,32 @@ import RightArrowSvg from '../SvgIconsComponents/RightArrowSvg';
 import styles from './BreadCrumbs.module.scss';
 
 const BreadCrumbs = () => {
-  const pathname = usePathname();
-  const currentPage = pathname.slice(1, pathname.length).split('-').join(" ");
+  const paths = usePathname();
+  const pathsWithoutDashes = paths.split('/').slice(1).map(path => path.split('-').join(' '));
+  const notHomePage = paths === '/' ? false : true;
 
   return (
-    <div className={styles.body}>
-      <Link href="/">
-        <HomePageSvg />
-      </Link>
-      <RightArrowSvg color={false} />
-      <p className={styles.item}>{currentPage}</p>
-    </div>
+    notHomePage &&
+      <div className={styles.body}>
+        <Link href="/">
+          <HomePageSvg />
+        </Link>
+        <RightArrowSvg color={false} />
+        {pathsWithoutDashes.map((path, index) => {
+          let link = `/${pathsWithoutDashes.map(p => p.split(' ').join('-')).slice(0, index + 1).join('/')}`
+          return (
+            <React.Fragment key={index}>
+              <Link
+                className={styles.item}
+                href={link}
+              >
+                {path}
+              </Link>
+              {pathsWithoutDashes.length !== index + 1 && <RightArrowSvg color={false} />}
+            </React.Fragment>
+          )
+        })}
+      </div>
   );
 };
 

@@ -13,6 +13,13 @@
 }
 
 .item {
+  text-decoration: none;
   text-transform: capitalize;
   color: $gray-80;
+  text-decoration: none;
+  transition: 0.5s;
+
+  &:hover {
+    color: $orange-secondary-100;
+  }
 }
