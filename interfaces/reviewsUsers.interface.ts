@@ -1,10 +1,8 @@
-import { StaticImageData } from "next/image";
-
 export interface reviewUser {
-  userId: number;
+  userId: string;
   userName: string;
-  userAvatar: StaticImageData;
+  userAvatar: string;
   date: string;
   stars: number;
   reviewText: string;
-};
+}

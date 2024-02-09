@@ -22,7 +22,7 @@ import styles from './reviewsSection.module.scss';
 const ReviewsSection = () => {
   const [transition, setTransition] = useState(0);
   const ref = useRef<HTMLDivElement>(null);
-  const maxCarouselWidth = 84.5;
+  const maxCarouselWidth = 235;
   const transitionValue = 20;
   const [currentCarouselWidth, setCurrentCarouselWidth] = useState(0);
   useLayoutEffect(() => {

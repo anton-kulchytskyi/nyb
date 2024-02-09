@@ -13,11 +13,14 @@ const ReviewCard = ({
   userName,
   userAvatar,
   date,
-  reviewText,
   stars,
+  reviewText,
 }: User) => {
   const numbers = Array.from({ length: stars }, (_, i) => i + 1);
   const numbers_empty = Array.from({ length: 5 - stars }, (_, i) => i + 1);
+
+  //eslint-disable-next-line
+  // console.log(userAvatar);
 
   return (
     <div className={styles.container}>
@@ -47,7 +50,9 @@ const ReviewCard = ({
       <div className={styles.container__avatar}>
         <Image
           src={userAvatar}
-          alt="user"
+          width={60}
+          height={60}
+          alt={userName}
         />
         <div>
           <p className={styles.container__avatar_name}>{userName}</p>

@@ -32,17 +32,19 @@
     display: flex;
     align-items: center;
     gap: 1rem;
+    font-family: var(--font-baiJamjuree);
+
+    & img {
+      border-radius: 50%;
+    }
 
     &_name {
-      font-family: var(--font-baiJamjuree);
       font-size: 1.25rem;
       font-weight: 500;
-      line-height: 150%;
     }
 
     &_date {
       color: #565360;
-      font-family: var(--font-baiJamjuree);
       font-size: 0.75rem;
     }
   }
