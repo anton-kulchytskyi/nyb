@@ -11,7 +11,7 @@ export default function CookiesPolicy() {
       <section className={styles.section}>
         <h3 className={styles.header}>Cookies Policy</h3>
         <p>
-          This Cookie Policy ("Policy") describes the use of cookies and related technologies on the Norse Yacht Co. website ("Website") by Norse Yacht Co. ("we", "us", or "our").
+          This Cookie Policy (&quot;Policy&quot;) describes the use of cookies and related technologies on the Norse Yacht Co. website (&quot;Website&quot;) by Norse Yacht Co. (&quot;we&quot;, &quot;us&quot;, or &quot;our&quot;).
         </p>
       </section>
       <section className={styles.section}>
@@ -58,7 +58,7 @@ export default function CookiesPolicy() {
       <section className={styles.section}>
         <h3 className={styles.header}>Contact Us</h3>
         <p>
-        If you have any questions about this Policy, please contact us at <a href="mailto:info@norseyacht.com" className={styles.link}>info@norseyacht.com</a>
+          If you have any questions about this Policy, please contact us at <a href="mailto:info@norseyacht.com" className={styles.link}>info@norseyacht.com</a>
         </p>
       </section>
     </div>

@@ -6,7 +6,7 @@ export default function TermsOfUse() {
     <div className={styles.body}>
       <h1 className={styles.header}>Terms of Service for Norse Yacht Co.</h1>
       <p className={styles.header}>
-        Please read the following Terms of Service ("Terms") carefully before using the Norse Yacht Co. website ("Website"). By accessing or using our Website, you agree to comply with and be bound by these terms. If you do not agree with any part of these terms, please do not access or use our Website.
+        Please read the following Terms of Service (&quot;Terms&quot;) carefully before using the Norse Yacht Co. website (&quot;Website&quot;). By accessing or using our Website, you agree to comply with and be bound by these terms. If you do not agree with any part of these terms, please do not access or use our Website.
       </p>
       <section className={styles.section}>
         <h3 className={styles.header}>Intellectual Property Rights:</h3>
@@ -41,7 +41,7 @@ export default function TermsOfUse() {
       <section className={styles.section}>
         <h3 className={styles.header}>General Prohibitions:</h3>
         <p>
-          Post, upload, publish, submit or transmit any text, graphics, images, software, music, audio, video, information or other material that: (I) infringes, misappropriates or violates a third party's patent, copyright, trademark, trade secret, moral rights or other intellectual property rights, or rights of publicity or privacy, intellectual property rights or other third party rights; (II) violates, or encourages any conduct that would violate, any applicable law or regulation or would give rise to civil liability; (III) is fraudulent, false, misleading or deceptive; (IV) is defamatory, obscene, pornographic, vulgar or offensive; (V) promotes discrimination, bigotry, racism, hatred, harassment or harm against any individual or group; (VI) is violent or threatening or promotes violence or actions that are threatening to any other person; (VII) harms minors in any way; or (VIII) promotes illegal or harmful activities, products or substances.
+          Post, upload, publish, submit or transmit any text, graphics, images, software, music, audio, video, information or other material that: (I) infringes, misappropriates or violates a third party&apos;s patent, copyright, trademark, trade secret, moral rights or other intellectual property rights, or rights of publicity or privacy, intellectual property rights or other third party rights; (II) violates, or encourages any conduct that would violate, any applicable law or regulation or would give rise to civil liability; (III) is fraudulent, false, misleading or deceptive; (IV) is defamatory, obscene, pornographic, vulgar or offensive; (V) promotes discrimination, bigotry, racism, hatred, harassment or harm against any individual or group; (VI) is violent or threatening or promotes violence or actions that are threatening to any other person; (VII) harms minors in any way; or (VIII) promotes illegal or harmful activities, products or substances.
         </p>
       </section>
       <section className={styles.section}>
@@ -53,7 +53,7 @@ export default function TermsOfUse() {
       <section className={styles.section}>
         <h3 className={styles.header}>Disclaimer of Warranties and Limitation of Liability:</h3>
         <p>
-          Norse Yacht Co. provides its Website on an 'as is' and 'as available' basis. We make no representations or warranties of any kind, express or implied, regarding the operation or availability of the Website. Norse Yacht Co. shall not be liable for any damages arising from your use of or inability to use our Website, within the maximum extent permitted by law.
+          Norse Yacht Co. provides its Website on an &apos;as is&apos; and &apos;as available&apos; basis. We make no representations or warranties of any kind, express or implied, regarding the operation or availability of the Website. Norse Yacht Co. shall not be liable for any damages arising from your use of or inability to use our Website, within the maximum extent permitted by law.
         </p>
       </section>
       <section className={styles.section}>
@@ -77,7 +77,7 @@ export default function TermsOfUse() {
       <section className={styles.section}>
         <h3 className={styles.header}>Specific Services Terms:</h3>
         <p>
-          When using Norse Yacht Co.’s yacht survey, selection, and contract-making services, users agree to specific terms and conditions related to these services, which are outlined in <Link href="/terms-of-use" className={styles.link}>Specific Services Terms</Link>.
+          When using Norse Yacht Co.&apos;s yacht survey, selection, and contract-making services, users agree to specific terms and conditions related to these services, which are outlined in <Link href="/terms-of-use" className={styles.link}>Specific Services Terms</Link>.
         </p>
       </section>
       <section className={styles.section}>
