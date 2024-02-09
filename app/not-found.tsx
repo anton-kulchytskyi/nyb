@@ -1,5 +1,5 @@
-import fonts from '../styles/typography.module.scss';
 import Button from '@/components/Button/Button';
+import fonts from '../styles/typography.module.scss';
 import styles from './not-found.module.scss';
 
 export default function Custom404() {
