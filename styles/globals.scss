@@ -37,6 +37,62 @@ button {
   }
 }
 
+.info-page {
+  max-width: 46rem;
+  margin: 2rem auto;
+
+  @include onMobile {
+    padding: 1rem;
+  }
+
+  &__top {
+    text-align: center;
+    margin: 0 0 3rem;
+  }
+
+  &__section {
+    margin-bottom: 1rem;
+
+    &__header {
+      color: $black;
+      font-family: var(--font-baiJamjuree);
+      font-size: 1.5rem;
+      font-weight: 500;
+    }
+
+    &__text {
+      margin-top: 1rem;
+    }
+
+    &__list {
+      margin: 1rem 0 0 1rem;
+    }
+  }
+
+  &__image {
+    height: 25.5rem;
+
+    &-survey {
+      background: center / contain no-repeat url('../public/book_survey_img.png');
+    }
+
+    &-choose {
+      background: center / contain no-repeat url('../public/choose_yacht_img.png');
+    }
+  }
+
+  &__link {
+    color: $gray-primary;
+    text-decoration: none;
+    transition: 0.5s;
+
+    &:hover {
+      color: $orange-secondary-100;
+    }
+
+  }
+}
+
 .cards_container {
   display: flex;
   justify-content: flex-start;

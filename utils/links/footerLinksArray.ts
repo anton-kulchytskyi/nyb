@@ -4,8 +4,8 @@ export const footerLinksArray = [
     path: '/catalog',
   },
   {
-    title: 'How is Works?',
-    path: '/',
+    title: 'How it Works?',
+    path: '/how-it-works',
   },
   {
     title: 'Blog',
@@ -13,14 +13,14 @@ export const footerLinksArray = [
   },
   {
     title: 'Terms of use',
-    path: '/',
+    path: '/terms-of-use',
   },
   {
     title: 'Cookies policy',
-    path: '/',
+    path: '/cookies-policy',
   },
   {
     title: 'Privacy policy',
-    path: '/',
+    path: '/privacy-policy',
   },
 ];
