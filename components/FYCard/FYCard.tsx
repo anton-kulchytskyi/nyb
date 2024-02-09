@@ -36,8 +36,6 @@ const FYCard = ({ yacht, buttonsExample, inCatalog }: Props) => {
 
   const key = `vessel_price_${selectedCurrency}`;
   const currPrice = (+yacht[key]).toLocaleString('en-US');
-  // eslint-disable-next-line
-  // console.log((+currPrice).toLocaleString('en-US'));
 
   useEffect(() => {
     async function loadImgFromAws() {

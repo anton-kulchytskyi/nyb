@@ -69,8 +69,9 @@ const usersData: UserData[] = [
   },
 ].sort(() => Math.random() - 0.5);
 
-export const users: reviewUser[] = usersData.map((user) => ({
+export const users: reviewUser[] = usersData.map((user, i) => ({
   ...user,
+  sliderIdx: i + 1, // for custom slides with react slick
   userId: user.userName,
   userAvatar: `/reviews_persons_icons/${user.userName
     .split(' ')

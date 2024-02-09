@@ -1,50 +1,62 @@
 'use client';
-import { useLayoutEffect, useRef, useState } from 'react';
-
 import dynamic from 'next/dynamic';
 
-import typo from '@/styles/typography.module.scss';
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.scss';
+import 'slick-carousel/slick/slick-theme.scss';
 
 import { reviewUser } from '@/interfaces/reviewsUsers.interface';
 import { users } from '@/utils/reviewsUsers/reviewsUsers';
-
-import LeftArrow from '@/components/SvgIconsComponents/LeftArrowSvg';
-import RightArrow from '@/components/SvgIconsComponents/RightArrowSvg';
 
 const ReviewCardNoSSR = dynamic(
   () => import('@/components/ReviewsSection/ReviewsCard/ReviewCard'),
   { ssr: false }
 );
 
-// import ReviewCard from '@/components/ReviewsSection/ReviewsCard/ReviewCard';
+import typo from '@/styles/typography.module.scss';
 import styles from './reviewsSection.module.scss';
 
 const ReviewsSection = () => {
-  const [transition, setTransition] = useState(0);
-  const ref = useRef<HTMLDivElement>(null);
-  const maxCarouselWidth = 235;
-  const transitionValue = 20;
-  const [currentCarouselWidth, setCurrentCarouselWidth] = useState(0);
-  useLayoutEffect(() => {
-    setCurrentCarouselWidth((ref.current?.clientWidth as number) / 16);
-  }, []);
-
-  const right = () => {
-    let newTransition = transition;
-    newTransition += transitionValue;
-    if (newTransition > maxCarouselWidth - currentCarouselWidth) {
-      newTransition = maxCarouselWidth - currentCarouselWidth;
-    }
-    setTransition(newTransition);
-  };
-
-  const left = () => {
-    let newTransition = transition;
-    newTransition -= transitionValue;
-    if (newTransition < 0) {
-      newTransition = 0;
-    }
-    setTransition(newTransition);
+  const settings = {
+    dots: false,
+    infinite: true,
+    slidesToShow: 5,
+    slidesToScroll: 5,
+    initialSlide: 0,
+    autoplay: true,
+    speed: 10000,
+    autoplaySpeed: 10000,
+    cssEase: 'linear',
+    responsive: [
+      {
+        breakpoint: 1730,
+        settings: {
+          slidesToShow: 4,
+          slidesToScroll: 4,
+        },
+      },
+      {
+        breakpoint: 1410,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 3,
+        },
+      },
+      {
+        breakpoint: 1100,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+        },
+      },
+      {
+        breakpoint: 680,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ],
   };
 
   return (
@@ -53,44 +65,19 @@ const ReviewsSection = () => {
       className={styles.review_section}
     >
       <h3 className={`${typo.typo_h3} ${typo.typo_h3_gray}`}>Reviews</h3>
-      <div className={styles.carousel_wrapper}>
-        <div
-          ref={ref}
-          style={{ transform: `translate(-${transition}rem)` }}
-          className={styles.cards_container}
-        >
-          {users.map((user: reviewUser) => (
-            <ReviewCardNoSSR
-              key={user.userId}
-              userName={user.userName}
-              userAvatar={user.userAvatar}
-              date={user.date}
-              stars={user.stars}
-              reviewText={user.reviewText}
-            />
-          ))}
-        </div>
-      </div>
-      <div className={styles.arrows_container}>
-        <button
-          className={styles.arrows_container__arrow}
-          type="button"
-          disabled={transition <= 0}
-          onClick={left}
-        >
-          <LeftArrow color={transition > 0} />
-        </button>
-        <button
-          className={styles.arrows_container__arrow}
-          type="button"
-          disabled={transition >= maxCarouselWidth - currentCarouselWidth}
-          onClick={right}
-        >
-          <RightArrow
-            color={transition < maxCarouselWidth - currentCarouselWidth}
+      <Slider {...settings}>
+        {users.map((user: reviewUser) => (
+          <ReviewCardNoSSR
+            sliderIdx={user.sliderIdx}
+            key={user.userId}
+            userName={user.userName}
+            userAvatar={user.userAvatar}
+            date={user.date}
+            stars={user.stars}
+            reviewText={user.reviewText}
           />
-        </button>
-      </div>
+        ))}
+      </Slider>
     </section>
   );
 };
