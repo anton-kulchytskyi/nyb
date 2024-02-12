@@ -5,12 +5,11 @@ import { useRouter } from 'next/navigation';
 import { useState, useEffect } from 'react';
 
 import { useCurrency } from '@/context/CurrencyContext';
-import { fetchImgUrl } from '@/utils/api/getImageFromAWS';
+import { Vessel } from '@/interfaces/vessel.interface';
+import Button from '@/components/Button/Button';
+import CardSkeleton from '@/components/CardSkeleton/CardSkeleton';
 
 import typo from '@/styles/typography.module.scss';
-import { Vessel } from '@/interfaces/vessel.interface';
-import Button from '../Button/Button';
-import CardSkeleton from '../CardSkeleton/CardSkeleton';
 import styles from './fycard.module.scss';
 
 interface Props {
@@ -23,7 +22,6 @@ const FYCard = ({ yacht, buttonsExample, inCatalog }: Props) => {
   const [isLoading, setIsLoading] = useState(true);
   const router = useRouter();
   const { selectedCurrency, selectedCurrencySymbol } = useCurrency();
-  const [imageUrl, setImageUrl] = useState<string>('');
   const {
     vessel_id,
     vessel_make,
@@ -31,24 +29,17 @@ const FYCard = ({ yacht, buttonsExample, inCatalog }: Props) => {
     vessel_country,
     vessel_town,
     vessel_year,
-    vessel_image_key,
+    vessel_image_url,
   } = yacht;
 
   const key = `vessel_price_${selectedCurrency}`;
   const currPrice = (+yacht[key]).toLocaleString('en-US');
-  // eslint-disable-next-line
-  // console.log((+currPrice).toLocaleString('en-US'));
 
   useEffect(() => {
-    async function loadImgFromAws() {
-      const currImg = await fetchImgUrl(vessel_image_key);
-      setImageUrl(currImg || 'https://fakeimg.pl/600x400?text=Norse+Yacht+Co.');
-      setTimeout(() => {
-        setIsLoading(false);
-      }, 1500); // Simulating a 1,5-second delay
-    }
-    loadImgFromAws();
-  }, [vessel_image_key]);
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 1500);
+  }, []); // Simulating a 1,5-second delay
 
   const routeToVessel = () => {
     router.push(`/catalog/${vessel_id}`);
@@ -67,7 +58,10 @@ const FYCard = ({ yacht, buttonsExample, inCatalog }: Props) => {
             onClick={routeToVessel}
           >
             <Image
-              src={imageUrl}
+              src={
+                vessel_image_url ||
+                'https://fakeimg.pl/600x400?text=Norse+Yacht+Co.'
+              }
               fill
               sizes="100vw"
               className={styles.image}

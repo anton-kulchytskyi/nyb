@@ -24,4 +24,9 @@ export interface Vessel extends VesselKeys {
   vessel_description: string;
   vessel_created_at: string;
   vessel_image_key: string;
+  vessel_image_url: string;
+}
+
+export interface VesselWithImageUrl extends Vessel {
+  vessel_image_url: string;
 }

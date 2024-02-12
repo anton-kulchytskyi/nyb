@@ -1,10 +1,10 @@
-import { Vessel } from '@/interfaces/vessel.interface';
+import { VesselWithImageUrl } from '@/interfaces/vessel.interface';
 import { getFeaturedYacht } from '@/utils/api/getAllVessels';
 
 import typo from '@/styles/typography.module.scss';
 
-import FYCard from '../FYCard/FYCard';
-import TextButton from '../TextButton/TextButton';
+import FYCard from '@/components/FYCard/FYCard';
+import TextButton from '@/components/TextButton/TextButton';
 
 import styles from './featuredYachts.module.scss';
 
@@ -30,7 +30,7 @@ const FeaturedYachts = async () => {
         />
       </span>
       <div className={styles.cards_container}>
-        {visibleYachts.map((yacht: Vessel, i: number) => (
+        {visibleYachts.map((yacht: VesselWithImageUrl, i: number) => (
           <FYCard
             key={yacht.vessel_id}
             yacht={yacht}
