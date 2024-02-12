@@ -62,11 +62,11 @@ const usersData: UserData[] = [
     reviewText:
       'Smooth Contracting by Norse Yacht streamlined my yacht purchase beautifully. Their team handled every detail with professionalism, making the process transparent and easy.',
   },
-  {
-    userName: 'Sophie King',
-    reviewText:
-      'Choosing Norse Yacht for my purchase was the best decision. Their personalised service and detailed approach provided peace of mind, making my dream yacht a reality.',
-  },
+  // {
+  //   userName: 'Sophie King',
+  //   reviewText:
+  //     'Choosing Norse Yacht for my purchase was the best decision. Their personalised service and detailed approach provided peace of mind, making my dream yacht a reality.',
+  // },
 ].sort(() => Math.random() - 0.5);
 
 export const users: reviewUser[] = usersData.map((user, i) => ({

@@ -24,12 +24,14 @@ const ReviewsSection = () => {
     slidesToScroll: 5,
     initialSlide: 0,
     autoplay: true,
-    speed: 10000,
-    autoplaySpeed: 10000,
+    speed: 5000,
+    autoplaySpeed: 5000,
     cssEase: 'linear',
+    pauseOnHover: true,
+    swipeToSlide: true,
     responsive: [
       {
-        breakpoint: 1730,
+        breakpoint: 1750,
         settings: {
           slidesToShow: 4,
           slidesToScroll: 4,
@@ -43,14 +45,14 @@ const ReviewsSection = () => {
         },
       },
       {
-        breakpoint: 1100,
+        breakpoint: 1020,
         settings: {
           slidesToShow: 2,
           slidesToScroll: 2,
         },
       },
       {
-        breakpoint: 680,
+        breakpoint: 690,
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
