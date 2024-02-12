@@ -18,44 +18,47 @@ import styles from './reviewsSection.module.scss';
 
 const ReviewsSection = () => {
   const settings = {
+    className: 'center',
+    centerMode: true,
     dots: false,
     infinite: true,
     slidesToShow: 5,
-    slidesToScroll: 5,
+    slidesToScroll: 1,
     initialSlide: 0,
     autoplay: true,
-    speed: 5000,
-    autoplaySpeed: 5000,
+    speed: 500,
+    autoplaySpeed: 2000,
     cssEase: 'linear',
     pauseOnHover: true,
     swipeToSlide: true,
+    rtl: true,
     responsive: [
       {
         breakpoint: 1750,
         settings: {
           slidesToShow: 4,
-          slidesToScroll: 4,
+          // slidesToScroll: 4,
         },
       },
       {
         breakpoint: 1410,
         settings: {
           slidesToShow: 3,
-          slidesToScroll: 3,
+          // slidesToScroll: 3,
         },
       },
       {
         breakpoint: 1020,
         settings: {
           slidesToShow: 2,
-          slidesToScroll: 2,
+          // slidesToScroll: 2,
         },
       },
       {
         breakpoint: 690,
         settings: {
           slidesToShow: 1,
-          slidesToScroll: 1,
+          // slidesToScroll: 1,
         },
       },
     ],
@@ -63,7 +66,7 @@ const ReviewsSection = () => {
 
   return (
     <section
-      id="reviews"
+      // id="reviews"
       className={styles.review_section}
     >
       <h3 className={`${typo.typo_h3} ${typo.typo_h3_gray}`}>Reviews</h3>
