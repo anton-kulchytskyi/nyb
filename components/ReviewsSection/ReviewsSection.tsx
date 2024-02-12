@@ -18,8 +18,8 @@ import styles from './reviewsSection.module.scss';
 
 const ReviewsSection = () => {
   const settings = {
-    className: 'center',
-    centerMode: true,
+    // className: 'center',
+    // centerMode: true,
     dots: false,
     infinite: true,
     slidesToShow: 5,
