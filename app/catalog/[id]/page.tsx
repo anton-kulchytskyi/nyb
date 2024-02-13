@@ -9,18 +9,23 @@ type Props = {
   }
 }
 
-export async function generateMetadata({ params: { id } }: Props): Promise<Metadata> {
+interface Images {
+  yacht_image_id: number,
+  yacht_image_key: string,
+}
+
+export async function generateMetadata({ params: { id }}: Props): Promise<Metadata> {
   return {
     title: `Yacht ${id} | Norse Yacht Co`,
   };
 }
 
 
-export default async function Vessel({ params: { id } }: Props) {
+export default async function Vessel({ params: { id }}: Props) {
   const ves = await getVesselById(`/${id}`);
-  const images = await loadAllPhtosFromAWS(ves.vessel_images);
+  const images = await loadAllPhotosFromAWS(ves.vessel_images);
 
-  async function loadAllPhtosFromAWS(images: any) {
+  async function loadAllPhotosFromAWS(images: Images[]) {
     const arrayOfFetchImages = [];
 
     for (let i = 0; i < images.length; i++) {
@@ -35,5 +40,5 @@ export default async function Vessel({ params: { id } }: Props) {
     <>
       <VesselView ves={ves} images={images} />
     </>
-  )
-}
+  );
+};

@@ -5,7 +5,7 @@ import "slick-carousel/slick/slick-theme.css";
 import styles from './Slider.module.scss';
 
 function CustomPaging({ images }: { images: string[] }) {
-  var settings = {
+  const settings = {
     fade: true,
     infinite: true,
     speed: 500,
@@ -19,7 +19,7 @@ function CustomPaging({ images }: { images: string[] }) {
         <Slider {...settings}>
           {images.map(img => (
             <div key={img} className={styles.slider__image_container}>
-              <div className={styles.slider__image} style={{backgroundImage: `url(${img})`}}/>
+              <div className={styles.slider__image} style={{ backgroundImage: `url(${img})` }}/>
             </div>
           ))}
         </Slider>

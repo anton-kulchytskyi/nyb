@@ -11,8 +11,7 @@ const QuestionMarkSvg = () => {
         <rect width="24" height="24" fill="white" />
       </defs>
     </svg>
+  );
+};
 
-  )
-}
-
-export default QuestionMarkSvg
+export default QuestionMarkSvg;

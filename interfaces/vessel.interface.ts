@@ -1,11 +1,12 @@
 type VesselKeys = {
-  [key: string]: number | string | boolean;
+  [key: string]: number | string | boolean | object;
 };
 
 export interface Vessel extends VesselKeys {
   vessel_id: number;
   featured: boolean;
   vessel_make: string;
+  vessel_model: string;
   vessel_price_EUR: string;
   vessel_price_USD: string;
   vessel_price_GBP: string;
@@ -24,4 +25,8 @@ export interface Vessel extends VesselKeys {
   vessel_description: string;
   vessel_created_at: string;
   vessel_image_key: string;
+  vessel_images: [{
+    yacht_image_id: number,
+    yacht_image_key: string
+  }];
 }
