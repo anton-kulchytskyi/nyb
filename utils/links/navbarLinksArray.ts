@@ -9,6 +9,6 @@ export const navbarLinksArray = [
   },
   {
     title: 'Split currency',
+    path: '',
   },
-
 ];
