@@ -7,7 +7,7 @@ const BASE_URL = 'https://nyb-project-production.up.railway.app/vessels';
 function getData(): Promise<Vessel[]>;
 function getData(url: string): Promise<Vessel>;
 function getData(url: string): Promise<Vessel[]>;
-// function getData(url: string, params: string): Promise<Vessel[]>;
+
 async function getData(
   url: string = '',
   search: string = ''
