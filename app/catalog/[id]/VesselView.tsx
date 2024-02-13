@@ -1,15 +1,17 @@
 'use client'
 
 import React, { ChangeEvent, FormEvent, useState } from 'react';
-import ModalImage from "react-modal-image";
+// import ModalImage from "react-modal-image";
 import { Errors } from '@/interfaces/errors.interface';
-// import Slider from './Slider';
-import { useCurrency } from '@/context/CurrencyContext';
+// import { useCurrency } from '@/context/CurrencyContext';
 import QuestionMarkSvg from '@/components/SvgIconsComponents/QuestionMarkSvg';
 import ContactFormModal from '@/components/ContactForm/ContactFormModal/ContactFormModal';
 import { Vessel } from '@/interfaces/vessel.interface';
 import typo from '../../../styles/typography.module.scss';
+import Slider from './Slider';
 import styles from './page.module.scss';
+import Modal from './Modal';
+
 
 type Props = {
   ves: Vessel,
@@ -18,16 +20,20 @@ type Props = {
 
 export const VesselView: React.FC<Props> = ({ ves, images }) => {
   const [isContactFormModalOpen, setIsContactFormModalOpen] = useState(false);
+  const [showModalGallery, setShowModalGallery] = useState(false);
   const [errors, setErrors] = useState<Errors>({});
-  const { selectedCurrency, selectedCurrencySymbol } = useCurrency();
+  // const { 
+  //   selectedCurrency, 
+  //   selectedCrencySymbol 
+  // } = useCurrency();
 
   const [inputs, setInputs] = useState({
     name: '',
     userEmail: '',
     message: '',
   });
-  const key = `vessel_price_${selectedCurrency}`;
-  const currPrice = (+ves[key]).toLocaleString('en-US');
+  // const key = `vessel_price_${selectedCurrency}`;
+  // const currPrice = (+ves[key]).toLocaleString('en-US');
 
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -124,33 +130,20 @@ export const VesselView: React.FC<Props> = ({ ves, images }) => {
       }
     }
   };
+
   return (
     <>
       <div className={styles.page}>
         <div className={styles.body}>
           <div className={styles.body__top}>
             <span className={typo.typo_h4}>{ves.vessel_make} {ves.vessel_model}, {ves.vessel_year}, {ves.vessel_country}, {ves.vessel_town}</span>
-            <span className={typo.typo_price}>{`${selectedCurrencySymbol} ${currPrice}`}</span>
+            {/* <span className={typo.typo_price}>{`${selectedCurrencySymbol} ${currPrice}`}</span> */}
           </div>
-          <div className={styles.body__gallery}>
-            <section className={styles.body__gallery_img_container}>
-              {images.map(img => (
-                <ModalImage
-                  key={img}
-                  className={styles.body__gallery_img}
-                  small={img}
-                  large={img}
-                  alt="vessel"
-                />
-              ))}
-            </section>
-            <div className={styles.body__gallery_main}>
-              <ModalImage
-                small={images[0]}
-                large={images[0]}
-                alt="vessel"
-              />
-            </div>
+          <div className={styles.body__gallery} >
+            <Slider
+              images={images}
+              setShowModalGallery={setShowModalGallery}
+            />
           </div>
           <div className={styles.body__bottom}>
             <h1 className={typo.typo_h4}>About</h1>
@@ -181,7 +174,7 @@ export const VesselView: React.FC<Props> = ({ ves, images }) => {
           </div>
         </div>
         <div className={styles.form_container}>
-          <div className={styles.kek_top}>
+          <div className={styles.form_top}>
             <span>VAT Included</span> <span className={styles.form_modal}><QuestionMarkSvg /></span>
           </div>
           <form
@@ -195,9 +188,8 @@ export const VesselView: React.FC<Props> = ({ ves, images }) => {
                 name="name"
                 type="text"
                 value={inputs.name}
-                className={`${styles.input} ${errors.name ? styles.input__error : ''
-                }
-            ${inputs.name.trim() && !errors.name ? styles.input__success : ''}
+                className={`${styles.input} ${errors.name ? styles.input__error : ''}
+              ${inputs.name.trim() && !errors.name ? styles.input__success : ''}
             `}
                 onChange={handleChange}
                 onFocus={inputsOnFocus}
@@ -264,6 +256,14 @@ export const VesselView: React.FC<Props> = ({ ves, images }) => {
           <ContactFormModal
             isContactFormModalOpen={isContactFormModalOpen}
             setIsContactFormModalOpen={setIsContactFormModalOpen}
+          />
+        )}
+        {showModalGallery && (
+          <Modal
+            showModalGallery={showModalGallery}
+            setShowModalGallery={setShowModalGallery}
+            images={images}
+            ves={ves}
           />
         )}
       </div>

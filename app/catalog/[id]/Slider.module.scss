@@ -1,30 +1,24 @@
-.slider {
-  width: 100vw;
-  height: 100%;
+.container {
+  width: 100%;
   max-width: 1036px;
+}
+
+.slide {
+  width: 100%;
+  height: 100%;
   max-height: 650px;
-
-
-  &__container {
-    width: 100vw;
-    height: 40vh;
-    max-height: 650px;
-    max-width: 1036px;
-  }
-
-  &__image {
+  max-width: 65rem;
+  border-radius: 1rem;
+  
+  &__thumb {
+    object-fit: contain;
+    border-radius: 1rem;
     width: 100%;
-    height: 43vh;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    max-width: 1036px;
-    max-height: 650px;
+    height: 100%;
+
 
     &__container {
-      height: 40vh;
-      max-width: 1036px;
-      max-height: 650px;
+      width: 100%;
     }
   }
 }

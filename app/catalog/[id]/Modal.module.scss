@@ -1,0 +1,81 @@
+@import '../../../styles/var.scss';
+@import '../../../styles/mixins.scss';
+
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.854);
+  justify-content: center;
+  // align-items: center;
+  z-index: 3;
+  overflow: scroll;
+
+
+  &__wrapper {
+    position: absolute;
+  }
+
+  &.open {
+    display: flex;
+  }
+
+  &__content {
+    position: relative;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    background-color: $white;
+    padding: 2rem;
+    border-radius: 1.25rem;
+  }
+}
+
+.gallery {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  &__container {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 2rem;
+
+    width: 100%;
+  }
+
+  &_small {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+
+  }
+
+  &__image {
+    height: 100%;
+    width: 100%;
+
+    &_small {
+      width: 90px;
+      height: 50px;
+    }
+  }
+}
+
+.social {
+  display: flex;
+  flex-direction: column;
+}
+
+.close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+}

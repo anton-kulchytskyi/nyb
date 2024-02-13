@@ -51,7 +51,7 @@ const FYCard = ({ yacht, buttonsExample, inCatalog }: Props) => {
   }, [vessel_image_key]);
 
   const routeToVessel = () => {
-    router.push(`/catalog/${vessel_id}`);
+    router.push(`/catalog/${vessel_id}?name=${vessel_make}`);
   };
 
   return (

@@ -118,9 +118,7 @@ const Navbar = () => {
           </button>
         </div>
       </nav>
-      <div className="section">
-        <BreadCrumbs />
-      </div>
+      <BreadCrumbs />
     </>
   );
 
