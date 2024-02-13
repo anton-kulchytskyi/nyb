@@ -1,5 +1,7 @@
 import { Metadata } from "next";
 import { getVesselById } from '@/utils/api/getAllVessels';
+import { fetchImgUrl } from '@/utils/api/getImageFromAWS';
+import { VesselView } from './VesselView';
 
 type Props = {
   params: {
@@ -7,20 +9,31 @@ type Props = {
   }
 }
 
-export async function generateMetadata({ params: { id }}: Props): Promise<Metadata> {
+export async function generateMetadata({ params: { id } }: Props): Promise<Metadata> {
   return {
     title: `Yacht ${id} | Norse Yacht Co`,
   };
 }
 
-export default async function Vessel({ params: { id }}: Props) {
+
+export default async function Vessel({ params: { id } }: Props) {
   const ves = await getVesselById(`/${id}`);
+  const images = await loadAllPhtosFromAWS(ves.vessel_images);
+
+  async function loadAllPhtosFromAWS(images: any) {
+    const arrayOfFetchImages = [];
+
+    for (let i = 0; i < images.length; i++) {
+      const img = await fetchImgUrl(images[i].yacht_image_key);
+      arrayOfFetchImages.push(img);
+    }
+
+    return arrayOfFetchImages;
+  }
 
   return (
     <>
-      <h1>{ves.vessel_make}</h1>
-      <p>{ves.vessel_description}</p>
-      <p>{ves.vessel_price}</p>
+      <VesselView ves={ves} images={images} />
     </>
   )
 }
