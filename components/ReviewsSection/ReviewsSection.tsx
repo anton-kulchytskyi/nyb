@@ -18,8 +18,6 @@ import styles from './reviewsSection.module.scss';
 
 const ReviewsSection = () => {
   const settings = {
-    // className: 'center',
-    // centerMode: true,
     dots: false,
     infinite: true,
     slidesToShow: 5,
@@ -28,37 +26,32 @@ const ReviewsSection = () => {
     autoplay: true,
     speed: 500,
     autoplaySpeed: 2000,
-    cssEase: 'linear',
+    cssEase: 'ease-in-out',
     pauseOnHover: true,
     swipeToSlide: true,
-    rtl: true,
     responsive: [
       {
         breakpoint: 1750,
         settings: {
           slidesToShow: 4,
-          // slidesToScroll: 4,
         },
       },
       {
         breakpoint: 1410,
         settings: {
           slidesToShow: 3,
-          // slidesToScroll: 3,
         },
       },
       {
         breakpoint: 1020,
         settings: {
           slidesToShow: 2,
-          // slidesToScroll: 2,
         },
       },
       {
         breakpoint: 690,
         settings: {
           slidesToShow: 1,
-          // slidesToScroll: 1,
         },
       },
     ],

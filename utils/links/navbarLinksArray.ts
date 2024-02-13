@@ -9,10 +9,6 @@ export const navbarLinksArray = [
   },
   {
     title: 'Split currency',
-    path: '/',
   },
-  // {
-  //   title: 'Contacts',
-  //   path: '/',
-  // },
+
 ];
