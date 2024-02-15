@@ -21,12 +21,8 @@
 
   &__content {
     position: relative;
-    // width: 100vw;
     display: flex;
     flex-direction: column;
-    // align-items: center;
-    // justify-content: center;
-    // gap: 1.5rem;
     background-color: $white;
     padding: 0.5rem;
   }
@@ -39,13 +35,14 @@
 
   &__container {
     display: grid;
-    grid-template-columns: 120px auto 250px;
-    gap: 10px;
+    grid-template-columns: 8.2rem auto 15.6rem;
+    gap: 0.8rem;
     height: 100vh;
   }
 
   &_small {
     height: 100vh;
+    overflow: scroll;
   }
 }
 
@@ -56,8 +53,7 @@
 
   &__top {
     display: flex;
-    justify-content: space-around;
-    align-items: center;
+    justify-content: flex-end;
   }
 
   &__middle {
@@ -72,11 +68,10 @@
     flex-direction: column;
     align-items: center;
     border: 1px solid;
-    margin-right: 15px;
   }
 
   &__button {
-    padding: 2px;
+    padding: 0.1rem;
     border: 1px solid white;
     border-radius: 100%;
     background-color: $orange-secondary-100;
@@ -95,16 +90,6 @@
   }
 }
 
-.close {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-
-  &__button {
-    cursor: pointer;
-  }
-}
-
 .slider {
   height: 100vh;
   display: flex;
@@ -117,30 +102,9 @@
     &_small {
       object-fit: cover;
       border-radius: 1rem;
-      height: 80px;
-      width: 120px;
-      opacity: 0.5;
+      height: 5rem;
+      width: 7.5rem;
+      opacity: 0.8;
     }
   }
-}
-
-.active {
-  opacity: none;
-}
-
-.swiper-slide {
-
-}
-
-.swiper-button-next {
-  text-align: center;
-  color: white;
-  background-color: #373737;
-  padding: 1rem;
-  font-size: 1.5rem;
-  border: none;
-  height: 3.5rem;
-  width: 100%;
-  cursor: pointer;
-  transition: all 0.1s ease-in;
 }

@@ -14,13 +14,20 @@ import 'swiper/scss/thumbs';
 import styles from './Slider.module.scss';
 
 
-const Slider = ({ images, setShowModalGallery }) => {
+const Slider = ({ openContentFullscreen, images, setShowModalGallery }) => {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
 
-  return (
-    <>
-      <div className={styles.container}>
+  const handleButtonClick = () => {
+    setShowModalGallery(true);
+    setTimeout(() => {
+      openContentFullscreen();
+    }, 500)
+  }
 
+  return (
+    <div>
+
+      <div className={styles.container}>
         <Swiper
           modules={[Navigation, Thumbs, FreeMode]}
           spaceBetween={10}
@@ -37,7 +44,6 @@ const Slider = ({ images, setShowModalGallery }) => {
                 src={img}
                 alt="vessel"
                 className={styles.slide}
-                onClick={() => setShowModalGallery(true)}
               />
             </SwiperSlide>
           ))}
@@ -53,6 +59,15 @@ const Slider = ({ images, setShowModalGallery }) => {
           modules={[Navigation, Thumbs, FreeMode]}
           className={styles.slide__thumb__container}
         >
+          <SwiperSlide>
+            <button
+              onClick={() => handleButtonClick()}
+              className={styles.button}
+            >
+              Gallery<br />
+              {images.length} photos
+            </button>
+          </SwiperSlide>
           {images.map((img, index) => (
             <SwiperSlide key={index}>
               <Image
@@ -60,13 +75,13 @@ const Slider = ({ images, setShowModalGallery }) => {
                 height={95}
                 src={img}
                 alt="vessel"
-                className={`${styles.slide__thumb} ${thumbsSwiper === 0 ? styles.active : ''}`}
+                className={styles.slide__thumb}
               />
             </SwiperSlide>
           ))}
         </Swiper>
       </div>
-    </>
+    </div>
   );
 }
 

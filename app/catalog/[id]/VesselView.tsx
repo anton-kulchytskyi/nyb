@@ -21,9 +21,9 @@ export const VesselView: React.FC<Props> = ({ ves, images }) => {
   const [isContactFormModalOpen, setIsContactFormModalOpen] = useState(false);
   const [showModalGallery, setShowModalGallery] = useState(false);
   const [errors, setErrors] = useState<Errors>({});
-  const { 
-    selectedCurrency, 
-    selectedCurrencySymbol 
+  const {
+    selectedCurrency,
+    selectedCurrencySymbol
   } = useCurrency();
   const [inputs, setInputs] = useState({
     name: '',
@@ -129,6 +129,15 @@ export const VesselView: React.FC<Props> = ({ ves, images }) => {
     }
   };
 
+  // const modalFullScreen = useRef();
+
+  const openContentFullscreen = () => {
+    const element = document.getElementById('modal');
+    if (element && element.requestFullscreen) {
+      element.requestFullscreen();
+    }
+  };
+
   return (
     <>
       <div className={styles.page}>
@@ -139,6 +148,7 @@ export const VesselView: React.FC<Props> = ({ ves, images }) => {
           </div>
           <div className={styles.body__gallery} >
             <Slider
+              openContentFullscreen={openContentFullscreen}
               images={images}
               setShowModalGallery={setShowModalGallery}
             />
@@ -207,10 +217,8 @@ export const VesselView: React.FC<Props> = ({ ves, images }) => {
                 className={`
               ${styles.input}
               ${errors.userEmail && styles.input__error} 
-              ${inputs.userEmail.trim() && !errors.userEmail
-      ? styles.input__success
-      : ''
-    }`}
+              ${inputs.userEmail.trim() && !errors.userEmail ? styles.input__success : ''}
+              `}
                 onChange={handleChange}
                 onFocus={inputsOnFocus}
                 onBlur={checkEmailInput}
@@ -229,10 +237,8 @@ export const VesselView: React.FC<Props> = ({ ves, images }) => {
               ${styles.input}
               ${styles.input__textarea}
               ${errors.message && styles.input__textarea_error} 
-              ${inputs.message.trim() && !errors.message
-      ? styles.input__success
-      : ''
-    }`}
+              ${inputs.message.trim() && !errors.message ? styles.input__success : ''}
+              `}
                 onChange={handleChange}
                 onFocus={inputsOnFocus}
                 onBlur={checkMessageInput}
@@ -262,6 +268,7 @@ export const VesselView: React.FC<Props> = ({ ves, images }) => {
             setShowModalGallery={setShowModalGallery}
             images={images}
             ves={ves}
+            openContentFullscreen={openContentFullscreen}
           />
         )}
       </div>

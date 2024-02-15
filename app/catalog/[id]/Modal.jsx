@@ -1,8 +1,7 @@
-import { useRef, useState } from 'react';
 import Image from 'next/image';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Pagination, FreeMode, Scrollbar } from 'swiper/modules';
+import { FreeMode, Scrollbar } from 'swiper/modules';
 import SwiperCore, { Mousewheel } from "swiper/core";
 SwiperCore.use([Mousewheel]);
 
@@ -23,56 +22,51 @@ const Modal = ({
   setShowModalGallery,
   images,
   ves,
+  openContentFullscreen,
 }) => {
-  const color = '#E7801A';
-  const modalFullScreen = useRef();
-  const openContentFullscreen = () => {
-    const element = modalFullScreen.current;
-    if (element && element.requestFullscreen) {
-      element.requestFullscreen();
-    }
-  };
-
   const {
     selectedCurrency,
     selectedCurrencySymbol
   } = useCurrency();
   const key = `vessel_price_${selectedCurrency}`;
   const currPrice = (+ves[key]).toLocaleString('en-US');
-  const [activeIndex, setActiveIndex] = useState(0);
-
+  openContentFullscreen();
 
   return (
     <div
-      ref={modalFullScreen}
       className={`${styles.modal} ${showModalGallery ? styles.open : ''}`}
+      id='modal'
     >
       <div className={styles.modal__wrapper}>
         <div className={styles.modal__content}>
           <div className={styles.gallery__container}>
+
             <div className={styles.gallery_small}>
               <Swiper
+                modules={[FreeMode, Scrollbar]}
                 direction={'vertical'}
-                slidesPerView={8}
+                slidesPerView={'auto'}
                 freeMode={true}
-                onRealIndexChange={(element) => setActiveIndex(element.clickedIndex)}
+                scrollbar={true}
+                mousewheel={true}
               >
-                {images.map((img, index) => (
-                  <SwiperSlide key={index} >
-                    <a href={`#${index}`} className={styles.slider__image_small__container}>
+                <SwiperSlide>
+                  {images.map((img, index) => (
+                    <a href={`#${index}`} key={index} className={styles.slider__image_small__container}>
                       <img
                         src={img}
                         alt="vessel"
-                        className={`${styles.slider__image_small} ${activeIndex === index ? styles.active : ''}`}
+                        className={styles.slider__image_small}
                       />
                     </a>
-                  </SwiperSlide>
-                ))}
+                  ))}
+                </SwiperSlide>
               </Swiper>
             </div>
+
             <div className={styles.gallery}>
               <Swiper
-                modules={[FreeMode, Scrollbar, Pagination]}
+                modules={[FreeMode, Scrollbar]}
                 direction={'vertical'}
                 slidesPerView={'auto'}
                 freeMode={true}
@@ -92,9 +86,9 @@ const Modal = ({
                 </SwiperSlide>
               </Swiper>
             </div>
+
             <div className={styles.social}>
               <div className={styles.social__top}>
-                <button onClick={openContentFullscreen}>Full Screen</button>
                 <Image
                   width={24}
                   height={24}
@@ -105,7 +99,7 @@ const Modal = ({
                 />
               </div>
               <div className={styles.social__middle}>
-                <SocialMediaIcons color={color} />
+                <SocialMediaIcons color='#E7801A' />
               </div>
               <div className={styles.social__bottom}>
                 <p className={styles.social__name}>{ves.vessel_make}, {ves.vessel_year}</p>
