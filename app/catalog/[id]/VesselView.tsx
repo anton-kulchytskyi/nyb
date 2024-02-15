@@ -129,8 +129,6 @@ export const VesselView: React.FC<Props> = ({ ves, images }) => {
     }
   };
 
-  // const modalFullScreen = useRef();
-
   const openContentFullscreen = () => {
     const element = document.getElementById('modal');
     if (element && element.requestFullscreen) {
@@ -268,7 +266,6 @@ export const VesselView: React.FC<Props> = ({ ves, images }) => {
             setShowModalGallery={setShowModalGallery}
             images={images}
             ves={ves}
-            openContentFullscreen={openContentFullscreen}
           />
         )}
       </div>

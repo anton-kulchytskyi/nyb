@@ -22,7 +22,6 @@ const Modal = ({
   setShowModalGallery,
   images,
   ves,
-  openContentFullscreen,
 }) => {
   const {
     selectedCurrency,
@@ -30,7 +29,6 @@ const Modal = ({
   } = useCurrency();
   const key = `vessel_price_${selectedCurrency}`;
   const currPrice = (+ves[key]).toLocaleString('en-US');
-  openContentFullscreen();
 
   return (
     <div
