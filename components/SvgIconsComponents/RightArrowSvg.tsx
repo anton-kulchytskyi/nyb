@@ -3,7 +3,7 @@ type Props = {
 };
 
 const RightArrowSvg = ({ color }: Props) => {
-  const currColor = color ? '#E7801A' : '#D9D9D9'
+  const currColor = color ? '#E7801A' : '#4D6575';
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

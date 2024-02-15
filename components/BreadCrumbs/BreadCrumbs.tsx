@@ -12,6 +12,7 @@ const BreadCrumbs = () => {
   const search = useSearchParams();
   const yachtName = search.get('name');
   const pathsWithoutDashes = paths.split('/').slice(1).map(path => path.split('-').join(' ')).slice(0, 1);
+
   if (yachtName) {
     pathsWithoutDashes.push(yachtName);
   }

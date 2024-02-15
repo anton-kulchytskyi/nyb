@@ -50,7 +50,7 @@ const SectionComponentText = ({
         </p>
         <TextButton
           text="Read more"
-          linkTo="/catalog"
+          linkTo="/catalogue"
           primary={order}
         />
       </div>

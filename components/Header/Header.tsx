@@ -24,7 +24,7 @@ const Header = () => {
           <span className={styles.button}>
             <Button
               text="View Gallery"
-              linkTo="/catalog"
+              linkTo="/catalogue"
               primary
             />
           </span>

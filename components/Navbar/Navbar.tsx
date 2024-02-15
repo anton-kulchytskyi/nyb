@@ -69,7 +69,7 @@ const Navbar = () => {
           {desktopScreen ? (
             <>
               <Link
-                href="/catalog"
+                href="/catalogue"
                 className={styles.link}
               >
                 Yachts
