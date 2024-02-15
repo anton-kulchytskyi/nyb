@@ -62,14 +62,30 @@ input:-webkit-autofill:active {
 
   & .swiper-button-prev,
   .swiper-button-next {
-    color: #e7801a !important;
     top: 95%;
+    background-color: #d9d9d9;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    transition: transform 0.6s ease-in-out;
+
+    &::after {
+      font-size: 1.5rem;
+    }
+
+    &:hover {
+      transform: scale(1.1);
+    }
   }
 
   & .swiper-button-prev {
     left: 45%;
 
-    @include onSmall {
+    &::after {
+      content: url('../public/icons/left_arrow.svg');
+    }
+
+    @include onMobile {
       left: 35%;
     }
   }
@@ -77,7 +93,11 @@ input:-webkit-autofill:active {
   & .swiper-button-next {
     right: 45%;
 
-    @include onSmall {
+    &::after {
+      content: url('../public/icons/right_arrow.svg');
+    }
+
+    @include onMobile {
       right: 35%;
     }
   }

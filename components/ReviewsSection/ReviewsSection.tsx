@@ -3,8 +3,9 @@ import dynamic from 'next/dynamic';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
+import 'swiper/css/free-mode';
 import 'swiper/css/navigation';
-import { Navigation } from 'swiper/modules';
+import { FreeMode, Navigation } from 'swiper/modules';
 
 import { reviewUser } from '@/interfaces/reviewsUsers.interface';
 import { users } from '@/utils/reviewsUsers/reviewsUsers';
@@ -24,22 +25,25 @@ const ReviewsSection = () => {
       <Swiper
         navigation={true}
         loop={true}
-        modules={[Navigation]}
+        freeMode={true}
+        grabCursor={true}
         slidesPerView={1}
+        spaceBetween={24}
         breakpoints={{
-          700: {
+          712: {
             slidesPerView: 2,
           },
-          1020: {
+          1056: {
             slidesPerView: 3,
           },
-          1340: {
+          1400: {
             slidesPerView: 4,
           },
-          1760: {
+          1744: {
             slidesPerView: 5,
           },
         }}
+        modules={[FreeMode, Navigation]}
         className="reviewsSwiper"
       >
         {users.map((user: reviewUser) => (
