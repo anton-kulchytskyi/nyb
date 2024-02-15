@@ -56,3 +56,29 @@ input:-webkit-autofill:active {
   transition: background-color 5000s ease-in-out 0s;
   box-shadow: transparent;
 }
+
+.reviewsSwiper {
+  height: 30rem;
+
+  & .swiper-button-prev,
+  .swiper-button-next {
+    color: #e7801a !important;
+    top: 95%;
+  }
+
+  & .swiper-button-prev {
+    left: 45%;
+
+    @include onSmall {
+      left: 35%;
+    }
+  }
+
+  & .swiper-button-next {
+    right: 45%;
+
+    @include onSmall {
+      right: 35%;
+    }
+  }
+}

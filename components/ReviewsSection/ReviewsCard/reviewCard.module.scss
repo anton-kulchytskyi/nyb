@@ -13,10 +13,6 @@
   flex-direction: column;
   justify-content: space-between;
 
-  @include onSmall {
-    max-width: 18rem;
-  }
-
   &__even {
     border: 2px solid $orange-secondary-100;
   }
