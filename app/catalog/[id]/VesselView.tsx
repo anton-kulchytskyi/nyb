@@ -1,15 +1,14 @@
 'use client'
 
 import React, { ChangeEvent, FormEvent, useState } from 'react';
-// import ModalImage from "react-modal-image";
 import { Errors } from '@/interfaces/errors.interface';
-// import { useCurrency } from '@/context/CurrencyContext';
+import { useCurrency } from '@/context/CurrencyContext';
 import QuestionMarkSvg from '@/components/SvgIconsComponents/QuestionMarkSvg';
 import ContactFormModal from '@/components/ContactForm/ContactFormModal/ContactFormModal';
 import { Vessel } from '@/interfaces/vessel.interface';
 import typo from '../../../styles/typography.module.scss';
 import Slider from './Slider';
-import styles from './page.module.scss';
+import styles from './VesselView.module.scss';
 import Modal from './Modal';
 
 
@@ -22,18 +21,17 @@ export const VesselView: React.FC<Props> = ({ ves, images }) => {
   const [isContactFormModalOpen, setIsContactFormModalOpen] = useState(false);
   const [showModalGallery, setShowModalGallery] = useState(false);
   const [errors, setErrors] = useState<Errors>({});
-  // const { 
-  //   selectedCurrency, 
-  //   selectedCrencySymbol 
-  // } = useCurrency();
-
+  const { 
+    selectedCurrency, 
+    selectedCurrencySymbol 
+  } = useCurrency();
   const [inputs, setInputs] = useState({
     name: '',
     userEmail: '',
     message: '',
   });
-  // const key = `vessel_price_${selectedCurrency}`;
-  // const currPrice = (+ves[key]).toLocaleString('en-US');
+  const key = `vessel_price_${selectedCurrency}`;
+  const currPrice = (+ves[key]).toLocaleString('en-US');
 
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -117,7 +115,7 @@ export const VesselView: React.FC<Props> = ({ ves, images }) => {
 
       // eslint-disable-next-line
       console.log(data.status === 200);
-
+      setIsContactFormModalOpen(!isContactFormModalOpen);
       if (data.status === 200) {
         setInputs({
           name: '',
@@ -137,7 +135,7 @@ export const VesselView: React.FC<Props> = ({ ves, images }) => {
         <div className={styles.body}>
           <div className={styles.body__top}>
             <span className={typo.typo_h4}>{ves.vessel_make} {ves.vessel_model}, {ves.vessel_year}, {ves.vessel_country}, {ves.vessel_town}</span>
-            {/* <span className={typo.typo_price}>{`${selectedCurrencySymbol} ${currPrice}`}</span> */}
+            <span className={typo.typo_price}>{`${selectedCurrencySymbol} ${currPrice}`}</span>
           </div>
           <div className={styles.body__gallery} >
             <Slider
@@ -157,7 +155,7 @@ export const VesselView: React.FC<Props> = ({ ves, images }) => {
                 </p>
               </div>
               <div className={styles.body__about_featchures}>
-                <p className={styles.body__about_featch}><span>Price:</span><span>{ves.vessel_price_USD}</span></p>
+                <p className={styles.body__about_featch}><span>Price:</span><span>{`${selectedCurrencySymbol} ${currPrice}`}</span></p>
                 <p className={styles.body__about_featch}><span>Year:</span><span>{ves.vessel_year}</span></p>
                 <p className={styles.body__about_featch}><span>Country:</span><span>{ves.vessel_country}</span></p>
                 <p className={styles.body__about_featch}><span>State:</span><span>{ves.vessel_town}</span></p>

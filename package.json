@@ -28,6 +28,7 @@
     "next": "14.0.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-icons": "^5.0.1",
     "react-modal-image": "^2.6.0",
     "react-slick": "^0.30.1",
     "slick-carousel": "^1.8.1",

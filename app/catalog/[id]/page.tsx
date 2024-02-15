@@ -1,7 +1,8 @@
+import dynamic from 'next/dynamic';
+
 import { Metadata } from "next";
 import { getVesselById } from '@/utils/api/getAllVessels';
 import { fetchImgUrl } from '@/utils/api/getImageFromAWS';
-import { VesselView } from './VesselView';
 
 type Props = {
   params: {
@@ -19,6 +20,11 @@ export async function generateMetadata({ params: { id }}: Props): Promise<Metada
     title: `Yacht ${id} | Norse Yacht Co`,
   };
 }
+
+const VesselViewNoSSR = dynamic(
+  () => import('./VesselView'),
+  { ssr: false }
+);
 
 
 export default async function Vessel({ params: { id }}: Props) {
@@ -38,7 +44,7 @@ export default async function Vessel({ params: { id }}: Props) {
 
   return (
     <>
-      <VesselView ves={ves} images={images} />
+      <VesselViewNoSSR ves={ves} images={images} />
     </>
   );
 };
