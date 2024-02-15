@@ -69,7 +69,7 @@ const Navbar = () => {
           {desktopScreen ? (
             <>
               <Link
-                href="/catalog"
+                href="/catalogue"
                 className={styles.link}
               >
                 Yachts
@@ -118,9 +118,7 @@ const Navbar = () => {
           </button>
         </div>
       </nav>
-      <div className="section">
-        <BreadCrumbs />
-      </div>
+      <BreadCrumbs />
     </>
   );
 

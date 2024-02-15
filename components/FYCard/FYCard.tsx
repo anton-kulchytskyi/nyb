@@ -51,7 +51,7 @@ const FYCard = ({ yacht, buttonsExample, inCatalog }: Props) => {
   }, [vessel_image_key]);
 
   const routeToVessel = () => {
-    router.push(`/catalog/${vessel_id}`);
+    router.push(`/catalogue/${vessel_id}?name=${vessel_make}`);
   };
 
   return (
@@ -79,7 +79,7 @@ const FYCard = ({ yacht, buttonsExample, inCatalog }: Props) => {
             <span className={styles.center}>
               <Button
                 text="See Detail"
-                linkTo={`/catalog/${vessel_id}`}
+                linkTo={`/catalogue/${vessel_id}`}
                 primary
               />
             </span>
@@ -91,7 +91,7 @@ const FYCard = ({ yacht, buttonsExample, inCatalog }: Props) => {
           >
             <Link
               className={typo.typo_name_yacht}
-              href={`/catalog/${vessel_id}`}
+              href={`/catalogue/${vessel_id}`}
             >{`${vessel_make} ${vessel_model}`}</Link>
             <p
               className={typo.typo_price}

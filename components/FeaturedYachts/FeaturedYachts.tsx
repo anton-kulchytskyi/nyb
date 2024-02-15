@@ -25,7 +25,7 @@ const FeaturedYachts = async () => {
       <span className={styles.seeall}>
         <TextButton
           text="See All"
-          linkTo="/catalog"
+          linkTo="/catalogue"
           primary
         />
       </span>
