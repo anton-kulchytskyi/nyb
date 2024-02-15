@@ -13,6 +13,7 @@ import ContactsModal from '@/components/Navbar/ContactsModal/ContactsModal';
 import CurrencyModal from '@/components/Navbar/CurrencyModal/CurrencyModal';
 
 import styles from '@/components/Navbar/navbar.module.scss';
+import BreadCrumbs from '../BreadCrumbs/BreadCrumbs';
 
 const Navbar = () => {
   const [isCurrencyModalOpen, setIsCurrencyModalOpen] = useState(false);
@@ -68,13 +69,13 @@ const Navbar = () => {
           {desktopScreen ? (
             <>
               <Link
-                href="/catalog"
+                href="/catalogue"
                 className={styles.link}
               >
                 Yachts
               </Link>
               <Link
-                href="/"
+                href="/how-it-works"
                 className={styles.link}
               >
                 How it works?
@@ -117,6 +118,7 @@ const Navbar = () => {
           </button>
         </div>
       </nav>
+      <BreadCrumbs />
     </>
   );
 

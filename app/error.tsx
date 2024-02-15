@@ -1,6 +1,6 @@
 'use client';
 
-import Link from "next/link";
+import Custom404 from './not-found';
 
 type Props = {
   error: Error;
@@ -8,11 +8,10 @@ type Props = {
 
 const error = ({ error }: Props) => {
   // eslint-disable-next-line no-console
-  console.log(error.name);
+  console.log(error.message);
   return (
     <>
-      <h2>{error.message}</h2>
-      <Link href='/'>Go home</Link>
+      <Custom404 />
     </>
   )
 }

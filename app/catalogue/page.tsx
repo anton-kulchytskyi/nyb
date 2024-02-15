@@ -8,7 +8,7 @@ import styles from './page.module.scss';
 
 
 export const metadata: Metadata = {
-  title: 'Catalog | Norse Yacht Co',
+  title: 'Catalogue | Norse Yacht Co',
 };
 
 const CardNumber = 9;

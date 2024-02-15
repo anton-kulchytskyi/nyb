@@ -3,23 +3,32 @@
 .pagination {
   display: flex;
   justify-content: center;
-  li{
+
+  li {
     padding: 5px;
     display: inline-block;
     font-family: var(--font-baiJamjuree);
     font-weight: 600;
     font-size: 1.5em;
     color: #919191;
-      a {
-        text-decoration: none;
-        color: #919191;
+
+    a {
+      text-decoration: none;
+      color: #919191;
+      transition: 1s;
+
+      &:hover {
+        color: $orange-secondary-100;
       }
+    }
   }
+
   .pageItemActive {
     pointer-events: none;
-      a {
-        color: #000;
-      }
+
+    a {
+      color: #000;
+    }
   }
 
   li:first-child {
