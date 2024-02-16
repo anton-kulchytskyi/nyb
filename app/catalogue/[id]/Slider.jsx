@@ -4,15 +4,13 @@ import { useState } from "react";
 import Image from 'next/image';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import 'swiper/css/free-mode';
+import 'swiper/css/navigation';
+import 'swiper/css/thumbs';
 import { Navigation, FreeMode, Thumbs } from 'swiper/modules';
 
-import 'swiper/scss';
-import 'swiper/scss/free-mode';
-import 'swiper/scss/navigation';
-import 'swiper/scss/thumbs';
-
 import styles from './Slider.module.scss';
-
 
 const Slider = ({ openContentFullscreen, images, setShowModalGallery }) => {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
@@ -26,15 +24,15 @@ const Slider = ({ openContentFullscreen, images, setShowModalGallery }) => {
 
   return (
     <div>
-
       <div className={styles.container}>
         <Swiper
-          modules={[Navigation, Thumbs, FreeMode]}
+          navigation={true}
+          modules={[Navigation, Thumbs]}
           spaceBetween={10}
           loop={true}
-          navigation={true}
           thumbs={{ swiper: thumbsSwiper && !thumbsSwiper.destroyed ? thumbsSwiper : null }}
           className={styles.slide__container}
+          grabCursor={true}
         >
           {images.map((img, index) => (
             <SwiperSlide key={index}>
@@ -56,7 +54,8 @@ const Slider = ({ openContentFullscreen, images, setShowModalGallery }) => {
           slidesPerView={5}
           freeMode={true}
           watchSlidesProgress={true}
-          modules={[Navigation, Thumbs, FreeMode]}
+          grabCursor={true}
+          modules={[Thumbs, FreeMode]}
           className={styles.slide__thumb__container}
         >
           <SwiperSlide>

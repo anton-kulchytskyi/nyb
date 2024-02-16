@@ -12,7 +12,6 @@ import { useCurrency } from '@/context/CurrencyContext';
 
 import 'swiper/css';
 import 'swiper/css/free-mode';
-import 'swiper/css/navigation';
 
 import typo from '@/styles/typography.module.scss';
 import styles from './Modal.module.scss';
