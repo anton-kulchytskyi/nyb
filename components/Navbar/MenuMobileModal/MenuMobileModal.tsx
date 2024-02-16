@@ -17,13 +17,12 @@ type Props = {
   isMobileMenuClose: boolean;
   mobileMenuHandler: () => void;
   currencyModalHandler: () => void;
-  // selectedCurrency: string;
 };
 
 const MenuMobileModal = ({
   isMobileMenuClose,
   mobileMenuHandler,
-  currencyModalHandler, // selectedCurrency,
+  currencyModalHandler,
 }: Props) => {
   const { selectedCurrency } = useCurrency();
   const pathname = usePathname();

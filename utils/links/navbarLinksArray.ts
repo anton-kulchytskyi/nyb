@@ -5,6 +5,10 @@ export const navbarLinksArray = [
   },
   {
     title: 'How it Works?',
-    path: '/how-it-works',
+    path: '/',
+  },
+  {
+    title: 'Split currency',
+    path: '',
   },
 ];

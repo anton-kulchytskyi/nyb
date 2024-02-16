@@ -76,11 +76,13 @@ button {
     }
 
     &-survey {
-      background: center / contain no-repeat url('../public/book_survey_img.png');
+      background: center / contain no-repeat
+        url('../public/book_survey_img.png');
     }
 
     &-choose {
-      background: center / contain no-repeat url('../public/choose_yacht_img.png');
+      background: center / contain no-repeat
+        url('../public/choose_yacht_img.png');
     }
   }
 
@@ -92,7 +94,6 @@ button {
     &:hover {
       color: $orange-secondary-100;
     }
-
   }
 }
 
