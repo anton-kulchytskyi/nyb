@@ -1,4 +1,5 @@
 @import '../../styles/mixins.scss';
+@import '../../styles/var.scss';
 
 .review_section {
   padding: 0 4rem 6.25rem;
@@ -8,13 +9,42 @@
   }
 }
 
-.carousel__wrapper {
-  background-color: red;
+.swiper {
+  margin-bottom: 1rem;
 }
 
-.prev,
-.next {
+.swiper_next,
+.swiper_prev {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f8f8f8;
   width: 2.5rem;
   height: 2.5rem;
-  background-color: red;
+  border-radius: 50%;
+
+  &:not(:last-child) {
+    margin-right: 1.5rem;
+  }
+
+  &:hover {
+    background-color: $orange-secondary-100;
+  }
+
+  &:hover path {
+    fill: #f8f8f8;
+  }
+}
+
+.buttons_container {
+  display: flex;
+  justify-content: flex-end;
+
+  &:not(:last-child) {
+    margin-right: 1.5rem;
+  }
+
+  @include onDesktop {
+    justify-content: center;
+  }
 }
