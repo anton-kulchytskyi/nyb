@@ -28,8 +28,12 @@ const ContactForm = () => {
   const checkNameInput = () => {
     let data: string = '';
     if (!inputs.name.trim()) {
-      data = 'Name is a required field';
-    } else if (!/^[a-zA-Z\s]+$/.test(inputs.name)) {
+      data = 'The name field is required';
+    } else if (
+      !/^[a-zA-Zа-яА-ЯіёЁĀ-žŠĐŽČćžšđčŚŹŃĄĘŚŁŻĆŹńąęśłżćźÆØÅæøå\s]+$/.test(
+        inputs.name
+      )
+    ) {
       data = 'The name must contain only letters';
     } else if (inputs.name.length > 30) {
       data = 'The name must not be longer than 30 characters';
@@ -40,9 +44,9 @@ const ContactForm = () => {
   const checkEmailInput = () => {
     let data: string = '';
     if (!inputs.userEmail.trim()) {
-      data = 'Email is a required field';
+      data = 'The email field is required';
     } else if (!/\S+@\S+\.\S+/.test(inputs.userEmail)) {
-      data = 'Enter a valid email';
+      data = 'The email is not valid';
     }
 
     data.length && setErrors((prev) => ({ ...prev, userEmail: data }));
@@ -178,7 +182,7 @@ const ContactForm = () => {
             className={`
               ${styles.input}
               ${styles.input__textarea}
-              ${errors.message && styles.input__textarea_error} 
+              ${errors.message && styles.input__error} 
               ${
                 inputs.message.trim() && !errors.message
                   ? styles.input__success
