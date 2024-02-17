@@ -75,10 +75,9 @@ const ContactForm = () => {
   ) => {
     for (const error in errors) {
       if (error === e.target.name) {
-        setErrors({
-          ...errors,
-          [error]: '',
-        });
+        const correctedErrors = { ...errors };
+        delete correctedErrors[error];
+        setErrors(correctedErrors);
       }
     }
   };
