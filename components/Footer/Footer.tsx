@@ -2,7 +2,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 
-import { footerLinksArray } from '@/utils/links/footerLinksArray';
+import { pageLinksArray } from '@/utils/links/pageLinks';
 
 import FooterLogo from '@/public/icons/logo_footer.svg';
 import useWindowDimensions from '@/hooks/useWindowDimensions';
@@ -10,8 +10,8 @@ import Copyright from '../Copyright/Copyright';
 import SocialMedia from '../SocialMedia/SocialMedia';
 import styles from './footer.module.scss';
 
-const leftLinks = footerLinksArray.slice(0, 3);
-const rightLinks = footerLinksArray.slice(3);
+const leftLinks = pageLinksArray.slice(0, 3);
+const rightLinks = pageLinksArray.slice(3);
 
 const Footer = () => {
   const { width } = useWindowDimensions();

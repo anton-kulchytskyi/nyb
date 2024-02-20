@@ -59,7 +59,9 @@ const FYCard = ({ yacht, buttonsExample, inCatalog }: Props) => {
       ) : (
         <>
           <div
-            className={`${styles.image_container} ${inCatalog ? styles.image_catalog_container : ''}`}
+            className={`${styles.image_container} ${
+              inCatalog ? styles.image_catalog_container : ''
+            }`}
             onClick={routeToVessel}
           >
             <Image
@@ -80,10 +82,18 @@ const FYCard = ({ yacht, buttonsExample, inCatalog }: Props) => {
               />
             </span>
           </div>
-          <div className={`${inCatalog ? styles.card__desc_catalog : styles.card__desc}`}>
+          <div
+            className={`${
+              inCatalog ? styles.card__desc_catalog : styles.card__desc
+            }`}
+          >
             <Link
               className={typo.typo_name_yacht}
-              href={{ pathname: `/catalogue/${vessel_id}`, query: { name: vessel_make }}} as={`/catalogue/${vessel_id}`}
+              href={{
+                pathname: `/catalogue/${vessel_id}`,
+                query: { name: vessel_make },
+              }}
+              as={`/catalogue/${vessel_id}`}
             >{`${vessel_make} ${vessel_model}`}</Link>
             <p
               className={typo.typo_price}

@@ -47,6 +47,10 @@
   outline: none;
   transform: background-color 0.6s ease;
 
+  &_prCard {
+    border-color: $gray-100;
+  }
+
   &__textarea {
     height: 11rem;
     font-size: 1rem;
@@ -95,6 +99,10 @@
   color: $gray-20;
   background-color: $gray-primary;
   padding: 0 0.25rem;
+
+  &_prCard {
+    background-color: $white;
+  }
 }
 
 .error_message {

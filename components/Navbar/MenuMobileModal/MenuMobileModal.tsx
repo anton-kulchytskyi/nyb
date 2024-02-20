@@ -1,10 +1,9 @@
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
 
 import { useCurrency } from '@/context/CurrencyContext';
 
-import { navbarLinksArray } from '@/utils/links/navbarLinksArray';
+import { pageLinksArray } from '@/utils/links/pageLinks';
 
 import styles from './menuMobileModal.module.scss';
 
@@ -25,34 +24,29 @@ const MenuMobileModal = ({
   currencyModalHandler,
 }: Props) => {
   const { selectedCurrency } = useCurrency();
-  const pathname = usePathname();
   return (
     <motion.div
       className={styles.modal}
       animate={isMobileMenuClose ? 'open' : 'closed'}
       variants={variants}
     >
-      {navbarLinksArray.map((link) =>
-        link.title === 'Split currency' ? (
-          <Link
-            key={link.title}
-            href={pathname}
-            className={styles.modal__link}
-            onClick={currencyModalHandler}
-          >
-            {`${link.title} / ${selectedCurrency}`}
-          </Link>
-        ) : (
-          <Link
-            key={link.title}
-            href={link.path}
-            onClick={mobileMenuHandler}
-            className={styles.modal__link}
-          >
-            {link.title}
-          </Link>
-        )
-      )}
+      {pageLinksArray.slice(0, 2).map((link, i) => (
+        <Link
+          key={i}
+          href={link.path}
+          className={styles.modal__link}
+          onClick={mobileMenuHandler}
+        >
+          {link.title}
+        </Link>
+      ))}
+      <button
+        type="button"
+        onClick={currencyModalHandler}
+        className={styles.modal__link}
+      >
+        {`Split currency / ${selectedCurrency}`}
+      </button>
     </motion.div>
   );
 };

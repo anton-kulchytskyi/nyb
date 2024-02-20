@@ -50,7 +50,7 @@ const SectionComponentText = ({
         </p>
         <TextButton
           text="Read more"
-          linkTo="/catalogue"
+          linkTo={`/how-it-works#${title.split(' ')[0].toLowerCase()}`}
           primary={order}
         />
       </div>

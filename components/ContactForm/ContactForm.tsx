@@ -5,7 +5,11 @@ import { Errors } from '@/interfaces/errors.interface';
 import styles from './contactForm.module.scss';
 import ContactFormModal from './ContactFormModal/ContactFormModal';
 
-const ContactForm = () => {
+type Props = {
+  productCard?: boolean;
+};
+
+const ContactForm = ({ productCard }: Props) => {
   const [isContactFormModalOpen, setIsContactFormModalOpen] = useState(false);
   const [inputs, setInputs] = useState({
     name: '',
@@ -127,8 +131,8 @@ const ContactForm = () => {
             type="text"
             value={inputs.name}
             className={`${styles.input} ${
-              errors.name ? styles.input__error : ''
-            }
+              productCard ? styles.input_prCard : ''
+            } ${errors.name ? styles.input__error : ''}
             ${inputs.name.trim() && !errors.name ? styles.input__success : ''}
             `}
             onChange={handleChange}
@@ -136,7 +140,9 @@ const ContactForm = () => {
             onBlur={checkNameInput}
           />
           <label
-            className={styles.label}
+            className={`${styles.label} ${
+              productCard ? styles.label_prCard : ''
+            }`}
             htmlFor="name"
           >
             Your name
@@ -152,7 +158,7 @@ const ContactForm = () => {
             type="email"
             value={inputs.userEmail}
             className={`
-              ${styles.input}
+              ${styles.input} ${productCard ? styles.input_prCard : ''}
               ${errors.userEmail && styles.input__error} 
               ${
                 inputs.userEmail.trim() && !errors.userEmail
@@ -164,7 +170,9 @@ const ContactForm = () => {
             onBlur={checkEmailInput}
           />
           <label
-            className={styles.label}
+            className={`${styles.label} ${
+              productCard ? styles.label_prCard : ''
+            }`}
             htmlFor="email"
           >
             Your email
@@ -180,6 +188,7 @@ const ContactForm = () => {
             value={inputs.message}
             className={`
               ${styles.input}
+              ${productCard ? styles.input_prCard : ''}
               ${styles.input__textarea}
               ${errors.message && styles.input__error} 
               ${
@@ -192,7 +201,9 @@ const ContactForm = () => {
             onBlur={checkMessageInput}
           />
           <label
-            className={styles.label}
+            className={`${styles.label} ${
+              productCard ? styles.label_prCard : ''
+            }`}
             htmlFor="message"
           >
             Your message
