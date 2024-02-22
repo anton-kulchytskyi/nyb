@@ -1,9 +1,13 @@
+/* eslint-disable @next/next/no-img-element */
 import Image from 'next/image';
+import { Dispatch, SetStateAction } from 'react';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { FreeMode, Scrollbar } from 'swiper/modules';
-import SwiperCore, { Mousewheel } from "swiper/core";
-SwiperCore.use([Mousewheel]);
+import { FreeMode, Scrollbar, Mousewheel } from 'swiper/modules';
+// import SwiperCore from 'swiper/core';
+// import Mousewheel from 'swiper/core';
+// SwiperCore.use([Mousewheel]);
+import { Vessel } from '@/interfaces/vessel.interface';
 
 import Close from '@/public/icons/close.svg';
 import SocialMediaIcons from '@/components/SocialMediaIcons/SocialMediaIcons';
@@ -16,40 +20,47 @@ import 'swiper/css/free-mode';
 import typo from '@/styles/typography.module.scss';
 import styles from './Modal.module.scss';
 
+type Props = {
+  showModalGallery: boolean;
+  setShowModalGallery: Dispatch<SetStateAction<boolean>>;
+  images: string[];
+  ves: Vessel;
+};
+
 const Modal = ({
   showModalGallery,
   setShowModalGallery,
   images,
   ves,
-}) => {
-  const {
-    selectedCurrency,
-    selectedCurrencySymbol
-  } = useCurrency();
+}: Props) => {
+  const { selectedCurrency, selectedCurrencySymbol } = useCurrency();
   const key = `vessel_price_${selectedCurrency}`;
   const currPrice = (+ves[key]).toLocaleString('en-US');
 
   return (
     <div
       className={`${styles.modal} ${showModalGallery ? styles.open : ''}`}
-      id='modal'
+      id="modal"
     >
       <div className={styles.modal__wrapper}>
         <div className={styles.modal__content}>
           <div className={styles.gallery__container}>
-
             <div className={styles.gallery_small}>
               <Swiper
-                modules={[FreeMode, Scrollbar]}
+                modules={[FreeMode, Scrollbar, Mousewheel]}
                 direction={'vertical'}
                 slidesPerView={'auto'}
                 freeMode={true}
                 scrollbar={true}
-                mousewheel={true}
+                // mousewheel={true}
               >
                 <SwiperSlide>
                   {images.map((img, index) => (
-                    <a href={`#${index}`} key={index} className={styles.slider__image_small__container}>
+                    <a
+                      href={`#${index}`}
+                      key={index}
+                      className={styles.slider__image_small__container}
+                    >
                       <img
                         src={img}
                         alt="vessel"
@@ -63,18 +74,19 @@ const Modal = ({
 
             <div className={styles.gallery}>
               <Swiper
-                modules={[FreeMode, Scrollbar]}
-                direction={'vertical'}
-                slidesPerView={'auto'}
+                modules={[FreeMode, Scrollbar, Mousewheel]}
+                // direction={'vertical'}
+                // slidesPerView={'auto'}
                 freeMode={true}
                 scrollbar={true}
-                mousewheel={true}
+                grabCursor={true}
+                // mousewheel={true}
               >
                 <SwiperSlide className={styles.slider__image__container}>
                   {images.map((img, index) => (
                     <img
                       key={index}
-                      id={index}
+                      id={String(index)}
                       src={img}
                       alt="vessel"
                       className={styles.slider__image}
@@ -96,12 +108,18 @@ const Modal = ({
                 />
               </div>
               <div className={styles.social__middle}>
-                <SocialMediaIcons color='#E7801A' />
+                <SocialMediaIcons color="#E7801A" />
               </div>
               <div className={styles.social__bottom}>
-                <p className={styles.social__name}>{ves.vessel_make}, {ves.vessel_year}</p>
-                <p className={styles.social__country}>{ves.vessel_country}, {ves.vessel_town}</p>
-                <p className={typo.typo_price}>{selectedCurrencySymbol} {currPrice}</p>
+                <p className={styles.social__name}>
+                  {ves.vessel_make}, {ves.vessel_year}
+                </p>
+                <p className={styles.social__country}>
+                  {ves.vessel_country}, {ves.vessel_town}
+                </p>
+                <p className={typo.typo_price}>
+                  {selectedCurrencySymbol} {currPrice}
+                </p>
               </div>
             </div>
           </div>

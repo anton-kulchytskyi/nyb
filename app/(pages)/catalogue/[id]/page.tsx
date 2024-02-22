@@ -1,33 +1,34 @@
 import dynamic from 'next/dynamic';
 
-import { Metadata } from "next";
+import { Metadata } from 'next';
 import { getVesselById } from '@/utils/api/getAllVessels';
 import { fetchImgUrl } from '@/utils/api/getImageFromAWS';
 
 type Props = {
   params: {
     id: string;
-  }
-}
+  };
+};
 
 interface Images {
-  yacht_image_id: number,
-  yacht_image_key: string,
+  yacht_image_id: number;
+  yacht_image_key: string;
 }
 
-export async function generateMetadata({ params: { id }}: Props): Promise<Metadata> {
+export async function generateMetadata({
+  params: { id },
+}: Props): Promise<Metadata> {
   return {
     title: `Yacht ${id} | Norse Yacht Co`,
   };
 }
 
 const VesselViewNoSSR = dynamic(
-  () => import('./VesselView'),
+  () => import('@/components/ProductCard/VesselView/VesselView'),
   { ssr: false }
 );
 
-
-export default async function Vessel({ params: { id }}: Props) {
+export default async function Vessel({ params: { id } }: Props) {
   const ves = await getVesselById(`/${id}`);
   const images = await loadAllPhotosFromAWS(ves.vessel_images);
 
@@ -44,7 +45,10 @@ export default async function Vessel({ params: { id }}: Props) {
 
   return (
     <>
-      <VesselViewNoSSR ves={ves} images={images} />
+      <VesselViewNoSSR
+        ves={ves}
+        images={images}
+      />
     </>
   );
-};
+}
