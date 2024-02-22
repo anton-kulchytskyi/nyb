@@ -1,6 +1,9 @@
 import dynamic from 'next/dynamic';
 
 import { Metadata } from 'next';
+
+import { Images } from '@/interfaces/vessel.interface';
+
 import { getVesselById } from '@/utils/api/getAllVessels';
 import { fetchImgUrl } from '@/utils/api/getImageFromAWS';
 
@@ -9,11 +12,6 @@ type Props = {
     id: string;
   };
 };
-
-interface Images {
-  yacht_image_id: number;
-  yacht_image_key: string;
-}
 
 export async function generateMetadata({
   params: { id },
@@ -30,7 +28,7 @@ const VesselViewNoSSR = dynamic(
 
 export default async function Vessel({ params: { id } }: Props) {
   const ves = await getVesselById(`/${id}`);
-  const images = await loadAllPhotosFromAWS(ves.vessel_images);
+  const images = await loadAllPhotosFromAWS(ves.yacht_images);
 
   async function loadAllPhotosFromAWS(images: Images[]) {
     const arrayOfFetchImages = [];

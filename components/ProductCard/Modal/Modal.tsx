@@ -34,7 +34,7 @@ const Modal = ({
   ves,
 }: Props) => {
   const { selectedCurrency, selectedCurrencySymbol } = useCurrency();
-  const key = `vessel_price_${selectedCurrency}`;
+  const key = `yacht_price_${selectedCurrency}`;
   const currPrice = (+ves[key]).toLocaleString('en-US');
 
   return (
@@ -63,7 +63,7 @@ const Modal = ({
                     >
                       <img
                         src={img}
-                        alt="vessel"
+                        alt="yacht"
                         className={styles.slider__image_small}
                       />
                     </a>
@@ -88,7 +88,7 @@ const Modal = ({
                       key={index}
                       id={String(index)}
                       src={img}
-                      alt="vessel"
+                      alt="yacht"
                       className={styles.slider__image}
                     />
                   ))}
@@ -112,10 +112,10 @@ const Modal = ({
               </div>
               <div className={styles.social__bottom}>
                 <p className={styles.social__name}>
-                  {ves.vessel_make}, {ves.vessel_year}
+                  {ves.yacht_make}, {ves.yacht_year}
                 </p>
                 <p className={styles.social__country}>
-                  {ves.vessel_country}, {ves.vessel_town}
+                  {ves.yacht_country}, {ves.yacht_town}
                 </p>
                 <p className={typo.typo_price}>
                   {selectedCurrencySymbol} {currPrice}

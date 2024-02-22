@@ -1,5 +1,10 @@
+export interface Images {
+  yacht_image_id: number;
+  yacht_image_key: string;
+}
+
 type VesselKeys = {
-  [key: string]: number | string | boolean | object;
+  [key: string]: number | string | boolean | Images[];
 };
 
 export interface Vessel extends VesselKeys {
