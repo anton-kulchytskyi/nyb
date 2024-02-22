@@ -32,7 +32,7 @@ const FeaturedYachts = async () => {
       <div className={styles.cards_container}>
         {visibleYachts.map((yacht: Vessel, i: number) => (
           <FYCard
-            key={yacht.vessel_id}
+            key={yacht.yacht_id}
             yacht={yacht}
             buttonsExample={labelText[i]}
           />
