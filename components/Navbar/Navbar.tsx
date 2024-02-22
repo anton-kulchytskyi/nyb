@@ -15,6 +15,7 @@ import ContactsModal from '@/components/Navbar/ContactsModal/ContactsModal';
 import CurrencyModal from '@/components/Navbar/CurrencyModal/CurrencyModal';
 
 import styles from '@/components/Navbar/navbar.module.scss';
+import ClickableComponent from '../ClickableComponent/ClickableComponent';
 
 const Navbar = () => {
   const [isCurrencyModalOpen, setIsCurrencyModalOpen] = useState(false);
@@ -67,13 +68,19 @@ const Navbar = () => {
           {desktopScreen ? (
             <>
               {pageLinksArray.slice(0, 2).map((link, i) => (
-                <Link
+                <ClickableComponent
                   key={i}
+                  text={link.title}
                   href={link.path}
-                  className={styles.link}
-                >
-                  {link.title}
-                </Link>
+                  style={styles.link}
+                />
+                // <Link
+                //   key={i}
+                //   href={link.path}
+                //   className={styles.link}
+                // >
+                //   {link.title}
+                // </Link>
               ))}
             </>
           ) : (
@@ -96,21 +103,33 @@ const Navbar = () => {
         </Link>
         <div className={styles.navbar__side}>
           {desktopScreen && (
-            <button
+            <ClickableComponent
               type="button"
+              text={`Split currency / ${selectedCurrency}`}
               onClick={currencyModalHandler}
-              className={`${styles.link} ${styles.link__button}`}
-            >
-              {`Split currency / ${selectedCurrency}`}
-            </button>
+              style={`${styles.link} ${styles.link__button}`}
+            />
+            // <button
+            //   type="button"
+            //   onClick={currencyModalHandler}
+            //   className={`${styles.link} ${styles.link__button}`}
+            // >
+            //   {`Split currency / ${selectedCurrency}`}
+            // </button>
           )}
-          <button
+          <ClickableComponent
+            type="button"
+            text="Contacts"
+            onClick={contactsModalHandler}
+            style={`${styles.link} ${styles.link__button}`}
+          />
+          {/* <button
             type="button"
             onClick={contactsModalHandler}
             className={`${styles.link} ${styles.link__button}`}
           >
             Contacts
-          </button>
+          </button> */}
         </div>
       </nav>
     </>
