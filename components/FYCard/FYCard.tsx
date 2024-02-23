@@ -94,7 +94,12 @@ const FYCard = ({ yacht, buttonsExample, inCatalog }: Props) => {
                 query: { name: yacht_make },
               }}
               as={`/catalogue/${yacht_id}`}
-            >{`${yacht_make} ${yacht_model}`}</Link>
+              // >{`${yacht_make} ${yacht_model}`}</Link>
+            >
+              <span>{yacht_make}</span>
+              <br />
+              <span>{yacht_model}</span>
+            </Link>
             <p
               className={typo.typo_price}
             >{`${selectedCurrencySymbol} ${currPrice}`}</p>
