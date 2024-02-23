@@ -18,7 +18,7 @@ type Props = {
 export const VesselView: React.FC<Props> = ({ ves, images }) => {
   const [showModalGallery, setShowModalGallery] = useState(false);
   const { selectedCurrency, selectedCurrencySymbol } = useCurrency();
-  const key = `vessel_price_${selectedCurrency}`;
+  const key = `yacht_price_${selectedCurrency}`;
   const currPrice = (+ves[key]).toLocaleString('en-US');
 
   const openContentFullscreen = () => {
@@ -34,8 +34,8 @@ export const VesselView: React.FC<Props> = ({ ves, images }) => {
         <div className={styles.body}>
           <div className={styles.body__top}>
             <span className={typo.typo_h4}>
-              {ves.vessel_make} {ves.vessel_model}, {ves.vessel_year},{' '}
-              {ves.vessel_country}, {ves.vessel_town}
+              {ves.yacht_make} {ves.yacht_model}, {ves.yacht_year},{' '}
+              {ves.yacht_country}, {ves.yacht_town}
             </span>
             <span
               className={typo.typo_price}
@@ -88,47 +88,47 @@ export const VesselView: React.FC<Props> = ({ ves, images }) => {
                 </p>
                 <p className={styles.body__about_featch}>
                   <span>Year:</span>
-                  <span>{ves.vessel_year}</span>
+                  <span>{ves.yacht_year}</span>
                 </p>
                 <p className={styles.body__about_featch}>
                   <span>Country:</span>
-                  <span>{ves.vessel_country}</span>
+                  <span>{ves.yacht_country}</span>
                 </p>
                 <p className={styles.body__about_featch}>
                   <span>State:</span>
-                  <span>{ves.vessel_town}</span>
+                  <span>{ves.yacht_town}</span>
                 </p>
                 <p className={styles.body__about_featch}>
                   <span>Lengh Overall:</span>
-                  <span>{ves.vessel_loa}</span>
+                  <span>{ves.yacht_loa}</span>
                 </p>
                 <p className={styles.body__about_featch}>
                   <span>Beam:</span>
-                  <span>{ves.vessel_beam}</span>
+                  <span>{ves.yacht_beam}</span>
                 </p>
                 <p className={styles.body__about_featch}>
                   <span>Draft:</span>
-                  <span>{ves.vessel_draft}</span>
+                  <span>{ves.yacht_draft}</span>
                 </p>
                 <p className={styles.body__about_featch}>
                   <span>Cabin:</span>
-                  <span>{ves.vessel_cabin}</span>
+                  <span>{ves.yacht_cabin}</span>
                 </p>
                 <p className={styles.body__about_featch}>
                   <span>Berth:</span>
-                  <span>{ves.vessel_berth}</span>
+                  <span>{ves.yacht_berth}</span>
                 </p>
                 <p className={styles.body__about_featch}>
                   <span>Kell Type:</span>
-                  <span>{ves.vessel_keel_type}</span>
+                  <span>{ves.yacht_keel_type}</span>
                 </p>
                 <p className={styles.body__about_featch}>
                   <span>Fuel Type:</span>
-                  <span>{ves.vessel_fuel_type}</span>
+                  <span>{ves.yacht_fuel_type}</span>
                 </p>
                 <p className={styles.body__about_featch}>
                   <span>Engine Quantity:</span>
-                  <span>{ves.vessel_engine}</span>
+                  <span>{ves.yacht_engine}</span>
                 </p>
               </div>
             </div>

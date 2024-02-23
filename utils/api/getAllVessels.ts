@@ -1,7 +1,8 @@
 import { DefaultError } from '@/utils/errors/defaultError';
 import { Vessel } from '@/interfaces/vessel.interface';
 
-const BASE_URL = 'https://nyb-project-production.up.railway.app/vessels';
+const BASE_URL = 'https://nyb-project-production.up.railway.app/yachts';
+// const BASE_URL = 'https://nyb-project-production.up.railway.app/vessels';
 // const BASE_URL = 'https://nyb-project-production.up.railway.app/vessels/cards';
 
 function getData(): Promise<Vessel[]>;
@@ -29,5 +30,5 @@ export const getVesselById = async (id: string): Promise<Vessel> =>
 export const getFeaturedYacht = async (): Promise<Vessel[]> => {
   const yachts = await getData();
 
-  return yachts.filter((yacht: Vessel) => yacht.featured);
+  return yachts.filter((yacht: Vessel) => yacht.yacht_featured);
 };

@@ -25,31 +25,31 @@ const FYCard = ({ yacht, buttonsExample, inCatalog }: Props) => {
   const { selectedCurrency, selectedCurrencySymbol } = useCurrency();
   const [imageUrl, setImageUrl] = useState<string>('');
   const {
-    vessel_id,
-    vessel_make,
-    vessel_model,
-    vessel_country,
-    vessel_town,
-    vessel_year,
-    vessel_image_key,
+    yacht_id,
+    yacht_make,
+    yacht_model,
+    yacht_country,
+    yacht_town,
+    yacht_year,
+    yacht_main_image_key,
   } = yacht;
 
-  const key = `vessel_price_${selectedCurrency}`;
+  const key = `yacht_price_${selectedCurrency}`;
   const currPrice = (+yacht[key]).toLocaleString('en-US');
 
   useEffect(() => {
     async function loadImgFromAws() {
-      const currImg = await fetchImgUrl(vessel_image_key);
+      const currImg = await fetchImgUrl(yacht_main_image_key);
       setImageUrl(currImg || 'https://fakeimg.pl/600x400?text=Norse+Yacht+Co.');
       setTimeout(() => {
         setIsLoading(false);
       }, 1500);
     }
     loadImgFromAws();
-  }, [vessel_image_key]);
+  }, [yacht_main_image_key]);
 
   const routeToVessel = () => {
-    router.push(`/catalogue/${vessel_id}?name=${vessel_make}`);
+    router.push(`/catalogue/${yacht_id}?name=${yacht_make}`);
   };
 
   return (
@@ -77,7 +77,7 @@ const FYCard = ({ yacht, buttonsExample, inCatalog }: Props) => {
             <span className={styles.center}>
               <Button
                 text="See Detail"
-                linkTo={`/catalogue/${vessel_id}`}
+                linkTo={`/catalogue/${yacht_id}`}
                 primary
               />
             </span>
@@ -90,18 +90,23 @@ const FYCard = ({ yacht, buttonsExample, inCatalog }: Props) => {
             <Link
               className={typo.typo_name_yacht}
               href={{
-                pathname: `/catalogue/${vessel_id}`,
-                query: { name: vessel_make },
+                pathname: `/catalogue/${yacht_id}`,
+                query: { name: yacht_make },
               }}
-              as={`/catalogue/${vessel_id}`}
-            >{`${vessel_make} ${vessel_model}`}</Link>
+              as={`/catalogue/${yacht_id}`}
+              // >{`${yacht_make} ${yacht_model}`}</Link>
+            >
+              <span>{yacht_make}</span>
+              <br />
+              <span>{yacht_model}</span>
+            </Link>
             <p
               className={typo.typo_price}
             >{`${selectedCurrencySymbol} ${currPrice}`}</p>
             <p
               className={`${typo.typo_description} ${typo.typo_description_gray}`}
             >
-              {`${vessel_country}, ${vessel_town} | ${vessel_year}`}
+              {`${yacht_country}, ${yacht_town} | ${yacht_year}`}
             </p>
           </div>
         </>
