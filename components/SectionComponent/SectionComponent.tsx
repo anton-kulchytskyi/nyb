@@ -1,10 +1,7 @@
 import { StaticImageData } from 'next/image';
-
 import { componentsDataArray } from '@/utils/componentsData/componentsDataArray';
-
 import SectionComponentText from '../SectionComponentText/SectionComponentText';
 import SectionComponentImage from '../SectionComponentImage/SectionComponentImage';
-
 import styles from './sectionComponent.module.scss';
 
 type Props = {
@@ -64,7 +61,7 @@ const AllSectionComponents = () => {
         />
       ))}
     </>
-  )
-}
+  );
+};
 
 export default AllSectionComponents;

@@ -90,7 +90,6 @@ const ContactForm = ({ productCard }: Props) => {
     e.preventDefault();
 
     if (validateForm()) {
-      // Send data to server in JSON format
       const data = await fetch(
         'https://nyb-project-production.up.railway.app/contact',
         {

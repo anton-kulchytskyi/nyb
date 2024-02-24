@@ -13,7 +13,7 @@ const error = ({ error }: Props) => {
     <>
       <Custom404 />
     </>
-  )
-}
+  );
+};
 
-export default error
+export default error;

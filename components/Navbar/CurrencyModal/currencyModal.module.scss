@@ -30,7 +30,7 @@
     box-shadow: 10px 10px 5px 0px $gray-80;
 
     @include onExtraLarge {
-      right: calc((100vw - ((100vw - 1920px) / 2)) - 108rem);
+      right: calc((100vw - ((100vw - 120rem) / 2)) - 108rem);
     }
 
     @include onTablet {

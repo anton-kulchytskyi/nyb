@@ -13,29 +13,32 @@
 .primary {
   background: $gray-primary;
   border: 1px solid $gray-primary;
+  transition: 0.5s;
+
 
   &:hover {
     background: $orange-secondary-100;
-    border: 1px solid $orange-secondary-100;
+    border-color: $orange-secondary-100;
   }
 
   &:active {
     background: $orange-secondary-110;
-    border: 1px solid $orange-secondary-110;
+    border-color: $orange-secondary-110;
   }
 }
 
 .secondary {
   background: $orange-secondary-100;
   border: 1px solid $orange-secondary-100;
+  transition: 0.5s;
 
   &:hover {
     background: $orange-secondary-110;
-    border: 1px solid $orange-secondary-110;
+    border-color: $orange-secondary-110;
   }
 
   &:active {
     background: transparent;
-    border: 1px solid $orange-secondary-100;
+    border-color: $orange-secondary-100;
   }
 }

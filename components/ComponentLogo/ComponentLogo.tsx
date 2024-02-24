@@ -1,6 +1,5 @@
 import typo from '@/styles/typography.module.scss';
 import LogoSvg from '../SvgIconsComponents/LogoSvg';
-
 import styles from './componentLogo.module.scss';
 
 type Props = {
@@ -15,16 +14,18 @@ const ComponentLogo = ({ number, text, order }: Props) => {
     <div className={styles.logo_container}>
       <div className={styles.logo_text}>
         <p
-          className={`${typo.typo_uitxt_secondary} ${
-            order ? typo.typo_uitxt_secondary_gray : ''
-          }`}
+          className={`
+            ${typo.typo_uitxt_secondary} 
+            ${order ? typo.typo_uitxt_secondary_gray : ''}
+          `}
         >
           {number}
         </p>
         <p
-          className={`${typo.typo_description} ${
-            order ? typo.typo_description_gray : typo.typo_description_white
-          }`}
+          className={`
+            ${typo.typo_description} 
+            ${order ? typo.typo_description_gray : typo.typo_description_white}
+          `}
         >
           {text}
         </p>

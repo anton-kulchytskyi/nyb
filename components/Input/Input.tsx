@@ -7,9 +7,7 @@ type Props = {
 };
 
 const Input = ({ title, inputType, textarea }: Props) => {
-  const textareaPlaceholder =
-    "Hello,\nI'd like to learn more about your services.";
-
+  const textareaPlaceholder = "Hello,\nI'd like to learn more about your services.";
   const labelText = textarea ? '' : `Your ${title}`;
 
   return (

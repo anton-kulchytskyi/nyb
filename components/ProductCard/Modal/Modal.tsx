@@ -1,17 +1,11 @@
 /* eslint-disable @next/next/no-img-element */
 import Image from 'next/image';
 import { Dispatch, SetStateAction } from 'react';
-
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { FreeMode, Scrollbar, Mousewheel } from 'swiper/modules';
-// import SwiperCore from 'swiper/core';
-// import Mousewheel from 'swiper/core';
-// SwiperCore.use([Mousewheel]);
 import { Vessel } from '@/interfaces/vessel.interface';
-
 import Close from '@/public/icons/close.svg';
 import SocialMediaIcons from '@/components/SocialMediaIcons/SocialMediaIcons';
-
 import { useCurrency } from '@/context/CurrencyContext';
 
 import 'swiper/css';
@@ -52,7 +46,6 @@ const Modal = ({
                 slidesPerView={'auto'}
                 freeMode={true}
                 scrollbar={true}
-                // mousewheel={true}
               >
                 <SwiperSlide>
                   {images.map((img, index) => (
@@ -75,12 +68,9 @@ const Modal = ({
             <div className={styles.gallery}>
               <Swiper
                 modules={[FreeMode, Scrollbar, Mousewheel]}
-                // direction={'vertical'}
-                // slidesPerView={'auto'}
                 freeMode={true}
                 scrollbar={true}
                 grabCursor={true}
-                // mousewheel={true}
               >
                 <SwiperSlide className={styles.slider__image__container}>
                   {images.map((img, index) => (

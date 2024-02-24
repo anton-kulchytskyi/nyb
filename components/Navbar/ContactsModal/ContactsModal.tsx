@@ -1,12 +1,9 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
-
 import SocialMediaIcons from '@/components/SocialMediaIcons/SocialMediaIcons';
-
 import typo from '@/styles/typography.module.scss';
 import styles from '@/components/Navbar/ContactsModal/contactsModal.module.scss';
-
 import Copy from '@/public/icons/copy.svg';
 import Close from '@/public/icons/close.svg';
 

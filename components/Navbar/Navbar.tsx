@@ -1,19 +1,16 @@
 'use client';
+
 import Link from 'next/link';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
-
 import LogoImg from '@/public/icons/logo.svg';
-
 import { pageLinksArray } from '@/utils/links/pageLinks';
-
 import useWindowDimensions from '@/hooks/useWindowDimensions';
 import { useCurrency } from '@/context/CurrencyContext';
 import MenuMobileModal from '@/components/Navbar/MenuMobileModal/MenuMobileModal';
 import MenuIcon from '@/components/Navbar/MenuIcon/MenuIcon';
 import ContactsModal from '@/components/Navbar/ContactsModal/ContactsModal';
 import CurrencyModal from '@/components/Navbar/CurrencyModal/CurrencyModal';
-
 import styles from '@/components/Navbar/navbar.module.scss';
 
 const Navbar = () => {

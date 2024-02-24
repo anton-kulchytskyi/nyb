@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 
 const CardNumber = 9;
 
-const Catalog = async ({ searchParams }: {searchParams?: {page: string; size: string}} ) => {
+const Catalog = async ( { searchParams }: {searchParams?: {page: string; size: string} }) => {
   const allYachts = await getAllVessels();
   let page = Number(searchParams?.page) || 1;
   const size = Number(searchParams?.size) || CardNumber;
@@ -32,15 +32,15 @@ const Catalog = async ({ searchParams }: {searchParams?: {page: string; size: st
       <h4 className={`${styles.catalog_title} ${typo.typo_h4}`}>Catalogue</h4>
       {yachtsPage.length ?
         (<CatalogYacht yachts={yachtsPage}></CatalogYacht>)
-        :(<h4 className={`${styles.no_yachts}`}>No Yachts</h4>)
+        : (<h4 className={`${styles.no_yachts}`}>No Yachts</h4>)
       }
-      <Pagination 
-        items={allYachts?.length} 
+      <Pagination
+        items={allYachts?.length}
         pageSize={CardNumber}
         currentPage={page}
       />
     </section>
-  )
-}
+  );
+};
 
 export default Catalog;

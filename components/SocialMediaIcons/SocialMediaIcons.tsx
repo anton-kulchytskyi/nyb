@@ -1,9 +1,7 @@
 import Link from 'next/link';
-
 import InstagramSvg from '@/components/SvgIconsComponents/InstagramSvg';
 import TelegramSvg from '@/components/SvgIconsComponents/TelegramSvg';
 import WhatsAppSvg from '@/components/SvgIconsComponents/WhatsAppSvg';
-
 import styles from './socialMediaIcons.module.scss';
 
 type Props = {
