@@ -75,22 +75,3 @@
     height: 7rem;
   }
 }
-
-.swiper_next,
-.swiper_prev {
-  // display: flex;
-  // justify-content: center;
-  // align-items: center;
-  background-color: #f8f8f8;
-  width: 2.5rem;
-  height: 2.5rem;
-  border-radius: 50%;
-
-  &:not(:last-child) {
-    margin-right: 1.5rem;
-  }
-
-  &:hover {
-    background-color: $orange-secondary-100;
-  }
-}

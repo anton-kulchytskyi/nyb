@@ -1,4 +1,5 @@
 'use client';
+
 import React, {
   createContext,
   useContext,
@@ -41,7 +42,7 @@ export const CurrencyProvider: React.FC<CurrencyProviderProps> = ({
   const [selectedCurrency, setSelectedCurrency] =
     useState<string>(initialCurrency);
   const [selectedCurrencySymbol, setSelectedCurrencySymbol] =
-    useState<string>('€'); // Default symbol for EUR
+    useState<string>('€');
 
   const setCurrency = (currency: string) => {
     setSelectedCurrency(currency);

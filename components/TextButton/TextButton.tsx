@@ -16,7 +16,7 @@ function TextButton({
       className={textButtonStyle}>
       {text}
     </Link>
-  )
-}
+  );
+};
 
 export default TextButton;

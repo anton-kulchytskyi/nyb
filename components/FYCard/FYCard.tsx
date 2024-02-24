@@ -1,12 +1,11 @@
 'use client';
+
 import Link from 'next/link';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useState, useEffect } from 'react';
-
 import { useCurrency } from '@/context/CurrencyContext';
 import { fetchImgUrl } from '@/utils/api/getImageFromAWS';
-
 import typo from '@/styles/typography.module.scss';
 import { Vessel } from '@/interfaces/vessel.interface';
 import Button from '../Button/Button';
@@ -94,7 +93,6 @@ const FYCard = ({ yacht, buttonsExample, inCatalog }: Props) => {
                 query: { name: yacht_make },
               }}
               as={`/catalogue/${yacht_id}`}
-              // >{`${yacht_make} ${yacht_model}`}</Link>
             >
               <span>{yacht_make}</span>
               <br />

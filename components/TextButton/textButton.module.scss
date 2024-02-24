@@ -2,6 +2,7 @@
 
 .primary {
   color: $orange-secondary-100;
+  transition: 0.7s;
 
   &:hover {
     color: $orange-secondary-110;
@@ -14,6 +15,7 @@
 
 .secondary {
   color: $white;
+  transition: 0.5s;
 
   &:hover {
     color: $orange-secondary-100;

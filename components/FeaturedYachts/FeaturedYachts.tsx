@@ -1,11 +1,8 @@
 import { Vessel } from '@/interfaces/vessel.interface';
 import { getFeaturedYacht } from '@/utils/api/getAllVessels';
-
 import typo from '@/styles/typography.module.scss';
-
 import FYCard from '../FYCard/FYCard';
 import TextButton from '../TextButton/TextButton';
-
 import styles from './featuredYachts.module.scss';
 
 const labelText = ['Top 3', 'Hot Price', 'Low Price'];

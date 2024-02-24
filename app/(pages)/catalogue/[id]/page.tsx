@@ -1,9 +1,6 @@
 import dynamic from 'next/dynamic';
-
 import { Metadata } from 'next';
-
 import { Images } from '@/interfaces/vessel.interface';
-
 import { getVesselById } from '@/utils/api/getAllVessels';
 import { fetchImgUrl } from '@/utils/api/getImageFromAWS';
 
@@ -49,4 +46,4 @@ export default async function Vessel({ params: { id } }: Props) {
       />
     </>
   );
-}
+};
