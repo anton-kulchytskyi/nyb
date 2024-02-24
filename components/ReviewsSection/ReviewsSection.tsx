@@ -1,11 +1,10 @@
 'use client';
-import dynamic from 'next/dynamic';
 
+import dynamic from 'next/dynamic';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/free-mode';
 import { FreeMode, Navigation } from 'swiper/modules';
-
 import { reviewUser } from '@/interfaces/reviewsUsers.interface';
 import { users } from '@/utils/reviewsUsers/reviewsUsers';
 

@@ -1,10 +1,7 @@
 import Image from 'next/image';
 import ContactSectionImg from '@/public/contact_img.png';
-
 import typo from '@/styles/typography.module.scss';
-
 import ContactForm from '../ContactForm/ContactForm';
-
 import styles from './contactSection.module.scss';
 
 const ContactSection = () => {

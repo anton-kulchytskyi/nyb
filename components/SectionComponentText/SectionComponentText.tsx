@@ -2,11 +2,9 @@
 
 import useWindowDimensions from '@/hooks/useWindowDimensions';
 import typo from '@/styles/typography.module.scss';
-
 import TitlePlace from '@/components/TitlePlace/TitlePlace';
 import TextButton from '@/components/TextButton/TextButton';
 import ComponentLogo from '@/components/ComponentLogo/ComponentLogo';
-
 import styles from './sectionComponentText.module.scss';
 
 type Props = {

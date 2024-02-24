@@ -1,9 +1,8 @@
 'use client';
+
 import Link from 'next/link';
 import Image from 'next/image';
-
 import { pageLinksArray } from '@/utils/links/pageLinks';
-
 import FooterLogo from '@/public/icons/logo_footer.svg';
 import useWindowDimensions from '@/hooks/useWindowDimensions';
 import Copyright from '../Copyright/Copyright';

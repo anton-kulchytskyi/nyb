@@ -16,7 +16,7 @@ const SectionComponentImage = ({ imgSrc }: Props) => {
         alt="section image"
       />
     </div>
-  )
-}
+  );
+};
 
 export default SectionComponentImage;

@@ -1,7 +1,5 @@
 import Image from 'next/image';
-
 import { reviewUser } from '@/interfaces/reviewsUsers.interface';
-
 import StarImg from '@/public/icons/star.svg';
 import StarEmptyImg from '@/public/icons/star_empty.svg';
 import QuotesImg from '@/public/icons/quotes.svg';
