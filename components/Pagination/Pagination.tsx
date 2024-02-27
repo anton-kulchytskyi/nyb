@@ -17,16 +17,6 @@ const Pagination = ({ items, pageSize, currentPage }: Props) => {
   return (
     <>
       <ul className={styles.pagination}>
-        <li className={currentPage === 1 ? styles.disabled : ''}>
-          <Link
-            href={`?page=${
-              currentPage === 1 ? currentPage : currentPage - 1
-            }&size=${pageSize}`}
-          >
-            &#10094;
-          </Link>
-        </li>
-
         {pages.map((page) => {
           const isFirstOrLastPage = page === 1 || page === pages.length;
           const isInMiddle =
@@ -74,16 +64,6 @@ const Pagination = ({ items, pageSize, currentPage }: Props) => {
             </li>
           );
         })}
-
-        <li className={currentPage === pagesCount ? styles.disabled : ''}>
-          <Link
-            href={`?page=${
-              currentPage === pagesCount ? currentPage : currentPage + 1
-            }&size=${pageSize}`}
-          >
-            &#10095;
-          </Link>
-        </li>
       </ul>
     </>
   );
