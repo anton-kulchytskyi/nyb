@@ -47,19 +47,20 @@
     gap: 0.625rem;
 
     padding: 0.5rem 1rem;
-    border-bottom: 1px solid $gray-primary;
+    
     text-decoration: none;
-    color: #192358;
+    color:$gray-80;
 
 
     &:hover {
       border-bottom: 1px solid $orange-secondary-100;
-      color:$gray-primary
+      color:$gray-80
     }
 
     &__active {
-      color: $black;
+      color: $blue;
       background-color: $white;
+      border-bottom: 1px solid $gray-primary;
     }
   }
   &__img{
