@@ -2,24 +2,29 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { useEffect, useState } from 'react';
+import {useEffect, useState} from 'react';
 import LogoImg from '@/public/icons/logo.svg';
-import { pageLinksArray } from '@/utils/links/pageLinks';
+import {pageLinksArray} from '@/utils/links/pageLinks';
 import useWindowDimensions from '@/hooks/useWindowDimensions';
-import { useCurrency } from '@/context/CurrencyContext';
+import {useCurrency} from '@/context/CurrencyContext';
 import MenuMobileModal from '@/components/Navbar/MenuMobileModal/MenuMobileModal';
 import MenuIcon from '@/components/Navbar/MenuIcon/MenuIcon';
 import ContactsModal from '@/components/Navbar/ContactsModal/ContactsModal';
 import CurrencyModal from '@/components/Navbar/CurrencyModal/CurrencyModal';
 import styles from '@/components/Navbar/navbar.module.scss';
 
+import AccountModal from './AccountModal/AccountModal';
+import LoginModal from './LoginModal/LoginModal';
+
 const Navbar = () => {
   const [isCurrencyModalOpen, setIsCurrencyModalOpen] = useState(false);
   const [isContactsModalOpen, setIsContactsModalOpen] = useState(false);
+  const [isAccountModalOpen, setIsAccountModalOpen] = useState(false);
+  const [isAccountModalLoginOpen, setIsAccountModalLoginOpen] = useState(false);
   const [isMobileMenuClose, setIsMobileMenuClose] = useState(false);
   const [desktopScreen, setDesktopScreen] = useState(false);
-  const { width } = useWindowDimensions();
-  const { selectedCurrency } = useCurrency();
+  const {width} = useWindowDimensions();
+  const {selectedCurrency} = useCurrency();
 
   useEffect(() => {
     const screen = (width as number) < 1200;
@@ -36,6 +41,14 @@ const Navbar = () => {
 
   const mobileMenuHandler = () => {
     setIsMobileMenuClose(!isMobileMenuClose);
+  };
+
+  const accountModalHandler = () => {
+    setIsAccountModalOpen(!isAccountModalOpen);
+  };
+
+  const accountModalLoginHandler = () => {
+    setIsAccountModalLoginOpen(!isAccountModalLoginOpen);
   };
 
   return (
@@ -57,6 +70,18 @@ const Navbar = () => {
         <ContactsModal
           isContactsModalOpen={isContactsModalOpen}
           contactsModalHandler={contactsModalHandler}
+        />
+      )}
+      {isAccountModalLoginOpen && (
+        <LoginModal
+          isAccountModalLoginOpen={isAccountModalLoginOpen}
+          accountModalLoginHandler={accountModalLoginHandler}
+        />
+      )}
+      {isAccountModalOpen && (
+        <AccountModal
+          isAccountModalOpen={isAccountModalOpen}
+          accountModalHandler={accountModalHandler}
         />
       )}
       <nav className={styles.navbar}>
@@ -101,6 +126,18 @@ const Navbar = () => {
               {`Split currency / ${selectedCurrency}`}
             </button>
           )}
+          <button
+            onClick={accountModalLoginHandler}
+            className={styles.account}
+          >
+            Sign In
+          </button>
+          <button
+            onClick={accountModalHandler}
+            className={styles.account}
+          >
+            Account
+          </button>
           <button
             type="button"
             onClick={contactsModalHandler}
