@@ -51,6 +51,11 @@ const Navbar = () => {
     setIsAccountModalLoginOpen(!isAccountModalLoginOpen);
   };
 
+  const toggleBetweenModals = () => {
+    setIsAccountModalOpen(!isAccountModalOpen);
+    setIsAccountModalLoginOpen(!isAccountModalLoginOpen);
+  }
+
   return (
     <>
       {isMobileMenuClose && (
@@ -74,12 +79,14 @@ const Navbar = () => {
       )}
       {isAccountModalLoginOpen && (
         <LoginModal
+          toggleBetweenModals={toggleBetweenModals}
           isAccountModalLoginOpen={isAccountModalLoginOpen}
           accountModalLoginHandler={accountModalLoginHandler}
         />
       )}
       {isAccountModalOpen && (
         <AccountModal
+          toggleBetweenModals={toggleBetweenModals}
           isAccountModalOpen={isAccountModalOpen}
           accountModalHandler={accountModalHandler}
         />
@@ -126,7 +133,7 @@ const Navbar = () => {
               {`Split currency / ${selectedCurrency}`}
             </button>
           )}
-          <button
+          {/* <button
             onClick={accountModalLoginHandler}
             className={styles.account}
           >
@@ -137,6 +144,13 @@ const Navbar = () => {
             className={styles.account}
           >
             Account
+          </button> */}
+          <button
+            type="button"
+            onClick={accountModalHandler}
+            className={`${styles.link} ${styles.link__button}`}
+          >
+            My account
           </button>
           <button
             type="button"

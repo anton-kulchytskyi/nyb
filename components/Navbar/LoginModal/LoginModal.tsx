@@ -7,11 +7,12 @@ import Close from '@/public/icons/close.svg';
 import styles from './loginModal.module.scss';
 
 type Props = {
+  toggleBetweenModals: () => void;
   isAccountModalLoginOpen: boolean;
   accountModalLoginHandler: () => void;
 };
 
-const LoginModal = ({ isAccountModalLoginOpen, accountModalLoginHandler }: Props) => {
+const LoginModal = ({ toggleBetweenModals, isAccountModalLoginOpen, accountModalLoginHandler }: Props) => {
   const pathname = usePathname();
 
   return (
@@ -69,7 +70,12 @@ const LoginModal = ({ isAccountModalLoginOpen, accountModalLoginHandler }: Props
               </div>
               <p className={styles.account}>
                 <span>Don&apos;t have an account yet? </span>
-                <span className={styles.account__login}>Create a new account</span>
+                <span
+                  onClick={toggleBetweenModals}
+                  className={styles.account__login}
+                >
+                  Create a new account
+                </span>
               </p>
             </div>
           </div>
