@@ -1,7 +1,7 @@
 'use client'
 
-import {useState} from "react";
-import {useRouter} from 'next/navigation';
+import { useState } from "react";
+import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
@@ -16,7 +16,6 @@ const Slider = ({ ves, images }) => {
 
   const {
     yacht_id,
-    yacht_make,
   } = ves;
 
   const router = useRouter();

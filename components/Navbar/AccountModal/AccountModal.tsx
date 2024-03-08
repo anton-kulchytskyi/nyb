@@ -1,10 +1,8 @@
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import {usePathname} from 'next/navigation';
+import { usePathname } from 'next/navigation';
 import Close from '@/public/icons/close.svg';
-
-import google from '../../../public/icons/google.png';
 
 import styles from './accountModal.module.scss';
 
@@ -13,7 +11,7 @@ type Props = {
   accountModalHandler: () => void;
 };
 
-const AccountModal = ({isAccountModalOpen, accountModalHandler}: Props) => {
+const AccountModal = ({ isAccountModalOpen, accountModalHandler }: Props) => {
   const pathname = usePathname();
 
   return (

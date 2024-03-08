@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import {usePathname} from 'next/navigation';
+import { usePathname } from 'next/navigation';
 import Close from '@/public/icons/close.svg';
 
 import styles from './loginModal.module.scss';
@@ -11,7 +11,7 @@ type Props = {
   accountModalLoginHandler: () => void;
 };
 
-const LoginModal = ({isAccountModalLoginOpen, accountModalLoginHandler}: Props) => {
+const LoginModal = ({ isAccountModalLoginOpen, accountModalLoginHandler }: Props) => {
   const pathname = usePathname();
 
   return (
@@ -68,7 +68,7 @@ const LoginModal = ({isAccountModalLoginOpen, accountModalLoginHandler}: Props) 
                 </div>
               </div>
               <p className={styles.account}>
-                <span>Don't have an account yet? </span>
+                <span>Don&apos;t have an account yet? </span>
                 <span className={styles.account__login}>Create a new account</span>
               </p>
             </div>

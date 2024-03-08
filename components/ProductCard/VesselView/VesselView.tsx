@@ -1,11 +1,9 @@
 'use client';
 
-import React, { useState } from 'react';
 import { useCurrency } from '@/context/CurrencyContext';
 import QuestionMarkSvg from '@/components/SvgIconsComponents/QuestionMarkSvg';
 import { Vessel } from '@/interfaces/vessel.interface';
 import Slider from '@/components/ProductCard/Slider/Slider';
-import Modal from '@/components/ProductCard/Modal/Modal';
 import ContactForm from '@/components/ContactForm/ContactForm';
 import typo from '../../../styles/typography.module.scss';
 import styles from './VesselView.module.scss';
