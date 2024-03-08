@@ -17,6 +17,7 @@
     height: 816px;
     width: 584px;
     background-color: $white;
+    border-radius: 1rem;
 
     @include onMobile {
       height: 100vh;
