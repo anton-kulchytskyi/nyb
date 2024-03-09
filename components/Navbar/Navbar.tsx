@@ -2,11 +2,11 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { useEffect, useState } from 'react';
+import {useEffect, useState} from 'react';
 import LogoImg from '@/public/icons/logo.svg';
-import { pageLinksArray } from '@/utils/links/pageLinks';
+import {pageLinksArray} from '@/utils/links/pageLinks';
 import useWindowDimensions from '@/hooks/useWindowDimensions';
-import { useCurrency } from '@/context/CurrencyContext';
+import {useCurrency} from '@/context/CurrencyContext';
 import MenuMobileModal from '@/components/Navbar/MenuMobileModal/MenuMobileModal';
 import MenuIcon from '@/components/Navbar/MenuIcon/MenuIcon';
 import ContactsModal from '@/components/Navbar/ContactsModal/ContactsModal';
@@ -23,8 +23,8 @@ const Navbar = () => {
   const [isAccountModalLoginOpen, setIsAccountModalLoginOpen] = useState(false);
   const [isMobileMenuClose, setIsMobileMenuClose] = useState(false);
   const [desktopScreen, setDesktopScreen] = useState(false);
-  const { width } = useWindowDimensions();
-  const { selectedCurrency } = useCurrency();
+  const {width} = useWindowDimensions();
+  const {selectedCurrency} = useCurrency();
 
   useEffect(() => {
     const screen = (width as number) < 1200;
@@ -124,41 +124,37 @@ const Navbar = () => {
           />
         </Link>
         <div className={styles.navbar__side}>
-          {desktopScreen && (
-            <button
-              type="button"
-              onClick={currencyModalHandler}
-              className={`${styles.link} ${styles.link__button}`}
-            >
-              {`Split currency / ${selectedCurrency}`}
-            </button>
+          {desktopScreen ? (
+            <>
+              <button
+                type="button"
+                onClick={accountModalHandler}
+                className={`${styles.link} ${styles.link__button}`}
+              >
+                My account
+              </button>
+              <button
+                type="button"
+                onClick={currencyModalHandler}
+                className={`${styles.link} ${styles.link__button}`}
+              >
+                {`Split currency / ${selectedCurrency}`}
+              </button>
+              <button
+                type="button"
+                onClick={contactsModalHandler}
+                className={`${styles.link} ${styles.link__button}`}
+              >
+                Contacts
+              </button>
+            </>
+          ) : (
+              <button
+                type="button"
+                onClick={accountModalHandler}
+                className={`${styles.link} ${styles.account_icon}`}
+              />
           )}
-          {/* <button
-            onClick={accountModalLoginHandler}
-            className={styles.account}
-          >
-            Sign In
-          </button>
-          <button
-            onClick={accountModalHandler}
-            className={styles.account}
-          >
-            Account
-          </button> */}
-          <button
-            type="button"
-            onClick={accountModalHandler}
-            className={`${styles.link} ${styles.link__button}`}
-          >
-            My account
-          </button>
-          <button
-            type="button"
-            onClick={contactsModalHandler}
-            className={`${styles.link} ${styles.link__button}`}
-          >
-            Contacts
-          </button>
         </div>
       </nav>
     </>
