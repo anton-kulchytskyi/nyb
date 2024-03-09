@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { useSession } from 'next-auth/react'
+import { signOut, useSession } from 'next-auth/react'
 
 import LogoImg from '@/public/icons/logo.svg';
 import { pageLinksArray } from '@/utils/links/pageLinks';
@@ -130,12 +130,26 @@ const Navbar = () => {
           {desktopScreen ? (
             <>
               <button
-                type="button"
-                onClick={accountModalHandler}
-                className={`${styles.link} ${styles.link__button}`}
-              >
-                My account
-              </button>
+                className={`${styles.link} ${styles.favourite_icon}`}
+              />
+              {
+                session && session.user ? (
+                  <button
+                    onClick={() => signOut()}
+                    className={`${styles.link} ${styles.link__button}`}
+                  >
+                    {session.user.name}
+                  </button>
+                ) : (
+                  <button
+                    type="button"
+                    onClick={accountModalHandler}
+                    className={`${styles.link} ${styles.link__button}`}
+                  >
+                    My account
+                  </button>
+                )
+              }
               <button
                 type="button"
                 onClick={currencyModalHandler}
@@ -155,7 +169,10 @@ const Navbar = () => {
             <>
               {
                 session && session.user ? (
-                  session.user.name
+                  <button onClick={() => signOut()}>
+                    {session.user.name}
+                  </button>
+                  
                 ) : (
                   <button
                     type="button"

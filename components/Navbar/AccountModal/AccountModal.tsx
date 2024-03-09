@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { usePathname } from 'next/navigation';
+
 import { signIn } from 'next-auth/react'
 import Close from '@/public/icons/close.svg';
 
@@ -14,8 +14,6 @@ type Props = {
 };
 
 const AccountModal = ({ toggleBetweenModals, isAccountModalOpen, accountModalHandler }: Props) => {
-  const pathname = usePathname();
-  // const {data: session} = useSession();
 
   return (
     <>
@@ -26,8 +24,7 @@ const AccountModal = ({ toggleBetweenModals, isAccountModalOpen, accountModalHan
           <div className={styles.modal__content}>
             <div className={styles.modal__top}>
               <h4 className={styles.header}>Create a new account</h4>
-              <Link
-                href={pathname}
+              <div
                 onClick={accountModalHandler}
                 className={styles.close}
               >
@@ -35,7 +32,7 @@ const AccountModal = ({ toggleBetweenModals, isAccountModalOpen, accountModalHan
                   src={Close}
                   alt="Close"
                 />
-              </Link>
+              </div>
             </div>
             <div className={styles.modal__main}>
               <form className={styles.form}>

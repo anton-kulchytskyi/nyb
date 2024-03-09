@@ -46,6 +46,12 @@
   background: url('../../public/icons/user.svg') no-repeat center/cover;
 }
 
+.favourite_icon {
+  height: 20px;
+  width: 20px;
+  background: url('../../public/icons/heart_empty.svg') no-repeat center/cover;
+}
+
 .logo {
   display: flex;
   justify-content: center;

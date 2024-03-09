@@ -1,7 +1,8 @@
 import React from 'react';
-import Link from 'next/link';
+// import Link from 'next/link';
 import Image from 'next/image';
-import { usePathname } from 'next/navigation';
+import { signIn } from 'next-auth/react'
+
 import Close from '@/public/icons/close.svg';
 
 import styles from './loginModal.module.scss';
@@ -13,7 +14,6 @@ type Props = {
 };
 
 const LoginModal = ({ toggleBetweenModals, isAccountModalLoginOpen, accountModalLoginHandler }: Props) => {
-  const pathname = usePathname();
 
   return (
     <>
@@ -24,8 +24,7 @@ const LoginModal = ({ toggleBetweenModals, isAccountModalLoginOpen, accountModal
           <div className={styles.modal__content}>
             <div className={styles.modal__top}>
               <h4 className={styles.header}>Sign In</h4>
-              <Link
-                href={pathname}
+              <div
                 onClick={accountModalLoginHandler}
                 className={styles.close}
               >
@@ -33,7 +32,7 @@ const LoginModal = ({ toggleBetweenModals, isAccountModalLoginOpen, accountModal
                   src={Close}
                   alt="Close"
                 />
-              </Link>
+              </div>
             </div>
             <div className={styles.modal__main}>
               <form className={styles.form}>
@@ -62,7 +61,10 @@ const LoginModal = ({ toggleBetweenModals, isAccountModalLoginOpen, accountModal
                   <button className={styles.socials__facebook} />
                 </div>
                 <div className={styles.socials__container}>
-                  <button className={styles.socials__google} />
+                  <button
+                    onClick={() => signIn()}
+                    className={styles.socials__google}
+                  />
                 </div>
                 <div className={styles.socials__container}>
                   <button className={styles.socials__apple} />
