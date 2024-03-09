@@ -14,7 +14,7 @@
 
   &__wrapper {
     position: absolute;
-    height: 816px;
+    height: 836px;
     width: 584px;
     background-color: $white;
     border-radius: 1rem;
@@ -87,6 +87,14 @@
     margin-bottom: 32px;
     padding: 16px;
     border: 1px solid $gray-100;
+  }
+
+  &_terms {
+    margin-bottom: 2rem;
+    &__link {
+      color: $orange-secondary-100;
+      text-decoration: none;
+    }
   }
 
   &__button {

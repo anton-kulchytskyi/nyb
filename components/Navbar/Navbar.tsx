@@ -1,8 +1,10 @@
 'use client';
 
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { useEffect, useState } from 'react';
+import { useSession } from 'next-auth/react'
+
 import LogoImg from '@/public/icons/logo.svg';
 import { pageLinksArray } from '@/utils/links/pageLinks';
 import useWindowDimensions from '@/hooks/useWindowDimensions';
@@ -25,6 +27,7 @@ const Navbar = () => {
   const [desktopScreen, setDesktopScreen] = useState(false);
   const { width } = useWindowDimensions();
   const { selectedCurrency } = useCurrency();
+  const { data: session } = useSession();
 
   useEffect(() => {
     const screen = (width as number) < 1200;
@@ -149,11 +152,19 @@ const Navbar = () => {
               </button>
             </>
           ) : (
-            <button
-              type="button"
-              onClick={accountModalHandler}
-              className={`${styles.link} ${styles.account_icon}`}
-            />
+            <>
+              {
+                session && session.user ? (
+                  session.user.name
+                ) : (
+                  <button
+                    type="button"
+                    onClick={accountModalHandler}
+                    className={`${styles.link} ${styles.account_icon}`}
+                  />
+                )
+              }
+            </>
           )}
         </div>
       </nav>

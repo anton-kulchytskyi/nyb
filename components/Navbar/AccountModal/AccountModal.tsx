@@ -2,6 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
+import { signIn } from 'next-auth/react'
 import Close from '@/public/icons/close.svg';
 
 import styles from './accountModal.module.scss';
@@ -14,6 +15,7 @@ type Props = {
 
 const AccountModal = ({ toggleBetweenModals, isAccountModalOpen, accountModalHandler }: Props) => {
   const pathname = usePathname();
+  // const {data: session} = useSession();
 
   return (
     <>
@@ -62,6 +64,16 @@ const AccountModal = ({ toggleBetweenModals, isAccountModalOpen, accountModalHan
                   placeholder='Password'
                 />
               </form>
+              <p className={styles.form_terms}>
+                By signing in or creating an account, you agree to our{' '}
+                <Link href='/terms-of-use' className={styles.form_terms__link} >
+                  Terms and conditions
+                </Link>{' '}
+                and{' '}
+                <Link href='/privacy-policy' className={styles.form_terms__link} >
+                  Privacy policy and cookies.
+                </Link>
+              </p>
               <button className={styles.form__button}>Create a new account</button>
               <div className={styles.border}>
                 <span className={styles.border__text}>or continue with</span>
@@ -74,7 +86,10 @@ const AccountModal = ({ toggleBetweenModals, isAccountModalOpen, accountModalHan
                   <button className={styles.socials__facebook} />
                 </div>
                 <div className={styles.socials__container}>
-                  <button className={styles.socials__google} />
+                  <button
+                    className={styles.socials__google}
+                    onClick={() => signIn()}
+                  />
                 </div>
                 <div className={styles.socials__container}>
                   <button className={styles.socials__apple} />
