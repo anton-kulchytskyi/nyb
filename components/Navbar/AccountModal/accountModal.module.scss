@@ -14,14 +14,15 @@
 
   &__wrapper {
     position: absolute;
-    height: 836px;
-    width: 584px;
+    height: 52.3rem;
+    width: 36.5rem;
     background-color: $white;
     border-radius: 1rem;
 
     @include onMobile {
       height: 100vh;
       width: 100vw;
+      border-radius: 0;
     }
   }
 
@@ -50,18 +51,18 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 32px;
+    margin-bottom: 2rem;
   }
 
   &__main {
-    margin-bottom: 32px;
+    margin-bottom: 2rem;
   }
 }
 
 .header {
   color: $gray-primary;
   font-family: var(--font-baiJamjuree);
-  font-size: 40px;
+  font-size: 2.5rem;
   line-height: normal;
   font-weight: 600;
 
@@ -81,34 +82,108 @@
 }
 
 .form {
-  &__input {
-    height: 56px;
-    width: 100%;
-    border-radius: 8px;
-    margin-bottom: 32px;
-    padding: 16px;
-    border: 1px solid $gray-100;
-  }
-
   &_terms {
     margin-bottom: 2rem;
+
     &__link {
       color: $orange-secondary-100;
       text-decoration: none;
+      border-bottom: none;
+      transition: 0.6s;
+
+      &:hover {
+        border-bottom: 1px solid $orange-secondary-100;
+      }
     }
   }
 
   &__button {
     color: #fff;
     font-weight: 500;
-    font-size: 18px;
+    font-size: 1.1rem;
 
     background-color: $gray-primary;
     width: 100%;
-    height: 50px;
-    border-radius: 56px;
-    margin-bottom: 32px;
+    height: 3.125rem;
+    border-radius: 3.5rem;
+    margin-bottom: 2rem;
+    transition: 0.6s ease-in;
+
+    &:hover {
+      background-color: #fff;
+      border: 1px solid $gray-primary;
+      color: $gray-primary;
+    }
   }
+}
+
+.form_group {
+  position: relative;
+  margin-bottom: 2rem;
+}
+
+.input {
+  width: 100%;
+  font-size: 1rem;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  color: $gray-primary;
+  border: 1px solid $gray-20;
+  background-color: transparent;
+  outline: none;
+  transform: background-color 0.6s ease;
+
+  &:focus {
+    border: 1px solid $orange-secondary-100;
+
+    & + .label {
+      top: 0;
+      color: $gray-primary;
+      font-size: 0.75rem;
+    }
+  }
+
+  &__error {
+    border-color: $error-color;
+
+    & + .label {
+      top: 0;
+      color: $gray-primary;
+      font-size: 0.75rem;
+    }
+  }
+
+  &__success {
+    border-color: $success-color;
+
+    & + .label {
+      top: 0;
+      color: $gray-primary;
+      font-size: 0.75rem;
+    }
+  }
+}
+
+.label {
+  position: absolute;
+  top: 1.7rem;
+  left: 1rem;
+  transform: translateY(-50%);
+  pointer-events: none;
+  transition: 0.3s ease-out;
+  font-size: 0.8rem;
+  color: $gray-primary;
+  background-color: $white;
+  padding: 0 0.25rem;
+}
+
+.error_message {
+  position: absolute;
+  left: 0;
+  bottom: -1rem;
+  font-size: 0.75rem;
+  line-height: 1.125;
+  color: $gray-primary;
 }
 
 .border {
@@ -119,14 +194,14 @@
   &__text {
     position: absolute;
     text-align: center;
-    width: 167px;
+    width: 10.5rem;
     background-color: #fff;
-    font-size: 16px;
+    font-size: 1rem;
     color: #67666b;
   }
 
   &__line {
-    margin-top: 11px;
+    margin-top: 0.8rem;
     border-bottom: 1px solid #a9a9b0;
     width: 100%;
   }
@@ -135,47 +210,53 @@
 .socials {
   display: flex;
   justify-content: center;
-  gap: 32px;
-  margin-bottom: 32px;
+  gap: 2rem;
+  margin-bottom: 2rem;
+  
 
   &__container {
-    height: 48px;
-    width: 48px;
+    height: 3rem;
+    width: 3rem;
     border: 1px solid $gray-primary;
-    border-radius: 56px;
+    border-radius: 3.5rem;
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: 0.6s ease;
+
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+
+  &__link {
+    height: 2.125rem;
+    width: 2.125rem;
   }
 
   &__facebook {
-    height: 34px;
-    width: 34px;
     background: url('../../../public/icons/facebook.svg') no-repeat center/cover;
   }
   &__google {
-    height: 34px;
-    width: 34px;
     background: url('../../../public/icons/google.svg') no-repeat center/cover;
   }
   &__apple {
-    height: 34px;
-    width: 34px;
     background: url('../../../public/icons/apple.svg') no-repeat center/cover;
   }
 }
 
 .account {
   display: flex;
-  gap: 16px;
+  gap: 1rem;
 
   &__login {
     cursor: pointer;
     color: $orange-secondary-100;
-    transition: 1s ease-in;
+    transition: transform 0.5s ease-in;
 
     &:hover {
       border-bottom: 1px solid $orange-secondary-100;
+      transform: scale(1.1);
     }
   }
 }
