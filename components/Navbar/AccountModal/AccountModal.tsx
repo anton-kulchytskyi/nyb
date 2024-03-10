@@ -21,6 +21,7 @@ const AccountModal = ({ toggleBetweenModals, isAccountModalOpen, accountModalHan
     password: '',
   });
   const [errors, setErrors] = useState<Errors>({});
+  const [type, setType] = useState('password');
 
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -102,22 +103,30 @@ const AccountModal = ({ toggleBetweenModals, isAccountModalOpen, accountModalHan
     }
   };
 
+  const togglePassword = () => {
+    if (type === 'password') {
+      setType('text')
+    } else {
+      setType('password')
+    }
+  }
+
   return (
     <>
       <div className={`${styles.modal} ${isAccountModalOpen ? styles.open : ''}`}>
         <div className={styles.modal__wrapper}>
           <div className={styles.modal__content}>
+            <div
+              onClick={accountModalHandler}
+              className={styles.close}
+            >
+              <Image
+                src={Close}
+                alt="Close"
+              />
+            </div>
             <div className={styles.modal__top}>
               <h4 className={styles.header}>Create a new account</h4>
-              <div
-                onClick={accountModalHandler}
-                className={styles.close}
-              >
-                <Image
-                  src={Close}
-                  alt="Close"
-                />
-              </div>
             </div>
             <div className={styles.modal__main}>
               <form className={styles.form}>
@@ -200,7 +209,7 @@ const AccountModal = ({ toggleBetweenModals, isAccountModalOpen, accountModalHan
                   <input
                     id="password"
                     name="password"
-                    type="password"
+                    type={type}
                     value={inputs.password}
                     className={`
                       ${styles.input} 
@@ -217,6 +226,10 @@ const AccountModal = ({ toggleBetweenModals, isAccountModalOpen, accountModalHan
                   >
                     Password
                   </label>
+                  <span
+                    className={`${styles.label__password} ${type === 'password' ? styles.eye : styles.eyeOff}`}
+                    onClick={togglePassword}
+                  />
                   {errors.password && (
                     <span className={styles.error_message}>{errors.password}</span>
                   )}

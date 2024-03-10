@@ -76,12 +76,16 @@
 }
 
 .close {
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
   display: flex;
   align-items: center;
   cursor: pointer;
 }
 
 .form {
+  margin-bottom: 3rem;
   &_terms {
     margin-bottom: 2rem;
 
@@ -162,6 +166,10 @@
       font-size: 0.75rem;
     }
   }
+
+  &:last-child {
+    margin-bottom: rem;
+  }
 }
 
 .label {
@@ -175,6 +183,15 @@
   color: $gray-primary;
   background-color: $white;
   padding: 0 0.25rem;
+
+  &__password {
+    position: absolute;
+    cursor: pointer;
+    right: 1rem;
+    top: 0.85rem;
+    height: 24px;
+    width: 24px;
+  }
 }
 
 .error_message {
@@ -212,7 +229,6 @@
   justify-content: center;
   gap: 2rem;
   margin-bottom: 2rem;
-  
 
   &__container {
     height: 3rem;
@@ -252,11 +268,18 @@
   &__login {
     cursor: pointer;
     color: $orange-secondary-100;
-    transition: transform 0.5s ease-in;
+    transition: 0.5s ease-in;
 
     &:hover {
       border-bottom: 1px solid $orange-secondary-100;
-      transform: scale(1.1);
     }
   }
+}
+
+.eye {
+  background-image: url('../../../public/icons/eye.svg');
+}
+
+.eyeOff {
+  background-image: url('../../../public/icons/eye-crossed.svg');
 }
