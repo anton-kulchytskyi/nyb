@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent, useEffect, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 
@@ -110,6 +110,12 @@ const AccountModal = ({ toggleBetweenModals, isAccountModalOpen, accountModalHan
       setType('password')
     }
   }
+
+  useEffect(() => {
+    document.body.style.overflow = 'hidden'
+
+    return () => { document.body.style.overflow = 'scroll' };
+  }, [])
 
   return (
     <>

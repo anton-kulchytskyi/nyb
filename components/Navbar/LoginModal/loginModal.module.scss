@@ -17,6 +17,7 @@
     width: 37.5rem;
     background-color: $white;
     border-radius: 1rem;
+    overflow: scroll;
 
     @include onMobile {
       height: 100vh;
