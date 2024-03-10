@@ -1,11 +1,9 @@
 'use client';
 
-import React, { useState } from 'react';
 import { useCurrency } from '@/context/CurrencyContext';
 import QuestionMarkSvg from '@/components/SvgIconsComponents/QuestionMarkSvg';
 import { Vessel } from '@/interfaces/vessel.interface';
 import Slider from '@/components/ProductCard/Slider/Slider';
-import Modal from '@/components/ProductCard/Modal/Modal';
 import ContactForm from '@/components/ContactForm/ContactForm';
 import typo from '../../../styles/typography.module.scss';
 import styles from './VesselView.module.scss';
@@ -16,17 +14,9 @@ type Props = {
 };
 
 export const VesselView: React.FC<Props> = ({ ves, images }) => {
-  const [showModalGallery, setShowModalGallery] = useState(false);
   const { selectedCurrency, selectedCurrencySymbol } = useCurrency();
   const key = `yacht_price_${selectedCurrency}`;
   const currPrice = (+ves[key]).toLocaleString('en-US');
-
-  const openContentFullscreen = () => {
-    const element = document.getElementById('modal');
-    if (element && element.requestFullscreen) {
-      element.requestFullscreen();
-    }
-  };
 
   return (
     <>
@@ -43,9 +33,8 @@ export const VesselView: React.FC<Props> = ({ ves, images }) => {
           </div>
           <div className={styles.body__gallery}>
             <Slider
-              openContentFullscreen={openContentFullscreen}
               images={images}
-              setShowModalGallery={setShowModalGallery}
+              ves={ves}
             />
           </div>
           <div className={styles.body__bottom}>
@@ -141,19 +130,13 @@ export const VesselView: React.FC<Props> = ({ ves, images }) => {
               <QuestionMarkSvg />
             </span>
           </div>
-          <h3 className={`${typo.typo_h4} ${styles.form_header}`}>
-            Contact us
-          </h3>
-          <ContactForm productCard={true} />
+          <div className={styles.form}>
+            <h3 className={`${typo.typo_h4} ${styles.form_header}`}>
+              Contact us
+            </h3>
+            <ContactForm productCard={true} />
+          </div>
         </div>
-        {showModalGallery && (
-          <Modal
-            showModalGallery={showModalGallery}
-            setShowModalGallery={setShowModalGallery}
-            images={images}
-            ves={ves}
-          />
-        )}
       </div>
     </>
   );

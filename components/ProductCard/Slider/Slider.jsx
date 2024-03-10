@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from "react";
+import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
@@ -10,15 +11,17 @@ import 'swiper/css/thumbs';
 import { Navigation, FreeMode, Thumbs } from 'swiper/modules';
 import styles from './Slider.module.scss';
 
-const Slider = ({ openContentFullscreen, images, setShowModalGallery }) => {
+const Slider = ({ ves, images }) => {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
 
-  const handleButtonClick = () => {
-    setShowModalGallery(true);
-    setTimeout(() => {
-      openContentFullscreen();
-    }, 500)
-  }
+  const {
+    yacht_id,
+  } = ves;
+
+  const router = useRouter();
+  const routeToVessel = () => {
+    router.push(`/catalogue/${yacht_id}/gallery`);
+  };
 
   return (
     <div>
@@ -58,7 +61,7 @@ const Slider = ({ openContentFullscreen, images, setShowModalGallery }) => {
         >
           <SwiperSlide>
             <button
-              onClick={() => handleButtonClick()}
+              onClick={routeToVessel}
               className={styles.button}
             >
               Gallery<br />
