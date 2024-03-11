@@ -1,0 +1,58 @@
+@import '../../../styles/var.scss';
+
+.button {
+  cursor: pointer;
+  margin-right: 1rem;
+}
+
+.filter__title {
+  color: $gray-primary;
+  font-weight: 400;
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.checkbox {
+  accent-color: $orange-secondary-110;
+  margin-left: 2%;
+}
+
+.dropdown {
+  &__button {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    color: $gray-primary;
+    background-color: transparent;
+    border-color: #525659;
+
+    &:hover,
+    &:default,
+    &:target,
+    &:visited,
+    &:focus,
+    &:active {
+      color: #525659;
+      background-color: transparent;
+      border-color: #525659;
+    }
+  }
+}
+
+.submit {
+  color: $white;
+  font-weight: 500;
+  font-size: 18px;
+  background-color: $gray-primary;
+  border-radius: 5rem;
+  height: 3.5rem;
+  margin: 1.5rem 1.25rem;
+  transition: 0.6s ease-in;
+
+  &:hover {
+    background-color: #fff;
+    border: 1px solid $gray-primary;
+    color: $gray-primary;
+  }
+}

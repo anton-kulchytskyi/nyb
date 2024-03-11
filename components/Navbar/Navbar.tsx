@@ -3,7 +3,6 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { signOut, useSession } from 'next-auth/react'
 
 import LogoImg from '@/public/icons/logo.svg';
 import { pageLinksArray } from '@/utils/links/pageLinks';
@@ -27,7 +26,6 @@ const Navbar = () => {
   const [desktopScreen, setDesktopScreen] = useState(false);
   const { width } = useWindowDimensions();
   const { selectedCurrency } = useCurrency();
-  const { data: session } = useSession();
 
   useEffect(() => {
     const screen = (width as number) < 1200;
@@ -133,22 +131,13 @@ const Navbar = () => {
                 className={`${styles.link} ${styles.favourite_icon}`}
               />
               {
-                session && session.user ? (
-                  <button
-                    onClick={() => signOut()}
-                    className={`${styles.link} ${styles.link__button}`}
-                  >
-                    {session.user.name}
-                  </button>
-                ) : (
-                  <button
-                    type="button"
-                    onClick={accountModalHandler}
-                    className={`${styles.link} ${styles.link__button}`}
-                  >
-                    My account
-                  </button>
-                )
+                <button
+                  type="button"
+                  onClick={accountModalHandler}
+                  className={`${styles.link} ${styles.link__button}`}
+                >
+                  My account
+                </button>
               }
               <button
                 type="button"
@@ -168,18 +157,11 @@ const Navbar = () => {
           ) : (
             <>
               {
-                session && session.user ? (
-                  <button onClick={() => signOut()}>
-                    {session.user.name}
-                  </button>
-                  
-                ) : (
-                  <button
-                    type="button"
-                    onClick={accountModalHandler}
-                    className={`${styles.link} ${styles.account_icon}`}
-                  />
-                )
+                <button
+                  type="button"
+                  onClick={accountModalHandler}
+                  className={`${styles.link} ${styles.account_icon}`}
+                />
               }
             </>
           )}

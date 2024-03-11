@@ -1,17 +1,17 @@
 @import '../../../styles/mixins.scss';
 
-.catalog_title {
-  display: block;
-  padding: 0 4rem;
-  margin-bottom: -1rem;
+.catalog {
+  &__top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem 4rem 0;
+    margin-bottom: -2rem;
 
-  @include onTablet {
-    padding: 1.5rem 1.25rem 0.2rem;
-  }
-
-  @include onMobile {
-    padding-bottom: 0;
-    margin-bottom: -1.4rem;
+    @include onTablet {
+      padding: 1.5rem 1.25rem 0.2rem;
+      margin-bottom: -1rem;
+    }
   }
 }
 

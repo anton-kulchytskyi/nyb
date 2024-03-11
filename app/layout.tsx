@@ -10,7 +10,7 @@ import { CurrencyProvider } from '@/context/CurrencyContext';
 import Footer from '@/components/Footer/Footer';
 
 import { roboto, baiJamjuree, beautifulEs } from '@/utils/fonts/fonts';
-import SessionProviders from '@/context/SessionProviders';
+
 export const metadata: Metadata = {
   title: 'Norse Yacht Co | Selling yachts from Norway',
   description: 'Business Consulting and Services',
@@ -35,13 +35,11 @@ export default function RootLayout({
         />
       </head>
       <body className="page__body">
-        <SessionProviders>
-          <CurrencyProvider>
-            <NoSSRNavBar />
-            {children}
-            <Footer />
-          </CurrencyProvider>
-        </SessionProviders>
+        <CurrencyProvider>
+          <NoSSRNavBar />
+          {children}
+          <Footer />
+        </CurrencyProvider>
       </body>
     </html>
   );

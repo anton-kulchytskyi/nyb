@@ -2,8 +2,10 @@ import { Metadata } from "next";
 import { redirect } from 'next/navigation'
 import { getAllVessels } from '@/utils/api/getAllVessels';
 import typo from "@/styles/typography.module.scss";
-import CatalogYacht from "@/components/CatalogYacht/catalogYacht";
+import CatalogYacht from "@/components/Catalogue/CatalogYacht/catalogYacht";
 import Pagination from "@/components/Pagination/Pagination";
+import Sorting from '@/components/Catalogue/Sorting/Sorting';
+import Filter from '@/components/Catalogue/Filter/Filter';
 import styles from './page.module.scss';
 
 
@@ -28,8 +30,13 @@ const Catalog = async ( { searchParams }: {searchParams?: {page: string; size: s
   const yachtsPage = allYachts?.length ? allYachts.slice(fromVessel, toVessel) : [];
 
   return (
-    <section className={`${styles.catalog_container}`}>
-      <h4 className={`${styles.catalog_title} ${typo.typo_h4}`}>Catalogue</h4>
+    <section className={styles.catalog_container}>
+      <div className={styles.catalog__top}>
+        <h4 className={`${styles.catalog_title} ${typo.typo_h4}`}>Catalogue</h4>
+        <div className="d-flex">
+          <Filter /> <Sorting />
+        </div>
+      </div>
       {yachtsPage.length ?
         (<CatalogYacht yachts={yachtsPage}></CatalogYacht>)
         : (<h4 className={`${styles.no_yachts}`}>No Yachts</h4>)
