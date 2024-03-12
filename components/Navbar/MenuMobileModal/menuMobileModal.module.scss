@@ -25,5 +25,90 @@
     font-weight: 500;
 
     text-decoration: none;
+
+  }
+
+  &__currency {
+    padding-bottom: 8px;
+    border-bottom: 2px solid #D9E2EB;
+    margin-bottom: 8px;
+  }
+
+  &__social {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 32px;
+
+    img:nth-child(2n) {
+      margin: 0 16px;
+    }
+  }
+}
+
+.contact {
+  color: #081433;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 32px;
+
+
+  &__title {
+    width: 232px;
+    color: #081433;
+    font-family: var(--font-baiJamjuree);
+    font-size: 1.5rem;
+    font-weight: 500;
+    text-decoration: none;
+    max-width: 100%;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    border-bottom: 2px solid #D9E2EB;
+  }
+
+  &__phone {
+    color: #081433;
+    font-size: 1rem;
+    font-weight: 400;
+    font-family: var(--font-roboto);
+    padding: 8px 0;
+  }
+
+  &__email {
+    color: #081433;
+    font-size: 1rem;
+    text-decoration: none;
+    font-family: var(--font-roboto);
+    font-weight: 400;
+  }
+}
+
+.follow {
+  color: #081433;
+  font-size: 1.5rem;
+  font-family: var(--font-baiJamjuree);
+  font-weight: 500;
+  &__title{
+    color: #081433;
+    font-size: 1.5rem;
+    font-family: var(--font-baiJamjuree);
+    font-weight: 500;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #D9E2EB;
+    width: 232px;
+    max-width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+  &__social{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 32px;
+    padding-top: 8px;
+    img:nth-child(2n){
+      margin: 0 16px;
+    }
   }
 }
