@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import Link from 'next/link';
 import Image from 'next/image';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useCurrency } from '@/context/CurrencyContext';
 
 import { pageLinksArray } from '@/utils/links/pageLinks';
@@ -48,6 +48,11 @@ const MenuMobileModal = ({
   const accountModalLoginHandler = () => {
     setIsAccountModalLoginOpen(!isAccountModalLoginOpen);
   };
+  useEffect(() => {
+    document.body.style.overflow = 'hidden'
+
+    return () => { document.body.style.overflow = 'scroll' };
+  }, [])
   return (
     <>
       {isAccountModalLoginOpen && (
