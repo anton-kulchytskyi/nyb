@@ -34,7 +34,7 @@ export default function RootLayout({
           sizes="any"
         />
       </head>
-      <body className="page__body">
+      <body className={`page__body ${baiJamjuree.variable} ${beautifulEs.variable} ${roboto.variable} page`} >
         <CurrencyProvider>
           <NoSSRNavBar />
           {children}

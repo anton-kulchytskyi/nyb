@@ -23,10 +23,9 @@ const Sorting = () => {
 
   return (
     <section className='d-flex align-items-center'>
-      <Dropdown className='d-flex align-items-center'>
-        
+      <Dropdown>
         <Dropdown.Toggle as='div' className={styles.button} >
-          <span className='text-dark'>Sorting by: </span>{' '}{desktopScreen && value}
+          <span className='text-dark me-2'>Sorting by: </span> {desktopScreen && (<span className={styles.button__value}>{value}</span>)}
         </Dropdown.Toggle>
 
         <Dropdown.Menu align='end' className={styles.menu}>
