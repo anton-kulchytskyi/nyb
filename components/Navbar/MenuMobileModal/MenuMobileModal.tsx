@@ -4,19 +4,15 @@ import Link from 'next/link';
 import Image from 'next/image';
 
 import { useEffect, useState } from 'react';
+import { usePathname } from 'next/navigation';
 import { useCurrency } from '@/context/CurrencyContext';
 
 import { pageLinksArray } from '@/utils/links/pageLinks';
 
-import MenuMobileEUR from '@/public/icons/MenuMobileEUR.svg';
-import MenuMobileGBP from '@/public/icons/MenuMobileGBP.svg';
-import MenuMobileUSD from '@/public/icons/MenuMobileUSD.svg';
-import MenuMobileNOK from '@/public/icons/MenuMobileNOK.svg';
-import FollowInstagram from '@/public/icons/FollowMobileInstagram.svg';
-import FollowTelegram from '@/public/icons/FollowMobileTelegram.svg';
-import FollowWhatsApp from '@/public/icons/FollowMobileWhatsApp.svg';
+import { currencyArray } from '@/utils/currency/currencyArray';
 import AccountModal from '../AccountModal/AccountModal';
 import LoginModal from '../LoginModal/LoginModal';
+import SocialMedia from '../../SocialMedia/SocialMedia';
 import styles from './menuMobileModal.module.scss';
 
 const variants = {
@@ -35,9 +31,13 @@ const MenuMobileModal = ({
   mobileMenuHandler,
   currencyModalHandler,
 }: Props) => {
-  const { selectedCurrency } = useCurrency();
+  const { setCurrency, selectedCurrency } = useCurrency();
   const [isAccountModalOpen, setIsAccountModalOpen] = useState(false);
   const [isAccountModalLoginOpen, setIsAccountModalLoginOpen] = useState(false);
+  const contactPhome = '+380632345521';
+  const contactEmail = 'info@norseyacht.com';
+  const color = '#4D6575';
+  const pathname = usePathname();
   const accountModalHandler = () => {
     setIsAccountModalOpen(!isAccountModalOpen);
   };
@@ -48,10 +48,16 @@ const MenuMobileModal = ({
   const accountModalLoginHandler = () => {
     setIsAccountModalLoginOpen(!isAccountModalLoginOpen);
   };
+  const wrapperFunction = (currency: string) => {
+    handleCurrencyChange(currency);
+  };
+  const handleCurrencyChange = (currency: string) => {
+    setCurrency(currency);
+  };
   useEffect(() => {
     document.body.style.overflow = 'hidden'
 
-    return () => { document.body.style.overflow = 'scroll' };
+    return () => {document.body.style.overflow = 'scroll'};
   }, [])
   return (
     <>
@@ -99,57 +105,32 @@ const MenuMobileModal = ({
           {`Split currency / ${selectedCurrency}`}
         </button>
         <div className={styles.modal__social}>
-          <Image 
-            src={MenuMobileEUR}
-            alt="MenuMobileEUR"
-            width={40}
-            height={40}
-          />
-          <Image 
-            src={MenuMobileGBP}
-            alt="MenuMobileGBP"
-            width={40}
-            height={40}
-          />
-          <Image 
-            src={MenuMobileUSD}
-            alt="MenuMobileUSD"
-            width={40}
-            height={40}
-          />
-          <Image 
-            src={MenuMobileNOK}
-            alt="MenuMobileNOK"
-            width={40}
-            height={40}
-          />
+          {currencyArray.map((curr) => (
+            <Link
+              key={curr.currencyName}
+              href={pathname}
+              onClick={() => wrapperFunction(curr.currencyName)}
+              className={`${styles.modal__flag}`}
+            >
+              <Image
+                src={curr.flag}
+                alt={curr.currencyName}
+                className={`${styles.modal__img}`}
+                width={40}
+                height={40}
+              />
+            </Link>
+          ))}
         </div>
         <div className={styles.contact}>
           <p className={styles.contact__title}>Contact</p>
-          <p className={styles.contact__phone}>+380632345521</p>
-          <Link href='mailto:info@norseyacht.com' className={styles.contact__email}>info@norseyacht.com</Link>
+          <Link href='tel:+380632345521' className={styles.contact__phone}>{contactPhome}</Link>
+          <Link href='mailto:info@norseyacht.com' className={styles.contact__email}>{contactEmail}</Link>
         </div>
         <div className={styles.follow}>
           <p className={styles.follow__title}>Follow us</p>
           <div className={styles.follow__social}>
-            <Image 
-              src={FollowInstagram}
-              alt="FollowInstagram"
-              width={40}
-              height={40}
-            />
-            <Image 
-              src={FollowTelegram}
-              alt="FollowTelegram"
-              width={40}
-              height={40}
-            />
-            <Image 
-              src={FollowWhatsApp}
-              alt="FollowWhatsApp"
-              width={40}
-              height={40}
-            />
+            <SocialMedia color={color} />
           </div>
         </div>
       </motion.div>
