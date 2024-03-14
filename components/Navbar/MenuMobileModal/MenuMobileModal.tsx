@@ -23,13 +23,11 @@ const variants = {
 type Props = {
   isMobileMenuClose: boolean;
   mobileMenuHandler: () => void;
-  currencyModalHandler: () => void;
 };
 
 const MenuMobileModal = ({
   isMobileMenuClose,
   mobileMenuHandler,
-  currencyModalHandler,
 }: Props) => {
   const { setCurrency, selectedCurrency } = useCurrency();
   const [isAccountModalOpen, setIsAccountModalOpen] = useState(false);
@@ -99,7 +97,6 @@ const MenuMobileModal = ({
         </button>
         <button
           type="button"
-          onClick={currencyModalHandler}
           className={`${styles.modal__link} ${styles.modal__currency}`}
         >
           {`Split currency / ${selectedCurrency}`}
