@@ -42,22 +42,28 @@
 
   &__link {
     display: flex;
+    align-items: center;
+    justify-content: space-around;
     gap: 0.625rem;
 
     padding: 0.5rem 1rem;
-    border-radius: 0.5rem;
-    border: 1px solid $gray-primary;
-
+    
     text-decoration: none;
-    color: #192358;
+    color:$gray-80;
+
 
     &:hover {
-      border: 1px solid $orange-secondary-100;
+      border-bottom: 1px solid $orange-secondary-100;
+      color:$gray-80
     }
 
     &__active {
-      color: $white;
-      background-color: $gray-primary;
+      color: $blue;
+      background-color: $white;
+      border-bottom: 1px solid $gray-primary;
     }
+  }
+  &__img{
+    border-radius: 9999px;
   }
 }

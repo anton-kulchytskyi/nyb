@@ -63,7 +63,6 @@ const Navbar = () => {
         <MenuMobileModal
           isMobileMenuClose={isMobileMenuClose}
           mobileMenuHandler={mobileMenuHandler}
-          currencyModalHandler={currencyModalHandler}
         />
       )}
       {isCurrencyModalOpen && (
