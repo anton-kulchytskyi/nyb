@@ -16,6 +16,8 @@ export interface Vessel extends VesselKeys {
   yacht_price_USD: string;
   yacht_price_GBP: string;
   yacht_price_NOK: string;
+  yacht_price: number;
+  yacht_price_old: number;
   yacht_year: number;
   yacht_country: string;
   yacht_town: string;

@@ -14,27 +14,39 @@ import styles from './fycard.module.scss';
 
 interface Props {
   yacht: Vessel;
-  buttonsExample?: string;
   inCatalog?: boolean;
 }
 
-const FYCard = ({ yacht, buttonsExample, inCatalog }: Props) => {
+const priceToRender = (price: number, curr: number): string => {
+  return Math.round(price * (curr || 1)).toLocaleString('en-US');
+};
+
+const FYCard = ({ yacht, inCatalog }: Props) => {
   const [isLoading, setIsLoading] = useState(true);
   const router = useRouter();
-  const { selectedCurrency, selectedCurrencySymbol } = useCurrency();
+  const { selectedCurrency, currencyRates, selectedCurrencySymbol } =
+    useCurrency();
   const [imageUrl, setImageUrl] = useState<string>('');
   const {
     yacht_id,
+    yacht_price,
+    yacht_price_old,
+    yacht_main_image_key,
     yacht_make,
     yacht_model,
     yacht_country,
     yacht_town,
     yacht_year,
-    yacht_main_image_key,
   } = yacht;
 
-  const key = `yacht_price_${selectedCurrency}`;
-  const currPrice = (+yacht[key]).toLocaleString('en-US');
+  const updatePrice = priceToRender(
+    yacht_price,
+    currencyRates[selectedCurrency]
+  );
+  const updatePriceOld = priceToRender(
+    yacht_price_old,
+    currencyRates[selectedCurrency]
+  );
 
   useEffect(() => {
     async function loadImgFromAws() {
@@ -46,6 +58,8 @@ const FYCard = ({ yacht, buttonsExample, inCatalog }: Props) => {
     }
     loadImgFromAws();
   }, [yacht_main_image_key]);
+
+  const showOldPrice = yacht_price_old > yacht_price;
 
   const routeToVessel = () => {
     router.push(`/catalogue/${yacht_id}?name=${yacht_make}`);
@@ -70,9 +84,9 @@ const FYCard = ({ yacht, buttonsExample, inCatalog }: Props) => {
               className={styles.image}
               alt="feature_img"
             />
-            {buttonsExample && (
-              <span className={styles.top_right}>{buttonsExample}</span>
-            )}
+            <span className={styles.top_right}>
+              {showOldPrice ? 'hot price' : 'top 3'}
+            </span>
             <span className={styles.center}>
               <Button
                 text="See Detail"
@@ -98,9 +112,14 @@ const FYCard = ({ yacht, buttonsExample, inCatalog }: Props) => {
               <br />
               <span>{yacht_model}</span>
             </Link>
-            <p
-              className={typo.typo_price}
-            >{`${selectedCurrencySymbol} ${currPrice}`}</p>
+            <p className={typo.typo_price}>
+              {`${selectedCurrencySymbol} ${updatePrice}`}
+              {showOldPrice && (
+                <span className={styles.old_price}>
+                  {`${selectedCurrencySymbol} ${updatePriceOld}`}
+                </span>
+              )}
+            </p>
             <p
               className={`${typo.typo_description} ${typo.typo_description_gray}`}
             >
