@@ -101,10 +101,19 @@
 .top_right {
   position: absolute;
   top: 1.5rem;
-  right: 1.5rem;
+  right: 2rem;
   color: $white;
+  text-transform: uppercase;
   line-height: normal;
+  font-weight: 500;
   padding: 0.625rem 2rem;
   background-color: $orange-secondary-100;
-  border-radius: 3.5rem;
+  border-radius: 2rem 0 2rem 0;
+}
+
+.old_price {
+  margin-left: 1rem;
+  text-decoration-line: line-through;
+  font-size: 1.5rem;
+  color: $gray-80;
 }
