@@ -162,10 +162,7 @@ const LoginModal = ({ toggleBetweenModals, isAccountModalLoginOpen, accountModal
                   <button className={styles.socials__facebook} />
                 </div>
                 <div className={styles.socials__container}>
-                  <button
-
-                    className={styles.socials__google}
-                  />
+                  <button className={styles.socials__google} />
                 </div>
                 <div className={styles.socials__container}>
                   <button className={styles.socials__apple} />

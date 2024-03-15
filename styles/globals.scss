@@ -1,3 +1,4 @@
+@import "~bootstrap/scss/bootstrap";
 @import './var.scss';
 @import './mixins.scss';
 
@@ -18,7 +19,7 @@ button {
 .page {
   color: $black;
 
-  font-family: var(--font-roboto);
+  font-family: var(--font-roboto) !important;
   font-size: 1rem;
   font-style: normal;
   line-height: 1.5;
