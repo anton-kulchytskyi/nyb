@@ -22,7 +22,7 @@
 
     position: absolute;
     top: 4rem;
-    right: 12rem;
+    right: 10rem;
     background-color: $white;
     padding: 1.5rem 1.25rem;
     border: 1px solid $gray-20;
@@ -30,7 +30,7 @@
     box-shadow: 10px 10px 5px 0px $gray-80;
 
     @include onExtraLarge {
-      right: calc((100vw - ((100vw - 120rem) / 2)) - 108rem);
+      right: calc((100vw - ((100vw - 120rem) / 2)) - 110rem);
     }
 
     @include onTablet {
@@ -50,6 +50,7 @@
     
     text-decoration: none;
     color:$gray-80;
+    border-bottom: 1px solid transparent;
 
 
     &:hover {
