@@ -90,7 +90,7 @@ const FYCard = ({ yacht, inCatalog }: Props) => {
             <span className={styles.center}>
               <Button
                 text="See Detail"
-                linkTo={`/catalogue/${yacht_id}`}
+                linkTo={`/catalogue/${yacht_id}?name=${yacht_make}`}
                 primary
               />
             </span>
@@ -106,7 +106,6 @@ const FYCard = ({ yacht, inCatalog }: Props) => {
                 pathname: `/catalogue/${yacht_id}`,
                 query: { name: yacht_make },
               }}
-              as={`/catalogue/${yacht_id}`}
             >
               <span>{yacht_make}</span>
               <br />
