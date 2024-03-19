@@ -58,13 +58,19 @@ export const CurrencyProvider: React.FC<CurrencyProviderProps> = ({
 
   const updateCurrencyRates = async () => {
     try {
-      const storedLastUpdate = localStorage.getItem(
+      const lastUpdate = localStorage.getItem(
         LOCAL_STORAGE_CURRENCY_TIME_UPDATE
       );
-      const storedRates = localStorage.getItem(LOCAL_STORAGE_RATES_KEY);
+
+      const storedLastUpdateDate = lastUpdate && new Date(lastUpdate);
       const today = new Date().setHours(17, 0, 0, 0);
 
-      if (!storedLastUpdate || today - parseInt(storedLastUpdate) > 86400000) {
+      const storedRates = localStorage.getItem(LOCAL_STORAGE_RATES_KEY);
+
+      if (
+        !storedLastUpdateDate ||
+        today - storedLastUpdateDate.getTime() >= 86400000
+      ) {
         const response = await fetch(
           'https://api.frankfurter.app/latest?to=USD,GBP,NOK'
         );
@@ -80,7 +86,7 @@ export const CurrencyProvider: React.FC<CurrencyProviderProps> = ({
         const lastCurrencyUptades = new Date(data.date).setHours(17, 0, 0, 0);
         localStorage.setItem(
           LOCAL_STORAGE_CURRENCY_TIME_UPDATE,
-          lastCurrencyUptades.toString()
+          new Date(lastCurrencyUptades).toUTCString()
         );
 
         localStorage.setItem(
