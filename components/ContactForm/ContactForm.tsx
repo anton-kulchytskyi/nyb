@@ -34,7 +34,7 @@ const ContactForm = ({ productCard }: Props) => {
     if (!inputs.name.trim()) {
       data = 'The name field is required';
     } else if (
-      !/^[a-zA-Zа-яА-ЯіёЁĀ-žŠĐŽČćžšđčŚŹŃĄĘŚŁŻĆŹńąęśłżćźÆØÅæøå\s]+$/.test(
+      !/^[a-zA-Zа-яА-ЯіёЁĀ-žŠĐŽČćžšđčŚŹŃĄĘŚŁŻĆŹńąęśłżćźÆØÅÜÑæøåüñ\s]+$/.test(
         inputs.name
       )
     ) {
@@ -49,7 +49,11 @@ const ContactForm = ({ productCard }: Props) => {
     let data: string = '';
     if (!inputs.userEmail.trim()) {
       data = 'The email field is required';
-    } else if (!/\S+@\S+\.\S+/.test(inputs.userEmail)) {
+    } else if (
+      !/^[a-zA-Z0-9_.!-]*[a-zA-Z0-9-.]+@[a-zA-Z0-9-.]+\.[a-zA-Z0-9.]+$/.test(
+        inputs.userEmail
+      )
+    ) {
       data = 'The email is not valid';
     }
 
