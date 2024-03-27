@@ -183,11 +183,17 @@
   color: $orange-secondary-100;
   font-size: 2rem;
   font-weight: 500;
-  margin: 0.5rem 0;
 
   @include onMobile {
     font-size: 1.25rem;
   }
+}
+
+.typo_old_price {
+  margin-left: 1rem;
+  text-decoration-line: line-through;
+  font-size: 1.5rem;
+  color: $gray-80;
 }
 
 .typo_small_txt {

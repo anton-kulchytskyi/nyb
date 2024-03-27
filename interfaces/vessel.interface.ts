@@ -29,6 +29,7 @@ export interface Vessel extends VesselKeys {
   yacht_fuel_type: string;
   yacht_keel_type: string;
   yacht_engine: number;
+  yacht_shower: number;
   yacht_description: string;
   yacht_created_at: string;
   yacht_main_image_key: string;

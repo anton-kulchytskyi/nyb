@@ -5,6 +5,7 @@ import QuestionMarkSvg from '@/components/SvgIconsComponents/QuestionMarkSvg';
 import { Vessel } from '@/interfaces/vessel.interface';
 import Slider from '@/components/ProductCard/Slider/Slider';
 import ContactForm from '@/components/ContactForm/ContactForm';
+import YachtPrice from '@/components/YachtPrice/YachtPrice';
 import typo from '../../../styles/typography.module.scss';
 import styles from './VesselView.module.scss';
 
@@ -27,9 +28,10 @@ export const VesselView: React.FC<Props> = ({ ves, images }) => {
               {ves.yacht_make} {ves.yacht_model}, {ves.yacht_year},{' '}
               {ves.yacht_country}, {ves.yacht_town}
             </span>
-            <span
-              className={typo.typo_price}
-            >{`${selectedCurrencySymbol} ${currPrice}`}</span>
+            <YachtPrice
+              price={ves.yacht_price}
+              old_price={ves.yacht_price_old}
+            />
           </div>
           <div className={styles.body__gallery}>
             <Slider

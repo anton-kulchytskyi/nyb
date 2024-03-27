@@ -111,9 +111,7 @@
   border-radius: 2rem 0 2rem 0;
 }
 
-.old_price {
-  margin-left: 1rem;
-  text-decoration-line: line-through;
-  font-size: 1.5rem;
-  color: $gray-80;
+.price {
+  display: block;
+  margin: 0.5rem 0;
 }

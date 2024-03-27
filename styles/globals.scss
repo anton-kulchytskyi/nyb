@@ -1,4 +1,4 @@
-@import "~bootstrap/scss/bootstrap";
+@import '~bootstrap/scss/bootstrap';
 @import './var.scss';
 @import './mixins.scss';
 
@@ -118,4 +118,9 @@ input:-webkit-autofill:active {
   -webkit-text-fill-color: #ffffff;
   transition: background-color 5000s ease-in-out 0s;
   box-shadow: transparent;
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+  color: $orange-secondary-100 !important;
 }

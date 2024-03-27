@@ -1,0 +1,119 @@
+@import '../../../styles/var.scss';
+@import '../../../styles/mixins.scss';
+
+.gallery {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  background-color: $black;
+  z-index: 2;
+
+  &__container {
+    max-width: 120rem;
+    margin: 0 auto;
+    color: $white;
+  }
+
+  &__slider {
+    color: $white;
+    height: 100vh;
+    padding: 2.5rem 1.5rem 0 4rem;
+    overflow: hidden;
+  }
+
+  &__side {
+    background-color: $white;
+    padding: 2rem 1rem;
+    color: $black;
+    height: 100vh;
+
+    &__title {
+      font-family: var(--font-baiJamjuree);
+      font-size: 2.125rem;
+      font-weight: 500;
+      line-height: 1.5;
+    }
+
+    &__place {
+      font-size: 1.5rem;
+    }
+
+    &__info {
+      margin-top: 3.5rem;
+    }
+  }
+}
+
+.slider {
+  &__closeButton {
+    display: flex;
+    width: 100%;
+    justify-content: flex-end;
+  }
+
+  &__top {
+    font-family: var(--font-baiJamjuree);
+    color: $white;
+    font-size: 2.125rem;
+    font-weight: 500;
+    line-height: 1.5;
+  }
+}
+
+.line {
+  color: $gray-primary;
+  font-family: var(--font-baiJamjuree);
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 1.5;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+
+  &__name {
+    width: 50%;
+  }
+
+  &__price {
+    color: $orange-secondary-100;
+    font-size: 1.5rem;
+  }
+
+  &__value {
+    color: $black;
+    font-size: 1.25rem;
+  }
+}
+
+// layout styles
+
+.row {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+.col {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 100%;
+  flex: 2;
+
+  @include onTablet {
+    display: none;
+  }
+}
+
+.triple_col {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 100%;
+  flex: 5;
+  overflow: hidden;
+
+  @include onTablet {
+    flex: 1;
+  }
+}
