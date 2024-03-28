@@ -1,8 +1,11 @@
 'use client';
 
+import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 import { useCurrency } from '@/context/CurrencyContext';
 import QuestionMarkSvg from '@/components/SvgIconsComponents/QuestionMarkSvg';
 import { Vessel } from '@/interfaces/vessel.interface';
+import FullScreen from '@/public/icons/full_screen.svg';
 import Slider from '@/components/ProductCard/Slider/Slider';
 import ContactForm from '@/components/ContactForm/ContactForm';
 import YachtPrice from '@/components/YachtPrice/YachtPrice';
@@ -19,6 +22,11 @@ export const VesselView: React.FC<Props> = ({ ves, images }) => {
   const key = `yacht_price_${selectedCurrency}`;
   const currPrice = (+ves[key]).toLocaleString('en-US');
 
+  const router = useRouter();
+  const routeToVessel = () => {
+    router.push(`/catalogue/${ves.yacht_id}/gallery`);
+  };
+
   return (
     <>
       <div className={styles.page}>
@@ -34,9 +42,20 @@ export const VesselView: React.FC<Props> = ({ ves, images }) => {
             />
           </div>
           <div className={styles.body__gallery}>
+            <span
+              className={styles.full_screen}
+              onClick={routeToVessel}
+            >
+              <Image
+                src={FullScreen}
+                width={24}
+                height={24}
+                alt="full screen button"
+              />
+            </span>
             <Slider
               images={images}
-              ves={ves}
+              // ves={ves}
             />
           </div>
           <div className={styles.body__bottom}>

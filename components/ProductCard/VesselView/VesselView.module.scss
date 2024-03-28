@@ -31,6 +31,10 @@
     }
   }
 
+  &__gallery {
+    position: relative;
+  }
+
   &__bottom {
     margin-bottom: 2rem;
   }
@@ -96,7 +100,6 @@
     width: 100%;
     max-width: 36.5rem;
     margin-bottom: 5rem;
-    
 
     @include onTablet {
       max-width: 100%;
@@ -159,4 +162,18 @@
   @include onSmall {
     padding: 1rem 1rem;
   }
+}
+
+.full_screen {
+  position: absolute;
+  top: 1.75rem;
+  right: 1.75rem;
+  width: 1.75rem;
+  height: 1.75rem;
+  z-index: 2;
+  background-color: #ffffff99;
+  border-radius: 0.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

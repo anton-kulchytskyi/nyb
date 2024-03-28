@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { useRouter } from 'next/navigation';
+// import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
@@ -11,15 +11,15 @@ import 'swiper/css/thumbs';
 import { Navigation, FreeMode, Thumbs } from 'swiper/modules';
 import styles from './Slider.module.scss';
 
-const Slider = ({ ves, images }) => {
+const Slider = ({ images }) => {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
 
-  const { yacht_id } = ves;
+  // const { yacht_id } = ves;
 
-  const router = useRouter();
-  const routeToVessel = () => {
-    router.push(`/catalogue/${yacht_id}/gallery`);
-  };
+  // const router = useRouter();
+  // const routeToVessel = () => {
+  //   router.push(`/catalogue/${yacht_id}/gallery`);
+  // };
 
   return (
     <div>
@@ -61,14 +61,14 @@ const Slider = ({ ves, images }) => {
           className={styles.slide__thumb__container}
         >
           <SwiperSlide>
-            <button
+            {/* <button
               onClick={routeToVessel}
               className={styles.button}
             >
               Gallery
               <br />
               {images.length} photos
-            </button>
+            </button> */}
           </SwiperSlide>
           {images.map((img, index) => (
             <SwiperSlide key={index}>
