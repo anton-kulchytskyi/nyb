@@ -38,11 +38,14 @@
     padding: 1.75rem;
 
     @include onMobile {
-      padding: 57px 140px;
+      padding: 3.75rem 8.75rem;
     }
 
     @include onSmall {
-      padding: 56px 21px;
+      padding: 3.75rem 2.75rem;
+    }
+    @include onSmallMobile {
+      padding: 1.75rem 1.25rem;
     }
   }
 
@@ -65,10 +68,11 @@
   font-size: 2.5rem;
   line-height: normal;
   font-weight: 600;
+  margin-bottom: 0;
 
-  @include onMobile {
-    font-size: 4.5vw;
-  }
+  // @include onMobile {
+  //   font-size: 4.5vw;
+  // }
 
   @include onSmall {
     font-size: 7vw;
@@ -223,6 +227,7 @@
     border-bottom: 1px solid #a9a9b0;
     width: 100%;
   }
+ 
 }
 
 .socials {
@@ -259,6 +264,9 @@
   }
   &__apple {
     background: url('../../../public/icons/apple.svg') no-repeat center/cover;
+  }
+    @include onMobile {
+   margin-bottom: 2rem;
   }
 }
 
