@@ -36,12 +36,17 @@
     align-items: center;
     padding: 1.781rem 1.75rem;
 
+    
+
     @include onMobile {
       padding: 3.5rem 6rem;
     }
 
     @include onSmall {
-      padding: 3.5rem 1.3rem;
+      padding: 5.5rem 2.75rem;
+    }
+    @include onSmallMobile{
+      padding: 5.344rem 1.375rem;
     }
   }
 
@@ -276,6 +281,10 @@
     &:hover {
       border-bottom: 1px solid $orange-secondary-100;
     }
+  }
+  @include onSmallMobile{
+    flex-direction: column;
+    text-align: center;
   }
 }
 
