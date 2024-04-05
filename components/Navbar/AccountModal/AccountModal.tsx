@@ -242,13 +242,17 @@ const AccountModal = ({ toggleBetweenModals, isAccountModalOpen, accountModalHan
                 </div>
               </form>
               <p className={styles.form_terms}>
-                By signing in or creating an account, you agree to our{' '}
+                By creating an account, you agree to our{' '}
                 <Link href='/terms-of-use' className={styles.form_terms__link} onClick={accountModalHandler} >
-                  Terms and conditions
+                  Terms of use
+                </Link>{' '}
+                ,{' '}
+                <Link href='/privacy-policy' className={styles.form_terms__link} onClick={accountModalHandler} >
+                  Privacy policy
                 </Link>{' '}
                 and{' '}
-                <Link href='/privacy-policy' className={styles.form_terms__link} onClick={accountModalHandler} >
-                  Privacy policy and cookies.
+                <Link href='/cookies-policy' className={styles.form_terms__link} onClick={accountModalHandler} >
+                  Cookies policy
                 </Link>
               </p>
               <button className={styles.form__button}>Create a new account</button>
