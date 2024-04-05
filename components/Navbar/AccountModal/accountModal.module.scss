@@ -38,7 +38,7 @@
     padding: 1.75rem;
 
     @include onMobile {
-      padding: 3.75rem 8.75rem;
+      padding: 3.7rem 8.75rem;
     }
 
     @include onSmall {
@@ -54,7 +54,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
   }
 
   &__main {
@@ -65,14 +65,11 @@
 .header {
   color: $gray-primary;
   font-family: var(--font-baiJamjuree);
-  font-size: 2.5rem;
+  font-size: 1.7rem;
   line-height: normal;
   font-weight: 600;
   margin-bottom: 0;
 
-  // @include onMobile {
-  //   font-size: 4.5vw;
-  // }
 
   @include onSmall {
     font-size: 7vw;
