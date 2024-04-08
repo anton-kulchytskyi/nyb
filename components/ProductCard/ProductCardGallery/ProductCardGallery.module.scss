@@ -7,8 +7,15 @@
   left: 0;
   height: 100vh;
   width: 100vw;
+  padding: 2rem;
   background-color: $black;
   z-index: 2;
+
+  &__closeButton {
+    display: flex;
+    width: 100%;
+    justify-content: flex-end;
+  }
 
   &__container {
     max-width: 120rem;
@@ -19,40 +26,12 @@
   &__slider {
     color: $white;
     height: 100vh;
-    padding: 2.5rem 1.5rem 0 4rem;
+    // padding: 2rem;
     overflow: hidden;
-  }
-
-  &__side {
-    background-color: $white;
-    padding: 2rem 1rem;
-    color: $black;
-    height: 100vh;
-
-    &__title {
-      font-family: var(--font-baiJamjuree);
-      font-size: 2.125rem;
-      font-weight: 500;
-      line-height: 1.5;
-    }
-
-    &__place {
-      font-size: 1.5rem;
-    }
-
-    &__info {
-      margin-top: 3.5rem;
-    }
   }
 }
 
 .slider {
-  &__closeButton {
-    display: flex;
-    width: 100%;
-    justify-content: flex-end;
-  }
-
   &__top {
     font-family: var(--font-baiJamjuree);
     color: $white;
@@ -89,34 +68,34 @@
 
 // layout styles
 
-.row {
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-}
+// .row {
+//   display: flex;
+//   flex-direction: row;
+//   width: 100%;
+// }
 
-.col {
-  display: flex;
-  flex-direction: column;
-  flex-basis: 100%;
-  flex: 2;
+// .col {
+//   display: flex;
+//   flex-direction: column;
+//   flex-basis: 100%;
+//   flex: 2;
 
-  @include onTablet {
-    display: none;
-  }
-}
+//   @include onTablet {
+//     display: none;
+//   }
+// }
 
-.triple_col {
-  display: flex;
-  flex-direction: column;
-  flex-basis: 100%;
-  flex: 5;
-  overflow: hidden;
+// .triple_col {
+//   display: flex;
+//   flex-direction: column;
+//   flex-basis: 100%;
+//   flex: 5;
+//   overflow: hidden;
 
-  @include onTablet {
-    flex: 1;
-  }
-}
+//   @include onTablet {
+//     flex: 1;
+//   }
+// }
 
 // skeleton styles
 .loadingSkeleton {

@@ -12,7 +12,7 @@ const s3 = new S3Client({
 export async function fetchImgUrl(keyFromAws: string): Promise<string> {
   let currImageUrl;
   const params = {
-    Bucket: 'nyb-basket',
+    Bucket: process.env.NEXT_PUBLIC_BUCKET_NAME as string,
     Key: keyFromAws,
   };
 

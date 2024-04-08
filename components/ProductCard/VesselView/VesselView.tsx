@@ -2,6 +2,7 @@
 
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
+import { useFullscreen } from '@/context/FullscreenContext';
 import { useCurrency } from '@/context/CurrencyContext';
 import QuestionMarkSvg from '@/components/SvgIconsComponents/QuestionMarkSvg';
 import { Vessel } from '@/interfaces/vessel.interface';
@@ -19,12 +20,25 @@ type Props = {
 
 export const VesselView: React.FC<Props> = ({ ves, images }) => {
   const { selectedCurrency, selectedCurrencySymbol } = useCurrency();
+  const { isFullscreenEnabled, setIsFullscreenEnabled } = useFullscreen();
   const key = `yacht_price_${selectedCurrency}`;
   const currPrice = (+ves[key]).toLocaleString('en-US');
+
+  // eslint-disable-next-line
+  console.log(images);
+
+  // const openContentFullscreen = () => {
+  //   const element = document.getElementById('card-gallery');
+  //   if (element && element.requestFullscreen) {
+  //     element.requestFullscreen();
+  //   }
+  // };
 
   const router = useRouter();
   const routeToVessel = () => {
     router.push(`/catalogue/${ves.yacht_id}/gallery`);
+    setIsFullscreenEnabled(!isFullscreenEnabled);
+    // openContentFullscreen();
   };
 
   return (
