@@ -4,6 +4,7 @@
 .modal {
   display: none;
   position: fixed;
+  left: 0;
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
@@ -13,8 +14,7 @@
 
   &__wrapper {
     position: absolute;
-    height: 41.5rem;
-    width: 37.5rem;
+    width: 34rem;
     background-color: $white;
     border-radius: 1rem;
     overflow: scroll;
@@ -35,27 +35,33 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 3rem;
+    padding: 1.781rem 1.75rem;
+
+    
 
     @include onMobile {
       padding: 3.5rem 6rem;
     }
 
     @include onSmall {
-      padding: 3.5rem 1.3rem;
+      padding: 5.5rem 2.75rem;
+    }
+    @include onSmallMobile{
+      padding: 5.344rem 1.375rem;
     }
   }
 
   &__top {
     width: 100%;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
   }
 
   &__main {
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
     width: 100%;
   }
 }
@@ -72,7 +78,7 @@
   }
 
   @include onSmall {
-    font-size: 7vw;
+    font-size: 1.9rem;
   }
 }
 
@@ -83,13 +89,23 @@
   display: flex;
   align-items: center;
   cursor: pointer;
+  @include onSmallMobile {
+    top:0.5rem;
+  }
+  @include onSmall {
+    top: 1rem;
+  }
+  @include onMobile {
+    top: 2rem;
+  }
 }
 
 .form {
   &__password {
     color: $orange-secondary-100;
-    margin-bottom: 2rem;
-    font-size: 0.8rem;
+    margin-bottom: 1.5rem;
+    font-size: 1.125rem;
+    font-weight: 500;
   }
 
   &_terms {
@@ -116,7 +132,7 @@
     width: 100%;
     height: 3.125rem;
     border-radius: 3.5rem;
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
     transition: 0.6s ease-in;
 
     &:hover {
@@ -129,7 +145,7 @@
 
 .form_group {
   position: relative;
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
 }
 
 .input {
@@ -138,7 +154,7 @@
   padding: 1rem;
   border-radius: 0.5rem;
   color: $gray-primary;
-  border: 1px solid $gray-20;
+  border: 1px solid $gray-100;
   background-color: transparent;
   outline: none;
   transform: background-color 0.6s ease;
@@ -229,7 +245,7 @@
   display: flex;
   justify-content: center;
   gap: 2rem;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 
   &__container {
     height: 3rem;
@@ -275,6 +291,10 @@
     &:hover {
       border-bottom: 1px solid $orange-secondary-100;
     }
+  }
+  @include onSmallMobile{
+    flex-direction: column;
+    text-align: center;
   }
 }
 
