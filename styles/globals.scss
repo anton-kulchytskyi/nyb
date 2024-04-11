@@ -124,3 +124,12 @@ input:-webkit-autofill:active {
 .swiper-button-next {
   color: $orange-secondary-100 !important;
 }
+
+.swiper-thumbs {
+  & .swiper-slide-thumb-active.swiper-slide-fully-visible {
+    opacity: 1;
+  }
+  & .swiper-slide {
+    opacity: 0.4;
+  }
+}

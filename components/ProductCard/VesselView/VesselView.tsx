@@ -3,7 +3,6 @@
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useFullscreen } from '@/context/FullscreenContext';
-import { useCurrency } from '@/context/CurrencyContext';
 import QuestionMarkSvg from '@/components/SvgIconsComponents/QuestionMarkSvg';
 import { Vessel } from '@/interfaces/vessel.interface';
 import FullScreen from '@/public/icons/full_screen.svg';
@@ -19,26 +18,14 @@ type Props = {
 };
 
 export const VesselView: React.FC<Props> = ({ ves, images }) => {
-  const { selectedCurrency, selectedCurrencySymbol } = useCurrency();
-  const { isFullscreenEnabled, setIsFullscreenEnabled } = useFullscreen();
-  const key = `yacht_price_${selectedCurrency}`;
-  const currPrice = (+ves[key]).toLocaleString('en-US');
-
-  // eslint-disable-next-line
-  console.log(images);
-
-  // const openContentFullscreen = () => {
-  //   const element = document.getElementById('card-gallery');
-  //   if (element && element.requestFullscreen) {
-  //     element.requestFullscreen();
-  //   }
-  // };
-
+  const { enterFullscreen } = useFullscreen();
   const router = useRouter();
+
   const routeToVessel = () => {
     router.push(`/catalogue/${ves.yacht_id}/gallery`);
-    setIsFullscreenEnabled(!isFullscreenEnabled);
-    // openContentFullscreen();
+    setTimeout(() => {
+      enterFullscreen();
+    }, 2000);
   };
 
   return (
@@ -67,10 +54,7 @@ export const VesselView: React.FC<Props> = ({ ves, images }) => {
                 alt="full screen button"
               />
             </span>
-            <Slider
-              images={images}
-              // ves={ves}
-            />
+            <Slider images={images} />
           </div>
           <div className={styles.body__bottom}>
             <h1 className={typo.typo_h4}>About</h1>
@@ -106,22 +90,6 @@ export const VesselView: React.FC<Props> = ({ ves, images }) => {
                 </p>
               </div>
               <div className={styles.body__about_featchures}>
-                <p className={styles.body__about_featch}>
-                  <span>Price:</span>
-                  <span>{`${selectedCurrencySymbol} ${currPrice}`}</span>
-                </p>
-                <p className={styles.body__about_featch}>
-                  <span>Year:</span>
-                  <span>{ves.yacht_year}</span>
-                </p>
-                <p className={styles.body__about_featch}>
-                  <span>Country:</span>
-                  <span>{ves.yacht_country}</span>
-                </p>
-                <p className={styles.body__about_featch}>
-                  <span>State:</span>
-                  <span>{ves.yacht_town}</span>
-                </p>
                 <p className={styles.body__about_featch}>
                   <span>Lengh Overall:</span>
                   <span>{ves.yacht_loa}</span>

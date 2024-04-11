@@ -1,7 +1,6 @@
 'use client';
 import Image from 'next/image';
 import { useState } from 'react';
-// import Fullscreen from 'react-fullscreen-crossbrowser';
 import type { Swiper as SwiperType } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
@@ -11,8 +10,6 @@ import 'swiper/css/navigation';
 import 'swiper/css/thumbs';
 
 import { FreeMode, Navigation, Thumbs } from 'swiper/modules';
-// import { useFullscreen } from '@/context/FullscreenContext';
-
 import styles from './ProductCardGallerySlider.module.scss';
 
 type ProductCardGallerySliderProps = {
@@ -23,13 +20,8 @@ const ProductCardGallerySlider = ({
   images,
 }: ProductCardGallerySliderProps) => {
   const [thumbsSwiper, setThumbsSwiper] = useState<SwiperType>();
-  // const { isFullscreenEnabled, fullscreenHandle } = useFullscreen();
   return (
-    // <Fullscreen
-    //   enabled={isFullscreenEnabled}
-    //   onChange={fullscreenHandle}
-    // >
-    <div className={styles.vert_container}>
+    <div className={styles.container}>
       <Swiper
         loop={true}
         spaceBetween={10}
@@ -50,26 +42,7 @@ const ProductCardGallerySlider = ({
           </SwiperSlide>
         ))}
       </Swiper>
-      {/* <Swiper
-      onSwiper={setThumbsSwiper}
-      loop={true}
-      spaceBetween={10}
-      slidesPerView={4}
-      freeMode={true}
-      watchSlidesProgress={true}
-      modules={[FreeMode, Navigation, Thumbs]}
-      className={styles.gallerySwiper__thumbs}
-    >
-      {images.map((img) => (
-        <SwiperSlide key={img}>
-          <Image
-            src={img}
-            fill
-            alt="gallery_slider_img"
-          />
-        </SwiperSlide>
-      ))}
-    </Swiper> */}
+
       <Swiper
         onSwiper={setThumbsSwiper}
         direction={'vertical'}
@@ -82,7 +55,10 @@ const ProductCardGallerySlider = ({
         className={styles.gallerySwiper__thumbs}
       >
         {images.map((img) => (
-          <SwiperSlide key={img}>
+          <SwiperSlide
+            key={img}
+            className={styles.gallerySwiper__thumbs__slides}
+          >
             <Image
               src={img}
               fill
@@ -92,7 +68,6 @@ const ProductCardGallerySlider = ({
         ))}
       </Swiper>
     </div>
-    // </Fullscreen>
   );
 };
 

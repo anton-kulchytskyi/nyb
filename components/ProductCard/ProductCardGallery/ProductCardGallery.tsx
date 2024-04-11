@@ -1,6 +1,6 @@
 'use client';
+
 import { useRouter } from 'next/navigation';
-import Fullscreen from 'react-fullscreen-crossbrowser';
 import { useFullscreen } from '@/context/FullscreenContext';
 import { Vessel } from '@/interfaces/vessel.interface';
 import CloseSvg from '@/components/SvgIconsComponents/CloseSvg';
@@ -15,40 +15,35 @@ type Props = {
 
 const ProductCardGallery = ({ yacht, images }: Props) => {
   const router = useRouter();
-  const { isFullscreenEnabled, setIsFullscreenEnabled } = useFullscreen();
+  const { fullscreenRef, exitFullscreen } = useFullscreen();
   const { yacht_price, yacht_make, yacht_model } = yacht;
   const closeButtonFunc = () => {
     router.back();
-    setIsFullscreenEnabled(!isFullscreenEnabled);
+    exitFullscreen();
   };
 
   return (
-    <Fullscreen
-      enabled={isFullscreenEnabled}
-      onChange={() => setIsFullscreenEnabled(!isFullscreenEnabled)}
+    <div
+      ref={fullscreenRef}
+      className={styles.gallery}
     >
-      <div
-        // id="card-gallery"
-        className={styles.gallery}
+      <button
+        className={styles.gallery__closeButton}
+        type="button"
+        onClick={closeButtonFunc}
       >
-        <button
-          className={styles.gallery__closeButton}
-          type="button"
-          onClick={closeButtonFunc}
-        >
-          <CloseSvg color={'#fff'} />
-        </button>
-        <div className={styles.gallery__container}>
-          <div className={styles.gallery__slider}>
-            <h4 className={styles.gallery__title}>
-              {yacht_make} {yacht_model} <YachtPrice price={yacht_price} />
-            </h4>
-
-            <ProductCardGallerySlider images={images} />
-          </div>
+        <CloseSvg color={'#fff'} />
+      </button>
+      <div className={styles.gallery__container}>
+        <div className={styles.gallery__slider}>
+          <h4 className={styles.gallery__title}>
+            {yacht_make} {yacht_model}
+          </h4>
+          <YachtPrice price={yacht_price} />
+          <ProductCardGallerySlider images={images} />
         </div>
       </div>
-    </Fullscreen>
+    </div>
   );
 };
 

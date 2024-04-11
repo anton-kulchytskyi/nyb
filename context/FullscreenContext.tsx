@@ -1,17 +1,23 @@
 'use client';
+import fscreen from 'fscreen';
 
 import React, {
+  useMemo,
+  useRef,
+  useState,
+  useEffect,
+  useCallback,
   createContext,
   useContext,
-  useState,
   ReactNode,
-  // useEffect,
 } from 'react';
-// import FullScreen from 'react-fullscreen-crossbrowser';
 
 type FullscreenContextType = {
-  isFullscreenEnabled: boolean;
-  setIsFullscreenEnabled: (isFullscreenEnabled: boolean) => void;
+  fullscreenRef: React.MutableRefObject<HTMLDivElement | null>;
+  fullscreenEnabled: boolean;
+  fullscreenActive: boolean;
+  enterFullscreen: () => void;
+  exitFullscreen: () => void;
 };
 
 const FullscreenContext = createContext<FullscreenContextType | undefined>(
@@ -25,17 +31,40 @@ type FullscreenProviderProps = {
 export const FullscreenProvider: React.FC<FullscreenProviderProps> = ({
   children,
 }) => {
-  const [isFullscreenEnabled, setIsFullscreenEnabled] = useState(false);
-  // const fullscreenHandle = () => {
-  //   setIsFullscreenEnabled(!isFullscreenEnabled);
-  // }
+  const fullscreenRef = useRef<HTMLDivElement | null>(null);
+  const [active, setActive] = useState(false);
+  useEffect(() => {
+    const handleChange = () => {
+      setActive(fscreen.fullscreenElement === fullscreenRef.current);
+    };
+    fscreen.addEventListener('fullscreenchange', handleChange);
+    return () => fscreen.removeEventListener('fullscreenchange', handleChange);
+  }, []);
+
+  const enterFullscreen = useCallback(async () => {
+    if (fscreen.fullscreenElement) {
+      await fscreen.exitFullscreen();
+    }
+    return fscreen.requestFullscreen(fullscreenRef.current as HTMLElement);
+  }, []);
+
+  const exitFullscreen = useCallback(async () => {
+    if (fscreen.fullscreenElement === fullscreenRef.current) {
+      return fscreen.exitFullscreen();
+    }
+  }, []);
+
+  const context = useMemo(() => {
+    return {
+      fullscreenRef,
+      fullscreenEnabled: fscreen.fullscreenEnabled,
+      fullscreenActive: active,
+      enterFullscreen,
+      exitFullscreen,
+    };
+  }, [active, enterFullscreen, exitFullscreen]);
   return (
-    <FullscreenContext.Provider
-      value={{
-        isFullscreenEnabled,
-        setIsFullscreenEnabled,
-      }}
-    >
+    <FullscreenContext.Provider value={context}>
       {children}
     </FullscreenContext.Provider>
   );
