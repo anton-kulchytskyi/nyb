@@ -4,10 +4,10 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useState, useEffect } from 'react';
-import { useCurrency } from '@/context/CurrencyContext';
 import { fetchImgUrl } from '@/utils/api/getImageFromAWS';
 import typo from '@/styles/typography.module.scss';
 import { Vessel } from '@/interfaces/vessel.interface';
+import YachtPrice from '../YachtPrice/YachtPrice';
 import Button from '../Button/Button';
 import CardSkeleton from '../CardSkeleton/CardSkeleton';
 import styles from './fycard.module.scss';
@@ -17,15 +17,9 @@ interface Props {
   inCatalog?: boolean;
 }
 
-const priceToRender = (price: number, curr: number): string => {
-  return Math.round(price * (curr || 1)).toLocaleString('en-US');
-};
-
 const FYCard = ({ yacht, inCatalog }: Props) => {
   const [isLoading, setIsLoading] = useState(true);
   const router = useRouter();
-  const { selectedCurrency, currencyRates, selectedCurrencySymbol } =
-    useCurrency();
   const [imageUrl, setImageUrl] = useState<string>('');
   const {
     yacht_id,
@@ -38,15 +32,6 @@ const FYCard = ({ yacht, inCatalog }: Props) => {
     yacht_town,
     yacht_year,
   } = yacht;
-
-  const updatePrice = priceToRender(
-    yacht_price,
-    currencyRates[selectedCurrency]
-  );
-  const updatePriceOld = priceToRender(
-    yacht_price_old,
-    currencyRates[selectedCurrency]
-  );
 
   useEffect(() => {
     async function loadImgFromAws() {
@@ -111,14 +96,12 @@ const FYCard = ({ yacht, inCatalog }: Props) => {
               <br />
               <span>{yacht_model}</span>
             </Link>
-            <p className={typo.typo_price}>
-              {`${selectedCurrencySymbol} ${updatePrice}`}
-              {showOldPrice && (
-                <span className={styles.old_price}>
-                  {`${selectedCurrencySymbol} ${updatePriceOld}`}
-                </span>
-              )}
-            </p>
+            <span className={styles.price}>
+              <YachtPrice
+                price={yacht_price}
+                old_price={yacht_price_old}
+              />
+            </span>
             <p
               className={`${typo.typo_description} ${typo.typo_description_gray}`}
             >

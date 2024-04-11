@@ -1,8 +1,8 @@
-'use client'
+'use client';
 
-import { useState } from "react";
-import { useRouter } from 'next/navigation';
+import { useState } from 'react';
 import Image from 'next/image';
+import type { Swiper as SwiperType } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/free-mode';
@@ -11,17 +11,12 @@ import 'swiper/css/thumbs';
 import { Navigation, FreeMode, Thumbs } from 'swiper/modules';
 import styles from './Slider.module.scss';
 
-const Slider = ({ ves, images }) => {
-  const [thumbsSwiper, setThumbsSwiper] = useState(null);
+type SliderProps = {
+  images: string[];
+};
 
-  const {
-    yacht_id,
-  } = ves;
-
-  const router = useRouter();
-  const routeToVessel = () => {
-    router.push(`/catalogue/${yacht_id}/gallery`);
-  };
+const Slider = ({ images }: SliderProps) => {
+  const [thumbsSwiper, setThumbsSwiper] = useState<SwiperType>();
 
   return (
     <div>
@@ -31,7 +26,10 @@ const Slider = ({ ves, images }) => {
           modules={[Navigation, Thumbs]}
           spaceBetween={10}
           loop={true}
-          thumbs={{ swiper: thumbsSwiper && !thumbsSwiper.destroyed ? thumbsSwiper : null }}
+          thumbs={{
+            swiper:
+              thumbsSwiper && !thumbsSwiper.destroyed ? thumbsSwiper : null,
+          }}
           className={styles.slide__container}
           grabCursor={true}
         >
@@ -59,15 +57,6 @@ const Slider = ({ ves, images }) => {
           modules={[Thumbs, FreeMode]}
           className={styles.slide__thumb__container}
         >
-          <SwiperSlide>
-            <button
-              onClick={routeToVessel}
-              className={styles.button}
-            >
-              Gallery<br />
-              {images.length} photos
-            </button>
-          </SwiperSlide>
           {images.map((img, index) => (
             <SwiperSlide key={index}>
               <Image
@@ -83,6 +72,6 @@ const Slider = ({ ves, images }) => {
       </div>
     </div>
   );
-}
+};
 
 export default Slider;

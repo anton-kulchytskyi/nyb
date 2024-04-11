@@ -1,8 +1,8 @@
 import { Metadata } from 'next';
-import Gallery from '@/components/Gallery/Gallery';
 import { getVesselById } from '@/utils/api/getAllVessels';
 import { fetchImgUrl } from '@/utils/api/getImageFromAWS';
 import { Images } from '@/interfaces/vessel.interface';
+import ProductCardGallery from '@/components/ProductCard/ProductCardGallery/ProductCardGallery';
 
 type Props = {
   params: {
@@ -34,19 +34,11 @@ const YachtGallery = async ({ params: { id } }: Props) => {
   }
 
   return (
-    <Gallery
-      vessel={yacht}
+    <ProductCardGallery
+      yacht={yacht}
       images={images}
     />
   );
 };
 
 export default YachtGallery;
-
-// const page = () => {
-//   return (
-//     <Gallery />
-//   );
-// };
-
-// export default page;
