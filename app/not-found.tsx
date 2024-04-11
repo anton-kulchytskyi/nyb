@@ -1,5 +1,4 @@
 import Button from '@/components/Button/Button';
-import fonts from '../styles/typography.module.scss';
 import styles from './not-found.module.scss';
 
 export default function Custom404() {
@@ -11,7 +10,7 @@ export default function Custom404() {
         <p className={styles.four}>4</p>
       </div>
       <div className={styles.body__bottom}>
-        <p className={fonts.typo_name_yacht}>Oops, something went wrong...</p>
+        <p className={styles.text}>Oops, something went wrong...</p>
         <Button
           text="Return to the main page"
           linkTo="/"

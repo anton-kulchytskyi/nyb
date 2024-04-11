@@ -5,8 +5,6 @@ import FYCard from '../FYCard/FYCard';
 import TextButton from '../TextButton/TextButton';
 import styles from './featuredYachts.module.scss';
 
-const labelText = ['Top 3', 'Hot Price', 'Low Price'];
-
 const FeaturedYachts = async () => {
   const yachts = await getFeaturedYacht();
   yachts.sort(() => Math.random() - 0.5);
@@ -27,11 +25,10 @@ const FeaturedYachts = async () => {
         />
       </span>
       <div className={styles.cards_container}>
-        {visibleYachts.map((yacht: Vessel, i: number) => (
+        {visibleYachts.map((yacht: Vessel) => (
           <FYCard
             key={yacht.yacht_id}
             yacht={yacht}
-            buttonsExample={labelText[i]}
           />
         ))}
       </div>

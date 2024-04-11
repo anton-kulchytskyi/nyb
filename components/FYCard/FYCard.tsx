@@ -4,37 +4,34 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useState, useEffect } from 'react';
-import { useCurrency } from '@/context/CurrencyContext';
 import { fetchImgUrl } from '@/utils/api/getImageFromAWS';
 import typo from '@/styles/typography.module.scss';
 import { Vessel } from '@/interfaces/vessel.interface';
+import YachtPrice from '../YachtPrice/YachtPrice';
 import Button from '../Button/Button';
 import CardSkeleton from '../CardSkeleton/CardSkeleton';
 import styles from './fycard.module.scss';
 
 interface Props {
   yacht: Vessel;
-  buttonsExample?: string;
   inCatalog?: boolean;
 }
 
-const FYCard = ({ yacht, buttonsExample, inCatalog }: Props) => {
+const FYCard = ({ yacht, inCatalog }: Props) => {
   const [isLoading, setIsLoading] = useState(true);
   const router = useRouter();
-  const { selectedCurrency, selectedCurrencySymbol } = useCurrency();
   const [imageUrl, setImageUrl] = useState<string>('');
   const {
     yacht_id,
+    yacht_price,
+    yacht_price_old,
+    yacht_main_image_key,
     yacht_make,
     yacht_model,
     yacht_country,
     yacht_town,
     yacht_year,
-    yacht_main_image_key,
   } = yacht;
-
-  const key = `yacht_price_${selectedCurrency}`;
-  const currPrice = (+yacht[key]).toLocaleString('en-US');
 
   useEffect(() => {
     async function loadImgFromAws() {
@@ -46,6 +43,8 @@ const FYCard = ({ yacht, buttonsExample, inCatalog }: Props) => {
     }
     loadImgFromAws();
   }, [yacht_main_image_key]);
+
+  const showOldPrice = yacht_price_old > yacht_price;
 
   const routeToVessel = () => {
     router.push(`/catalogue/${yacht_id}?name=${yacht_make}`);
@@ -70,13 +69,13 @@ const FYCard = ({ yacht, buttonsExample, inCatalog }: Props) => {
               className={styles.image}
               alt="feature_img"
             />
-            {buttonsExample && (
-              <span className={styles.top_right}>{buttonsExample}</span>
-            )}
+            <span className={styles.top_right}>
+              {showOldPrice ? 'hot price' : 'top 3'}
+            </span>
             <span className={styles.center}>
               <Button
                 text="See Detail"
-                linkTo={`/catalogue/${yacht_id}`}
+                linkTo={`/catalogue/${yacht_id}?name=${yacht_make}`}
                 primary
               />
             </span>
@@ -92,15 +91,17 @@ const FYCard = ({ yacht, buttonsExample, inCatalog }: Props) => {
                 pathname: `/catalogue/${yacht_id}`,
                 query: { name: yacht_make },
               }}
-              as={`/catalogue/${yacht_id}`}
             >
               <span>{yacht_make}</span>
               <br />
               <span>{yacht_model}</span>
             </Link>
-            <p
-              className={typo.typo_price}
-            >{`${selectedCurrencySymbol} ${currPrice}`}</p>
+            <span className={styles.price}>
+              <YachtPrice
+                price={yacht_price}
+                old_price={yacht_price_old}
+              />
+            </span>
             <p
               className={`${typo.typo_description} ${typo.typo_description_gray}`}
             >

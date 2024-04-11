@@ -1,5 +1,6 @@
 import { DefaultError } from '@/utils/errors/defaultError';
 import { Vessel } from '@/interfaces/vessel.interface';
+// import { getCurrencyRates } from './getCurrencyExange';
 
 const BASE_URL = 'https://nyb-project-production.up.railway.app/yachts';
 // const BASE_URL = 'https://nyb-project-production.up.railway.app/vessels';

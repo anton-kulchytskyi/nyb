@@ -1,8 +1,9 @@
 'use client';
 
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { useEffect, useState } from 'react';
+
 import LogoImg from '@/public/icons/logo.svg';
 import { pageLinksArray } from '@/utils/links/pageLinks';
 import useWindowDimensions from '@/hooks/useWindowDimensions';
@@ -13,9 +14,14 @@ import ContactsModal from '@/components/Navbar/ContactsModal/ContactsModal';
 import CurrencyModal from '@/components/Navbar/CurrencyModal/CurrencyModal';
 import styles from '@/components/Navbar/navbar.module.scss';
 
+import AccountModal from './AccountModal/AccountModal';
+import LoginModal from './LoginModal/LoginModal';
+
 const Navbar = () => {
   const [isCurrencyModalOpen, setIsCurrencyModalOpen] = useState(false);
   const [isContactsModalOpen, setIsContactsModalOpen] = useState(false);
+  const [isAccountModalOpen, setIsAccountModalOpen] = useState(false);
+  const [isAccountModalLoginOpen, setIsAccountModalLoginOpen] = useState(false);
   const [isMobileMenuClose, setIsMobileMenuClose] = useState(false);
   const [desktopScreen, setDesktopScreen] = useState(false);
   const { width } = useWindowDimensions();
@@ -38,13 +44,25 @@ const Navbar = () => {
     setIsMobileMenuClose(!isMobileMenuClose);
   };
 
+  const accountModalHandler = () => {
+    setIsAccountModalOpen(!isAccountModalOpen);
+  };
+
+  const accountModalLoginHandler = () => {
+    setIsAccountModalLoginOpen(!isAccountModalLoginOpen);
+  };
+
+  const toggleBetweenModals = () => {
+    setIsAccountModalOpen(!isAccountModalOpen);
+    setIsAccountModalLoginOpen(!isAccountModalLoginOpen);
+  }
+
   return (
     <>
       {isMobileMenuClose && (
         <MenuMobileModal
           isMobileMenuClose={isMobileMenuClose}
           mobileMenuHandler={mobileMenuHandler}
-          currencyModalHandler={currencyModalHandler}
         />
       )}
       {isCurrencyModalOpen && (
@@ -57,6 +75,20 @@ const Navbar = () => {
         <ContactsModal
           isContactsModalOpen={isContactsModalOpen}
           contactsModalHandler={contactsModalHandler}
+        />
+      )}
+      {isAccountModalLoginOpen && (
+        <LoginModal
+          toggleBetweenModals={toggleBetweenModals}
+          isAccountModalLoginOpen={isAccountModalLoginOpen}
+          accountModalLoginHandler={accountModalLoginHandler}
+        />
+      )}
+      {isAccountModalOpen && (
+        <AccountModal
+          toggleBetweenModals={toggleBetweenModals}
+          isAccountModalOpen={isAccountModalOpen}
+          accountModalHandler={accountModalHandler}
         />
       )}
       <nav className={styles.navbar}>
@@ -92,22 +124,46 @@ const Navbar = () => {
           />
         </Link>
         <div className={styles.navbar__side}>
-          {desktopScreen && (
-            <button
-              type="button"
-              onClick={currencyModalHandler}
-              className={`${styles.link} ${styles.link__button}`}
-            >
-              {`Split currency / ${selectedCurrency}`}
-            </button>
+          {desktopScreen ? (
+            <>
+              <button
+                className={`${styles.link} ${styles.favourite_icon}`}
+              />
+              {
+                <button
+                  type="button"
+                  onClick={accountModalHandler}
+                  className={`${styles.link} ${styles.link__button}`}
+                >
+                  My account
+                </button>
+              }
+              <button
+                type="button"
+                onClick={currencyModalHandler}
+                className={`${styles.link} ${styles.link__button}`}
+              >
+                {`Split currency / ${selectedCurrency}`}
+              </button>
+              <button
+                type="button"
+                onClick={contactsModalHandler}
+                className={`${styles.link} ${styles.link__button}`}
+              >
+                Contacts
+              </button>
+            </>
+          ) : (
+            <>
+              {
+                <button
+                  type="button"
+                  onClick={accountModalHandler}
+                  className={`${styles.link} ${styles.account_icon}`}
+                />
+              }
+            </>
           )}
-          <button
-            type="button"
-            onClick={contactsModalHandler}
-            className={`${styles.link} ${styles.link__button}`}
-          >
-            Contacts
-          </button>
         </div>
       </nav>
     </>

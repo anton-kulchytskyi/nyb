@@ -1,12 +1,14 @@
 'use client';
 
-import React, { useState } from 'react';
-import { useCurrency } from '@/context/CurrencyContext';
+import Image from 'next/image';
+import { useRouter } from 'next/navigation';
+import { useFullscreen } from '@/context/FullscreenContext';
 import QuestionMarkSvg from '@/components/SvgIconsComponents/QuestionMarkSvg';
 import { Vessel } from '@/interfaces/vessel.interface';
+import FullScreen from '@/public/icons/full_screen.svg';
 import Slider from '@/components/ProductCard/Slider/Slider';
-import Modal from '@/components/ProductCard/Modal/Modal';
 import ContactForm from '@/components/ContactForm/ContactForm';
+import YachtPrice from '@/components/YachtPrice/YachtPrice';
 import typo from '../../../styles/typography.module.scss';
 import styles from './VesselView.module.scss';
 
@@ -16,16 +18,14 @@ type Props = {
 };
 
 export const VesselView: React.FC<Props> = ({ ves, images }) => {
-  const [showModalGallery, setShowModalGallery] = useState(false);
-  const { selectedCurrency, selectedCurrencySymbol } = useCurrency();
-  const key = `yacht_price_${selectedCurrency}`;
-  const currPrice = (+ves[key]).toLocaleString('en-US');
+  const { enterFullscreen } = useFullscreen();
+  const router = useRouter();
 
-  const openContentFullscreen = () => {
-    const element = document.getElementById('modal');
-    if (element && element.requestFullscreen) {
-      element.requestFullscreen();
-    }
+  const routeToVessel = () => {
+    router.push(`/catalogue/${ves.yacht_id}/gallery`);
+    setTimeout(() => {
+      enterFullscreen();
+    }, 2000);
   };
 
   return (
@@ -37,16 +37,24 @@ export const VesselView: React.FC<Props> = ({ ves, images }) => {
               {ves.yacht_make} {ves.yacht_model}, {ves.yacht_year},{' '}
               {ves.yacht_country}, {ves.yacht_town}
             </span>
-            <span
-              className={typo.typo_price}
-            >{`${selectedCurrencySymbol} ${currPrice}`}</span>
+            <YachtPrice
+              price={ves.yacht_price}
+              old_price={ves.yacht_price_old}
+            />
           </div>
           <div className={styles.body__gallery}>
-            <Slider
-              openContentFullscreen={openContentFullscreen}
-              images={images}
-              setShowModalGallery={setShowModalGallery}
-            />
+            <span
+              className={styles.full_screen}
+              onClick={routeToVessel}
+            >
+              <Image
+                src={FullScreen}
+                width={24}
+                height={24}
+                alt="full screen button"
+              />
+            </span>
+            <Slider images={images} />
           </div>
           <div className={styles.body__bottom}>
             <h1 className={typo.typo_h4}>About</h1>
@@ -82,22 +90,6 @@ export const VesselView: React.FC<Props> = ({ ves, images }) => {
                 </p>
               </div>
               <div className={styles.body__about_featchures}>
-                <p className={styles.body__about_featch}>
-                  <span>Price:</span>
-                  <span>{`${selectedCurrencySymbol} ${currPrice}`}</span>
-                </p>
-                <p className={styles.body__about_featch}>
-                  <span>Year:</span>
-                  <span>{ves.yacht_year}</span>
-                </p>
-                <p className={styles.body__about_featch}>
-                  <span>Country:</span>
-                  <span>{ves.yacht_country}</span>
-                </p>
-                <p className={styles.body__about_featch}>
-                  <span>State:</span>
-                  <span>{ves.yacht_town}</span>
-                </p>
                 <p className={styles.body__about_featch}>
                   <span>Lengh Overall:</span>
                   <span>{ves.yacht_loa}</span>
@@ -141,19 +133,13 @@ export const VesselView: React.FC<Props> = ({ ves, images }) => {
               <QuestionMarkSvg />
             </span>
           </div>
-          <h3 className={`${typo.typo_h4} ${styles.form_header}`}>
-            Contact us
-          </h3>
-          <ContactForm productCard={true} />
+          <div className={styles.form}>
+            <h3 className={`${typo.typo_h4} ${styles.form_header}`}>
+              Contact us
+            </h3>
+            <ContactForm productCard={true} />
+          </div>
         </div>
-        {showModalGallery && (
-          <Modal
-            showModalGallery={showModalGallery}
-            setShowModalGallery={setShowModalGallery}
-            images={images}
-            ves={ves}
-          />
-        )}
       </div>
     </>
   );

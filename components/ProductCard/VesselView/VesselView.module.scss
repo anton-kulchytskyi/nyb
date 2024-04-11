@@ -31,6 +31,10 @@
     }
   }
 
+  &__gallery {
+    position: relative;
+  }
+
   &__bottom {
     margin-bottom: 2rem;
   }
@@ -79,6 +83,10 @@
 }
 
 .form {
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 1.5rem 2.5rem;
+
   &_top {
     display: flex;
     align-items: center;
@@ -94,7 +102,6 @@
     margin-bottom: 5rem;
 
     @include onTablet {
-      width: 100%;
       max-width: 100%;
     }
   }
@@ -137,7 +144,7 @@
   }
 
   @include onLarge {
-    padding: 2.5rem 4.5rem;
+    padding: 1.5rem 2.5rem;
   }
 
   @include onDesktop {
@@ -145,7 +152,7 @@
   }
 
   @include onTablet {
-    padding: 4rem 8rem;
+    padding: 2rem 3rem;
   }
 
   @include onMobile {
@@ -153,6 +160,21 @@
   }
 
   @include onSmall {
-    padding: 1rem 1.25rem;
+    padding: 1rem 1rem;
   }
+}
+
+.full_screen {
+  position: absolute;
+  top: 1.75rem;
+  right: 1.75rem;
+  width: 1.75rem;
+  height: 1.75rem;
+  z-index: 2;
+  background-color: #ffffff99;
+  border-radius: 0.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
 }

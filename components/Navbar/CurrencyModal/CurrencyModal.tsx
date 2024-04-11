@@ -47,6 +47,7 @@ const CurrencyModal = ({
             <Image
               src={curr.flag}
               alt={curr.currencyName}
+              className={`${styles.modal__img}`}
             />
           </Link>
         ))}

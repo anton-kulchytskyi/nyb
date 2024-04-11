@@ -1,7 +1,8 @@
-'use client'
+'use client';
 
-import { useState } from "react";
+import { useState } from 'react';
 import Image from 'next/image';
+import type { Swiper as SwiperType } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/free-mode';
@@ -10,15 +11,12 @@ import 'swiper/css/thumbs';
 import { Navigation, FreeMode, Thumbs } from 'swiper/modules';
 import styles from './Slider.module.scss';
 
-const Slider = ({ openContentFullscreen, images, setShowModalGallery }) => {
-  const [thumbsSwiper, setThumbsSwiper] = useState(null);
+type SliderProps = {
+  images: string[];
+};
 
-  const handleButtonClick = () => {
-    setShowModalGallery(true);
-    setTimeout(() => {
-      openContentFullscreen();
-    }, 500)
-  }
+const Slider = ({ images }: SliderProps) => {
+  const [thumbsSwiper, setThumbsSwiper] = useState<SwiperType>();
 
   return (
     <div>
@@ -28,7 +26,10 @@ const Slider = ({ openContentFullscreen, images, setShowModalGallery }) => {
           modules={[Navigation, Thumbs]}
           spaceBetween={10}
           loop={true}
-          thumbs={{ swiper: thumbsSwiper && !thumbsSwiper.destroyed ? thumbsSwiper : null }}
+          thumbs={{
+            swiper:
+              thumbsSwiper && !thumbsSwiper.destroyed ? thumbsSwiper : null,
+          }}
           className={styles.slide__container}
           grabCursor={true}
         >
@@ -56,15 +57,6 @@ const Slider = ({ openContentFullscreen, images, setShowModalGallery }) => {
           modules={[Thumbs, FreeMode]}
           className={styles.slide__thumb__container}
         >
-          <SwiperSlide>
-            <button
-              onClick={() => handleButtonClick()}
-              className={styles.button}
-            >
-              Gallery<br />
-              {images.length} photos
-            </button>
-          </SwiperSlide>
           {images.map((img, index) => (
             <SwiperSlide key={index}>
               <Image
@@ -80,6 +72,6 @@ const Slider = ({ openContentFullscreen, images, setShowModalGallery }) => {
       </div>
     </div>
   );
-}
+};
 
 export default Slider;
