@@ -10,7 +10,6 @@ import { CurrencyProvider } from '@/context/CurrencyContext';
 import Footer from '@/components/Footer/Footer';
 
 import { roboto, baiJamjuree, beautifulEs } from '@/utils/fonts/fonts';
-import { FullscreenProvider } from '@/context/FullscreenContext';
 
 export const metadata: Metadata = {
   title: 'Norse Yacht Co | Selling yachts from Norway',
@@ -39,11 +38,9 @@ export default function RootLayout({
         className={`page__body ${baiJamjuree.variable} ${beautifulEs.variable} ${roboto.variable} page`}
       >
         <CurrencyProvider>
-          <FullscreenProvider>
-            <NoSSRNavBar />
-            {children}
-            <Footer />
-          </FullscreenProvider>
+          <NoSSRNavBar />
+          {children}
+          <Footer />
         </CurrencyProvider>
       </body>
     </html>

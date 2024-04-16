@@ -1,8 +1,8 @@
 'use client';
 
 import Image from 'next/image';
-import { useRouter } from 'next/navigation';
-import { useFullscreen } from '@/context/FullscreenContext';
+import { useState } from 'react';
+import Fullscreen from 'react-fullscreen-crossbrowser';
 import QuestionMarkSvg from '@/components/SvgIconsComponents/QuestionMarkSvg';
 import { Vessel } from '@/interfaces/vessel.interface';
 import FullScreen from '@/public/icons/full_screen.svg';
@@ -10,6 +10,7 @@ import Slider from '@/components/ProductCard/Slider/Slider';
 import ContactForm from '@/components/ContactForm/ContactForm';
 import YachtPrice from '@/components/YachtPrice/YachtPrice';
 import typo from '../../../styles/typography.module.scss';
+import ProductCardGallery from '../ProductCardGallery/ProductCardGallery';
 import styles from './VesselView.module.scss';
 
 type Props = {
@@ -18,18 +19,24 @@ type Props = {
 };
 
 export const VesselView: React.FC<Props> = ({ ves, images }) => {
-  const { enterFullscreen } = useFullscreen();
-  const router = useRouter();
-
-  const routeToVessel = () => {
-    router.push(`/catalogue/${ves.yacht_id}/gallery`);
-    setTimeout(() => {
-      enterFullscreen();
-    }, 2000);
-  };
+  const [isFullscreenEnabled, setIsFullscreenEnabled] = useState(false);
 
   return (
     <>
+      <Fullscreen
+        enabled={isFullscreenEnabled}
+        onChange={(isFullscreenEnabled) =>
+          setIsFullscreenEnabled(isFullscreenEnabled)
+        }
+      >
+        {isFullscreenEnabled && (
+          <ProductCardGallery
+            yacht={ves}
+            images={images}
+            setIsFullscreenEnabled={setIsFullscreenEnabled}
+          />
+        )}
+      </Fullscreen>
       <div className={styles.page}>
         <div className={styles.body}>
           <div className={styles.body__top}>
@@ -45,7 +52,7 @@ export const VesselView: React.FC<Props> = ({ ves, images }) => {
           <div className={styles.body__gallery}>
             <span
               className={styles.full_screen}
-              onClick={routeToVessel}
+              onClick={() => setIsFullscreenEnabled(true)}
             >
               <Image
                 src={FullScreen}

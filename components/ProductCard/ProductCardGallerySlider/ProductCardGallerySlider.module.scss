@@ -6,18 +6,17 @@
 }
 
 .gallerySwiper {
-  height: 80%;
+  height: 85%;
   width: 75%;
   cursor: grab;
   border-radius: 1.5rem;
-  box-shadow: 10px 10px 5px 0px #192358;
 
   @include onTablet {
     width: 100%;
   }
 
   @include onSmall {
-    height: 50%;
+    height: 90%;
   }
 
   &__thumbs {

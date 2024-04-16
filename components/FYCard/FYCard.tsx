@@ -11,6 +11,7 @@ import YachtPrice from '../YachtPrice/YachtPrice';
 import Button from '../Button/Button';
 import CardSkeleton from '../CardSkeleton/CardSkeleton';
 import styles from './fycard.module.scss';
+import TopRightLabel from './TopRightLabel';
 
 interface Props {
   yacht: Vessel;
@@ -23,6 +24,8 @@ const FYCard = ({ yacht, inCatalog }: Props) => {
   const [imageUrl, setImageUrl] = useState<string>('');
   const {
     yacht_id,
+    yacht_top,
+    yacht_hot_price,
     yacht_price,
     yacht_price_old,
     yacht_main_image_key,
@@ -36,15 +39,17 @@ const FYCard = ({ yacht, inCatalog }: Props) => {
   useEffect(() => {
     async function loadImgFromAws() {
       const currImg = await fetchImgUrl(yacht_main_image_key);
-      setImageUrl(currImg || 'https://fakeimg.pl/600x400?text=Norse+Yacht+Co.');
+      setImageUrl(
+        currImg.length
+          ? currImg
+          : 'https://fakeimg.pl/600x400?text=Norse+Yacht+Co.'
+      );
       setTimeout(() => {
         setIsLoading(false);
       }, 1500);
     }
     loadImgFromAws();
   }, [yacht_main_image_key]);
-
-  const showOldPrice = yacht_price_old > yacht_price;
 
   const routeToVessel = () => {
     router.push(`/catalogue/${yacht_id}?name=${yacht_make}`);
@@ -70,7 +75,10 @@ const FYCard = ({ yacht, inCatalog }: Props) => {
               alt="feature_img"
             />
             <span className={styles.top_right}>
-              {showOldPrice ? 'hot price' : 'top 3'}
+              <TopRightLabel
+                yacht_top={yacht_top}
+                yacht_hot_price={yacht_hot_price}
+              />
             </span>
             <span className={styles.center}>
               <Button

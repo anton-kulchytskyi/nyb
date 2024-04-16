@@ -22,7 +22,23 @@ export async function fetchImgUrl(keyFromAws: string): Promise<string> {
   } catch (err) {
     // eslint-disable-next-line
     console.error(err);
+    return '';
   }
 
-  return currImageUrl as string;
+  try {
+    const response = await fetch(currImageUrl);
+    const contentType = response.headers.get('Content-Type');
+
+    if (contentType?.startsWith('image/') === true) {
+      return currImageUrl as string;
+    }
+
+    // eslint-disable-next-line
+    console.error('Invalid image URL');
+    return '';
+  } catch (err) {
+    // eslint-disable-next-line
+    console.error(err);
+    return '';
+  }
 }
