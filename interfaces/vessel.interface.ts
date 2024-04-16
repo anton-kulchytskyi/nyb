@@ -10,12 +10,11 @@ type VesselKeys = {
 export interface Vessel extends VesselKeys {
   yacht_id: number;
   yacht_featured: boolean;
+  yacht_top: boolean;
+  yacht_hot_price: boolean;
+  yacht_vat: boolean;
   yacht_make: string;
   yacht_model: string;
-  yacht_price_EUR: string;
-  yacht_price_USD: string;
-  yacht_price_GBP: string;
-  yacht_price_NOK: string;
   yacht_price: number;
   yacht_price_old: number;
   yacht_year: number;

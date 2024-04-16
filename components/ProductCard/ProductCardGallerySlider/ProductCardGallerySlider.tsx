@@ -9,7 +9,7 @@ import 'swiper/css/free-mode';
 import 'swiper/css/navigation';
 import 'swiper/css/thumbs';
 
-import { FreeMode, Navigation, Thumbs } from 'swiper/modules';
+import { FreeMode, Navigation, Thumbs, Mousewheel } from 'swiper/modules';
 import styles from './ProductCardGallerySlider.module.scss';
 
 type ProductCardGallerySliderProps = {
@@ -23,13 +23,21 @@ const ProductCardGallerySlider = ({
   return (
     <div className={styles.container}>
       <Swiper
+        direction={'vertical'}
+        slidesPerView={2.3}
+        mousewheel={true}
         loop={true}
         spaceBetween={10}
-        navigation={true}
+        breakpoints={{
+          576: {
+            slidesPerView: 1.1,
+            spaceBetween: 20,
+          },
+        }}
         thumbs={{
           swiper: thumbsSwiper && !thumbsSwiper.destroyed ? thumbsSwiper : null,
         }}
-        modules={[FreeMode, Navigation, Thumbs]}
+        modules={[Mousewheel, FreeMode, Navigation, Thumbs]}
         className={styles.gallerySwiper}
       >
         {images.map((img) => (
@@ -49,9 +57,10 @@ const ProductCardGallerySlider = ({
         loop={true}
         spaceBetween={10}
         slidesPerView={4}
+        mousewheel={true}
         freeMode={true}
         watchSlidesProgress={true}
-        modules={[FreeMode, Navigation, Thumbs]}
+        modules={[Mousewheel, FreeMode, Navigation, Thumbs]}
         className={styles.gallerySwiper__thumbs}
       >
         {images.map((img) => (

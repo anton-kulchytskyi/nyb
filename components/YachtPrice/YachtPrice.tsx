@@ -14,7 +14,7 @@ const priceToRender = (price: number, curr: number): string => {
 const YachtPrice = ({ price, old_price = 0 }: YachtPriceProps) => {
   const { selectedCurrency, selectedCurrencySymbol, currencyRates } =
     useCurrency();
-  const showOldPrice = old_price > price;
+  const showOldPrice = +old_price > +price;
   const updatePrice = priceToRender(price, currencyRates[selectedCurrency]);
   const updatePriceOld = priceToRender(
     old_price,
