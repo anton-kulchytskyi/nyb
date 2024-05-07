@@ -1,36 +1,55 @@
-'use client'
+'use client';
 
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 import { Offcanvas, Dropdown } from 'react-bootstrap';
 
 import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
 
+// import { Country } from '@/interfaces/country.interface';
+import { Town } from '@/interfaces/town.interface';
+
 import filter from '../../../public/icons/filter.svg';
 
 import styles from './filter.module.scss';
 
-const make = ['Porshe', 'Rols', 'Ferarri', 'Audi'];
-const model = ['N240', 'N340', 'N440', 'N540'];
-const keel = ['Long', 'Full', 'Short', 'Fin'];
-const fuel = ['Diesel', 'Coal', 'Wind', 'Hands'];
-const country = ['Norway', 'Denmark', 'Sweeden', 'Finland'];
-const town = ['Oslo', 'Copenhagen', 'Stockholm', 'Bergen'];
+// const make = ['Porshe', 'Rols', 'Ferarri', 'Audi'];
+// const model = ['N240', 'N340', 'N440', 'N540'];
+// const keel = ['Long', 'Full', 'Short', 'Fin'];
+// const fuel = ['Diesel', 'Coal', 'Wind', 'Hands'];
+// const country = ['Norway', 'Denmark', 'Sweeden', 'Finland'];
+// const town = ['Oslo', 'Copenhagen', 'Stockholm', 'Bergen'];
 
+const DropDown = ({
+  options,
+  title,
+  select,
+}: {
+  options: string[];
+  title: string;
+  select: (opt: string) => void;
+}) => {
+  const [value, setValue] = useState(options[0]);
 
-const DropDown = ({ options, title }: { options: string[], title: string }) => {
-  const [value, setValue] = useState(options[0])
+  useEffect(() => {
+    setValue(options[0]);
+  }, [options]);
 
   const handleDropdownChange = (option: string) => {
     setValue(option);
-  }
+    select(option);
+  };
 
   return (
     <>
       <p className={styles.title}>{title}</p>
-      <Dropdown className='d-flex align-items-center'>
-        <Dropdown.Toggle as='div' className={styles.dropdown__button}>
+      <Dropdown className="d-flex align-items-center">
+        <Dropdown.Toggle
+          as="div"
+          className={styles.dropdown__button}
+        >
           {value}
         </Dropdown.Toggle>
 
@@ -44,7 +63,6 @@ const DropDown = ({ options, title }: { options: string[], title: string }) => {
               {option}
             </Dropdown.Item>
           ))}
-
         </Dropdown.Menu>
       </Dropdown>
     </>
@@ -56,7 +74,7 @@ type RangeProps = {
   r2: number;
   step?: number;
   title: string;
-}
+};
 
 const RangeFilter = ({ r1, r2, step, title }: RangeProps) => {
   const [min, setMin] = useState(r1);
@@ -67,22 +85,21 @@ const RangeFilter = ({ r1, r2, step, title }: RangeProps) => {
     if (!isNaN(value) && value >= r1) {
       setMin(value);
     }
-  }
+  };
 
   const onMaxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = parseInt(e.target.value);
     if (!isNaN(value) && value <= r2) {
       setMax(value);
     }
-  }
+  };
 
   const handleRangeChange = (value: number | number[]) => {
     if (Array.isArray(value)) {
       setMin(value[0]);
       setMax(value[1]);
     }
-
-  }
+  };
 
   return (
     <div className="">
@@ -106,7 +123,7 @@ const RangeFilter = ({ r1, r2, step, title }: RangeProps) => {
           />
         </div>
       </div>
-      <div className='px-3'>
+      <div className="px-3">
         <Slider
           range
           pushable
@@ -118,91 +135,214 @@ const RangeFilter = ({ r1, r2, step, title }: RangeProps) => {
           onChange={handleRangeChange}
           trackStyle={[{ backgroundColor: '#e7801a' }]}
           handleStyle={[
-            { backgroundColor: '#d9e2eb', width: '24px', height: '24px', marginTop: '-10px', border: 'solid 2px #b0bcc8', opacity: 1 },
-            { backgroundColor: '#d9e2eb', width: '24px', height: '24px', marginTop: '-10px', border: 'solid 2px #b0bcc8', opacity: 1 }]}
+            {
+              backgroundColor: '#d9e2eb',
+              width: '24px',
+              height: '24px',
+              marginTop: '-10px',
+              border: 'solid 2px #b0bcc8',
+              opacity: 1,
+            },
+            {
+              backgroundColor: '#d9e2eb',
+              width: '24px',
+              height: '24px',
+              marginTop: '-10px',
+              border: 'solid 2px #b0bcc8',
+              opacity: 1,
+            },
+          ]}
           railStyle={{ backgroundColor: '#aaafb4' }}
         />
       </div>
     </div>
   );
-}
+};
 
-const Filter = () => {
+type FilterProps = {
+  allCountries: string[];
+  townsFromServer: Town[];
+};
+
+const Filter = ({ allCountries, townsFromServer }: FilterProps) => {
+  const router = useRouter();
   const [show, setShow] = useState(false);
+  const [country, setCountry] = useState(allCountries[0]);
+  const [town, setTown] = useState('');
+
+  const visibleTowns = townsFromServer
+    .filter((el) => el.town_country_name === country)
+    .map((el) => el.town_name);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  const filterApply = () => {
+    setShow(false);
+    router.push(`/catalogue?country=${country}&town=${town}`);
+  };
   return (
-    <section className='d-flex align-items-center me-2'>
-      <span onClick={handleShow} className={styles.button}>
-        Filter <Image height={20} src={filter} alt='filter' />
+    <section className="d-flex align-items-center me-2">
+      <span
+        onClick={handleShow}
+        className={styles.button}
+      >
+        Filter{' '}
+        <Image
+          height={20}
+          src={filter}
+          alt="filter"
+        />
       </span>
-      <Offcanvas show={show} onHide={handleClose} placement='end'>
+      <Offcanvas
+        show={show}
+        onHide={handleClose}
+        placement="end"
+      >
         <Offcanvas.Header>
           <Offcanvas.Title className={styles.canvas__title}>
             <span className={styles.canvas__title__main}>Filter</span>
-            <span className={styles.canvas__title__reset}>Reset everything</span>
+            <span className={styles.canvas__title__reset}>
+              Reset everything
+            </span>
           </Offcanvas.Title>
         </Offcanvas.Header>
         <Offcanvas.Body className={styles.body}>
-          <div className='pb-4 border-bottom mb-4 d-flex'>
+          <div className="pb-4 border-bottom mb-4 d-flex">
             <div className="w-50">
               <p className={styles.title}>Featured</p>
               <div className="d-flex gap-2">
-                <input type="checkbox" id="Featured" name="Featured" className={styles.checkbox} /><label htmlFor="Featured">Show</label>
+                <input
+                  type="checkbox"
+                  id="Featured"
+                  name="Featured"
+                  className={styles.checkbox}
+                />
+                <label htmlFor="Featured">Show</label>
               </div>
             </div>
-            <div className=''>
+            <div className="">
               <p className={styles.title}>VAT Included</p>
               <div className="d-flex gap-2">
-                <input type="checkbox" id="VAT" name="VAT" className={styles.checkbox} /><label htmlFor="VAT">Show</label>
+                <input
+                  type="checkbox"
+                  id="VAT"
+                  name="VAT"
+                  className={styles.checkbox}
+                />
+                <label htmlFor="VAT">Show</label>
               </div>
             </div>
           </div>
           <div className="pb-4 border-bottom mb-4">
-            <DropDown options={make} title='Make' />
+            <DropDown
+              options={allCountries}
+              title="Country"
+              select={setCountry}
+            />
           </div>
           <div className="pb-4 border-bottom mb-4">
-            <DropDown options={model} title='Model' />
+            <DropDown
+              options={visibleTowns}
+              title="Town"
+              select={setTown}
+            />
+          </div>
+          {/* <div className="pb-4 border-bottom mb-4">
+            <DropDown
+              options={make}
+              title="Make"
+            />
           </div>
           <div className="pb-4 border-bottom mb-4">
-            <RangeFilter r1={1930} r2={2024} title='Year Built' />
+            <DropDown
+              options={model}
+              title="Model"
+            />
+          </div> */}
+          <div className="pb-4 border-bottom mb-4">
+            <RangeFilter
+              r1={1930}
+              r2={2024}
+              title="Year Built"
+            />
           </div>
           <div className="pb-4 border-bottom mb-4">
-            <RangeFilter r1={2.5} r2={300} step={0.5} title='Length Overall' />
+            <RangeFilter
+              r1={2.5}
+              r2={300}
+              step={0.5}
+              title="Length Overall"
+            />
           </div>
           <div className="pb-4 border-bottom mb-4">
-            <RangeFilter r1={1} r2={25} title='Beam Width' />
+            <RangeFilter
+              r1={1}
+              r2={25}
+              title="Beam Width"
+            />
           </div>
           <div className="pb-4 border-bottom mb-4">
-            <RangeFilter r1={0.3} r2={16} step={0.3} title='Draft Depth' />
+            <RangeFilter
+              r1={0.3}
+              r2={16}
+              step={0.3}
+              title="Draft Depth"
+            />
+          </div>
+          {/* <div className="pb-4 border-bottom mb-4">
+            <DropDown
+              options={keel}
+              title="Keel Type"
+            />
           </div>
           <div className="pb-4 border-bottom mb-4">
-            <DropDown options={keel} title='Keel Type' />
-          </div>
-          <div className="pb-4 border-bottom mb-4">
-            <DropDown options={fuel} title='Fuel Type' />
-          </div>
-          <div className="pb-4 border-bottom mb-4">
+            <DropDown
+              options={fuel}
+              title="Fuel Type"
+            />
+          </div> */}
+          {/* <div className="pb-4 border-bottom mb-4">
             <DropDown options={country} title='Country' />
           </div>
           <div className="pb-4 border-bottom mb-4">
             <DropDown options={town} title='Town' />
+          </div> */}
+          <div className="pb-4 border-bottom mb-4">
+            <RangeFilter
+              r1={0}
+              r2={10}
+              title="Cabins"
+            />
           </div>
           <div className="pb-4 border-bottom mb-4">
-            <RangeFilter r1={0} r2={10} title='Cabins' />
+            <RangeFilter
+              r1={0}
+              r2={20}
+              title="Berths"
+            />
           </div>
           <div className="pb-4 border-bottom mb-4">
-            <RangeFilter r1={0} r2={20} title='Berths' />
+            <RangeFilter
+              r1={0}
+              r2={10}
+              title="Heads"
+            />
           </div>
           <div className="pb-4 border-bottom mb-4">
-            <RangeFilter r1={0} r2={10} title='Heads' />
-          </div>
-          <div className="pb-4 border-bottom mb-4">
-            <RangeFilter r1={0} r2={10} title='Showers' />
+            <RangeFilter
+              r1={0}
+              r2={10}
+              title="Showers"
+            />
           </div>
         </Offcanvas.Body>
-        <button className={styles.submit}>Apply</button>
+        <button
+          className={styles.submit}
+          onClick={filterApply}
+        >
+          Apply
+        </button>
       </Offcanvas>
     </section>
   );
