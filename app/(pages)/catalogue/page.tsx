@@ -2,9 +2,11 @@ import { Metadata } from 'next';
 import { redirect } from 'next/navigation';
 import { getAllVessels } from '@/utils/api/getAllVessels';
 
-import typo from "@/styles/typography.module.scss";
-import CatalogYacht from "@/components/Catalogue/CatalogYacht/catalogYacht";
-import Pagination from "@/components/Pagination/Pagination";
+import { sortYachts } from '@/utils/sorting/sortYachts';
+
+import typo from '@/styles/typography.module.scss';
+import CatalogYacht from '@/components/Catalogue/CatalogYacht/catalogYacht';
+import Pagination from '@/components/Pagination/Pagination';
 import Sorting from '@/components/Catalogue/Sorting/Sorting';
 import Filter from '@/components/Catalogue/Filter/Filter';
 
@@ -19,9 +21,12 @@ const CardNumber = 9;
 const Catalog = async ({
   searchParams,
 }: {
-  searchParams?: { page: string; size: string };
+  searchParams?: { page: string; size: string; sort: string; order: string };
 }) => {
   const allYachts = await getAllVessels();
+
+  sortYachts(allYachts, searchParams?.sort, searchParams?.order);
+
   let page = Number(searchParams?.page) || 1;
   const size = Number(searchParams?.size) || CardNumber;
 
@@ -44,10 +49,11 @@ const Catalog = async ({
           <Filter /> <Sorting />
         </div>
       </div>
-      {yachtsPage.length ?
-        (<CatalogYacht yachts={yachtsPage}></CatalogYacht>)
-        : (<h4 className={`${styles.no_yachts}`}>No Yachts</h4>)
-      }
+      {yachtsPage.length ? (
+        <CatalogYacht yachts={yachtsPage}></CatalogYacht>
+      ) : (
+        <h4 className={`${styles.no_yachts}`}>No Yachts</h4>
+      )}
 
       <Pagination
         items={allYachts?.length}
