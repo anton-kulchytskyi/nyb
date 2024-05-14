@@ -25,7 +25,27 @@ const Catalog = async ({
 }) => {
   const countriesFromServer = await getAllCountries();
   const allCountries = countriesFromServer.map((el) => el.country_name);
+  // const allCountries = await getAllCountries();
   const townsFromServer = await getAllTowns();
+
+  // const searchCountry = searchParams?.country;
+  // const searchTown = searchParams?.town;
+
+  const searchFilter = new URLSearchParams(searchParams).toString();
+
+  // eslint-disable-next-line
+  console.log(searchFilter);
+  // eslint-disable-next-line
+  // console.log(searchCountry);
+  // eslint-disable-next-line
+  // console.log(searchTown);
+
+  // const filteredYachts = await getAllFilteredYachts(
+  //   `country=${searchCountry}&town=${searchTown}`
+  // );
+
+  // eslint-disable-next-line
+  // console.log(filteredYachts);
 
   // let search = '';
 
@@ -37,7 +57,7 @@ const Catalog = async ({
   // eslint-disable-next-line
   // console.log(filteredYachts);
   // const allYachts = await getAllVessels();
-  const allYachts = await getAllYachts();
+  const allYachts = await getAllYachts(searchFilter);
   let page = Number(searchParams?.page) || 1;
   const size = Number(searchParams?.size) || CardNumber;
 
