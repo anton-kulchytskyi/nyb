@@ -31,7 +31,7 @@ const Catalog = async ({
   // const searchCountry = searchParams?.country;
   // const searchTown = searchParams?.town;
 
-  const searchFilter = new URLSearchParams(searchParams).toString();
+  const searchFilter = '/search?' + new URLSearchParams(searchParams).toString();
 
   // eslint-disable-next-line
   console.log(searchFilter);
