@@ -1,0 +1,39 @@
+@import '../../../styles/mixins.scss';
+.container {
+  display: flex;
+  height: 100%;
+  justify-content: space-between;
+}
+
+.gallerySwiper {
+  height: 80%;
+  width: 75%;
+  cursor: grab;
+  border-radius: 1.5rem;
+  box-shadow: 10px 10px 5px 0px #192358;
+
+  @include onTablet {
+    width: 100%;
+  }
+
+  @include onSmall {
+    height: 50%;
+  }
+
+  &__thumbs {
+    height: 100%;
+    width: 20%;
+    box-sizing: border-box;
+    cursor: grab;
+
+    @include onTablet {
+      display: none;
+    }
+
+    &__slides {
+      & img {
+        border-radius: 0.5rem;
+      }
+    }
+  }
+}
