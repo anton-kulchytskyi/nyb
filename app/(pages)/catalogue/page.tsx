@@ -9,6 +9,7 @@ import Sorting from '@/components/Catalogue/Sorting/Sorting';
 import Filter from '@/components/Catalogue/Filter/Filter';
 
 import { sortFunction } from '../../../utils/functions/sortFunction';
+
 import styles from './page.module.scss';
 
 export const metadata: Metadata = {
@@ -53,6 +54,7 @@ const Catalog = async (
           <Sorting />
         </div>
       </div>
+
       {yachtsPage.length ?
         (<CatalogYacht yachts={yachtsPage}></CatalogYacht>)
         : (<h4 className={`${styles.no_yachts}`}>No Yachts</h4>)
