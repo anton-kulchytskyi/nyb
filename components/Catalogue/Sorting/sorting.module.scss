@@ -20,14 +20,16 @@
 }
 
 .item {
-  width: max-content;
+  width: auto;
   padding: 0.5rem 1rem;
   margin: 1rem 1rem;
 
   &--active {
-    color: $white;
-    border-radius: 2rem;
-    background-color: $gray-50;
+    // color: $white;
+    // border-radius: 2rem;
+    // background-color: $gray-50;
+
+    border-bottom: 1px solid $gray-primary;
   }
 
   &:hover {

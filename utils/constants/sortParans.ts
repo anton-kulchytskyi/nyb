@@ -1,6 +1,6 @@
 export const SORT_PARAMS = {
-  preceIncrease: 'Price: Low to High',
-  preceDecrease: 'Price: High to Low',
-  year: 'Newest Arrivals',
-  newest: 'Latest Additions',
+  preceIncrease: ' Low to High price',
+  preceDecrease: 'High to Low price',
+  year: 'Newest',
+  popularity: 'Popularity',
 };

@@ -14,7 +14,7 @@ const Sorting = () => {
   const router = useRouter();
 
   const [desktopScreen, setDesktopScreen] = useState(false);
-  const [value, setValue] = useState<string>(SORT_PARAMS.preceIncrease);
+  const [value, setValue] = useState<string>(SORT_PARAMS.year);
 
   const { width } = useWindowDimensions();
 
