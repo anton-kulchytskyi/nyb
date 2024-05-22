@@ -14,6 +14,9 @@ export const sortFunction = (
       
       case 'year':
         return yacht1.yacht_year - yacht2.yacht_year;
+
+      case 'popularity': 
+        return +yacht2.yacht_favourites_count - +yacht1.yacht_favourites_count;
       
       case 'newest': {
         const dateObj1 = new Date(yacht1.yacht_created_at);
