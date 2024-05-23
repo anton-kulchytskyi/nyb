@@ -1,4 +1,5 @@
 @import '../../../styles/var.scss';
+@import '../../../styles/mixins.scss';
 
 .button {
   background: transparent;
@@ -16,6 +17,7 @@
 }
 
 .menu {
+  margin-top: 0.8rem;
   border-radius: 1rem;
 }
 
@@ -24,17 +26,18 @@
   padding: 0.5rem 1rem;
   margin: 1rem 1rem;
 
-  &--active {
-    // color: $white;
-    // border-radius: 2rem;
-    // background-color: $gray-50;
+  color: $gray-100;
+  border-bottom: 1px solid $white;
 
-    border-bottom: 1px solid $gray-primary;
+  &--active {
+    color: $black;
+    border-bottom-color: $gray-primary;
   }
 
   &:hover {
-    color: $white;
-    border-radius: 2rem;
-    background-color: $gray-primary;
+    background-color: $white;
+    color: $gray-100;
   }
+
+  @include hover(border-bottom-color, $orange-secondary-100);
 }
