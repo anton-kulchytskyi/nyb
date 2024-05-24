@@ -1,10 +1,13 @@
-import { ChangeEvent, useEffect, useState } from 'react';
+import React, { ChangeEvent, useEffect, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 
+import classNames from 'classnames';
 import Close from '@/public/icons/close.svg';
 import { Errors } from '@/interfaces/errors.interface';
 
+import { userPostAuthorization } from '@/utils/api/usersAuth';
+import Loader from '@/components/Loader/Loader';
 import styles from './accountModal.module.scss';
 
 type Props = {
@@ -13,13 +16,18 @@ type Props = {
   accountModalHandler: () => void;
 };
 
-const AccountModal = ({ toggleBetweenModals, isAccountModalOpen, accountModalHandler }: Props) => {
+const AccountModal = ({
+  toggleBetweenModals,
+  isAccountModalOpen,
+  accountModalHandler,
+}: Props) => {
   const [inputs, setInputs] = useState({
     firstName: '',
     lastName: '',
     userEmail: '',
     password: '',
   });
+  const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState<Errors>({});
   const [type, setType] = useState('password');
 
@@ -37,7 +45,11 @@ const AccountModal = ({ toggleBetweenModals, isAccountModalOpen, accountModalHan
     let data: string = '';
     if (!inputs.firstName.trim()) {
       data = 'The first name field is required';
-    } else if (!/^[a-zA-Zа-яА-ЯіёЁĀ-žŠĐŽČćžšđčŚŹŃĄĘŚŁŻĆŹńąęśłżćźÆØÅæøå\s]+$/.test(inputs.firstName)) {
+    } else if (
+      !/^[a-zA-Zа-яА-ЯіёЁĀ-žŠĐŽČćžšđčŚŹŃĄĘŚŁŻĆŹńąęśłżćźÆØÅæøå\s]+$/.test(
+        inputs.firstName
+      )
+    ) {
       data = 'The first name must contain only letters';
     } else if (inputs.firstName.length < 4) {
       data = 'The first name must longer than 3 characters';
@@ -85,15 +97,17 @@ const AccountModal = ({ toggleBetweenModals, isAccountModalOpen, accountModalHan
       data = 'The password must be at least 8 characters long';
     } else if (inputs.password.length > 50) {
       data = 'The password must not be longer than 50 characters';
-    } else if (!/[A-Z]/.test(inputs.password) || !/[a-z]/.test(inputs.password)) {
-      data = 'The password must contain at least one uppercase and one lowercase letter';
+    } else if (
+      !/[A-Z]/.test(inputs.password) ||
+      !/[a-z]/.test(inputs.password)
+    ) {
+      data =
+        'The password must contain at least one uppercase and one lowercase letter';
     }
     data.length && setErrors((prev) => ({ ...prev, password: data }));
   };
 
-  const inputsOnFocus = (
-    e: ChangeEvent<HTMLInputElement>
-  ) => {
+  const inputsOnFocus = (e: ChangeEvent<HTMLInputElement>) => {
     for (const error in errors) {
       if (error === e.target.name) {
         const correctedErrors = { ...errors };
@@ -105,21 +119,56 @@ const AccountModal = ({ toggleBetweenModals, isAccountModalOpen, accountModalHan
 
   const togglePassword = () => {
     if (type === 'password') {
-      setType('text')
+      setType('text');
     } else {
-      setType('password')
+      setType('password');
     }
-  }
+  };
 
   useEffect(() => {
-    document.body.style.overflow = 'hidden'
+    document.body.style.overflow = 'hidden';
 
-    return () => { document.body.style.overflow = 'scroll' };
-  }, [])
+    return () => {
+      document.body.style.overflow = 'scroll';
+    };
+  }, []);
+
+  const resetFields = () => {
+    inputs.firstName = '';
+    inputs.lastName = '';
+    inputs.password = '';
+    inputs.userEmail = '';
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+
+    if (
+      !inputs.firstName ||
+      !inputs.lastName ||
+      !inputs.password ||
+      !inputs.userEmail
+    )
+      return;
+    setLoading(true);
+    userPostAuthorization(inputs)
+      .then(() => {
+        resetFields();
+        alert('User registered successfully');
+      })
+      .catch((error) => {
+        alert(error);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  };
 
   return (
     <>
-      <div className={`${styles.modal} ${isAccountModalOpen ? styles.open : ''}`}>
+      <div
+        className={`${styles.modal} ${isAccountModalOpen ? styles.open : ''}`}
+      >
         <div className={styles.modal__wrapper}>
           <div className={styles.modal__content}>
             <div
@@ -135,18 +184,22 @@ const AccountModal = ({ toggleBetweenModals, isAccountModalOpen, accountModalHan
               <h4 className={styles.header}>Create a new account</h4>
             </div>
             <div className={styles.modal__main}>
-              <form className={styles.form}>
+              <form
+                id="auth-form"
+                className={styles.form}
+                onSubmit={handleSubmit}
+              >
                 <div className={styles.form_group}>
                   <input
                     id="firstName"
                     name="firstName"
                     type="text"
                     value={inputs.firstName}
-                    className={`
-                      ${styles.input} 
-                      ${errors.firstName ? styles.input__error : ''}
-                      ${inputs.firstName.trim() && !errors.firstName ? styles.input__success : ''}
-                    `}
+                    className={classNames(styles.input, {
+                      [styles.input__error]: errors.firstName,
+                      [styles.input__success]:
+                        inputs.firstName.trim() && !errors.firstName,
+                    })}
                     onChange={handleChange}
                     onFocus={inputsOnFocus}
                     onBlur={checkFirstNameInput}
@@ -158,7 +211,9 @@ const AccountModal = ({ toggleBetweenModals, isAccountModalOpen, accountModalHan
                     First name
                   </label>
                   {errors.firstName && (
-                    <span className={styles.error_message}>{errors.firstName}</span>
+                    <span className={styles.error_message}>
+                      {errors.firstName}
+                    </span>
                   )}
                 </div>
                 <div className={styles.form_group}>
@@ -167,11 +222,11 @@ const AccountModal = ({ toggleBetweenModals, isAccountModalOpen, accountModalHan
                     name="lastName"
                     type="text"
                     value={inputs.lastName}
-                    className={`
-                      ${styles.input} 
-                      ${errors.lastName ? styles.input__error : ''}
-                      ${inputs.lastName.trim() && !errors.lastName ? styles.input__success : ''}
-                    `}
+                    className={classNames(styles.input, {
+                      [styles.input__error]: errors.lastName,
+                      [styles.input__success]:
+                        inputs.lastName.trim() && !errors.lastName,
+                    })}
                     onChange={handleChange}
                     onFocus={inputsOnFocus}
                     onBlur={checkLastNameInput}
@@ -183,7 +238,9 @@ const AccountModal = ({ toggleBetweenModals, isAccountModalOpen, accountModalHan
                     Last name
                   </label>
                   {errors.lastName && (
-                    <span className={styles.error_message}>{errors.lastName}</span>
+                    <span className={styles.error_message}>
+                      {errors.lastName}
+                    </span>
                   )}
                 </div>
                 <div className={styles.form_group}>
@@ -192,11 +249,11 @@ const AccountModal = ({ toggleBetweenModals, isAccountModalOpen, accountModalHan
                     name="userEmail"
                     type="email"
                     value={inputs.userEmail}
-                    className={`
-                      ${styles.input} 
-                      ${errors.userEmail ? styles.input__error : ''}
-                      ${inputs.userEmail.trim() && !errors.userEmail ? styles.input__success : ''}
-                    `}
+                    className={classNames(styles.input, {
+                      [styles.input__error]: errors.userEmail,
+                      [styles.input__success]:
+                        inputs.userEmail.trim() && !errors.userEmail,
+                    })}
                     onChange={handleChange}
                     onFocus={inputsOnFocus}
                     onBlur={checkEmailInput}
@@ -208,7 +265,9 @@ const AccountModal = ({ toggleBetweenModals, isAccountModalOpen, accountModalHan
                     Email
                   </label>
                   {errors.userEmail && (
-                    <span className={styles.error_message}>{errors.userEmail}</span>
+                    <span className={styles.error_message}>
+                      {errors.userEmail}
+                    </span>
                   )}
                 </div>
                 <div className={styles.form_group}>
@@ -217,11 +276,11 @@ const AccountModal = ({ toggleBetweenModals, isAccountModalOpen, accountModalHan
                     name="password"
                     type={type}
                     value={inputs.password}
-                    className={`
-                      ${styles.input} 
-                      ${errors.password ? styles.input__error : ''}
-                      ${inputs.password.trim() && !errors.password ? styles.input__success : ''}
-                    `}
+                    className={classNames(styles.input, {
+                      [styles.input__error]: errors.password,
+                      [styles.input__success]:
+                        inputs.password.trim() && !errors.password,
+                    })}
                     onChange={handleChange}
                     onFocus={inputsOnFocus}
                     onBlur={checkPasswordInput}
@@ -233,29 +292,51 @@ const AccountModal = ({ toggleBetweenModals, isAccountModalOpen, accountModalHan
                     Password
                   </label>
                   <span
-                    className={`${styles.label__password} ${type === 'password' ? styles.eye : styles.eyeOff}`}
+                    className={`${styles.label__password} ${
+                      type === 'password' ? styles.eye : styles.eyeOff
+                    }`}
                     onClick={togglePassword}
                   />
                   {errors.password && (
-                    <span className={styles.error_message}>{errors.password}</span>
+                    <span className={styles.error_message}>
+                      {errors.password}
+                    </span>
                   )}
                 </div>
               </form>
               <p className={styles.form_terms}>
                 By creating an account, you agree to our{' '}
-                <Link href='/terms-of-use' className={styles.form_terms__link} onClick={accountModalHandler} >
+                <Link
+                  href="/terms-of-use"
+                  className={styles.form_terms__link}
+                  onClick={accountModalHandler}
+                >
                   Terms of use
                 </Link>{' '}
                 ,{' '}
-                <Link href='/privacy-policy' className={styles.form_terms__link} onClick={accountModalHandler} >
+                <Link
+                  href="/privacy-policy"
+                  className={styles.form_terms__link}
+                  onClick={accountModalHandler}
+                >
                   Privacy policy
                 </Link>{' '}
                 and{' '}
-                <Link href='/cookies-policy' className={styles.form_terms__link} onClick={accountModalHandler} >
+                <Link
+                  href="/cookies-policy"
+                  className={styles.form_terms__link}
+                  onClick={accountModalHandler}
+                >
                   Cookies policy
                 </Link>
               </p>
-              <button className={styles.form__button}>Create a new account</button>
+              <button
+                form="auth-form"
+                className={styles.form__button}
+                disabled={loading}
+              >
+                {!loading ? 'Create a new account' : <Loader />}
+              </button>
               <div className={styles.border}>
                 <span className={styles.border__text}>or continue with</span>
                 <p className={styles.border__line} />
