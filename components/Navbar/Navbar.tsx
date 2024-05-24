@@ -14,6 +14,7 @@ import ContactsModal from '@/components/Navbar/ContactsModal/ContactsModal';
 import CurrencyModal from '@/components/Navbar/CurrencyModal/CurrencyModal';
 import styles from '@/components/Navbar/navbar.module.scss';
 
+import { useAuth } from '@/context/AuthContext';
 import AccountModal from './AccountModal/AccountModal';
 import LoginModal from './LoginModal/LoginModal';
 
@@ -24,6 +25,7 @@ const Navbar = () => {
   const [isAccountModalLoginOpen, setIsAccountModalLoginOpen] = useState(false);
   const [isMobileMenuClose, setIsMobileMenuClose] = useState(false);
   const [desktopScreen, setDesktopScreen] = useState(false);
+  const { isAuthenticated, userLogout } = useAuth();
   const { width } = useWindowDimensions();
   const { selectedCurrency } = useCurrency();
 
@@ -55,7 +57,7 @@ const Navbar = () => {
   const toggleBetweenModals = () => {
     setIsAccountModalOpen(!isAccountModalOpen);
     setIsAccountModalLoginOpen(!isAccountModalLoginOpen);
-  }
+  };
 
   return (
     <>
@@ -126,10 +128,27 @@ const Navbar = () => {
         <div className={styles.navbar__side}>
           {desktopScreen ? (
             <>
-              <button
-                className={`${styles.link} ${styles.favourite_icon}`}
-              />
-              {
+              <button className={`${styles.link} ${styles.favourite_icon}`} />
+              {isAuthenticated ? (
+                <>
+                  <Link
+                    href="/"
+                    className={`${styles.userLoggedNavLink} ${styles.link} ${styles.link__button}`}
+                  >
+                    Name
+                    <ul className={styles.userLoggedNavLink__subMenu}>
+                      <li className={styles.userLoggedNavLink__item}>
+                        <button
+                          onClick={userLogout}
+                          className={`${styles.link} `}
+                        >
+                          Log out
+                        </button>
+                      </li>
+                    </ul>
+                  </Link>
+                </>
+              ) : (
                 <button
                   type="button"
                   onClick={accountModalHandler}
@@ -137,7 +156,7 @@ const Navbar = () => {
                 >
                   My account
                 </button>
-              }
+              )}
               <button
                 type="button"
                 onClick={currencyModalHandler}

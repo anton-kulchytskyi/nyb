@@ -11,6 +11,7 @@
 
   &__side {
     display: flex;
+    align-items: center;
     width: 45%;
 
     &:last-child {
@@ -26,6 +27,7 @@
 .link {
   color: $black;
   font-size: 1.125rem;
+  padding: rem(6) 0;
   font-weight: 500;
   text-decoration: none;
   transition: 0.5s;
@@ -37,6 +39,56 @@
   &:hover {
     color: $orange-secondary-100;
     text-decoration: underline;
+  }
+}
+
+.userLoggedNavLink {
+  position: relative;
+  &:hover {
+    .userLoggedNavLink__subMenu {
+      visibility: visible;
+      opacity: 1;
+    }
+  }
+
+  &__subMenu {
+    position: absolute;
+    top: 100%;
+    width: 100%;
+    width: rem(130);
+    display: flex;
+    visibility: hidden;
+    opacity: 0;
+    padding: rem(16);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: $white;
+    border-radius: rem(16);
+    list-style: none;
+    transition: 0.5s ease;
+  }
+  &__item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: rem(8) rem(16);
+    &:hover {
+      border-bottom: 1px solid $gray-primary;
+
+      button {
+        color: $orange-secondary-100;
+      }
+    }
+    button {
+      font-weight: 400;
+      font-size: rem(16);
+      padding: 0;
+
+      &:hover {
+        text-decoration: none;
+      }
+    }
   }
 }
 
