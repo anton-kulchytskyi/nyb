@@ -67,7 +67,7 @@ export const AuthProvider: React.FC<Props> = ({ children }) => {
 export const useAuth = (): AuthContextType => {
   const context = useContext(AuthContext);
   if (!context) {
-    throw new Error('useCurrency must be used within a CurrencyProvider');
+    throw new Error('useAuth must be used within a AuthContextProvider');
   }
   return context;
 };

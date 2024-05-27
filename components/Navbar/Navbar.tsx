@@ -15,17 +15,23 @@ import CurrencyModal from '@/components/Navbar/CurrencyModal/CurrencyModal';
 import styles from '@/components/Navbar/navbar.module.scss';
 
 import { useAuth } from '@/context/AuthContext';
+import { useModals } from '@/context/ModalsContext';
 import AccountModal from './AccountModal/AccountModal';
 import LoginModal from './LoginModal/LoginModal';
 
 const Navbar = () => {
   const [isCurrencyModalOpen, setIsCurrencyModalOpen] = useState(false);
   const [isContactsModalOpen, setIsContactsModalOpen] = useState(false);
-  const [isAccountModalOpen, setIsAccountModalOpen] = useState(false);
-  const [isAccountModalLoginOpen, setIsAccountModalLoginOpen] = useState(false);
   const [isMobileMenuClose, setIsMobileMenuClose] = useState(false);
   const [desktopScreen, setDesktopScreen] = useState(false);
   const { isAuthenticated, userLogout, userInfoToken } = useAuth();
+  const {
+    isAccountModalOpen,
+    isAccountModalLoginOpen,
+    accountModalHandler,
+    accountModalLoginHandler,
+    toggleBetweenModals,
+  } = useModals();
   const { width } = useWindowDimensions();
   const { selectedCurrency } = useCurrency();
 
@@ -44,19 +50,6 @@ const Navbar = () => {
 
   const mobileMenuHandler = () => {
     setIsMobileMenuClose(!isMobileMenuClose);
-  };
-
-  const accountModalHandler = () => {
-    setIsAccountModalOpen(!isAccountModalOpen);
-  };
-
-  const accountModalLoginHandler = () => {
-    setIsAccountModalLoginOpen(!isAccountModalLoginOpen);
-  };
-
-  const toggleBetweenModals = () => {
-    setIsAccountModalOpen(!isAccountModalOpen);
-    setIsAccountModalLoginOpen(!isAccountModalLoginOpen);
   };
 
   return (

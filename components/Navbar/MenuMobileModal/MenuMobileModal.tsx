@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import Link from 'next/link';
 import Image from 'next/image';
 
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 import { useCurrency } from '@/context/CurrencyContext';
 
@@ -11,6 +11,7 @@ import { pageLinksArray } from '@/utils/links/pageLinks';
 
 import { currencyArray } from '@/utils/currency/currencyArray';
 import { useAuth } from '@/context/AuthContext';
+import { useModals } from '@/context/ModalsContext';
 import AccountModal from '../AccountModal/AccountModal';
 import LoginModal from '../LoginModal/LoginModal';
 import SocialMedia from '../../SocialMedia/SocialMedia';
@@ -28,23 +29,18 @@ type Props = {
 
 const MenuMobileModal = ({ isMobileMenuClose, mobileMenuHandler }: Props) => {
   const { setCurrency, selectedCurrency } = useCurrency();
-  const [isAccountModalOpen, setIsAccountModalOpen] = useState(false);
-  const [isAccountModalLoginOpen, setIsAccountModalLoginOpen] = useState(false);
   const { isAuthenticated, userLogout, userInfoToken } = useAuth();
+  const {
+    isAccountModalOpen,
+    isAccountModalLoginOpen,
+    accountModalHandler,
+    accountModalLoginHandler,
+    toggleBetweenModals,
+  } = useModals();
   const contactPhome = '+353874375161';
   const contactEmail = 'info@norseyacht.com';
   const color = '#4D6575';
   const pathname = usePathname();
-  const accountModalHandler = () => {
-    setIsAccountModalOpen(!isAccountModalOpen);
-  };
-  const toggleBetweenModals = () => {
-    setIsAccountModalOpen(!isAccountModalOpen);
-    setIsAccountModalLoginOpen(!isAccountModalLoginOpen);
-  };
-  const accountModalLoginHandler = () => {
-    setIsAccountModalLoginOpen(!isAccountModalLoginOpen);
-  };
   const wrapperFunction = (currency: string) => {
     handleCurrencyChange(currency);
   };

@@ -11,6 +11,7 @@ import Footer from '@/components/Footer/Footer';
 
 import { roboto, baiJamjuree, beautifulEs } from '@/utils/fonts/fonts';
 import { AuthProvider } from '@/context/AuthContext';
+import { ModalsProvider } from '@/context/ModalsContext';
 
 export const metadata: Metadata = {
   title: 'Norse Yacht Co | Selling yachts from Norway',
@@ -40,9 +41,11 @@ export default function RootLayout({
       >
         <CurrencyProvider>
           <AuthProvider>
-            <NoSSRNavBar />
-            {children}
-            <Footer />
+            <ModalsProvider>
+              <NoSSRNavBar />
+              {children}
+              <Footer />
+            </ModalsProvider>
           </AuthProvider>
         </CurrencyProvider>
       </body>
