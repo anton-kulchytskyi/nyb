@@ -6,12 +6,10 @@ const NoSSRNavBar = dynamic(() => import('@/components/Navbar/Navbar'), {
   ssr: false,
 });
 
-import { CurrencyProvider } from '@/context/CurrencyContext';
 import Footer from '@/components/Footer/Footer';
 
 import { roboto, baiJamjuree, beautifulEs } from '@/utils/fonts/fonts';
-import { AuthProvider } from '@/context/AuthContext';
-import { ModalsProvider } from '@/context/ModalsContext';
+import AllContextProviders from '@/context/AllContextProviders';
 
 export const metadata: Metadata = {
   title: 'Norse Yacht Co | Selling yachts from Norway',
@@ -39,15 +37,11 @@ export default function RootLayout({
       <body
         className={`page__body ${baiJamjuree.variable} ${beautifulEs.variable} ${roboto.variable} page`}
       >
-        <CurrencyProvider>
-          <AuthProvider>
-            <ModalsProvider>
-              <NoSSRNavBar />
-              {children}
-              <Footer />
-            </ModalsProvider>
-          </AuthProvider>
-        </CurrencyProvider>
+        <AllContextProviders>
+          <NoSSRNavBar />
+          {children}
+          <Footer />
+        </AllContextProviders>
       </body>
     </html>
   );
