@@ -25,7 +25,7 @@ const Navbar = () => {
   const [isAccountModalLoginOpen, setIsAccountModalLoginOpen] = useState(false);
   const [isMobileMenuClose, setIsMobileMenuClose] = useState(false);
   const [desktopScreen, setDesktopScreen] = useState(false);
-  const { isAuthenticated, userLogout } = useAuth();
+  const { isAuthenticated, userLogout, userInfoToken } = useAuth();
   const { width } = useWindowDimensions();
   const { selectedCurrency } = useCurrency();
 
@@ -135,14 +135,15 @@ const Navbar = () => {
                     href="/"
                     className={`${styles.userLoggedNavLink} ${styles.link} ${styles.link__button}`}
                   >
-                    Name
+                    {userInfoToken &&
+                      `${userInfoToken.given_name} ${userInfoToken.family_name}`}
                     <ul className={styles.userLoggedNavLink__subMenu}>
                       <li className={styles.userLoggedNavLink__item}>
                         <button
                           onClick={userLogout}
                           className={`${styles.link} `}
                         >
-                          Log out
+                          Sign out
                         </button>
                       </li>
                     </ul>
@@ -174,13 +175,20 @@ const Navbar = () => {
             </>
           ) : (
             <>
-              {
-                <button
-                  type="button"
-                  onClick={accountModalHandler}
+              {isAuthenticated ? (
+                <Link
+                  href="/"
                   className={`${styles.link} ${styles.account_icon}`}
-                />
-              }
+                ></Link>
+              ) : (
+                <>
+                  <button
+                    type="button"
+                    onClick={accountModalHandler}
+                    className={`${styles.link} ${styles.account_icon}`}
+                  />
+                </>
+              )}
             </>
           )}
         </div>

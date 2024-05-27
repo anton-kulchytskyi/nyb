@@ -10,6 +10,7 @@ import { useCurrency } from '@/context/CurrencyContext';
 import { pageLinksArray } from '@/utils/links/pageLinks';
 
 import { currencyArray } from '@/utils/currency/currencyArray';
+import { useAuth } from '@/context/AuthContext';
 import AccountModal from '../AccountModal/AccountModal';
 import LoginModal from '../LoginModal/LoginModal';
 import SocialMedia from '../../SocialMedia/SocialMedia';
@@ -25,13 +26,11 @@ type Props = {
   mobileMenuHandler: () => void;
 };
 
-const MenuMobileModal = ({
-  isMobileMenuClose,
-  mobileMenuHandler,
-}: Props) => {
+const MenuMobileModal = ({ isMobileMenuClose, mobileMenuHandler }: Props) => {
   const { setCurrency, selectedCurrency } = useCurrency();
   const [isAccountModalOpen, setIsAccountModalOpen] = useState(false);
   const [isAccountModalLoginOpen, setIsAccountModalLoginOpen] = useState(false);
+  const { isAuthenticated, userLogout, userInfoToken } = useAuth();
   const contactPhome = '+353874375161';
   const contactEmail = 'info@norseyacht.com';
   const color = '#4D6575';
@@ -42,7 +41,7 @@ const MenuMobileModal = ({
   const toggleBetweenModals = () => {
     setIsAccountModalOpen(!isAccountModalOpen);
     setIsAccountModalLoginOpen(!isAccountModalLoginOpen);
-  }
+  };
   const accountModalLoginHandler = () => {
     setIsAccountModalLoginOpen(!isAccountModalLoginOpen);
   };
@@ -53,10 +52,12 @@ const MenuMobileModal = ({
     setCurrency(currency);
   };
   useEffect(() => {
-    document.body.style.overflow = 'hidden'
+    document.body.style.overflow = 'hidden';
 
-    return () => {document.body.style.overflow = 'scroll'};
-  }, [])
+    return () => {
+      document.body.style.overflow = 'scroll';
+    };
+  }, []);
   return (
     <>
       {isAccountModalLoginOpen && (
@@ -88,13 +89,31 @@ const MenuMobileModal = ({
             {link.title}
           </Link>
         ))}
-        <button
-          type="button"
-          onClick={accountModalHandler}
-          className={`${styles.link} ${styles.link__button} ${styles.modal__link}`}
-        >
-          My account
-        </button>
+        {isAuthenticated ? (
+          <>
+            <Link
+              href="/"
+              className={`${styles.modal__link} ${styles.modal__user}`}
+            >
+              {userInfoToken &&
+                `${userInfoToken.given_name} ${userInfoToken.family_name}`}
+            </Link>
+            <button
+              onClick={userLogout}
+              className={styles.modal__logOut}
+            >
+              Sign out
+            </button>
+          </>
+        ) : (
+          <button
+            type="button"
+            onClick={accountModalHandler}
+            className={`${styles.modal__link} `}
+          >
+            My account
+          </button>
+        )}
         <button
           type="button"
           className={`${styles.modal__link} ${styles.modal__currency}`}
@@ -121,8 +140,18 @@ const MenuMobileModal = ({
         </div>
         <div className={styles.contact}>
           <p className={styles.contact__title}>Contact</p>
-          <Link href='tel:+380632345521' className={styles.contact__phone}>{contactPhome}</Link>
-          <Link href='mailto:info@norseyacht.com' className={styles.contact__email}>{contactEmail}</Link>
+          <Link
+            href="tel:+380632345521"
+            className={styles.contact__phone}
+          >
+            {contactPhome}
+          </Link>
+          <Link
+            href="mailto:info@norseyacht.com"
+            className={styles.contact__email}
+          >
+            {contactEmail}
+          </Link>
         </div>
         <div className={styles.follow}>
           <p className={styles.follow__title}>Follow us</p>

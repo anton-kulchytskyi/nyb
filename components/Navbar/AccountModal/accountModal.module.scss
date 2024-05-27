@@ -18,9 +18,9 @@
     width: 35rem;
     background-color: $white;
     border-radius: 1rem;
-    overflow: scroll;
 
     @include onMobile {
+      overflow: scroll;
       height: 100vh;
       width: 100vw;
       border-radius: 0;
@@ -70,7 +70,6 @@
   line-height: normal;
   font-weight: 600;
   margin-bottom: 0;
-
 
   @include onSmall {
     font-size: 7vw;
@@ -225,7 +224,6 @@
     border-bottom: 1px solid #a9a9b0;
     width: 100%;
   }
- 
 }
 
 .socials {
@@ -263,8 +261,8 @@
   &__apple {
     background: url('../../../public/icons/apple.svg') no-repeat center/cover;
   }
-    @include onMobile {
-   margin-bottom: 2rem;
+  @include onMobile {
+    margin-bottom: 2rem;
   }
 }
 

@@ -1,13 +1,14 @@
 'use client';
 
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import { jwtDecode } from 'jwt-decode';
+import { TokenInterface } from '@/interfaces/token.interface';
 
 type AuthContextType = {
-  token: string;
   isAuthenticated: boolean;
+  userInfoToken: TokenInterface | null;
   userLogin: (token: string) => void;
   userLogout: () => void;
-  getAuthToken: () => void;
 };
 
 const AuthContext = React.createContext<AuthContextType | undefined>(undefined);
@@ -18,14 +19,26 @@ type Props = {
 
 export const AuthProvider: React.FC<Props> = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [token, setToken] = useState('');
+  const [userInfoToken, setUserInfoToken] = useState<TokenInterface | null>(
+    null
+  );
 
   useEffect(() => {
-    const token = localStorage.getItem('authToken');
-    if (token) {
+    const getToken = localStorage.getItem('authToken');
+    const now = Math.floor(new Date().getTime() / 1000);
+    if (getToken) {
       setIsAuthenticated(true);
+      const decodedToken = jwtDecode(getToken);
+
+      if (decodedToken.exp !== undefined) {
+        setUserInfoToken(decodedToken);
+
+        if (now > decodedToken.exp) {
+          userLogout();
+        }
+      }
     }
-  }, []);
+  }, [userInfoToken?.exp]);
 
   const userLogin = (token: string) => {
     localStorage.setItem('authToken', token);
@@ -34,25 +47,17 @@ export const AuthProvider: React.FC<Props> = ({ children }) => {
 
   const userLogout = () => {
     localStorage.removeItem('authToken');
-    setToken('');
     setIsAuthenticated(false);
-  };
-
-  const getAuthToken = async () => {
-    try {
-      const getToken = localStorage.getItem('authToken');
-
-      if (getToken) {
-        setToken(getToken);
-      }
-    } catch (error) {
-      return;
-    }
   };
 
   return (
     <AuthContext.Provider
-      value={{ token, isAuthenticated, userLogin, userLogout, getAuthToken }}
+      value={{
+        isAuthenticated,
+        userLogin,
+        userLogout,
+        userInfoToken,
+      }}
     >
       {children}
     </AuthContext.Provider>

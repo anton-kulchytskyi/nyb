@@ -5,8 +5,8 @@ import Image from 'next/image';
 import classNames from 'classnames';
 import Close from '@/public/icons/close.svg';
 import { Errors } from '@/interfaces/errors.interface';
+import { userPostSignUp } from '@/utils/api/usersAuth';
 
-import { userPostSignIn } from '@/utils/api/usersAuth';
 import Loader from '@/components/Loader/Loader';
 import styles from './accountModal.module.scss';
 
@@ -151,7 +151,7 @@ const AccountModal = ({
     )
       return;
     setLoading(true);
-    userPostSignIn(inputs)
+    userPostSignUp(inputs)
       .then(() => {
         resetFields();
         alert('User registered successfully');

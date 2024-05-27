@@ -1,5 +1,5 @@
-@use 'sass:math' as *;
-@use 'sass:list' as *;
+@use 'sass:math';
+@use 'sass:list';
 
 @mixin onSmallMobile {
   @media (max-width: 360.98px) {
@@ -48,7 +48,7 @@
 $mainfont: 16;
 
 @function rem($value) {
-  $remvalue: div($value, $mainfont) + rem;
+  $remvalue: ($value / 16) + rem;
 
   @return $remvalue;
 }

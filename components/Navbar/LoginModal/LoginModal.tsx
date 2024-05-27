@@ -28,7 +28,7 @@ const LoginModal = ({
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState<Errors>({});
   const [type, setType] = useState('password');
-  const { getAuthToken, userLogin } = useAuth();
+  const { userLogin } = useAuth();
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -107,7 +107,6 @@ const LoginModal = ({
 
         if (!getToken) {
           userLogin(signInResponse.token);
-          getAuthToken();
         }
 
         resetFields();
