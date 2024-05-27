@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent, useEffect, useState } from 'react';
 import Image from 'next/image';
 
 import classNames from 'classnames';
@@ -29,6 +29,14 @@ const LoginModal = ({
   const [errors, setErrors] = useState<Errors>({});
   const [type, setType] = useState('password');
   const { userLogin } = useAuth();
+
+  useEffect(() => {
+    document.body.style.overflow = 'hidden';
+
+    return () => {
+      document.body.style.overflow = 'scroll';
+    };
+  }, []);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;

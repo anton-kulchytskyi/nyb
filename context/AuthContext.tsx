@@ -43,11 +43,26 @@ export const AuthProvider: React.FC<Props> = ({ children }) => {
   const userLogin = (token: string) => {
     localStorage.setItem('authToken', token);
     setIsAuthenticated(true);
+    setUserInfoToken(tokenDecode());
   };
 
   const userLogout = () => {
     localStorage.removeItem('authToken');
     setIsAuthenticated(false);
+  };
+
+  const tokenDecode = () => {
+    const getToken = localStorage.getItem('authToken');
+
+    if (getToken) {
+      const decodedToken = jwtDecode(getToken);
+
+      if (decodedToken.exp !== undefined) {
+        return decodedToken;
+      }
+    }
+
+    return null;
   };
 
   return (

@@ -126,7 +126,7 @@ const Navbar = () => {
                 <>
                   <Link
                     href="/"
-                    className={`${styles.userLoggedNavLink} ${styles.link} ${styles.link__button}`}
+                    className={`${styles.userLoggedNavLink} ${styles.link}`}
                   >
                     {userInfoToken &&
                       `${userInfoToken.given_name} ${userInfoToken.family_name}`}
