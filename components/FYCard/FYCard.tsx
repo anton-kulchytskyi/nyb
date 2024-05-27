@@ -7,6 +7,8 @@ import { useState, useEffect } from 'react';
 import { fetchImgUrl } from '@/utils/api/getImageFromAWS';
 import typo from '@/styles/typography.module.scss';
 import { Vessel } from '@/interfaces/vessel.interface';
+import { useAuth } from '@/context/AuthContext';
+import { useModals } from '@/context/ModalsContext';
 import YachtPrice from '../YachtPrice/YachtPrice';
 import Button from '../Button/Button';
 import CardSkeleton from '../CardSkeleton/CardSkeleton';
@@ -21,6 +23,9 @@ interface Props {
 const FYCard = ({ yacht, inCatalog }: Props) => {
   const [isLoading, setIsLoading] = useState(true);
   const router = useRouter();
+  const { isAuthenticated } = useAuth();
+  const { accountModalHandler } = useModals();
+
   const [imageUrl, setImageUrl] = useState<string>('');
   const {
     yacht_id,
@@ -94,7 +99,7 @@ const FYCard = ({ yacht, inCatalog }: Props) => {
             }`}
           >
             <Link
-              className={typo.typo_name_yacht}
+              className={`${typo.typo_name_yacht} ${styles.card__name}`}
               href={{
                 pathname: `/catalogue/${yacht_id}`,
                 query: { name: yacht_make },
@@ -111,10 +116,18 @@ const FYCard = ({ yacht, inCatalog }: Props) => {
               />
             </span>
             <p
-              className={`${typo.typo_description} ${typo.typo_description_gray}`}
+              className={`${typo.typo_description} ${typo.typo_description_gray}  ${styles.card__typo}`}
             >
               {`${yacht_country}, ${yacht_town} | ${yacht_year}`}
             </p>
+            {isAuthenticated ? (
+              <button className={`${styles.favourite_icon}`} />
+            ) : (
+              <button
+                className={`${styles.favourite_icon}`}
+                onClick={accountModalHandler}
+              />
+            )}
           </div>
         </>
       )}
