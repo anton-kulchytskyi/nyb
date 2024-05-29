@@ -5,8 +5,10 @@ import React, { useState, useContext } from 'react';
 type ModalsContextType = {
   isAccountModalOpen: boolean;
   isAccountModalLoginOpen: boolean;
+  isVarificationModalOpen: boolean;
   accountModalHandler: () => void;
   accountModalLoginHandler: () => void;
+  accountVarificationModalHandler: () => void;
   toggleBetweenModals: () => void;
 };
 
@@ -21,6 +23,7 @@ type Props = {
 export const ModalsProvider: React.FC<Props> = ({ children }) => {
   const [isAccountModalOpen, setIsAccountModalOpen] = useState(false);
   const [isAccountModalLoginOpen, setIsAccountModalLoginOpen] = useState(false);
+  const [isVarificationModalOpen, setIsVarificationModalOpen] = useState(false);
 
   const accountModalHandler = () => {
     setIsAccountModalOpen(!isAccountModalOpen);
@@ -28,6 +31,10 @@ export const ModalsProvider: React.FC<Props> = ({ children }) => {
 
   const accountModalLoginHandler = () => {
     setIsAccountModalLoginOpen(!isAccountModalLoginOpen);
+  };
+
+  const accountVarificationModalHandler = () => {
+    setIsVarificationModalOpen(!isVarificationModalOpen);
   };
 
   const toggleBetweenModals = () => {
@@ -40,9 +47,11 @@ export const ModalsProvider: React.FC<Props> = ({ children }) => {
       value={{
         isAccountModalOpen,
         isAccountModalLoginOpen,
+        isVarificationModalOpen,
         accountModalHandler,
         accountModalLoginHandler,
         toggleBetweenModals,
+        accountVarificationModalHandler,
       }}
     >
       {children}

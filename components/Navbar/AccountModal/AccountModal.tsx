@@ -5,9 +5,11 @@ import Image from 'next/image';
 import classNames from 'classnames';
 import Close from '@/public/icons/close.svg';
 import { Errors } from '@/interfaces/errors.interface';
-import { userPostSignUp } from '@/utils/api/usersAuth';
+import { userPostSignUp, confirmUserAuth } from '@/utils/api/usersAuth';
 
 import Loader from '@/components/Loader/Loader';
+import { useAuth } from '@/context/AuthContext';
+import VarificationModal from '../VarificationModal/VarificationModal';
 import styles from './accountModal.module.scss';
 
 type Props = {
@@ -30,7 +32,8 @@ const AccountModal = ({
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState<Errors>({});
   const [type, setType] = useState('password');
-
+  const [isVarification, setIsVarification] = useState(false);
+  const { varificationCode, userLogin } = useAuth();
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
@@ -140,30 +143,62 @@ const AccountModal = ({
     inputs.userEmail = '';
   };
 
+  interface SignInResponse {
+    token: string;
+  }
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    const getToken = localStorage.getItem('authToken');
 
-    if (
-      !inputs.firstName ||
-      !inputs.lastName ||
-      !inputs.password ||
-      !inputs.userEmail
-    )
-      return;
-    setLoading(true);
-    userPostSignUp(inputs)
-      .then(() => {
-        resetFields();
-        alert('User registered successfully');
-        accountModalHandler();
-      })
-      .catch((error) => {
-        alert(error);
-      })
-      .finally(() => {
-        setLoading(false);
-      });
+    if (!isVarification) {
+      if (
+        !inputs.firstName ||
+        !inputs.lastName ||
+        !inputs.password ||
+        !inputs.userEmail
+      )
+        return;
+
+      setLoading(true);
+      userPostSignUp(inputs)
+        .then(() => {
+          setIsVarification(true);
+        })
+        .catch((error) => {
+          alert(error);
+        })
+        .finally(() => {
+          setLoading(false);
+        });
+    } else if (isVarification) {
+      if (!varificationCode || !inputs.userEmail || !inputs.password) return;
+
+      setLoading(true);
+      confirmUserAuth(inputs.userEmail, inputs.password, +varificationCode)
+        .then((response) => {
+          alert('User confirmed');
+
+          const signInResponse = response as SignInResponse;
+
+          if (!getToken) {
+            userLogin(signInResponse.token);
+          }
+
+          resetFields();
+          accountModalHandler();
+        })
+        .catch((error) => {
+          alert(error);
+        })
+        .finally(() => {
+          setLoading(false);
+          setIsVarification(false);
+        });
+    }
   };
+
+  const submitButtonText = isVarification ? 'Verify' : 'Create a new account';
 
   return (
     <>
@@ -204,6 +239,7 @@ const AccountModal = ({
                     onChange={handleChange}
                     onFocus={inputsOnFocus}
                     onBlur={checkFirstNameInput}
+                    disabled={isVarification}
                   />
                   <label
                     className={styles.label}
@@ -231,6 +267,7 @@ const AccountModal = ({
                     onChange={handleChange}
                     onFocus={inputsOnFocus}
                     onBlur={checkLastNameInput}
+                    disabled={isVarification}
                   />
                   <label
                     className={styles.label}
@@ -258,6 +295,7 @@ const AccountModal = ({
                     onChange={handleChange}
                     onFocus={inputsOnFocus}
                     onBlur={checkEmailInput}
+                    disabled={isVarification}
                   />
                   <label
                     className={styles.label}
@@ -285,6 +323,7 @@ const AccountModal = ({
                     onChange={handleChange}
                     onFocus={inputsOnFocus}
                     onBlur={checkPasswordInput}
+                    disabled={isVarification}
                   />
                   <label
                     className={styles.label}
@@ -297,6 +336,7 @@ const AccountModal = ({
                       type === 'password' ? styles.eye : styles.eyeOff
                     }`}
                     onClick={togglePassword}
+                    aria-disabled={isVarification}
                   />
                   {errors.password && (
                     <span className={styles.error_message}>
@@ -305,6 +345,9 @@ const AccountModal = ({
                   )}
                 </div>
               </form>
+              {isVarification && (
+                <VarificationModal handleVarificationSubmit={handleSubmit} />
+              )}
               <p className={styles.form_terms}>
                 By creating an account, you agree to our{' '}
                 <Link
@@ -332,11 +375,11 @@ const AccountModal = ({
                 </Link>
               </p>
               <button
-                form="auth-form"
+                form={isVarification ? 'varification-form' : 'auth-form'}
                 className={styles.form__button}
                 disabled={loading}
               >
-                {!loading ? 'Create a new account' : <Loader />}
+                {!loading ? submitButtonText : <Loader />}
               </button>
               <div className={styles.border}>
                 <span className={styles.border__text}>or continue with</span>

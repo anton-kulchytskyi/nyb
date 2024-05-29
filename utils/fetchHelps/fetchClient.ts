@@ -1,7 +1,6 @@
-import { UserInterface } from '@/interfaces/user.interface';
+/* eslint-disable @typescript-eslint/no-explicit-any */
 
 const BASE_URL = 'https://nyb-project-production.up.railway.app';
-
 export function wait(delay: number) {
   return new Promise((resolve) => {
     setTimeout(resolve, delay);
@@ -12,25 +11,16 @@ type RequestMethod = 'GET' | 'POST' | 'PATCH' | 'DELETE';
 
 function request<T>(
   url: string,
-  user: UserInterface,
+  data: any = null,
   method: RequestMethod = 'POST'
 ): Promise<T> {
   const options: RequestInit = { method };
-  const myHeaders = new Headers();
-  myHeaders.append('Content-Type', 'application/json');
 
-  if (user) {
-    // We add body and Content-Type only for the requests with data
-    const { firstName, lastName, userEmail, password } = user;
-    options.body = JSON.stringify({
-      user_first_name: firstName,
-      user_last_name: lastName,
-      user_email: userEmail,
-      user_password: password,
-    });
-
+  if (data) {
+    options.body = JSON.stringify(data);
     options.headers = {
-      'Content-Type': 'application/json',
+      'Content-Type': 'application/json;charset=UTF-8',
+      Accept: 'application/json',
     };
   }
 
@@ -48,8 +38,7 @@ function request<T>(
 }
 
 export const client = {
-  userSignUp: <T>(url: string, user: UserInterface) =>
-    request<T>(url, user, 'POST'),
-  userSignIn: <T>(url: string, user: UserInterface) =>
-    request<T>(url, user, 'POST'),
+  userSignUp: <T>(url: string, data: any) => request<T>(url, data, 'POST'),
+  userSignIn: <T>(url: string, data: any) => request<T>(url, data, 'POST'),
+  confirmUser: <T>(url: string) => request<T>(url, 'POST'),
 };

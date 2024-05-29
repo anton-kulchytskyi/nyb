@@ -102,7 +102,7 @@ const LoginModal = ({
     token: string;
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleLogIn = (e: React.FormEvent) => {
     e.preventDefault();
     const getToken = localStorage.getItem('authToken');
 
@@ -153,7 +153,7 @@ const LoginModal = ({
               <form
                 id="signIn-form"
                 className={styles.form}
-                onSubmit={handleSubmit}
+                onSubmit={handleLogIn}
               >
                 <div className={styles.form_group}>
                   <input
