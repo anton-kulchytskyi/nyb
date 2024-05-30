@@ -40,6 +40,9 @@
   }
 
   &__desc_catalog {
+    --columns: 4;
+    display: grid;
+    grid-template-columns: repeat(var(--columns), 1fr);
     @include onSmall {
       text-align: center;
     }

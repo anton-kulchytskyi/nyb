@@ -6,11 +6,7 @@ import { Nullable } from '@/interfaces/any.type';
 import { useAuth } from '@/context/AuthContext';
 import styles from './varificationModal.module.scss';
 
-type Props = {
-  handleVarificationSubmit: (e: React.FormEvent) => void;
-};
-
-const VarificationModal = ({ handleVarificationSubmit }: Props) => {
+const VarificationModal = () => {
   const { setCode, varificationCode } = useAuth();
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -43,13 +39,11 @@ const VarificationModal = ({ handleVarificationSubmit }: Props) => {
     const newCode = [...varificationCode];
     newCode[index] = input.value;
     setCode(newCode.join(''));
-
     input.select();
 
     if (index === 5 && input.value !== '' && currentInput.current) {
       currentInput.current.blur();
     }
-
     if (input.value === '') {
       if (previousInput.current) {
         previousInput.current.focus();
@@ -85,6 +79,7 @@ const VarificationModal = ({ handleVarificationSubmit }: Props) => {
   };
 
   const handlePaste = (e: React.ClipboardEvent) => {
+    e.preventDefault();
     const pastedCode = e.clipboardData.getData('text');
     if (pastedCode.length === 6) {
       setCode(pastedCode);
@@ -98,41 +93,37 @@ const VarificationModal = ({ handleVarificationSubmit }: Props) => {
   };
 
   function handleFocus(e: ChangeEvent<HTMLInputElement>) {
-    e.target.select();
+    if (e.target.value === '') {
+      e.target.select();
+    }
   }
 
   return (
     <>
-      <form
-        id="varification-form"
-        className={styles.form}
-        onSubmit={handleVarificationSubmit}
-      >
-        <p className={styles.modal__text}>
-          Enter the verification code we just sent to you e-mail
-        </p>
-        <div className={styles.form_group}>
-          {[0, 1, 2, 3, 4, 5].map((index) => (
-            <>
-              <input
-                key={index}
-                id={`varificationCode-${index}`}
-                name="varificationCode"
-                ref={inputRefs[index]}
-                type="number"
-                maxLength={1}
-                autoFocus={index === 0}
-                className={classNames(styles.input, styles.varificationInput)}
-                onPaste={handlePaste}
-                onChange={(e) => handleInput(e, index)}
-                onKeyDown={(e) => handleKeyDown(e, index)}
-                onFocus={handleFocus}
-              />
-              {index === 2 && <span className={styles.devider}></span>}
-            </>
-          ))}
-        </div>
-      </form>
+      <p className={styles.modal__text}>
+        Enter the verification code we just sent to you e-mail
+      </p>
+      <div className={styles.form_group}>
+        {[0, 1, 2, 3, 4, 5].map((index) => (
+          <>
+            <input
+              key={index}
+              id={`varificationCode-${index}`}
+              name="varificationCode"
+              ref={inputRefs[index]}
+              type="number"
+              maxLength={1}
+              autoFocus={index === 0}
+              className={classNames(styles.input, styles.varificationInput)}
+              onPaste={handlePaste}
+              onChange={(e) => handleInput(e, index)}
+              onKeyDown={(e) => handleKeyDown(e, index)}
+              onFocus={handleFocus}
+            />
+            {index === 2 && <span className={styles.devider}></span>}
+          </>
+        ))}
+      </div>
     </>
   );
 };

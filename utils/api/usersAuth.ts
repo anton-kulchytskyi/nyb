@@ -22,9 +22,23 @@ export const userPostSignIn = (user: UserForSignIn) => {
 export const confirmUserAuth = (
   userEmail: string | null,
   userPassword: string | null,
-  confirmationCode: number
+  confirmationCode: string
 ) => {
   return client.confirmUser(
     `/auth/confirm?email=${userEmail}&password=${userPassword}&confirmationCode=${confirmationCode}`
+  );
+};
+
+export const sendRecoveryCode = (userEmail: string | null) => {
+  return client.confirmUser(`/auth/forgotPassword?email=${userEmail}`);
+};
+
+export const confirmForgotPassword = (
+  userEmail: string | null,
+  code: string,
+  newPassword: string
+) => {
+  return client.confirmUser(
+    `/auth/confirmForgotPassword?email=${userEmail}&confirmationCode=${code}&newPassword=${newPassword}`
   );
 };

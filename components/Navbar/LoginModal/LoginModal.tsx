@@ -8,6 +8,7 @@ import Close from '@/public/icons/close.svg';
 import Loader from '@/components/Loader/Loader';
 import { userPostSignIn } from '@/utils/api/usersAuth';
 import { useAuth } from '@/context/AuthContext';
+import { useModals } from '@/context/ModalsContext';
 import styles from './loginModal.module.scss';
 
 type Props = {
@@ -29,6 +30,7 @@ const LoginModal = ({
   const [errors, setErrors] = useState<Errors>({});
   const [type, setType] = useState('password');
   const { userLogin } = useAuth();
+  const { recoveryPasswordHandler } = useModals();
 
   useEffect(() => {
     document.body.style.overflow = 'hidden';
@@ -217,7 +219,12 @@ const LoginModal = ({
                   )}
                 </div>
               </form>
-              <p className={styles.form__password}>Forgot password?</p>
+              <button
+                className={styles.form__password}
+                onClick={recoveryPasswordHandler}
+              >
+                Forgot password?
+              </button>
               <button
                 form="signIn-form"
                 className={styles.form__button}

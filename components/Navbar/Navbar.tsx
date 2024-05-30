@@ -18,6 +18,7 @@ import { useAuth } from '@/context/AuthContext';
 import { useModals } from '@/context/ModalsContext';
 import AccountModal from './AccountModal/AccountModal';
 import LoginModal from './LoginModal/LoginModal';
+import RecoveryModal from './RecoveryModal/RecoveryModal';
 
 const Navbar = () => {
   const [isCurrencyModalOpen, setIsCurrencyModalOpen] = useState(false);
@@ -28,6 +29,7 @@ const Navbar = () => {
   const {
     isAccountModalOpen,
     isAccountModalLoginOpen,
+    isRecoveryModalOpen,
     accountModalHandler,
     accountModalLoginHandler,
     toggleBetweenModals,
@@ -86,6 +88,7 @@ const Navbar = () => {
           accountModalHandler={accountModalHandler}
         />
       )}
+      {isRecoveryModalOpen && <RecoveryModal />}
       <nav className={styles.navbar}>
         <div className={styles.navbar__side}>
           {desktopScreen ? (

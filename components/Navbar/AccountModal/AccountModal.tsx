@@ -5,10 +5,11 @@ import Image from 'next/image';
 import classNames from 'classnames';
 import Close from '@/public/icons/close.svg';
 import { Errors } from '@/interfaces/errors.interface';
-import { userPostSignUp, confirmUserAuth } from '@/utils/api/usersAuth';
 
 import Loader from '@/components/Loader/Loader';
 import { useAuth } from '@/context/AuthContext';
+import { userHandleSignUp } from '@/utils/api/userSignUp/userSignUp';
+import { userHandleVarificationLogIn } from '@/utils/api/userVarificationLogIn/userVarificationLogIn';
 import VarificationModal from '../VarificationModal/VarificationModal';
 import styles from './accountModal.module.scss';
 
@@ -34,6 +35,7 @@ const AccountModal = ({
   const [type, setType] = useState('password');
   const [isVarification, setIsVarification] = useState(false);
   const { varificationCode, userLogin } = useAuth();
+
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
@@ -136,69 +138,25 @@ const AccountModal = ({
     };
   }, []);
 
-  const resetFields = () => {
-    inputs.firstName = '';
-    inputs.lastName = '';
-    inputs.password = '';
-    inputs.userEmail = '';
-  };
-
-  interface SignInResponse {
-    token: string;
-  }
-
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const getToken = localStorage.getItem('authToken');
 
     if (!isVarification) {
-      if (
-        !inputs.firstName ||
-        !inputs.lastName ||
-        !inputs.password ||
-        !inputs.userEmail
-      )
-        return;
-
-      setLoading(true);
-      userPostSignUp(inputs)
-        .then(() => {
-          setIsVarification(true);
-        })
-        .catch((error) => {
-          alert(error);
-        })
-        .finally(() => {
-          setLoading(false);
-        });
+      userHandleSignUp({ inputs, setLoading, setIsVarification });
     } else if (isVarification) {
-      if (!varificationCode || !inputs.userEmail || !inputs.password) return;
-
-      setLoading(true);
-      confirmUserAuth(inputs.userEmail, inputs.password, +varificationCode)
-        .then((response) => {
-          alert('User confirmed');
-
-          const signInResponse = response as SignInResponse;
-
-          if (!getToken) {
-            userLogin(signInResponse.token);
-          }
-
-          resetFields();
-          accountModalHandler();
-        })
-        .catch((error) => {
-          alert(error);
-        })
-        .finally(() => {
-          setLoading(false);
-          setIsVarification(false);
-        });
+      userHandleVarificationLogIn({
+        inputs,
+        varificationCode,
+        setLoading,
+        setIsVarification,
+        userLogin,
+        accountModalHandler,
+      });
     }
   };
 
   const submitButtonText = isVarification ? 'Verify' : 'Create a new account';
+  const formName = isVarification ? 'varification-form' : 'auth-form';
 
   return (
     <>
@@ -221,7 +179,7 @@ const AccountModal = ({
             </div>
             <div className={styles.modal__main}>
               <form
-                id="auth-form"
+                id={formName}
                 className={styles.form}
                 onSubmit={handleSubmit}
               >
@@ -336,7 +294,6 @@ const AccountModal = ({
                       type === 'password' ? styles.eye : styles.eyeOff
                     }`}
                     onClick={togglePassword}
-                    aria-disabled={isVarification}
                   />
                   {errors.password && (
                     <span className={styles.error_message}>
@@ -344,10 +301,13 @@ const AccountModal = ({
                     </span>
                   )}
                 </div>
+                {isVarification && (
+                  <div className={styles.form_group}>
+                    <VarificationModal />
+                  </div>
+                )}
               </form>
-              {isVarification && (
-                <VarificationModal handleVarificationSubmit={handleSubmit} />
-              )}
+
               <p className={styles.form_terms}>
                 By creating an account, you agree to our{' '}
                 <Link
