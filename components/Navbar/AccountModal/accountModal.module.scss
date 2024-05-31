@@ -39,14 +39,11 @@
     padding: 1.75rem;
 
     @include onMobile {
-      padding: 3.7rem 8.75rem;
+      padding: rem(70) rem(140);
     }
 
     @include onSmall {
-      padding: 3.75rem 2.75rem;
-    }
-    @include onSmallMobile {
-      padding: 1.75rem 1.25rem;
+      padding: rem(30) rem(20);
     }
   }
 
@@ -83,6 +80,11 @@
   display: flex;
   align-items: center;
   cursor: pointer;
+
+  @include onMobile {
+    top: rem(6);
+    right: rem(6);
+  }
 }
 
 .form {

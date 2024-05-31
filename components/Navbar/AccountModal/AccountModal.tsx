@@ -181,7 +181,7 @@ const AccountModal = ({
               <form
                 id={formName}
                 className={styles.form}
-                onSubmit={handleSubmit}
+                onSubmit={() => {}}
               >
                 <div className={styles.form_group}>
                   <input
@@ -338,32 +338,12 @@ const AccountModal = ({
                 form={isVarification ? 'varification-form' : 'auth-form'}
                 className={styles.form__button}
                 disabled={loading}
+                onClick={handleSubmit}
               >
                 {!loading ? submitButtonText : <Loader />}
               </button>
-              <div className={styles.border}>
-                <span className={styles.border__text}>or continue with</span>
-                <p className={styles.border__line} />
-              </div>
             </div>
             <div className={styles.modal__bottom}>
-              <div className={styles.socials}>
-                <div className={styles.socials__container}>
-                  <button
-                    className={`${styles.socials__link} ${styles.socials__facebook}`}
-                  />
-                </div>
-                <div className={styles.socials__container}>
-                  <button
-                    className={`${styles.socials__link} ${styles.socials__google}`}
-                  />
-                </div>
-                <div className={styles.socials__container}>
-                  <button
-                    className={`${styles.socials__link} ${styles.socials__apple}`}
-                  />
-                </div>
-              </div>
               <p className={styles.account}>
                 <span>Already have an account? </span>
                 <span

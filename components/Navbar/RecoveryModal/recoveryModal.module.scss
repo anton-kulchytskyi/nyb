@@ -45,14 +45,11 @@
     padding: 1.781rem 1.75rem;
 
     @include onMobile {
-      padding: 3.5rem 6rem;
+      padding: rem(70) rem(140);
     }
 
     @include onSmall {
-      padding: 5.5rem 2.75rem;
-    }
-    @include onSmallMobile {
-      padding: 5.344rem 1.375rem;
+      padding: rem(30) rem(20);
     }
   }
 
@@ -101,7 +98,8 @@
     top: 1rem;
   }
   @include onMobile {
-    top: 2rem;
+    top: rem(6);
+    right: rem(6);
   }
 }
 

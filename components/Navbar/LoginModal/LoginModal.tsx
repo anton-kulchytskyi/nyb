@@ -106,9 +106,9 @@ const LoginModal = ({
 
   const handleLogIn = (e: React.FormEvent) => {
     e.preventDefault();
-    const getToken = localStorage.getItem('authToken');
 
     if (!inputs.password || !inputs.userEmail) return;
+    const getToken = localStorage.getItem('authToken');
 
     setLoading(true);
     userPostSignIn(inputs)
@@ -155,7 +155,7 @@ const LoginModal = ({
               <form
                 id="signIn-form"
                 className={styles.form}
-                onSubmit={handleLogIn}
+                onSubmit={() => {}}
               >
                 <div className={styles.form_group}>
                   <input
@@ -229,27 +229,16 @@ const LoginModal = ({
                 form="signIn-form"
                 className={styles.form__button}
                 disabled={loading}
+                onClick={handleLogIn}
               >
                 {' '}
                 {!loading ? 'Sign In' : <Loader />}
               </button>
               <div className={styles.border}>
-                <span className={styles.border__text}>or continue with</span>
                 <p className={styles.border__line} />
               </div>
             </div>
             <div className={styles.modal__bottom}>
-              <div className={styles.socials}>
-                <div className={styles.socials__container}>
-                  <button className={styles.socials__facebook} />
-                </div>
-                <div className={styles.socials__container}>
-                  <button className={styles.socials__google} />
-                </div>
-                <div className={styles.socials__container}>
-                  <button className={styles.socials__apple} />
-                </div>
-              </div>
               <p className={styles.account}>
                 <span>Don&apos;t have an account yet? </span>
                 <span

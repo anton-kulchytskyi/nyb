@@ -172,7 +172,7 @@ const RecoveryModal = () => {
               <form
                 id={formName}
                 className={styles.form}
-                onSubmit={handleSubmit}
+                onSubmit={() => {}}
               >
                 {!isRecovering ? (
                   <div className={styles.form_group}>
@@ -283,6 +283,7 @@ const RecoveryModal = () => {
                 form={formName}
                 className={styles.form__button}
                 disabled={loading}
+                onClick={handleSubmit}
               >
                 {' '}
                 {!loading ? submitText : <Loader />}
