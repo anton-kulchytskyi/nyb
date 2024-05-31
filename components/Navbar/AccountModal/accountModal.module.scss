@@ -22,7 +22,7 @@
 
     @include onMobile {
       overflow: scroll;
-      height: 100%;
+      height: 100svh;
       width: 100vw;
       max-width: 100%;
       border-radius: 0;
