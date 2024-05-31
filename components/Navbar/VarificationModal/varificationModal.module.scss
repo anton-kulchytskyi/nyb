@@ -13,7 +13,7 @@
   z-index: 3;
 
   &__wrapper {
-    position: absolute;
+    position: fixed;
     width: 100%;
     max-width: 34rem;
     background-color: $white;
@@ -103,7 +103,8 @@
     top: 1rem;
   }
   @include onMobile {
-    top: 2rem;
+    top: rem(6);
+    right: rem(6);
   }
 }
 

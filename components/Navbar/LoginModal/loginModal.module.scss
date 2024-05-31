@@ -13,7 +13,7 @@
   z-index: 3;
 
   &__wrapper {
-    position: absolute;
+    position: fixed;
     width: 100%;
     max-width: 34rem;
     background-color: $white;

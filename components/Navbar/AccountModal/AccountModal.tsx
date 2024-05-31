@@ -198,6 +198,7 @@ const AccountModal = ({
                     onFocus={inputsOnFocus}
                     onBlur={checkFirstNameInput}
                     disabled={isVarification}
+                    
                   />
                   <label
                     className={styles.label}
