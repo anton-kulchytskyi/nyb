@@ -1,9 +1,14 @@
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent, useEffect, useState } from 'react';
 import Image from 'next/image';
 
+import classNames from 'classnames';
 import { Errors } from '@/interfaces/errors.interface';
 import Close from '@/public/icons/close.svg';
 
+import Loader from '@/components/Loader/Loader';
+import { userPostSignIn } from '@/utils/api/usersAuth';
+import { useAuth } from '@/context/AuthContext';
+import { useModals } from '@/context/ModalsContext';
 import styles from './loginModal.module.scss';
 
 type Props = {
@@ -12,17 +17,30 @@ type Props = {
   accountModalLoginHandler: () => void;
 };
 
-const LoginModal = ({ toggleBetweenModals, isAccountModalLoginOpen, accountModalLoginHandler }: Props) => {
+const LoginModal = ({
+  toggleBetweenModals,
+  isAccountModalLoginOpen,
+  accountModalLoginHandler,
+}: Props) => {
   const [inputs, setInputs] = useState({
     userEmail: '',
     password: '',
   });
+  const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState<Errors>({});
   const [type, setType] = useState('password');
+  const { userLogin } = useAuth();
+  const { recoveryPasswordHandler } = useModals();
 
-  const handleChange = (
-    e: ChangeEvent<HTMLInputElement>
-  ) => {
+  useEffect(() => {
+    document.body.style.overflow = 'hidden';
+
+    return () => {
+      document.body.style.overflow = 'scroll';
+    };
+  }, []);
+
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setInputs({
       ...inputs,
@@ -30,9 +48,7 @@ const LoginModal = ({ toggleBetweenModals, isAccountModalLoginOpen, accountModal
     });
   };
 
-  const inputsOnFocus = (
-    e: ChangeEvent<HTMLInputElement>
-  ) => {
+  const inputsOnFocus = (e: ChangeEvent<HTMLInputElement>) => {
     for (const error in errors) {
       if (error === e.target.name) {
         const correctedErrors = { ...errors };
@@ -61,23 +77,66 @@ const LoginModal = ({ toggleBetweenModals, isAccountModalLoginOpen, accountModal
       data = 'The password must be at least 8 characters long';
     } else if (inputs.password.length > 50) {
       data = 'The password must not be longer than 50 characters';
-    } else if (!/[A-Z]/.test(inputs.password) || !/[a-z]/.test(inputs.password)) {
-      data = 'The password must contain at least one uppercase and one lowercase letter';
+    } else if (
+      !/[A-Z]/.test(inputs.password) ||
+      !/[a-z]/.test(inputs.password)
+    ) {
+      data =
+        'The password must contain at least one uppercase and one lowercase letter';
     }
     data.length && setErrors((prev) => ({ ...prev, password: data }));
   };
 
   const togglePassword = () => {
     if (type === 'password') {
-      setType('text')
+      setType('text');
     } else {
-      setType('password')
+      setType('password');
     }
+  };
+
+  const resetFields = () => {
+    inputs.password = '';
+    inputs.userEmail = '';
+  };
+
+  interface SignInResponse {
+    token: string;
   }
+
+  const handleLogIn = (e: React.FormEvent) => {
+    e.preventDefault();
+
+    if (!inputs.password || !inputs.userEmail) return;
+    const getToken = localStorage.getItem('authToken');
+
+    setLoading(true);
+    userPostSignIn(inputs)
+      .then((response) => {
+        const signInResponse = response as SignInResponse;
+
+        if (!getToken) {
+          userLogin(signInResponse.token);
+        }
+
+        resetFields();
+        accountModalLoginHandler();
+      })
+      .catch((error) => {
+        alert(error);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  };
 
   return (
     <>
-      <div className={`${styles.modal} ${isAccountModalLoginOpen ? styles.open : ''}`}>
+      <div
+        className={`${styles.modal} ${
+          isAccountModalLoginOpen ? styles.open : ''
+        }`}
+      >
         <div className={styles.modal__wrapper}>
           <div className={styles.modal__content}>
             <div
@@ -93,18 +152,22 @@ const LoginModal = ({ toggleBetweenModals, isAccountModalLoginOpen, accountModal
               <h4 className={styles.header}>Sign In</h4>
             </div>
             <div className={styles.modal__main}>
-              <form className={styles.form}>
+              <form
+                id="signIn-form"
+                className={styles.form}
+                onSubmit={() => {}}
+              >
                 <div className={styles.form_group}>
                   <input
                     id="userEmail"
                     name="userEmail"
                     type="email"
                     value={inputs.userEmail}
-                    className={`
-                      ${styles.input} 
-                      ${errors.userEmail ? styles.input__error : ''}
-                      ${inputs.userEmail.trim() && !errors.userEmail ? styles.input__success : ''}
-                    `}
+                    className={classNames(styles.input, {
+                      [styles.input__error]: errors.userEmail,
+                      [styles.input__success]:
+                        inputs.userEmail.trim() && !errors.userEmail,
+                    })}
                     onChange={handleChange}
                     onFocus={inputsOnFocus}
                     onBlur={checkEmailInput}
@@ -116,7 +179,9 @@ const LoginModal = ({ toggleBetweenModals, isAccountModalLoginOpen, accountModal
                     Email
                   </label>
                   {errors.userEmail && (
-                    <span className={styles.error_message}>{errors.userEmail}</span>
+                    <span className={styles.error_message}>
+                      {errors.userEmail}
+                    </span>
                   )}
                 </div>
                 <div className={styles.form_group}>
@@ -125,11 +190,11 @@ const LoginModal = ({ toggleBetweenModals, isAccountModalLoginOpen, accountModal
                     name="password"
                     type={type}
                     value={inputs.password}
-                    className={`
-                      ${styles.input} 
-                      ${errors.password ? styles.input__error : ''}
-                      ${inputs.password.trim() && !errors.password ? styles.input__success : ''}
-                    `}
+                    className={classNames(styles.input, {
+                      [styles.input__error]: errors.password,
+                      [styles.input__success]:
+                        inputs.password.trim() && !errors.password,
+                    })}
                     onChange={handleChange}
                     onFocus={inputsOnFocus}
                     onBlur={checkPasswordInput}
@@ -141,33 +206,39 @@ const LoginModal = ({ toggleBetweenModals, isAccountModalLoginOpen, accountModal
                     Password
                   </label>
                   <span
-                    className={`${styles.label__password} ${type === 'password' ? styles.eye : styles.eyeOff}`}
+                    className={classNames(styles.label__password, {
+                      [styles.eye]: type === 'password',
+                      [styles.eyeOff]: type !== 'password',
+                    })}
                     onClick={togglePassword}
                   />
                   {errors.password && (
-                    <span className={styles.error_message}>{errors.password}</span>
+                    <span className={styles.error_message}>
+                      {errors.password}
+                    </span>
                   )}
                 </div>
               </form>
-              <p className={styles.form__password}>Forgot password?</p>
-              <button className={styles.form__button}>Sign In</button>
+              <button
+                className={styles.form__password}
+                onClick={recoveryPasswordHandler}
+              >
+                Forgot password?
+              </button>
+              <button
+                form="signIn-form"
+                className={styles.form__button}
+                disabled={loading}
+                onClick={handleLogIn}
+              >
+                {' '}
+                {!loading ? 'Sign In' : <Loader />}
+              </button>
               <div className={styles.border}>
-                <span className={styles.border__text}>or continue with</span>
                 <p className={styles.border__line} />
               </div>
             </div>
             <div className={styles.modal__bottom}>
-              <div className={styles.socials}>
-                <div className={styles.socials__container}>
-                  <button className={styles.socials__facebook} />
-                </div>
-                <div className={styles.socials__container}>
-                  <button className={styles.socials__google} />
-                </div>
-                <div className={styles.socials__container}>
-                  <button className={styles.socials__apple} />
-                </div>
-              </div>
               <p className={styles.account}>
                 <span>Don&apos;t have an account yet? </span>
                 <span

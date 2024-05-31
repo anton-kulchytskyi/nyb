@@ -1,3 +1,6 @@
+@use 'sass:math';
+@use 'sass:list';
+
 @mixin onSmallMobile {
   @media (max-width: 360.98px) {
     @content;
@@ -38,4 +41,14 @@
   @media (min-width: 1920px) {
     @content;
   }
+}
+
+// function for transform pixel to rem
+
+$mainfont: 16;
+
+@function rem($value) {
+  $remvalue: ($value / 16) + rem;
+
+  @return $remvalue;
 }

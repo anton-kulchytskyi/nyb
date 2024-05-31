@@ -2,28 +2,27 @@
 @import '../../../styles/var.scss';
 
 .modal {
-  display: none;
+  display: flex;
   position: fixed;
-  z-index: 3;
   left: 0;
-
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
   justify-content: center;
   align-items: center;
+  z-index: 3;
 
   &__wrapper {
     position: absolute;
-    width: 35rem;
+    width: 34rem;
     background-color: $white;
     border-radius: 1rem;
 
     @include onMobile {
-      overflow: scroll;
       height: 100vh;
       width: 100vw;
       border-radius: 0;
+      overflow: scroll;
     }
   }
 
@@ -36,15 +35,25 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 1.75rem;
+    padding: 1.781rem 1.75rem;
 
     @include onMobile {
-      padding: rem(70) rem(140);
+      padding: 3.5rem 6rem;
     }
 
     @include onSmall {
-      padding: rem(30) rem(20);
+      padding: 5.5rem 2.75rem;
     }
+    @include onSmallMobile {
+      padding: 5.344rem 1.375rem;
+    }
+  }
+
+  &__text {
+    font-size: rem(16);
+    display: block;
+    text-align: center;
+    margin-bottom: rem(24);
   }
 
   &__top {
@@ -52,46 +61,60 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
   }
 
   &__main {
     margin-bottom: 1rem;
+    width: 100%;
   }
 }
 
 .header {
   color: $gray-primary;
   font-family: var(--font-baiJamjuree);
-  font-size: 1.7rem;
+  font-size: 2.5rem;
   line-height: normal;
   font-weight: 600;
-  margin-bottom: 0;
+
+  @include onMobile {
+    font-size: 4.5vw;
+  }
 
   @include onSmall {
-    font-size: 7vw;
+    font-size: 1.9rem;
   }
 }
 
 .close {
   position: absolute;
-  top: 1rem;
+  top: 2rem;
   right: 2rem;
   display: flex;
   align-items: center;
   cursor: pointer;
-
+  @include onSmallMobile {
+    top: 0.5rem;
+  }
+  @include onSmall {
+    top: 1rem;
+  }
   @include onMobile {
-    top: rem(6);
-    right: rem(6);
+    top: 2rem;
   }
 }
 
 .form {
-  margin-bottom: 1.5rem;
-  &_terms {
+  &__password {
+    color: $orange-secondary-100;
     margin-bottom: 1.5rem;
-    font-size: 1rem;
+    font-size: 1.125rem;
+    font-weight: 500;
+  }
+
+  &_terms {
+    margin-bottom: 2rem;
 
     &__link {
       color: $orange-secondary-100;
@@ -108,7 +131,7 @@
   &__button {
     color: #fff;
     font-weight: 500;
-    font-size: 1.1rem;
+    font-size: 1rem;
 
     background-color: $gray-primary;
     width: 100%;
@@ -128,15 +151,41 @@
 .form_group {
   position: relative;
   margin-bottom: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: rem(16);
+}
+
+.devider {
+  display: block;
+  width: rem(16);
+  height: rem(1);
+  position: relative;
+  background-color: $black;
+}
+
+.varificationInput {
+  width: 100%;
+  max-width: rem(40);
+
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button,
+  &[type='number'] {
+    -webkit-appearance: none;
+    -moz-appearance: textfield;
+    margin: 0;
+  }
 }
 
 .input {
   width: 100%;
   font-size: 1rem;
-  padding: 1rem;
+  padding: rem(16) 0;
+  text-align: center;
   border-radius: 0.5rem;
   color: $gray-primary;
-  border: 1px solid $gray-20;
+  border: 1px solid $gray-100;
   background-color: transparent;
   outline: none;
   transform: background-color 0.6s ease;
@@ -169,10 +218,6 @@
       color: $gray-primary;
       font-size: 0.75rem;
     }
-  }
-
-  &:last-child {
-    margin-bottom: rem;
   }
 }
 
@@ -217,12 +262,11 @@
     text-align: center;
     width: 10.5rem;
     background-color: #fff;
-    font-size: 1rem;
     color: #67666b;
   }
 
   &__line {
-    margin-top: 0.8rem;
+    margin-top: 1rem;
     border-bottom: 1px solid #a9a9b0;
     width: 100%;
   }
@@ -249,22 +293,20 @@
     }
   }
 
-  &__link {
-    height: 2.125rem;
-    width: 2.125rem;
-  }
-
   &__facebook {
+    height: 2rem;
+    width: 2rem;
     background: url('../../../public/icons/facebook.svg') no-repeat center/cover;
   }
   &__google {
+    height: 2rem;
+    width: 2rem;
     background: url('../../../public/icons/google.svg') no-repeat center/cover;
   }
   &__apple {
+    height: 2rem;
+    width: 2rem;
     background: url('../../../public/icons/apple.svg') no-repeat center/cover;
-  }
-  @include onMobile {
-    margin-bottom: 2rem;
   }
 }
 
@@ -275,11 +317,15 @@
   &__login {
     cursor: pointer;
     color: $orange-secondary-100;
-    transition: 0.5s ease-in;
+    transition: 1s ease-in;
 
     &:hover {
       border-bottom: 1px solid $orange-secondary-100;
     }
+  }
+  @include onSmallMobile {
+    flex-direction: column;
+    text-align: center;
   }
 }
 
