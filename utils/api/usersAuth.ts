@@ -19,26 +19,14 @@ export const userPostSignIn = (user: UserForSignIn) => {
   });
 };
 
-export const confirmUserAuth = (
-  userEmail: string | null,
-  userPassword: string | null,
-  confirmationCode: string
-) => {
-  return client.confirmUser(
-    `/auth/confirm?email=${userEmail}&password=${userPassword}&confirmationCode=${confirmationCode}`
-  );
+export const confirmUserAuth = (queryUserConfirm: string) => {
+  return client.confirmUser(`/auth/confirm?${queryUserConfirm}`);
 };
 
 export const sendRecoveryCode = (userEmail: string | null) => {
   return client.confirmUser(`/auth/forgotPassword?email=${userEmail}`);
 };
 
-export const confirmForgotPassword = (
-  userEmail: string | null,
-  code: string,
-  newPassword: string
-) => {
-  return client.confirmUser(
-    `/auth/confirmForgotPassword?email=${userEmail}&confirmationCode=${code}&newPassword=${newPassword}`
-  );
+export const confirmForgotPassword = (queryUserRecovery: string) => {
+  return client.confirmUser(`/auth/confirmForgotPassword?${queryUserRecovery}`);
 };

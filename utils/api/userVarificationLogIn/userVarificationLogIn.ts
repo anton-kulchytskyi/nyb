@@ -4,6 +4,7 @@ import { confirmUserAuth } from '../usersAuth';
 interface HandleSignUp {
   inputs: UserInterface;
   varificationCode: string;
+  queryUserConfirm: string;
   setLoading: (status: boolean) => void;
   setIsVarification: (status: boolean) => void;
   userLogin: (token: string) => void;
@@ -17,6 +18,7 @@ interface SignInResponse {
 export const userHandleVarificationLogIn = ({
   inputs,
   varificationCode,
+  queryUserConfirm,
   setLoading,
   setIsVarification,
   userLogin,
@@ -35,7 +37,7 @@ export const userHandleVarificationLogIn = ({
     return;
 
   setLoading(true);
-  confirmUserAuth(inputs.userEmail, inputs.password, varificationCode)
+  confirmUserAuth(queryUserConfirm)
     .then((response) => {
       alert('User confirmed');
 
