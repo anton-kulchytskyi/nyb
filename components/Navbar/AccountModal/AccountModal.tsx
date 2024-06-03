@@ -3,6 +3,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 
 import classNames from 'classnames';
+import { useSearchParams } from 'next/navigation';
 import Close from '@/public/icons/close.svg';
 import { Errors } from '@/interfaces/errors.interface';
 
@@ -30,6 +31,7 @@ const AccountModal = ({
     userEmail: '',
     password: '',
   });
+  const searchParams = useSearchParams();
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState<Errors>({});
   const [type, setType] = useState('password');
@@ -144,9 +146,17 @@ const AccountModal = ({
     if (!isVarification) {
       userHandleSignUp({ inputs, setLoading, setIsVarification });
     } else if (isVarification) {
+      const signUpParams = new URLSearchParams(searchParams.toString());
+      signUpParams.append('email', inputs.userEmail);
+      signUpParams.append('password', inputs.password);
+      signUpParams.append('confirmationCode', varificationCode);
+
+      const queryUserConfirm = signUpParams.toString();
+
       userHandleVarificationLogIn({
         inputs,
         varificationCode,
+        queryUserConfirm,
         setLoading,
         setIsVarification,
         userLogin,
@@ -198,7 +208,6 @@ const AccountModal = ({
                     onFocus={inputsOnFocus}
                     onBlur={checkFirstNameInput}
                     disabled={isVarification}
-                    
                   />
                   <label
                     className={styles.label}

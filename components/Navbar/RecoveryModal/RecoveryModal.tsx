@@ -2,6 +2,7 @@ import React, { ChangeEvent, useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 
 import classNames from 'classnames';
+import { useSearchParams } from 'next/navigation';
 import { Errors } from '@/interfaces/errors.interface';
 import Close from '@/public/icons/close.svg';
 
@@ -19,6 +20,7 @@ const RecoveryModal = () => {
     newPassword: '',
     newPasswordConfirm: '',
   });
+  const searchParams = useSearchParams();
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState<Errors>({});
   const [isRecovering, setIsRecovering] = useState(false);
@@ -134,7 +136,14 @@ const RecoveryModal = () => {
 
       setLoading(true);
 
-      confirmForgotPassword(inputs.userEmail, varificationCode, newPassword)
+      const signUpParams = new URLSearchParams(searchParams.toString());
+      signUpParams.append('email', inputs.userEmail);
+      signUpParams.append('confirmationCode', varificationCode);
+      signUpParams.append('newPassword', newPassword);
+
+      const queryUserRecovery = signUpParams.toString();
+
+      confirmForgotPassword(queryUserRecovery)
         .then(() => {
           resetFields();
           recoveryPasswordHandler();
