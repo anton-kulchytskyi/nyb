@@ -5,10 +5,8 @@ import { getAllVessels } from '@/utils/api/getAllVessels';
 import typo from "@/styles/typography.module.scss";
 import CatalogYacht from "@/components/Catalogue/CatalogYacht/catalogYacht";
 import Pagination from "@/components/Pagination/Pagination";
-import Sorting from '@/components/Catalogue/Sorting/Sorting';
-import Filter from '@/components/Catalogue/Filter/Filter';
-
-import { sortFunction } from '../../../utils/functions/sortFunction';
+import CatalogProps from '@/components/Catalogue/CatalogProps/CatalogProps';
+import { sortFunction } from '@/utils/functions/sortFunction';
 
 import styles from './page.module.scss';
 
@@ -50,8 +48,7 @@ const Catalog = async (
       <div className={styles.catalog__top}>
         <h4 className={`${styles.catalog_title} ${typo.typo_h4}`}>Catalogue</h4>
         <div className="d-flex">
-          <Filter />
-          <Sorting />
+          <CatalogProps />
         </div>
       </div>
 

@@ -1,0 +1,41 @@
+@import '../../../../../styles/var.scss';
+
+.group {
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid $gray-20;
+
+  &>p {
+    color: $gray-primary;
+  }
+}
+
+.range {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.box {
+  outline: none;
+  border: 1px solid $gray-50;
+  border-radius: 0.5rem;
+  width: 96px;
+  height: 44px;
+  text-align: center;
+
+  &:focus {
+    border-color: $orange-secondary-100;
+  }
+}
+
+.dash {
+  height: 0.2rem;
+  width: 1.5rem;
+  background: url('../../../../../public/icons/dash.svg') no-repeat center/cover;
+}
+
+.rc-slider-handle:hover {
+  box-shadow: 0 0 5px 2px rgba(231, 128, 26, 0.7);
+  /* Change this to your desired box-shadow */
+}

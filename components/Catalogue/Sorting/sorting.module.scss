@@ -2,6 +2,8 @@
 @import '../../../styles/mixins.scss';
 
 .button {
+  display: flex;
+  align-items: center;
   background: transparent;
   border: none;
   color: $gray-primary;
@@ -13,6 +15,14 @@
     background: transparent;
     border: none;
     color: $gray-primary;
+  }
+
+  &::after {
+    margin: 0;
+    border: none;
+    width: 1.5rem;
+    height: 1.5rem;
+    background: url('../../../public/icons/Arrowdown.svg') no-repeat center/cover;
   }
 }
 
