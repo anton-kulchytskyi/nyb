@@ -1,6 +1,9 @@
 @import '../../../styles/var.scss';
+@import '../../../styles/mixins.scss';
 
 .button {
+  display: flex;
+  align-items: center;
   background: transparent;
   border: none;
   color: $gray-primary;
@@ -13,9 +16,18 @@
     border: none;
     color: $gray-primary;
   }
+
+  &::after {
+    margin: 0;
+    border: none;
+    width: 1.5rem;
+    height: 1.5rem;
+    background: url('../../../public/icons/Arrowdown.svg') no-repeat center/cover;
+  }
 }
 
 .menu {
+  margin-top: 0.8rem;
   border-radius: 1rem;
 }
 
@@ -24,17 +36,18 @@
   padding: 0.5rem 1rem;
   margin: 1rem 1rem;
 
-  &--active {
-    // color: $white;
-    // border-radius: 2rem;
-    // background-color: $gray-50;
+  color: $gray-100;
+  border-bottom: 1px solid $white;
 
-    border-bottom: 1px solid $gray-primary;
+  &--active {
+    color: $black;
+    border-bottom-color: $gray-primary;
   }
 
   &:hover {
-    color: $white;
-    border-radius: 2rem;
-    background-color: $gray-primary;
+    background-color: $white;
+    color: $gray-100;
   }
+
+  @include hover(border-bottom-color, $orange-secondary-100);
 }

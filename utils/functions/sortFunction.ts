@@ -4,32 +4,25 @@ export const sortFunction = (
   yachts: Vessel[],
   sortParams: string = 'Price: High to Low',
 ): Vessel[] => {
-  return yachts.sort((yacht1, yacht2) => {
+  return yachts.sort((a, b) => {
     switch (sortParams) {
-      case 'preceDecrease':
-        return +yacht2.yacht_price - +yacht1.yacht_price;
+      case 'priceDecrease':
+        return +b.yacht_price - +a.yacht_price;
       
-      case 'preceIncrease':
-        return +yacht1.yacht_price - +yacht2.yacht_price;
+      case 'priceIncrease':
+        return +a.yacht_price - +b.yacht_price;
       
-      case 'year':
-        return yacht1.yacht_year - yacht2.yacht_year;
+      case 'yearIncrease':
+        return a.yacht_year - b.yacht_year;
 
-      case 'popularity': 
-        return +yacht2.yacht_favourites_count - +yacht1.yacht_favourites_count;
-      
-      case 'newest': {
-        const dateObj1 = new Date(yacht1.yacht_created_at);
-        const dateObj2 = new Date(yacht2.yacht_created_at);
+      case 'yearDecrease':
+        return b.yacht_year - a.yacht_year;
 
-        if (dateObj1 < dateObj2) {
-          return -1;
-        } else if (dateObj1 > dateObj2) {
-          return 1;
-        }
+      case 'leastPopular': 
+        return +a.yacht_favourites_count - +b.yacht_favourites_count;
 
-        return 0;
-      }
+      case 'mostPopular': 
+        return +b.yacht_favourites_count - +a.yacht_favourites_count;
       
       default:
         return 0;
