@@ -35,3 +35,13 @@ export const getFeaturedYacht = async (): Promise<Vessel[]> => {
 
   return yachts.filter((yacht: Vessel) => yacht.yacht_featured);
 };
+
+export const getYachtMakes = async (): Promise<string[]> => {
+  const yachts = await getData();
+
+  const makes = yachts
+    .map((yacht: Vessel) => yacht.yacht_make)
+    .filter((yacht, index, arr) => arr.indexOf(yacht) === index)
+  
+  return makes;
+};

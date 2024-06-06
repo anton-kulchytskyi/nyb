@@ -10,7 +10,6 @@ import styles from './catalogProps.module.scss';
 
 const CatalogProps = () => {
   const [showFilterForm, setShowFilterForm] = useState(false);
-  // const handleCloseFilter = () => setShowFilterForm(false);
 
   return (
     <div>
