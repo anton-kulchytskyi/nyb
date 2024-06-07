@@ -1,8 +1,9 @@
 'use client';
 
-import React, { useState, useEffect, useContext, useCallback } from 'react';
+import React, { useState, useContext, useEffect, useCallback } from 'react';
 import { jwtDecode } from 'jwt-decode';
 import { TokenInterface } from '@/interfaces/token.interface';
+import {} from '@/interfaces/favouriteYachts.interface';
 
 type AuthContextType = {
   isAuthenticated: boolean;
@@ -20,19 +21,20 @@ type Props = {
 };
 
 export const AuthProvider: React.FC<Props> = ({ children }) => {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [varificationCode, setVarificationCode] = useState<string>('');
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
   const [userInfoToken, setUserInfoToken] = useState<TokenInterface | null>(
     null
   );
+  const token = localStorage.getItem('authToken');
 
   const tokenDecode = useCallback(() => {
-    const getToken = localStorage.getItem('authToken');
     const now = Math.floor(new Date().getTime() / 1000);
 
-    if (getToken) {
+    if (token) {
+      const decodedToken = jwtDecode(token);
       setIsAuthenticated(true);
-      const decodedToken = jwtDecode(getToken);
 
       if (decodedToken.exp !== undefined) {
         setUserInfoToken(decodedToken);
@@ -42,7 +44,7 @@ export const AuthProvider: React.FC<Props> = ({ children }) => {
         }
       }
     }
-  }, []);
+  }, [token]);
 
   useEffect(() => {
     tokenDecode();

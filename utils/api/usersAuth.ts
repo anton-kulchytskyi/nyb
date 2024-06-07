@@ -30,3 +30,13 @@ export const sendRecoveryCode = (userEmail: string | null) => {
 export const confirmForgotPassword = (queryUserRecovery: string) => {
   return client.confirmUser(`/auth/confirmForgotPassword?${queryUserRecovery}`);
 };
+
+export const getFavouriteYachts = (
+  subUser: string,
+  tokenUser: string | null
+) => {
+  return client.getFavouriteYachts(
+    `/users/${subUser}/favouriteYachts`,
+    tokenUser
+  );
+};
