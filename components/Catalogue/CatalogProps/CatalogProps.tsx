@@ -11,6 +11,7 @@ import styles from './catalogProps.module.scss';
 const CatalogProps = () => {
   const [showFilterForm, setShowFilterForm] = useState(false);
 
+
   return (
     <div>
       <div className={styles.catalogProps__buttons}>

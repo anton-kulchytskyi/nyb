@@ -1,9 +1,13 @@
-import { FormEvent, useEffect, useState} from 'react';
+import { FormEvent, useEffect, useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import Image from 'next/image';
 import Close from '@/public/icons/close.svg';
 
+import { Country } from '@/interfaces/country.interface';
+import { Town } from '@/interfaces/town.interface';
 import { getYachtMakes } from '@/utils/api/getAllVessels';
+import { getCountries, getModels, getTowns } from '@/utils/api/getFilterProps';
+import { Model } from '@/interfaces/model.interface';
 import { FeaturedType, FormType } from './types';
 import classes from './filterForm.module.scss';
 import Featured from './components/Featured/Featured';
@@ -46,26 +50,41 @@ const advancedFilter = {
   maxShowerNumber: 10,
 };
 
-function FilterForm({ closeForm }: FormType) {
+type FilterProps = {
+  make: string[],
+  countries: Country[],
+  towns: Town[],
+  models: Model[],
+}
+
+function FilterForm({ closeForm }: FormType ) {
   const [validated, setValidated] = useState(false);
   const [featured, setFeatured] = useState<FeaturedType>(initialFeatured);
-  const [make, setMake] = useState<string[]>([]);
+
+  const [filterProps, setFilterProps] = useState<FilterProps | null>(null);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const result = await getYachtMakes();
-        setMake(result);  // Populate make state with fetched data
-        
+        const [make, countries, towns, models] = await Promise.all([
+          getYachtMakes(),
+          getCountries(),
+          getTowns(),
+          getModels(),
+        ]);
+
+        setFilterProps({ make, countries, towns, models });
       } catch (error) {
-        console.error('Error fetching data:', error);
+        // console.error('Error fetching data:', error);
       }
     };
 
     fetchData();
   }, []);
 
-  console.log('2', make);
+  const models = filterProps?.models.map(item => item.model);
+  const countries = filterProps?.countries.map(item => item.country_name);
+  const towns = filterProps?.towns.map(item => item.town_name);
 
   const handleFeatured = (value: keyof FeaturedType) =>
     setFeatured({ ...featured, [value]: !featured[value] });
@@ -83,6 +102,10 @@ function FilterForm({ closeForm }: FormType) {
 
     setValidated(true);
   };
+
+  if (!filterProps) {
+    return null;
+  }
 
   return (
     <Form
@@ -102,12 +125,20 @@ function FilterForm({ closeForm }: FormType) {
           values={featured}
           changeValue={handleFeatured}
         />
-        <Range
-          title="Price Range"
-          r1={baseFilter.minPrice}
-          r2={baseFilter.maxPrice}
-        />
-        <DropDown options={make} title="Manufacturer" />
+
+        <Range title="Price Range" r1={baseFilter.minPrice} r2={baseFilter.maxPrice} />
+        <DropDown title="Manufacturer" options={filterProps.make} />
+        <DropDown title="Model" options={models} />
+        <Range title="Year Built" r1={baseFilter.minYear} r2={baseFilter.maxYear} />
+        <DropDown title="Country" options={countries} />
+        <DropDown title="Town" options={towns} />
+
+        <div>Advanced filter</div>
+
+        <Range title="Length Overall" r1={advancedFilter.minLengthOverall} r2={advancedFilter.maxLengthOverall} />
+        <Range title="Beam Width" r1={advancedFilter.minBeamWidth} r2={advancedFilter.maxBeamWidth} />
+        <Range title="Draft Depth" r1={advancedFilter.minDraftDepth} r2={advancedFilter.maxDraftDepth} />
+
       </div>
 
       <div className={classes.buttons}>

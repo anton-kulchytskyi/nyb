@@ -35,7 +35,6 @@ export const Range = ({ r1, r2, step, title }: RangeType) => {
       setMin(value[0]);
       setMax(value[1]);
     }
-
   }
 
   return (
