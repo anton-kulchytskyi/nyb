@@ -3,7 +3,12 @@
 import React, { useState, useContext, useEffect, useCallback } from 'react';
 import { jwtDecode } from 'jwt-decode';
 import { TokenInterface } from '@/interfaces/token.interface';
-import {} from '@/interfaces/favouriteYachts.interface';
+
+export interface favoriteYachts {
+  userId: number;
+  favouriteYachtIds: number[] | null;
+  count: number | null;
+}
 
 type AuthContextType = {
   isAuthenticated: boolean;
@@ -23,11 +28,14 @@ type Props = {
 export const AuthProvider: React.FC<Props> = ({ children }) => {
   const [varificationCode, setVarificationCode] = useState<string>('');
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-
+  const LOCAL_STORAGE_TOKEN_KEY = 'authToken';
   const [userInfoToken, setUserInfoToken] = useState<TokenInterface | null>(
     null
   );
-  const token = localStorage.getItem('authToken');
+  const token =
+    typeof localStorage !== 'undefined'
+      ? localStorage.getItem(LOCAL_STORAGE_TOKEN_KEY)
+      : null;
 
   const tokenDecode = useCallback(() => {
     const now = Math.floor(new Date().getTime() / 1000);

@@ -164,3 +164,158 @@
       no-repeat center/cover;
   }
 }
+
+.favoriteModal {
+  display: flex;
+  position: absolute;
+  flex-direction: column;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  max-width: rem(320);
+  min-height: rem(610);
+  z-index: 2;
+  background-color: $white;
+  z-index: 3;
+  border-radius: rem(16);
+  padding: rem(8) 0;
+  box-shadow: rem(1) rem(1) rem(1) rem(1) #d9e2eb;
+
+  .close {
+    cursor: pointer;
+  }
+
+  &.open {
+    display: flex;
+  }
+
+  &__yachts {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    padding-left: 0;
+    margin-bottom: 0;
+
+    &_yacht {
+      position: relative;
+
+      .trash {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        right: rem(16);
+        cursor: pointer;
+      }
+
+      &__removing {
+        position: relative;
+        opacity: 0.27;
+      }
+    }
+
+    .card {
+      width: 100%;
+      display: flex;
+      padding: rem(6) rem(16);
+      margin-bottom: 0;
+      align-items: center;
+      gap: rem(8);
+      border-top: 1px solid $gray-20;
+
+      &:hover {
+        border-radius: 0;
+        transform: none;
+        box-shadow: none;
+
+        .center {
+          opacity: 0;
+        }
+
+        img {
+          border-radius: 0;
+        }
+      }
+
+      .image_container {
+        width: 100%;
+        max-width: rem(88);
+        height: rem(88);
+        border-radius: rem(4);
+        overflow: hidden;
+
+        img {
+          position: static;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+      }
+
+      .favourite_icon {
+        display: none;
+      }
+
+      .card__desc_catalog {
+        display: flex;
+        flex-direction: column;
+
+        .price {
+          margin-bottom: rem(2);
+          margin-top: 0;
+
+          span {
+            font-size: rem(14);
+            line-height: 1.5;
+          }
+        }
+      }
+
+      &__name {
+        font-size: rem(18);
+        font-weight: 500;
+        line-height: 1.5;
+        color: $gray-primary;
+        margin-bottom: rem(2);
+      }
+
+      &__typo {
+        font-size: rem(12);
+        font-weight: 400;
+        line-height: 1.5;
+        margin-bottom: 0;
+        color: $gray-primary;
+      }
+    }
+  }
+
+  &__top {
+    display: flex;
+    align-items: center;
+    &_title {
+      margin-bottom: 0;
+      width: 100%;
+      text-align: center;
+    }
+
+    img {
+      margin-left: auto;
+    }
+  }
+
+  &__bottom {
+    width: calc(100% - rem(16));
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin-top: auto;
+    a {
+      color: $orange-secondary-100;
+      font-size: rem(12);
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+      text-decoration: underline;
+    }
+  }
+}

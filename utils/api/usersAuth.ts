@@ -40,3 +40,14 @@ export const getFavouriteYachts = (
     tokenUser
   );
 };
+
+export const deleteFavouriteYachts = (
+  subUser: string,
+  yachtId: number,
+  tokenUser: string
+) => {
+  return client.deleteFavouriteYachts(
+    `/users/${subUser}/favouriteYachts/${yachtId}`,
+    tokenUser
+  );
+};

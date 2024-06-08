@@ -1,54 +1,78 @@
-import { useEffect, useState } from 'react';
-import styles from '@/components/Navbar/FavoriteYachts/FavoriteYachtsModal/favoriteYachtsModal.module.scss';
-import { getVesselById } from '@/utils/api/getAllVessels';
+import Link from 'next/link';
+import Image from 'next/image';
+import classNames from 'classnames';
 import { Vessel } from '@/interfaces/vessel.interface';
 import FYCard from '@/components/FYCard/FYCard';
+import styles from '@/components/FYCard/fycard.module.scss';
+import Close from '@/public/icons/close.svg';
+
 import Loader from '@/components/Loader/Loader';
+import { useFavourite } from '@/context/FavouriteYachtsContext';
 
-type Props = {
-  idsFavoriteYachts: number[] | null;
-};
-
-const FavoriteYachtsModal = ({ idsFavoriteYachts }: Props) => {
-  const [favoriteYachtsList, setFavoriteYachtsList] = useState<Vessel[]>([]);
-  const [isLoading, setIsLoading] = useState(false);
-
-  useEffect(() => {
-    if (idsFavoriteYachts) {
-      setIsLoading(true);
-      Promise.all(
-        idsFavoriteYachts.map((id) =>
-          getVesselById(`/${id}`)
-            .then((responseYachts) => {
-              setFavoriteYachtsList((prev) => [...prev, responseYachts]);
-            })
-            .catch((error) => {
-              alert(error);
-            })
-            .finally(() => {
-              setIsLoading(false);
-            })
-        )
-      );
-    }
-  }, [idsFavoriteYachts]);
+const FavoriteYachtsModal = () => {
+  const {
+    favouriteYachtsList,
+    tempYacht,
+    isRemoving,
+    isLoadingFavourite,
+    favouriteModalHandler,
+    isFavouriteModalOpen,
+  } = useFavourite();
 
   return (
-    <div className={styles.favoriteModal}>
-      <div className={styles.favoriteModal__top}></div>
-      <div className={styles.favoriteModal__yachts}>
-        {isLoading && <Loader />}
-        {!isLoading &&
-          favoriteYachtsList.map((yacht: Vessel) => (
-            <FYCard
-              key={yacht.yacht_id}
-              yacht={yacht}
-              inCatalog={true}
+    isFavouriteModalOpen && (
+      <div className={styles.favoriteModal}>
+        {isLoadingFavourite && (
+          <Loader
+            biggest
+            absoluteCenter
+          />
+        )}
+
+        <>
+          <div className={styles.favoriteModal__top}>
+            <p className={styles.favoriteModal__top_title}>Your list</p>
+            <Image
+              src={Close}
+              className={styles.close}
+              alt="Close"
+              onClick={favouriteModalHandler}
             />
-          ))}
+          </div>
+          {!isLoadingFavourite && (
+            <ul className={styles.favoriteModal__yachts}>
+              {favouriteYachtsList.slice(0, 5).map((yacht: Vessel) => (
+                <li
+                  key={yacht.yacht_id}
+                  className={classNames(
+                    `${styles.favoriteModal__yachts_yacht}`,
+                    {
+                      [styles.favoriteModal__yachts_yacht__removing]:
+                        isRemoving && tempYacht === yacht.yacht_id,
+                    }
+                  )}
+                >
+                  <>
+                    {isRemoving && tempYacht === yacht.yacht_id && (
+                      <Loader absoluteCenter />
+                    )}
+                    <FYCard
+                      yacht={yacht}
+                      inCatalog={true}
+                      inFavourite
+                    />
+                  </>
+                </li>
+              ))}
+            </ul>
+          )}
+
+          <div className={styles.favoriteModal__bottom}>
+            <Link href={'/'}>Show more on User page</Link>
+          </div>
+        </>
       </div>
-      <div className={styles.favoriteModal__bottom}></div>
-    </div>
+    )
   );
 };
 

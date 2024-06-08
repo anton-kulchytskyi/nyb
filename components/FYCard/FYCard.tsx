@@ -9,22 +9,27 @@ import typo from '@/styles/typography.module.scss';
 import { Vessel } from '@/interfaces/vessel.interface';
 import { useAuth } from '@/context/AuthContext';
 import { useModals } from '@/context/ModalsContext';
+import Trash from '@/public/icons/trash.svg';
+import { useFavourite } from '@/context/FavouriteYachtsContext';
 import YachtPrice from '../YachtPrice/YachtPrice';
 import Button from '../Button/Button';
 import CardSkeleton from '../CardSkeleton/CardSkeleton';
 import styles from './fycard.module.scss';
 import TopRightLabel from './TopRightLabel';
+const IMAGE_600_400 = 'https://fakeimg.pl/600x400?text=Norse+Yacht+Co.';
 
 interface Props {
   yacht: Vessel;
   inCatalog?: boolean;
+  inFavourite?: boolean;
 }
 
-const FYCard = ({ yacht, inCatalog }: Props) => {
+const FYCard = ({ yacht, inCatalog, inFavourite }: Props) => {
   const [isLoading, setIsLoading] = useState(true);
   const router = useRouter();
   const { isAuthenticated } = useAuth();
   const { accountModalHandler } = useModals();
+  const { deleteNewFavorite } = useFavourite();
 
   const [imageUrl, setImageUrl] = useState<string>('');
   const {
@@ -44,11 +49,7 @@ const FYCard = ({ yacht, inCatalog }: Props) => {
   useEffect(() => {
     async function loadImgFromAws() {
       const currImg = await fetchImgUrl(yacht_main_image_key);
-      setImageUrl(
-        currImg.length
-          ? currImg
-          : 'https://fakeimg.pl/600x400?text=Norse+Yacht+Co.'
-      );
+      setImageUrl(currImg.length ? currImg : IMAGE_600_400);
       setTimeout(() => {
         setIsLoading(false);
       }, 1500);
@@ -60,10 +61,18 @@ const FYCard = ({ yacht, inCatalog }: Props) => {
     router.push(`/catalogue/${yacht_id}?name=${yacht_make}`);
   };
 
+  const handleDeleteFavorite = (id: number) => {
+    deleteNewFavorite(id);
+  };
+
   return (
     <div className={styles.card}>
       {isLoading ? (
-        <CardSkeleton />
+        inFavourite ? (
+          <CardSkeleton isFavourite />
+        ) : (
+          <CardSkeleton />
+        )
       ) : (
         <>
           <div
@@ -129,6 +138,12 @@ const FYCard = ({ yacht, inCatalog }: Props) => {
               />
             )}
           </div>
+          <Image
+            src={Trash}
+            className={styles.trash}
+            alt="Trash"
+            onClick={() => handleDeleteFavorite(yacht.yacht_id)}
+          />
         </>
       )}
     </div>

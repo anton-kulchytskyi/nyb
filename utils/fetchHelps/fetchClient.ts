@@ -24,7 +24,7 @@ function request<T>(
     };
   }
 
-  if (method === 'GET' && tokenUser) {
+  if ((method === 'GET' || method === 'DELETE') && tokenUser) {
     options.headers = {
       ...(tokenUser ? { Authorization: `Bearer ${tokenUser}` } : {}),
     };
@@ -49,4 +49,6 @@ export const client = {
   confirmUser: <T>(url: string) => request<T>(url, 'POST'),
   getFavouriteYachts: <T>(url: string, tokenUser: string | null) =>
     request<T>(url, null, tokenUser, 'GET'),
+  deleteFavouriteYachts: <T>(url: string, tokenUser: string | null) =>
+    request<T>(url, null, tokenUser, 'DELETE'),
 };
