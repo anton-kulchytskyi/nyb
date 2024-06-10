@@ -5,12 +5,12 @@ import classNames from "classnames";
 import classes from './dropdown.module.scss'
 
 type DropDownType = {
-  options: string[],
+  options?: string[],
   title: string,
   active?: string,
 }
 
-export const DropDown = ({ options, title, active = options[0] }: DropDownType) => {
+export const DropDown = ({ options = ['No options'], title, active = options[0] }: DropDownType) => {
   const [value, setValue] = useState(options[0])
 
   const handleDropdownChange = (option: string) => {
