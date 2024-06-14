@@ -7,17 +7,12 @@ import styles from '@/components/FYCard/fycard.module.scss';
 import Close from '@/public/icons/close.svg';
 
 import Loader from '@/components/Loader/Loader';
+import { useModals } from '@/context/ModalsContext';
 import { useFavourite } from '@/context/FavouriteYachtsContext';
 
 const FavoriteYachtsModal = () => {
-  const {
-    favouriteYachtsList,
-    tempYacht,
-    isRemoving,
-    isLoadingFavourite,
-    favouriteModalHandler,
-    isFavouriteModalOpen,
-  } = useFavourite();
+  const { isFavouriteModalOpen, favouriteModalHandler } = useModals();
+  const { favouriteList, isLoadingFavourite } = useFavourite();
 
   return (
     isFavouriteModalOpen && (
@@ -39,32 +34,31 @@ const FavoriteYachtsModal = () => {
               onClick={favouriteModalHandler}
             />
           </div>
-          {!isLoadingFavourite && (
+          {!isLoadingFavourite && favouriteList && (
             <ul className={styles.favoriteModal__yachts}>
-              {favouriteYachtsList.slice(0, 5).map((yacht: Vessel) => (
-                <li
-                  key={yacht.yacht_id}
-                  className={classNames(
-                    `${styles.favoriteModal__yachts_yacht}`,
-                    {
-                      [styles.favoriteModal__yachts_yacht__removing]:
-                        isRemoving && tempYacht === yacht.yacht_id,
-                    }
-                  )}
-                >
-                  <>
-                    {isRemoving && tempYacht === yacht.yacht_id && (
-                      <Loader absoluteCenter />
+              {favouriteList.slice(0, 5).map((yacht: Vessel | null) => {
+                return (
+                  <li
+                    key={yacht?.yacht_id}
+                    className={classNames(
+                      `${styles.favoriteModal__yachts_yacht}`
                     )}
-                    <FYCard
-                      yacht={yacht}
-                      inCatalog={true}
-                      inFavourite
-                    />
-                  </>
-                </li>
-              ))}
+                  >
+                    {yacht && (
+                      <FYCard
+                        yacht={yacht}
+                        inCatalog={true}
+                        inFavourite
+                      />
+                    )}
+                  </li>
+                );
+              })}
             </ul>
+          )}
+
+          {!isLoadingFavourite && favouriteList?.length === 0 && (
+            <p className={styles.noYachts}>There are no favorite yachts.</p>
           )}
 
           <div className={styles.favoriteModal__bottom}>

@@ -123,9 +123,9 @@ const Navbar = () => {
           />
         </Link>
         <div className={styles.navbar__side}>
+          {isAuthenticated && <FavoriteYachts />}
           {desktopScreen && isAuthenticated && (
             <>
-              <FavoriteYachts />
               <Link
                 href="/"
                 className={`${styles.userLoggedNavLink} ${styles.link}`}
@@ -150,7 +150,7 @@ const Navbar = () => {
               <button className={`${styles.link} ${styles.favourite_icon}`} />
               <button
                 type="button"
-                onClick={accountModalHandler}
+                onClick={accountModalLoginHandler}
                 className={`${styles.link} ${styles.link__button}`}
               >
                 My account
@@ -161,30 +161,24 @@ const Navbar = () => {
             <>
               <button
                 type="button"
-                onClick={currencyModalHandler}
+                onClick={accountModalLoginHandler}
                 className={`${styles.link} ${styles.link__button}`}
               >
                 {`Split currency / ${selectedCurrency}`}
               </button>
               <button
                 type="button"
-                onClick={contactsModalHandler}
+                onClick={accountModalLoginHandler}
                 className={`${styles.link} ${styles.link__button}`}
               >
                 Contacts
               </button>
             </>
           )}
-          {!desktopScreen && isAuthenticated && (
-            <Link
-              href="/"
-              className={`${styles.link} ${styles.account_icon}`}
-            ></Link>
-          )}
           {!desktopScreen && !isAuthenticated && (
             <button
               type="button"
-              onClick={accountModalHandler}
+              onClick={accountModalLoginHandler}
               className={`${styles.link} ${styles.account_icon}`}
             />
           )}

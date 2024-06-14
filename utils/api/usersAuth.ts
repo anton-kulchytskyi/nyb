@@ -41,12 +41,23 @@ export const getFavouriteYachts = (
   );
 };
 
-export const deleteFavouriteYachts = (
+export const deleteFavouriteYacht = (
   subUser: string,
   yachtId: number,
   tokenUser: string
 ) => {
   return client.deleteFavouriteYachts(
+    `/users/${subUser}/favouriteYachts/${yachtId}`,
+    tokenUser
+  );
+};
+
+export const createFavouriteYachts = (
+  subUser: string,
+  yachtId: number,
+  tokenUser: string
+) => {
+  return client.createFavouriteYachts(
     `/users/${subUser}/favouriteYachts/${yachtId}`,
     tokenUser
   );

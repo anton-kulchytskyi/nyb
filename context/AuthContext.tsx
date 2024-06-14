@@ -29,29 +29,25 @@ export const AuthProvider: React.FC<Props> = ({ children }) => {
   const [varificationCode, setVarificationCode] = useState<string>('');
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const LOCAL_STORAGE_TOKEN_KEY = 'authToken';
-  const [userInfoToken, setUserInfoToken] = useState<TokenInterface | null>(
-    null
-  );
+  const LOCAL_STORAGE_SESSION_TIME = 'expTime';
+  const [userInfoToken, setUserInfoToken] = useState<TokenInterface | undefined>();
   const token =
     typeof localStorage !== 'undefined'
       ? localStorage.getItem(LOCAL_STORAGE_TOKEN_KEY)
       : null;
 
   const tokenDecode = useCallback(() => {
-    const now = Math.floor(new Date().getTime() / 1000);
-
     if (token) {
       const decodedToken = jwtDecode(token);
       setIsAuthenticated(true);
 
       if (decodedToken.exp !== undefined) {
+        localStorage.setItem('expTime', decodedToken.exp.toString());
         setUserInfoToken(decodedToken);
-
-        if (now > decodedToken.exp) {
-          userLogout();
-        }
+        userLogout();
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [token]);
 
   useEffect(() => {
@@ -65,8 +61,16 @@ export const AuthProvider: React.FC<Props> = ({ children }) => {
   };
 
   const userLogout = () => {
-    localStorage.removeItem('authToken');
-    setIsAuthenticated(false);
+    const now = Math.floor(new Date().getTime() / 1000);
+    const expTime =
+      typeof localStorage !== 'undefined'
+        ? localStorage.getItem(LOCAL_STORAGE_SESSION_TIME)
+        : null;
+
+    if (expTime && now > +expTime) {
+      localStorage.removeItem('authToken');
+      setIsAuthenticated(false);
+    }
   };
 
   const setCode = (code: string) => {

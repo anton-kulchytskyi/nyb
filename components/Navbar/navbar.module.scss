@@ -33,8 +33,8 @@
   text-decoration: none;
   transition: 0.5s;
 
-  &:not(:last-child) {
-    margin-right: 1.5rem;
+  &:not(:first-child) {
+    margin-left: 1.5rem;
   }
 
   &:hover {
@@ -125,6 +125,12 @@
     background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none'%3E%3Cg clip-path='url(%23clip0_6544_4130)'%3E%3Cpath d='M17.5009 1.9165C16.3749 1.93402 15.2734 2.24836 14.3077 2.82778C13.342 3.40719 12.5463 4.23117 12.0009 5.2165C11.4556 4.23117 10.6599 3.40719 9.69417 2.82778C8.72848 2.24836 7.62698 1.93402 6.50094 1.9165C4.70588 1.99449 3.01464 2.77976 1.79672 4.10074C0.578794 5.42171 -0.0668157 7.17103 0.000934853 8.9665C0.000934853 13.5135 4.78693 18.4795 8.80093 21.8465C9.69715 22.5996 10.8303 23.0125 12.0009 23.0125C13.1716 23.0125 14.3047 22.5996 15.2009 21.8465C19.2149 18.4795 24.0009 13.5135 24.0009 8.9665C24.0687 7.17103 23.4231 5.42171 22.2052 4.10074C20.9872 2.77976 19.296 1.99449 17.5009 1.9165Z' fill='%23E7801A'/%3E%3C/g%3E%3Cdefs%3E%3CclipPath id='clip0_6544_4130'%3E%3Crect width='24' height='24' fill='white'/%3E%3C/clipPath%3E%3C/defs%3E%3C/svg%3E")
       no-repeat center/cover;
   }
+}
+
+.favourite_popup {
+  display: flex;
+  align-items: center;
+  position: relative;
 }
 
 .logo {

@@ -21,6 +21,10 @@
     }
   }
 
+  &.zIndex {
+    z-index: 1;
+  }
+
   &.absoluteCenter {
     position: absolute;
     left: 50%;
