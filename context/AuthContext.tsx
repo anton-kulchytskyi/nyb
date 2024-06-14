@@ -12,7 +12,7 @@ export interface favoriteYachts {
 
 type AuthContextType = {
   isAuthenticated: boolean;
-  userInfoToken: TokenInterface | null;
+  userInfoToken: TokenInterface | undefined;
   varificationCode: string;
   userLogin: (token: string) => void;
   userLogout: () => void;
