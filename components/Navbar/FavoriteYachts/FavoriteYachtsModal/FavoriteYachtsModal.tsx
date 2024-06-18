@@ -6,9 +6,9 @@ import FYCard from '@/components/FYCard/FYCard';
 import styles from '@/components/FYCard/fycard.module.scss';
 import Close from '@/public/icons/close.svg';
 
-import Loader from '@/components/Loader/Loader';
 import { useModals } from '@/context/ModalsContext';
 import { useFavourite } from '@/context/FavouriteYachtsContext';
+import Loader from '@/components/Loader/Loader';
 
 const FavoriteYachtsModal = () => {
   const { isFavouriteModalOpen, favouriteModalHandler } = useModals();
@@ -17,13 +17,6 @@ const FavoriteYachtsModal = () => {
   return (
     isFavouriteModalOpen && (
       <div className={styles.favoriteModal}>
-        {isLoadingFavourite && (
-          <Loader
-            biggest
-            absoluteCenter
-          />
-        )}
-
         <>
           <div className={styles.favoriteModal__top}>
             <p className={styles.favoriteModal__top_title}>Your list</p>
@@ -34,7 +27,7 @@ const FavoriteYachtsModal = () => {
               onClick={favouriteModalHandler}
             />
           </div>
-          {!isLoadingFavourite && favouriteList && (
+          {!isLoadingFavourite && favouriteList.length > 0 && (
             <ul className={styles.favoriteModal__yachts}>
               {favouriteList.slice(0, 5).map((yacht: Vessel | null) => {
                 return (
@@ -56,14 +49,26 @@ const FavoriteYachtsModal = () => {
               })}
             </ul>
           )}
-
+          {isLoadingFavourite && (
+            <div className={styles.loading}>
+              <Loader biggest />
+            </div>
+          )}
           {!isLoadingFavourite && favouriteList?.length === 0 && (
-            <p className={styles.noYachts}>There are no favorite yachts.</p>
+            <p
+              className={classNames(styles.noYachts, {
+                [styles.noYachts__underline]: !isLoadingFavourite,
+              })}
+            >
+              The list is currently empty
+            </p>
           )}
 
-          <div className={styles.favoriteModal__bottom}>
-            <Link href={'/'}>Show more on User page</Link>
-          </div>
+          {favouriteList.length > 0 && (
+            <div className={styles.favoriteModal__bottom}>
+              <Link href={'/'}>Show more on User page</Link>
+            </div>
+          )}
         </>
       </div>
     )

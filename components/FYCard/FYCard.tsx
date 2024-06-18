@@ -46,6 +46,7 @@ const FYCard = ({ yacht, inCatalog, inFavourite }: Props) => {
   } = useFavourite();
 
   const LOCAL_STORAGE_TOKEN_KEY = 'authToken';
+  const LOCAL_STORAGE_SESSION_TIME = 'expTime';
 
   const token =
     typeof localStorage !== 'undefined'
@@ -91,6 +92,12 @@ const FYCard = ({ yacht, inCatalog, inFavourite }: Props) => {
     router.push(`/catalogue/${yacht_id}?name=${yacht_make}`);
   };
 
+  const now = Math.floor(new Date().getTime() / 1000);
+  const expTime =
+    typeof localStorage !== 'undefined'
+      ? localStorage.getItem(LOCAL_STORAGE_SESSION_TIME)
+      : null;
+
   const handleDeleteFavourite = (id: number) => {
     if (userInfoToken?.sub && id && token) {
       setIsRemoving(true);
@@ -99,8 +106,10 @@ const FYCard = ({ yacht, inCatalog, inFavourite }: Props) => {
           deleteFavourite(yacht);
         })
         .catch((error) => {
+          if (expTime && now > +expTime) {
+            userLogout();
+          }
           alert(error);
-          userLogout();
         })
         .finally(() => {
           setIsRemoving(false);
@@ -116,8 +125,10 @@ const FYCard = ({ yacht, inCatalog, inFavourite }: Props) => {
           createFavourite(yacht);
         })
         .catch((error) => {
+          if (expTime && now > +expTime) {
+            userLogout();
+          }
           alert(error);
-          userLogout();
         })
         .finally(() => {
           setIsAdding(false);
@@ -129,7 +140,7 @@ const FYCard = ({ yacht, inCatalog, inFavourite }: Props) => {
     <div
       className={classNames(styles.card, {
         [styles.adding]: activatedLoader,
-        [styles.removing]: removingInModal,
+        [styles.removing]: isRemoving,
       })}
     >
       {activatedLoader && (
@@ -217,12 +228,13 @@ const FYCard = ({ yacht, inCatalog, inFavourite }: Props) => {
                     ? handleDeleteFavourite(yacht_id)
                     : handleCreateFavourite(yacht);
                 }}
+                disabled={isRemoving}
               />
             )}
             {!isAuthenticated && (
               <>
                 <button
-                  className={`${styles.favourite_icon_added}`}
+                  className={`${styles.favourite_icon}`}
                   onClick={accountModalLoginHandler}
                 />
               </>
@@ -232,6 +244,7 @@ const FYCard = ({ yacht, inCatalog, inFavourite }: Props) => {
             <button
               className={styles.trash}
               onClick={() => handleDeleteFavourite(yacht_id)}
+              disabled={isRemoving}
             />
           )}
         </>

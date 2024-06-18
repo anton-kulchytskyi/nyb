@@ -15,9 +15,11 @@
   }
 
   &.biggest {
+    width: 1.8em;
+    height: 1.8em;
     .loader__content {
-      width: 2.7em;
-      height: 2.7em;
+      width: 1.8em;
+      height: 1.8em;
     }
   }
 

@@ -217,7 +217,7 @@
   right: 100%;
   transform: translateX(50%);
   width: rem(320);
-  min-height: rem(610);
+  min-height: rem(80);
   z-index: 2;
   background-color: $white;
   z-index: 3;
@@ -386,7 +386,24 @@
   }
 
   .noYachts {
-    margin-top: auto;
+    font-weight: 500;
     text-align: center;
+    color: $gray-primary;
+    margin-bottom: 0;
+    padding-top: rem(8);
+    margin: auto 0;
+    position: relative;
+    &__underline {
+      border-top: rem(1) $gray-20 solid;
+    }
+  }
+
+  .loading {
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: rem(8) 0;
   }
 }
