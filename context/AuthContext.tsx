@@ -4,12 +4,6 @@ import React, { useState, useContext, useEffect, useCallback } from 'react';
 import { jwtDecode } from 'jwt-decode';
 import { TokenInterface } from '@/interfaces/token.interface';
 
-export interface favoriteYachts {
-  userId: number;
-  favouriteYachtIds: number[] | null;
-  count: number | null;
-}
-
 type AuthContextType = {
   isAuthenticated: boolean;
   userInfoToken: TokenInterface | undefined;
