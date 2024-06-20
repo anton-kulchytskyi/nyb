@@ -15,7 +15,7 @@ export interface FavouriteYachts {
 const FavoriteYachts = () => {
   const { onCreateFavouriteList, isFavouriteLoading, isFavouriteLoaded } =
     useFavourite();
-  const { userInfoToken } = useAuth();
+  const { userInfoToken, isAuthenticated } = useAuth();
 
   const LOCAL_STORAGE_TOKEN_KEY = 'authToken';
 
@@ -25,7 +25,7 @@ const FavoriteYachts = () => {
       : null;
 
   useEffect(() => {
-    if (userInfoToken?.sub) {
+    if (userInfoToken?.sub && isAuthenticated) {
       isFavouriteLoading();
       getFavouriteYachts(userInfoToken?.sub, token)
         .then((response) => {

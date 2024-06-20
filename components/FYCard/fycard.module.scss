@@ -209,6 +209,8 @@
   transition: 0.5s ease;
 }
 
+// style for favourite modal popup
+
 .favoriteModal {
   display: flex;
   position: absolute;
@@ -405,5 +407,25 @@
     align-items: center;
     justify-content: center;
     margin: rem(8) 0;
+  }
+
+  &__button {
+    color: #fff;
+    font-weight: 500;
+    font-size: 1rem;
+    padding: rem(14) rem(24);
+    width: 100%;
+    margin: rem(10) auto 0 auto;
+    max-width: rem(230);
+    border: 1px solid $gray-primary;
+    background-color: $gray-primary;
+    border-radius: 3.5rem;
+    transition: 0.6s ease-in;
+
+    &:hover {
+      background-color: #fff;
+      border: 1px solid $gray-primary;
+      color: $gray-primary;
+    }
   }
 }

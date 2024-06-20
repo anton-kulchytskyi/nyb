@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import Link from 'next/link';
+import classNames from 'classnames';
 import styles from '@/components/Navbar/navbar.module.scss';
 import { useFavourite } from '@/context/FavouriteYachtsContext';
 import { useModals } from '@/context/ModalsContext';
@@ -12,10 +12,10 @@ type Props = {
 
 const FavoriteYachtsButton = ({ children }: Props) => {
   const [desktopScreen, setDesktopScreen] = useState(true);
-  const { favouriteModalHandler } = useModals();
+  const { favouriteModalHandler, isFavouriteModalOpen } = useModals();
   const { favouriteList } = useFavourite();
   const { isAuthenticated } = useAuth();
-  const favoriteYachtCount = favouriteList?.length ?? 0;
+  const favoriteYachtCount = favouriteList.length ?? 0;
   const { width } = useWindowDimensions();
 
   useEffect(() => {
@@ -27,18 +27,27 @@ const FavoriteYachtsButton = ({ children }: Props) => {
     <div className={`${styles.favourite_popup}`}>
       <>
         {!desktopScreen && isAuthenticated && (
-          <Link
-            href="/"
+          <button
             className={`${styles.link} ${styles.account_icon}`}
             onClick={favouriteModalHandler}
-          ></Link>
+          />
         )}
-        {desktopScreen && isAuthenticated && (
+
+        {desktopScreen && (
           <button
-            className={`${styles.link} ${styles.favourite_iconActive}`}
+            className={classNames(styles.link, {
+              [styles.favourite_popup__icon]: !isAuthenticated,
+              [styles.favourite_popup__icon_login]: isAuthenticated,
+              [styles.favourite_popup__icon_loginActive]:
+                isAuthenticated && isFavouriteModalOpen,
+              [styles.favourite_popup__icon_notLoginActive]:
+                !isAuthenticated && isFavouriteModalOpen,
+            })}
             onClick={favouriteModalHandler}
           >
-            <span>{favoriteYachtCount > 0 && favoriteYachtCount}</span>
+            <span>
+              {favoriteYachtCount > 0 && isAuthenticated && favoriteYachtCount}
+            </span>
           </button>
         )}
       </>

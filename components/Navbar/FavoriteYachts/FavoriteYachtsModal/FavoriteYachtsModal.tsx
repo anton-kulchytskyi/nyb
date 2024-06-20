@@ -9,10 +9,19 @@ import Close from '@/public/icons/close.svg';
 import { useModals } from '@/context/ModalsContext';
 import { useFavourite } from '@/context/FavouriteYachtsContext';
 import Loader from '@/components/Loader/Loader';
+import { useAuth } from '@/context/AuthContext';
 
 const FavoriteYachtsModal = () => {
-  const { isFavouriteModalOpen, favouriteModalHandler } = useModals();
+  const {
+    isFavouriteModalOpen,
+    favouriteModalHandler,
+    accountModalLoginHandler,
+  } = useModals();
   const { favouriteList, isLoadingFavourite } = useFavourite();
+  const { isAuthenticated } = useAuth();
+  const modalText = isAuthenticated
+    ? 'The list is currently empty'
+    : 'Log in to explore the most beautiful yachts';
 
   return (
     isFavouriteModalOpen && (
@@ -60,8 +69,17 @@ const FavoriteYachtsModal = () => {
                 [styles.noYachts__underline]: !isLoadingFavourite,
               })}
             >
-              The list is currently empty
+              {modalText}
             </p>
+          )}
+
+          {!isAuthenticated && (
+            <button
+              className={styles.favoriteModal__button}
+              onClick={accountModalLoginHandler}
+            >
+              Sign In
+            </button>
           )}
 
           {favouriteList.length > 0 && (

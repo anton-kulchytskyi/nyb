@@ -123,7 +123,7 @@ const Navbar = () => {
           />
         </Link>
         <div className={styles.navbar__side}>
-          {isAuthenticated && <FavoriteYachts />}
+          <FavoriteYachts />
           {desktopScreen && isAuthenticated && (
             <>
               <Link
@@ -147,7 +147,6 @@ const Navbar = () => {
           )}
           {desktopScreen && !isAuthenticated && (
             <>
-              <button className={`${styles.link} ${styles.favourite_icon}`} />
               <button
                 type="button"
                 onClick={accountModalLoginHandler}
