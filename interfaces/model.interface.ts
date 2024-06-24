@@ -19,5 +19,5 @@ export interface Model {
     updatedAt: string
   },
   createdAt: string,
-  updatedAt: string
+  updatedAt: string | null
 }

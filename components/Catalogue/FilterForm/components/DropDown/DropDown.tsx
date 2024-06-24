@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Dropdown, Form } from "react-bootstrap";
 
 import classNames from "classnames";
-import classes from './dropdown.module.scss'
+import classes from './dropdown.module.scss';
 
 type DropDownType = {
   options?: string[],

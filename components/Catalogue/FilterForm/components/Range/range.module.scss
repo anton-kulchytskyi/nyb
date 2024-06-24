@@ -2,7 +2,7 @@
 
 .group {
   padding-bottom: 1.5rem;
-  border-bottom: 1px solid $gray-20;
+  border-bottom: 2px solid $gray-20;
 
   &>p {
     color: $gray-primary;
@@ -17,12 +17,12 @@
 }
 
 .box {
-  outline: none;
-  border: 1px solid $gray-50;
-  border-radius: 0.5rem;
   width: 96px;
   height: 44px;
+  border: 1px solid $gray-50;
+  border-radius: 8px;
   text-align: center;
+  outline: none;
 
   &:focus {
     border-color: $orange-secondary-100;
@@ -30,9 +30,16 @@
 }
 
 .dash {
-  height: 0.2rem;
-  width: 1.5rem;
+  height: 1px;
+  width: 14px;
   background: url('../../../../../public/icons/dash.svg') no-repeat center/cover;
+}
+
+.slider {
+  display: flex;
+  align-items: center;
+  padding-inline: 12px;
+  height: 24px;
 }
 
 .rc-slider-handle:hover {

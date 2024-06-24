@@ -59,7 +59,7 @@ export const Range = ({ r1, r2, step, title }: RangeType) => {
           />
         </div>
       </div>
-      <div className='px-3'>
+      <div className={classes.slider}>
         <Slider
           range
           pushable

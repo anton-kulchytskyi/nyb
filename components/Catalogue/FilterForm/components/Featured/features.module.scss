@@ -2,7 +2,7 @@
 
 .group {
   padding-bottom: 1.5rem;
-  border-bottom: 1px solid $gray-20;
+  border-bottom: 2px solid $gray-20;
 
   &>p {
     color: $gray-primary;
@@ -12,10 +12,12 @@
 .features {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   color: $black;
 }
 
 .checkbox {
+  margin: auto 0;
   cursor: pointer;
 
   &>input,

@@ -1,12 +1,13 @@
 import { Metadata } from 'next';
 import { redirect } from 'next/navigation';
-import { getAllVessels } from '@/utils/api/getAllVessels';
+import { getAllVessels, getYachtMakes } from '@/utils/api/getAllVessels';
 
 import typo from "@/styles/typography.module.scss";
 import CatalogYacht from "@/components/Catalogue/CatalogYacht/catalogYacht";
 import Pagination from "@/components/Pagination/Pagination";
 import CatalogProps from '@/components/Catalogue/CatalogProps/CatalogProps';
 import { sortFunction } from '@/utils/functions/sortFunction';
+import { getCountries, getModels, getTowns } from '@/utils/api/getFilterProps';
 
 import styles from './page.module.scss';
 
@@ -16,16 +17,21 @@ export const metadata: Metadata = {
 
 const CardNumber = 9;
 
-const Catalog = async (
-  { searchParams }: {
-    searchParams?: {
-      page: string;
-      size: string;
-      sort: string;
-    };
-  }
-) => {
+type SearchParamsType = {
+  page: string;
+  size: string;
+  sort: string;
+};
+
+const Catalog = async ({ searchParams }: { searchParams?: SearchParamsType}) => {
   const allYachts = await getAllVessels();
+
+  const yachtsParams = { 
+    make: await getYachtMakes(), 
+    countries: await getCountries(), 
+    towns: await getTowns(), 
+    models: await getModels(),
+  };
 
   let page = Number(searchParams?.page) || 1;
   const size = Number(searchParams?.size) || CardNumber;
@@ -48,7 +54,7 @@ const Catalog = async (
       <div className={styles.catalog__top}>
         <h4 className={`${styles.catalog_title} ${typo.typo_h4}`}>Catalogue</h4>
         <div className="d-flex">
-          <CatalogProps />
+          <CatalogProps yachtsParams={yachtsParams} />
         </div>
       </div>
 

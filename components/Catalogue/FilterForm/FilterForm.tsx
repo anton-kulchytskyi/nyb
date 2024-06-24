@@ -1,119 +1,87 @@
-import { FormEvent, useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import Image from 'next/image';
 import Close from '@/public/icons/close.svg';
 
-import { Country } from '@/interfaces/country.interface';
-import { Town } from '@/interfaces/town.interface';
-import { getYachtMakes } from '@/utils/api/getAllVessels';
-import { getCountries, getModels, getTowns } from '@/utils/api/getFilterProps';
-import { Model } from '@/interfaces/model.interface';
-import { FeaturedType, FormType } from './types';
-import classes from './filterForm.module.scss';
+import { FilterProps } from '@/interfaces/filterProps.interface';
+import { ADVANCED_FILTER, BASE_FILTER, FEATURED } from './constants';
+import { FeaturedType } from './types';
 import Featured from './components/Featured/Featured';
 import { DropDown } from './components/DropDown/DropDown';
 import { Range } from './components/Range/Range';
 
-const initialFeatured = {
-  top: false,
-  hotPrice: false,
-  vat: false,
-};
+import classes from './filterForm.module.scss';
 
-const baseFilter = {
-  minPrice: 0,
-  maxPrice: 5000000,
-  make: null,
-  model: null,
-  minYear: 1930,
-  maxYear: 2025,
-  country: null,
-  town: null,
-};
-
-const advancedFilter = {
-  minLengthOverall: 2.5,
-  maxLengthOverall: 300,
-  minBeamWidth: 1,
-  maxBeamWidth: 25,
-  minDraftDepth: 0.3,
-  maxDraftDepth: 16,
-  keelType: null,
-  fuelType: null,
-  minCabinNumber: 0,
-  maxCabinNumber: 10,
-  minBerthNumber: 0,
-  maxBerthNumber: 20,
-  minHeadsNumber: 0,
-  maxHeadsNumber: 10,
-  minShowerNumber: 0,
-  maxShowerNumber: 10,
-};
-
-type FilterProps = {
-  make: string[],
-  countries: Country[],
-  towns: Town[],
-  models: Model[],
+type Props = {
+  yachtsParams: FilterProps;
+  closeForm: () => void;
 }
 
-function FilterForm({ closeForm }: FormType ) {
-  const [validated, setValidated] = useState(false);
-  const [featured, setFeatured] = useState<FeaturedType>(initialFeatured);
+export const FilterForm: React.FC<Props> = ({ yachtsParams, closeForm }) => {
+  // const [validated, setValidated] = useState(false);
+  const [featured, setFeatured] = useState<FeaturedType>(FEATURED);
 
-  const [filterProps, setFilterProps] = useState<FilterProps | null>(null);
+  const formRef = useRef<HTMLFormElement>(null);
+  const [formHeight, setFormHeight] = useState<number>(0);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const [make, countries, towns, models] = await Promise.all([
-          getYachtMakes(),
-          getCountries(),
-          getTowns(),
-          getModels(),
-        ]);
+    const updateHeight = () => {
+      if (formRef.current) {
+        const currentHeight = formRef.current.offsetHeight;
+        const rect = formRef.current.getBoundingClientRect();
+        const maxFormHight = Math.trunc(window.innerHeight - rect.top - 10);
 
-        setFilterProps({ make, countries, towns, models });
-      } catch (error) {
-        // console.error('Error fetching data:', error);
+        setFormHeight(currentHeight > maxFormHight ? maxFormHight : currentHeight)
       }
     };
 
-    fetchData();
+    updateHeight();
+    window.addEventListener('resize', updateHeight);
+
+    return () => {
+      window.removeEventListener('resize', updateHeight);
+    };
   }, []);
 
-  const models = filterProps?.models.map(item => item.model);
-  const countries = filterProps?.countries.map(item => item.country_name);
-  const towns = filterProps?.towns.map(item => item.town_name);
+
+  const makeArray = yachtsParams.models
+    .map(item => item.make)
+    .filter((item, index, arr) => arr.indexOf(item) === index);
+
+  const countriesArray = yachtsParams.countries.map(item => item.country_name);
+  const townArray = yachtsParams.towns.map(item => item.town_name);
 
   const handleFeatured = (value: keyof FeaturedType) =>
     setFeatured({ ...featured, [value]: !featured[value] });
 
   const handleReset = () => {
-    setFeatured(initialFeatured);
+    setFeatured(FEATURED);
   };
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
-    const form = event.currentTarget;
-    if (form.checkValidity() === false) {
-      event.preventDefault();
-      event.stopPropagation();
-    }
+  // const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  //   const form = event.currentTarget;
+  //   if (form.checkValidity() === false) {
+  //     event.preventDefault();
+  //     event.stopPropagation();
+  //   }
 
-    setValidated(true);
-  };
+  //   setValidated(true);
+  // };
 
-  if (!filterProps) {
-    return null;
-  }
+  // if (!filterProps) {
+  //   return null;
+  // }
 
   return (
     <Form
+      ref={formRef}
       className={classes.form}
+      style={{ height: formHeight }}
       noValidate
-      validated={validated}
-      onSubmit={handleSubmit}
+      // validated={validated}
+      // onSubmit={handleSubmit}
     >
+
       <div className={classes.header}>
         <span>Filter</span>
         <Image src={Close} alt="Close" onClick={closeForm} />
@@ -126,18 +94,18 @@ function FilterForm({ closeForm }: FormType ) {
           changeValue={handleFeatured}
         />
 
-        <Range title="Price Range" r1={baseFilter.minPrice} r2={baseFilter.maxPrice} />
-        <DropDown title="Manufacturer" options={filterProps.make} />
-        <DropDown title="Model" options={models} />
-        <Range title="Year Built" r1={baseFilter.minYear} r2={baseFilter.maxYear} />
-        <DropDown title="Country" options={countries} />
-        <DropDown title="Town" options={towns} />
+        <Range title="Price Range" r1={BASE_FILTER.minPrice} r2={BASE_FILTER.maxPrice} />
+        <DropDown title="Manufacturer" options={yachtsParams.make} />
+        <DropDown title="Model" options={makeArray} />
+        <Range title="Year Built" r1={BASE_FILTER.minYear} r2={BASE_FILTER.maxYear} />
+        <DropDown title="Country" options={countriesArray} />
+        <DropDown title="Town" options={townArray} />
 
         <div>Advanced filter</div>
 
-        <Range title="Length Overall" r1={advancedFilter.minLengthOverall} r2={advancedFilter.maxLengthOverall} />
-        <Range title="Beam Width" r1={advancedFilter.minBeamWidth} r2={advancedFilter.maxBeamWidth} />
-        <Range title="Draft Depth" r1={advancedFilter.minDraftDepth} r2={advancedFilter.maxDraftDepth} />
+        <Range title="Length Overall" r1={ADVANCED_FILTER.minLengthOverall} r2={ADVANCED_FILTER.maxLengthOverall} />
+        <Range title="Beam Width" r1={ADVANCED_FILTER.minBeamWidth} r2={ADVANCED_FILTER.maxBeamWidth} />
+        <Range title="Draft Depth" r1={ADVANCED_FILTER.minDraftDepth} r2={ADVANCED_FILTER.maxDraftDepth} />
 
       </div>
 
@@ -160,5 +128,3 @@ function FilterForm({ closeForm }: FormType ) {
     </Form>
   );
 }
-
-export default FilterForm;
