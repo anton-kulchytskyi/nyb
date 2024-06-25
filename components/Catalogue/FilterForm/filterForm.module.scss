@@ -9,7 +9,6 @@
   flex-direction: column;
   gap: 1.5rem;;
 
-  height: min-content;
   min-width: 310px;
   padding: 1.5rem 1.25rem;
 
@@ -35,7 +34,7 @@
   flex-direction: column;
   gap: 1.5rem;
 
-  padding-right: 24px;
+  padding-right: 1.5rem;;
   overflow-y: auto;
 
   &::-webkit-scrollbar {
@@ -76,3 +75,51 @@
     color: $gray-primary;
   }
 }
+
+//Accordion
+
+.accordion {
+  border: none;
+}
+
+.accordionHeader>button {
+  padding: 0;
+  
+  &::after {
+    width: 1.5rem;
+    height: 1.5rem;
+    background: url('../../../public/icons/Arrowdown.svg') no-repeat center/cover;
+  }
+
+  &:not(.collapsed) {
+    height: 24px;
+    color: $gray-primary;
+    background-color: $white;
+    box-shadow: none;
+
+    &::after {
+      width: 1.5rem;
+      height: 1.5rem;
+      background: url('../../../public/icons/Arrowdown.svg') no-repeat center/cover;
+    }
+  }
+
+  &:hover {
+    color: $black;
+  }
+
+  &:focus {
+    box-shadow: none;
+  }
+}
+
+.accordionBody {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+
+  padding: 0;
+  margin-top: 1.5rem;
+}
+
+//Accordion

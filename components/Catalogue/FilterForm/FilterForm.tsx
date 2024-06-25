@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import Image from 'next/image';
+import { Accordion } from 'react-bootstrap';
 import Close from '@/public/icons/close.svg';
 
 import { FilterProps } from '@/interfaces/filterProps.interface';
@@ -21,8 +22,15 @@ export const FilterForm: React.FC<Props> = ({ yachtsParams, closeForm }) => {
   // const [validated, setValidated] = useState(false);
   const [featured, setFeatured] = useState<FeaturedType>(FEATURED);
 
+  const makeArray = yachtsParams.models
+    .map(item => item.make)
+    .filter((item, index, arr) => arr.indexOf(item) === index);
+  
+  const countriesArray = yachtsParams.countries.map(item => item.country_name);
+  const townArray = yachtsParams.towns.map(item => item.town_name);
+
   const formRef = useRef<HTMLFormElement>(null);
-  const [formHeight, setFormHeight] = useState<number>(0);
+  const [formHeight, setFormHeight] = useState<number | null>(null);
 
   useEffect(() => {
     const updateHeight = () => {
@@ -42,14 +50,6 @@ export const FilterForm: React.FC<Props> = ({ yachtsParams, closeForm }) => {
       window.removeEventListener('resize', updateHeight);
     };
   }, []);
-
-
-  const makeArray = yachtsParams.models
-    .map(item => item.make)
-    .filter((item, index, arr) => arr.indexOf(item) === index);
-
-  const countriesArray = yachtsParams.countries.map(item => item.country_name);
-  const townArray = yachtsParams.towns.map(item => item.town_name);
 
   const handleFeatured = (value: keyof FeaturedType) =>
     setFeatured({ ...featured, [value]: !featured[value] });
@@ -76,7 +76,7 @@ export const FilterForm: React.FC<Props> = ({ yachtsParams, closeForm }) => {
     <Form
       ref={formRef}
       className={classes.form}
-      style={{ height: formHeight }}
+      style={{ height: formHeight ? formHeight : 'min-content' }}
       noValidate
       // validated={validated}
       // onSubmit={handleSubmit}
@@ -101,12 +101,33 @@ export const FilterForm: React.FC<Props> = ({ yachtsParams, closeForm }) => {
         <DropDown title="Country" options={countriesArray} />
         <DropDown title="Town" options={townArray} />
 
-        <div>Advanced filter</div>
+        <Accordion defaultActiveKey="0">
+          <Accordion.Item eventKey="0" className={classes.accordion}>
+            <Accordion.Header className={classes.accordionHeader}>
+              Advanced filter
+            </Accordion.Header>
 
-        <Range title="Length Overall" r1={ADVANCED_FILTER.minLengthOverall} r2={ADVANCED_FILTER.maxLengthOverall} />
-        <Range title="Beam Width" r1={ADVANCED_FILTER.minBeamWidth} r2={ADVANCED_FILTER.maxBeamWidth} />
-        <Range title="Draft Depth" r1={ADVANCED_FILTER.minDraftDepth} r2={ADVANCED_FILTER.maxDraftDepth} />
+            <Accordion.Body className={classes.accordionBody}>
+              <Range 
+                title="Length Overall" 
+                r1={ADVANCED_FILTER.minLengthOverall} 
+                r2={ADVANCED_FILTER.maxLengthOverall} 
+              />
 
+              <Range 
+                title="Beam Width" 
+                r1={ADVANCED_FILTER.minBeamWidth} 
+                r2={ADVANCED_FILTER.maxBeamWidth} 
+              />
+
+              <Range 
+                title="Draft Depth" 
+                r1={ADVANCED_FILTER.minDraftDepth} 
+                r2={ADVANCED_FILTER.maxDraftDepth} 
+              />
+            </Accordion.Body>
+          </Accordion.Item>
+        </Accordion>
       </div>
 
       <div className={classes.buttons}>
