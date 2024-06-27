@@ -5,15 +5,14 @@ import { FeaturedType, } from '../../types';
 import classes from './features.module.scss';
 
 interface FeaturedProps {
-  title: string;
   values: FeaturedType;
   changeValue: (value: keyof FeaturedType) => void;
 }
 
-function Featured({ title, values, changeValue }: FeaturedProps) {
+function Featured({ values, changeValue }: FeaturedProps) {
   return (
     <Form.Group className={classes.group}>
-      <p>{title}</p>
+      <p>Featured</p>
 
       <div className={classes.features}>
         <Form.Check

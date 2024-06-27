@@ -6,9 +6,8 @@ import typo from "@/styles/typography.module.scss";
 import CatalogYacht from "@/components/Catalogue/CatalogYacht/catalogYacht";
 import Pagination from "@/components/Pagination/Pagination";
 import CatalogProps from '@/components/Catalogue/CatalogProps/CatalogProps';
-import { sortFunction } from '@/utils/functions/sortFunction';
 import { getCountries, getModels, getTowns } from '@/utils/api/getFilterProps';
-
+import { preparedYachtsList } from '@/utils/functions/preparedYachtsList';
 import styles from './page.module.scss';
 
 export const metadata: Metadata = {
@@ -23,8 +22,9 @@ type SearchParamsType = {
   sort: string;
 };
 
-const Catalog = async ({ searchParams }: { searchParams?: SearchParamsType}) => {
-  const allYachts = await getAllVessels();
+const Catalog = async ({ searchParams }: {searchParams?: SearchParamsType}) => {
+  const baseYachts = await getAllVessels();
+  const allYachts = preparedYachtsList(baseYachts, searchParams);
 
   const yachtsParams = { 
     make: await getYachtMakes(), 
@@ -35,8 +35,6 @@ const Catalog = async ({ searchParams }: { searchParams?: SearchParamsType}) => 
 
   let page = Number(searchParams?.page) || 1;
   const size = Number(searchParams?.size) || CardNumber;
-
-  sortFunction(allYachts, searchParams?.sort);
 
   if (Math.ceil(allYachts?.length / size) < page) {
     page = 1;

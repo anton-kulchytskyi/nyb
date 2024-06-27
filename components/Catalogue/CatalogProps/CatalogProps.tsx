@@ -16,8 +16,6 @@ interface ComponentProps {
 const CatalogProps: React.FC<ComponentProps> = ({ yachtsParams }) => {
   const [showFilterForm, setShowFilterForm] = useState(false);
 
-  // console.log(yachtsParams);
-
   return (
     <div>
       <div className={styles.catalogProps__buttons}>

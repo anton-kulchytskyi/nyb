@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Dropdown, Form } from "react-bootstrap";
 
 import classNames from "classnames";
@@ -8,29 +7,29 @@ type DropDownType = {
   options?: string[],
   title: string,
   active?: string,
+  selectItem?: (value: string) => void,
 }
 
-export const DropDown = ({ options = ['No options'], title, active = options[0] }: DropDownType) => {
-  const [value, setValue] = useState(options[0])
-
-  const handleDropdownChange = (option: string) => {
-    setValue(option);
-  }
-
+export const DropDown = ({
+  options = ['No options'],
+  title,
+  active,
+  selectItem = () => {},
+} : DropDownType) => {
   return (
     <Form.Group className={classes.group}>
       <p className={classes.title}>{title}</p>
 
       <Dropdown className={classes.dropdown}>
         <Dropdown.Toggle as='div' className={classes.button}>
-          {value}
+          {active || options[0]}
         </Dropdown.Toggle>
 
         <Dropdown.Menu className={classes.menu}>
           {options.map((option, index) => (
             <Dropdown.Item
               key={index}
-              onClick={() => handleDropdownChange(option)}
+              onClick={() => selectItem(option)}
               className={classNames(
                 classes.item,
                 { [classes['item--active']]: active === option },

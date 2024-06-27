@@ -1,11 +1,23 @@
 import { Vessel } from "@/interfaces/vessel.interface";
 
-export const sortFunction = (
+type SearchParams = {
+  [key: string]: string;
+};
+
+export const preparedYachtsList = (
   yachts: Vessel[],
-  sortParams: string = 'Price: High to Low',
+  params: SearchParams = {},
 ): Vessel[] => {
-  return yachts.sort((a, b) => {
-    switch (sortParams) {
+  const newYachtsArr = [...yachts].filter( item => {
+    const top = params?.top ? item.yacht_top : true;
+    const price = params?.hotPrice ? item.yacht_hot_price : true;
+    const vat = params?.vat ? item.yacht_vat : true;
+
+    return top && price && vat;
+  });
+
+  newYachtsArr.sort((a, b) => {
+    switch (params?.sort) {
       case 'priceDecrease':
         return +b.yacht_price - +a.yacht_price;
       
@@ -28,4 +40,6 @@ export const sortFunction = (
         return 0;
     }
   });
+
+  return newYachtsArr;
 };
