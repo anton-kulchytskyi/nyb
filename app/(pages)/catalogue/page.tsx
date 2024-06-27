@@ -28,9 +28,9 @@ const Catalog = async ({ searchParams }: {searchParams?: SearchParamsType}) => {
 
   const yachtsParams = { 
     make: await getYachtMakes(), 
+    models: await getModels(),
     countries: await getCountries(), 
     towns: await getTowns(), 
-    models: await getModels(),
   };
 
   let page = Number(searchParams?.page) || 1;

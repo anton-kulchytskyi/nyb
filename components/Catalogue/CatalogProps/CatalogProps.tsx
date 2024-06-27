@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { createContext, useState } from 'react'
 
 import { FilterProps } from '@/interfaces/filterProps.interface';
 import Sorting from '../Sorting/Sorting';
@@ -12,6 +12,8 @@ import styles from './catalogProps.module.scss';
 interface ComponentProps {
   yachtsParams: FilterProps;
 }
+
+const YachtsParamsContext = createContext<FilterProps | null>(null);
 
 const CatalogProps: React.FC<ComponentProps> = ({ yachtsParams }) => {
   const [showFilterForm, setShowFilterForm] = useState(false);
@@ -26,13 +28,13 @@ const CatalogProps: React.FC<ComponentProps> = ({ yachtsParams }) => {
       {showFilterForm && (
         <aside className={styles['catalogProps__filter-form']}
         >
-          <FilterForm
-            closeForm={() => setShowFilterForm(false)}
-            yachtsParams={yachtsParams}
-          />
+          <YachtsParamsContext.Provider value={yachtsParams} >
+            <FilterForm
+              closeForm={() => setShowFilterForm(false)}
+            />
+          </YachtsParamsContext.Provider>
         </aside>
       )}
-
     </div>
   );
 };

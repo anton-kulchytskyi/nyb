@@ -4,54 +4,38 @@ import Image from 'next/image';
 
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import Close from '@/public/icons/close.svg';
-
-import { FilterProps } from '@/interfaces/filterProps.interface';
-import { FEATURED } from './constants';
-import { FeaturedType } from './types';
+import { getSearchWith } from '@/utils/functions/getSearchWith';
 import Featured from './components/Featured/Featured';
 
 import classes from './filterForm.module.scss';
 
+import { FeaturedType } from './types';
+import { FEATURED } from './constants';
+
 type Props = {
-  yachtsParams: FilterProps;
   closeForm: () => void;
 }
 
-export type SearchParams = {
-  [key: string]: string | string[] | null | boolean;
-};
-
-export function getSearchWith(
-  currentParams: URLSearchParams,
-  paramsToUpdate: SearchParams
-): string {
-  const newParams = new URLSearchParams(currentParams.toString());
-
-  Object.entries(paramsToUpdate).forEach(([key, value]) => {
-    if (value === null || value === false) {
-      newParams.delete(key);
-    } else if (Array.isArray(value)) {
-      newParams.delete(key);
-      value.forEach((part) => newParams.append(key, part));
-    } else if (value === true) {
-      newParams.set(key, 'true');
-    } else {
-      newParams.set(key, value);
-    }
-  });
-
-  return newParams.toString();
-}
-
 export const FilterForm: React.FC<Props> = ({ closeForm }) => {
-  const { replace } = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
-
-  const [featured, setFeatured] = useState<FeaturedType>(FEATURED);
+  const { replace } = useRouter();
 
   const formRef = useRef<HTMLFormElement>(null);
   const [formHeight, setFormHeight] = useState<number | null>(null);
+  const [featured, setFeatured] = useState<FeaturedType>({
+    top: !!searchParams.get('top'),
+    hotPrice: !!searchParams.get('hotPrice'),
+    vat: !!searchParams.get('vat'),
+  });
+
+  const handleFeatured = (value: keyof FeaturedType) =>
+    setFeatured({ ...featured, [value]: !featured[value] });
+  
+  const handleReset = () => {
+    setFeatured(FEATURED);
+  };
+
 
   useEffect(() => {
     const updateHeight = () => {
@@ -72,13 +56,6 @@ export const FilterForm: React.FC<Props> = ({ closeForm }) => {
     };
   }, []);
 
-  const handleFeatured = (value: keyof FeaturedType) =>
-    setFeatured({ ...featured, [value]: !featured[value] });
-
-  const handleReset = () => {
-    setFeatured(FEATURED);
-  };
-
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     event.stopPropagation();
@@ -95,14 +72,12 @@ export const FilterForm: React.FC<Props> = ({ closeForm }) => {
       noValidate
       onSubmit={handleSubmit}
     >
-
       <div className={classes.header}>
         <span>Filter</span>
         <Image src={Close} alt="Close" onClick={closeForm} />
       </div>
-
       <div className={classes.content}>
-        <Featured values={featured} changeValue={handleFeatured} />
+        <Featured values={featured} changeValue={handleFeatured}/>
       </div>
 
       <div className={classes.buttons}>

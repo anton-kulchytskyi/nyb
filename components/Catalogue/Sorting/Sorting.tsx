@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { Dropdown } from 'react-bootstrap';
-import { usePathname, useRouter } from 'next/navigation';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import classNames from 'classnames';
 import useWindowDimensions from '@/hooks/useWindowDimensions';
 
@@ -11,7 +11,7 @@ import { SORT_PARAMS } from '@/utils/constants/sortParans';
 import styles from './sorting.module.scss';
 
 const Sorting = () => {
-  const searchParams = new URLSearchParams(window.location.search);
+  const searchParams = useSearchParams();
   const pathname = usePathname();
   const { replace } = useRouter();
 
