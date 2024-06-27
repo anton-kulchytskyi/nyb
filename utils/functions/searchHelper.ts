@@ -1,5 +1,5 @@
 export type SearchParams = {
-  [key: string]: string | string[] | null;
+  [key: string]: string | string[] | null | boolean;
 };
 
 export function getSearchWith(
@@ -9,7 +9,7 @@ export function getSearchWith(
   const newParams = new URLSearchParams(currentParams.toString());
 
   Object.entries(paramsToUpdate).forEach(([key, value]) => {
-    if (value === null) {
+    if (value === null || value === false) {
       newParams.delete(key);
     } else if (Array.isArray(value)) {
       newParams.delete(key);
@@ -17,6 +17,8 @@ export function getSearchWith(
       value.forEach((part) => {
         newParams.append(key, part);
       });
+    } else if (value === true) {
+      newParams.set(key, 'true');
     } else {
       newParams.set(key, value);
     }

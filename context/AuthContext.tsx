@@ -6,7 +6,7 @@ import { TokenInterface } from '@/interfaces/token.interface';
 
 type AuthContextType = {
   isAuthenticated: boolean;
-  userInfoToken: TokenInterface | undefined;
+  userInfoToken?: TokenInterface;
   varificationCode: string;
   userLogin: (token: string) => void;
   userLogout: () => void;
@@ -24,19 +24,17 @@ export const AuthProvider: React.FC<Props> = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const LOCAL_STORAGE_TOKEN_KEY = 'authToken';
   const LOCAL_STORAGE_SESSION_TIME = 'expTime';
-  const [userInfoToken, setUserInfoToken] = useState<
-  TokenInterface | undefined
-  >();
+  const [userInfoToken, setUserInfoToken] = useState<TokenInterface | undefined>();
   const token =
     typeof localStorage !== 'undefined'
       ? localStorage.getItem(LOCAL_STORAGE_TOKEN_KEY)
       : null;
-  
+
   const now = Math.floor(new Date().getTime() / 1000);
   const expTime =
-      typeof localStorage !== 'undefined'
-        ? localStorage.getItem(LOCAL_STORAGE_SESSION_TIME)
-        : null;
+    typeof localStorage !== 'undefined'
+      ? localStorage.getItem(LOCAL_STORAGE_SESSION_TIME)
+      : null;
 
   const tokenDecode = useCallback(() => {
     if (token) {
@@ -65,8 +63,6 @@ export const AuthProvider: React.FC<Props> = ({ children }) => {
   };
 
   const userLogout = () => {
-
-
     localStorage.removeItem('authToken');
     setIsAuthenticated(false);
   };

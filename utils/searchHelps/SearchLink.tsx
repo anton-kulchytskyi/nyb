@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { usePathname, useSearchParams } from 'next/navigation';
-import { SearchParams, getSearchWith } from './searchHelper';
+import { SearchParams, getSearchWith } from '../functions/searchHelper';
 
 type Props = Omit<React.ComponentProps<typeof Link>, 'href'> & {
   params: SearchParams;

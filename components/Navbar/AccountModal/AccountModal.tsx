@@ -9,8 +9,8 @@ import { Errors } from '@/interfaces/errors.interface';
 
 import Loader from '@/components/Loader/Loader';
 import { useAuth } from '@/context/AuthContext';
-import { userHandleSignUp } from '@/utils/api/userSignUp/userSignUp';
-import { userHandleVarificationLogIn } from '@/utils/api/userVarificationLogIn/userVarificationLogIn';
+import { userHandleSignUp } from '@/utils/functions/userSignUp';
+import { userHandleVarificationLogIn } from '@/utils/functions/userVarificationLogIn';
 import VarificationModal from '../VarificationModal/VarificationModal';
 import styles from './accountModal.module.scss';
 
