@@ -6,13 +6,15 @@ import classes from './dropdown.module.scss';
 type DropDownType = {
   options?: string[],
   title: string,
-  active?: string,
+  defaultValue: string,
+  active?: string | null,
   selectItem?: (value: string) => void,
 }
 
 export const DropDown = ({
   options = ['No options'],
   title,
+  defaultValue,
   active,
   selectItem = () => {},
 } : DropDownType) => {
@@ -22,7 +24,7 @@ export const DropDown = ({
 
       <Dropdown className={classes.dropdown}>
         <Dropdown.Toggle as='div' className={classes.button}>
-          {active || options[0]}
+          {active || `Select ${defaultValue}`}
         </Dropdown.Toggle>
 
         <Dropdown.Menu className={classes.menu}>

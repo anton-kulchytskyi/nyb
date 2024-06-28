@@ -1,7 +1,5 @@
 import Form from 'react-bootstrap/Form';
-
 import { FeaturedType, } from '../../types';
-
 import classes from './features.module.scss';
 
 interface FeaturedProps {

@@ -3,7 +3,7 @@ import { Model } from "./model.interface";
 import { Town } from "./town.interface";
 
 export interface FilterProps {
-  make: string[];
+  makes: string[];
   countries: Country[];
   towns: Town[];
   models: Model[];

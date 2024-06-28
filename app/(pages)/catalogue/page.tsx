@@ -27,7 +27,7 @@ const Catalog = async ({ searchParams }: {searchParams?: SearchParamsType}) => {
   const allYachts = preparedYachtsList(baseYachts, searchParams);
 
   const yachtsParams = { 
-    make: await getYachtMakes(), 
+    makes: await getYachtMakes(), 
     models: await getModels(),
     countries: await getCountries(), 
     towns: await getTowns(), 

@@ -5,9 +5,7 @@ import { Dropdown } from 'react-bootstrap';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import classNames from 'classnames';
 import useWindowDimensions from '@/hooks/useWindowDimensions';
-
 import { SORT_PARAMS } from '@/utils/constants/sortParans';
-
 import styles from './sorting.module.scss';
 
 const Sorting = () => {
@@ -25,7 +23,7 @@ const Sorting = () => {
 
   const handleDropdownChange = (key: string, option: string) => {
     setValue(option);
-    
+
     const params = new URLSearchParams(searchParams);
     params.set('sort', key);
 
@@ -58,7 +56,6 @@ const Sorting = () => {
               {name}
             </Dropdown.Item>
           ))}
-
         </Dropdown.Menu>
       </Dropdown>
     </section>
