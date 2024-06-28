@@ -11,9 +11,8 @@ import { FeaturedType } from './types';
 
 import { Range } from './components/Range/Range';
 import { DropDown } from './components/DropDown/DropDown';
+import { BASE_FILTER, FEATURED } from './constants';
 import classes from './filterForm.module.scss';
-import {BASE_FILTER, FEATURED} from './constants';
-import {Model} from '@/interfaces/model.interface';
 
 type Props = {
   yachtsParams: FilterProps,
@@ -92,7 +91,7 @@ export const FilterForm: React.FC<Props> = ({ closeForm, yachtsParams }) => {
   useEffect(() => {
     setCountries(baseDropDowns.countries);
     setTowns(baseDropDowns.towns)
-  }, [])
+  }, [baseDropDowns.countries, baseDropDowns.towns])
 
   const handleReset = () => {
     setFeatured(FEATURED);
