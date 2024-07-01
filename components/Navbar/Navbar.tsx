@@ -37,6 +37,9 @@ const Navbar = () => {
   } = useModals();
   const { width } = useWindowDimensions();
   const { selectedCurrency } = useCurrency();
+  const isAdmin = userInfoToken?.['cognito:groups']
+    ? userInfoToken?.['cognito:groups'][0]
+    : null;
 
   useEffect(() => {
     const screen = (width as number) < 1200;
@@ -165,13 +168,25 @@ const Navbar = () => {
               >
                 {`Split currency / ${selectedCurrency}`}
               </button>
-              <button
-                type="button"
-                onClick={accountModalLoginHandler}
-                className={`${styles.link} ${styles.link__button}`}
-              >
-                Contacts
-              </button>
+              {isAuthenticated && isAdmin === 'ROLE_ADMIN' && (
+                <Link
+                  className={`${styles.link} ${styles.link__button}`}
+                  href={{
+                    pathname: `/admin/${userInfoToken?.given_name}${userInfoToken?.family_name}`,
+                  }}
+                >
+                  Admin Page
+                </Link>
+              )}
+              {isAuthenticated && isAdmin === null && (
+                <button
+                  type="button"
+                  onClick={accountModalLoginHandler}
+                  className={`${styles.link} ${styles.link__button}`}
+                >
+                  Contacts
+                </button>
+              )}
             </>
           )}
           {!desktopScreen && !isAuthenticated && (
